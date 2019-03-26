@@ -59,10 +59,25 @@ $productImg = 'img/cat1.jpg';
 <!--product category added -->
 
 <!-- categories ends -->
+@php
+$i = 0;
+@endphp
+@foreach ($products as $product)
+<tr>
+        <td>{{ $product->product_name }}</td>
+
+ </tr>
+
+@php
+$i++;
+@endphp
+
+@break($i==5)
 
 
+ @endforeach
 
-
+<!-- $data = array_keys($my_array, 5); -->
 
 
 <!-- just in products starts -->
