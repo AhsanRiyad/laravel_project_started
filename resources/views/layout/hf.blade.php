@@ -17,15 +17,18 @@ $logo = 'img/logo.png' ;
 
         <title>First page</title>
 
+
+        <!-- jquery ui -->
+        <link rel="stylesheet" href="{{ asset('/css/jquery-ui.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/jquery-ui.structure.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/jquery-ui.theme.css') }}">
+
         <!-- boostrap -->
         <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-reboot.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.css') }}">
         
-        <!-- jquery ui -->
-        <link rel="stylesheet" href="{{ asset('/css/jquery-ui.css') }}">
-        <link rel="stylesheet" href="{{ asset('/css/jquery-ui.structure.css') }}">
-        <link rel="stylesheet" href="{{ asset('/css/jquery-ui.theme.css') }}">
+        
         
         <!-- font awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -44,7 +47,7 @@ $logo = 'img/logo.png' ;
         <div class="col">
           <div class="container">
             <div class="row">
-              <div class="col-lg-2 col-12 justify-content-lg-start d-flex justify-content-center"><a href="<%=homepage%>"><img src="{{ asset($logo) }}" ></a>
+              <div class="col-lg-2 col-12 justify-content-lg-start d-flex justify-content-center"><a href="{{ route('index') }}"><img src="{{ asset($logo) }}" ></a>
               </div>
 
               <div class="col-lg-6 col-12 align-self-lg-center">
@@ -263,31 +266,125 @@ $logo = 'img/logo.png' ;
 
 
 
-
-
-
-
         @yield('content');
 
 
 
        
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+<!-- footer part starts -->
+
+<div class="container-fluid">
+    <div class="row bg-dark">
+        <div class="col">
+            <div class="container text-white">
+                <div class="row">
+                    <div class="col-md-3 col-12 text-center text-sm-left pt-lg-5 pt-5">
+                        
+                        <h5>Get to know us</h5>
+                        <a class="text-white" href="">About Us</a><br>
+                        <a class="text-white" href="">Privacy Policy</a><br>
+                        <a class="text-white" href="">Cookie Policy</a><br>
+                        <a class="text-white" href="">Warranty Policy</a><br>
+                        
+                    </div>
+                    <div class="col-md-3 col-12 text-center text-sm-left pt-lg-5 pt-5">
+                        
+                        <h5>Let Us Help You</h5>
+                        <a class="text-white" href="">Your account</a><br>
+                        <a class="text-white" href="">Your order</a><br>
+                        <a class="text-white" href="">Track your order</a><br>
+                        <a class="text-white" href="">How to place an order</a><br></div>
+                        <div class="col-md-3 col-12 text-center text-sm-left pt-lg-5 pt-5">
+                            
+                            <h5>Get in touch</h5>
+                            <a class="text-white" href="">Contact Us</a><br>
+                            <a class="text-white" href="">Our Blogs</a><br>
+                            <a class="text-white" href="">Track your order</a><br>
+                            <a class="text-white" href="">How to place an order</a><br>
+
+                        </div>
+                        <div class="col-md-3  col-12 text-center text-sm-left pt-lg-5 pt-5 pb-5">
+                            
+                            <h5>UMART&trade;</h5>
+                            <h6>House:84</h6>
+                            <h6>Road: 04</h6>
+                            <h6>Block: B</h6>
+                            <h6>Bashundhara R/A</h6>
+                            <h6>Dhaka-1216</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer part ends -->
+
+
+    <!-- copy right part starts -->
+    <div class="container-fluid">
+        <div class="row bg-secondary pb-3 pt-3">
+            <div class="col">
+                <div class="container">
+                    <div class="row text-center text-lg-left">
+                        <div class="col"><i class="far fa-copyright text-white"></i><a class="text-white" href="http://fiver.com/riyad_ahsan"> 2018 Riyad Ahsan <abbr title="Web Developer"> All Rights Reserved</abbr></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copy right part ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
 
 
 
         <!-- vue js entry point -->
-        <script src="{{ asset('js/app.js') }}" ></script>
+        <!-- <script src="{{ asset('js/app.js') }}" ></script> -->
         
         <!-- jquery -->
         <script src="{{ asset('js/jquery-3.3.1.js') }}" ></script>
         
+        <!-- jquery ui -->
+        <script src="{{ asset('js/jquery-ui.js') }}" ></script>
+
         <!-- bootstrap -->
         <script src="{{ asset('js/bootstrap.js') }}" ></script>
         <script src="{{ asset('js/bootstrap.bundle.js') }}" ></script>
         
-        <!-- jquery ui -->
-        <script src="{{ asset('js/jquery-ui.js') }}" ></script>
+        
         
         <!-- main js -->
         <script src="{{ asset('js/main.js') }}" ></script>

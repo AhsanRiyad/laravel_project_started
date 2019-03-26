@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('index');
-});
+})->Name('index');
 
 
 Route::get('/db', 'testController@dbTest');
