@@ -52,36 +52,6 @@ $productImg = 'img/cat1.jpg';
 
 
 
-
-
-<!-- categories starts -->
-
-<!--product category added -->
-
-<!-- categories ends -->
-@php
-$i = 0;
-@endphp
-@foreach ($products as $product)
-<tr>
-        <td>{{ $product->product_name }}</td>
-
- </tr>
-
-@php
-$i++;
-@endphp
-
-@break($i==5)
-
-
- @endforeach
-
-<!-- $data = array_keys($my_array, 5); -->
-
-
-<!-- just in products starts -->
-
 <!--New product category added -->
 <div class="container-fluid">
 	<div class="row bg-light">
@@ -93,57 +63,69 @@ $i++;
 
 
 					
-					@for($i=0; $i<12; $i++)
+					@php
+					$i = 0;
+					@endphp
+					@foreach ($products as $product)
 					
 
 
 					<div class="col-xl-2 col-6  mt-xl-2 mt-3" >
 						
-	<a style="color: black;" href="http://localhost:3000/product/productdetails/<%=justInProduct[i].product_id%>">
-						<div class="w_p bg-white ">
-							<img class="img-fluid" src="{{ asset($productImg) }}" alt="">
+						<a style="color: black;" href="{{ route('product.details' , [$product->product_id]) }}">
+							<div class="w_p bg-white ">
+								<img class="img-fluid" src="{{ asset($productImg) }}" alt="">
 
-							<div class="w-100 pl-2">
-								<h6> <%=justInProduct[i].product_name%> </h6>
-								<h6 class="text-danger">$<%=justInProduct[i].product_price%></h6>
-								<p class="text-danger mb-0"> 
-									<strike class="text-muted">$<%=justInProduct[i].product_original_price%>
-									</strike>
-									<small class="text-muted"> $<%=justInProduct[i].category_id%>%</small>
-								</p>
-								<div class="w-100 mt-0 pb-3">
-									
-									<span class="fa fa-star text-warning"></span>
-									<span class="fa fa-star text-warning"></span>
-									<span class="fa fa-star text-warning"></span>
-									<span class="fa fa-star text-warning"></span>
-									<span class="fa fa-star"></span>
-									
+								<div class="w-100 pl-2">
+									<h6> {{ $product->product_name }} </h6>
+									<h6 class="text-danger">{{ $product->product_price }}</h6>
+									<p class="text-danger mb-0"> 
+										<strike class="text-muted">
+
+											{{ $product->product_original_price }}
+										</strike>
+										<small class="text-muted"> 
+										{{ $product->category_id }}
+										</small>
+									</p>
+									<div class="w-100 mt-0 pb-3">
+
+										<span class="fa fa-star text-warning"></span>
+										<span class="fa fa-star text-warning"></span>
+										<span class="fa fa-star text-warning"></span>
+										<span class="fa fa-star text-warning"></span>
+										<span class="fa fa-star"></span>
+
+									</div>
+
+
 								</div>
-								
 
 							</div>
 
-						</div>
-
-</a>
+						</a>
 
 						
 					</div>
 
 
 
-					@endfor
+					@php
+					$i++;
+					@endphp
+
+					@break($i==12)
 
 
-						
+					@endforeach
+
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
 
 
 <!-- just in products ends -->
@@ -152,8 +134,7 @@ $i++;
 
 
 
-
-<!--Recommended product category added -->
+<!-- just in products starts -->
 
 <!--New product category added -->
 <div class="container-fluid">
@@ -165,54 +146,65 @@ $i++;
 					<div class="w-100"></div>
 
 
-					<% 
-					for(var i=0; i<RecommendedProduct.length; i++)
-					{
-					%>
+					
+					@php
+					$i = 0;
+					@endphp
+					@foreach ($recommendProducts as $rec)
+					
 
 
 					<div class="col-xl-2 col-6  mt-xl-2 mt-3" >
 						
-	<a style="color: black;" href="http://localhost:3000/product/productdetails/<%=RecommendedProduct[i].product_id%>">
-						<div class="w_p bg-white ">
-							<img class="img-fluid" src="{{ asset($productImg) }}" alt="">
+						<a style="color: black;" href="{{ route('product.details' , [$rec->product_id]) }}">
+							<div class="w_p bg-white ">
+								<img class="img-fluid" src="{{ asset($productImg) }}" alt="">
 
-							<div class="w-100 pl-2">
-								<h6> <%=RecommendedProduct[i].product_name%> </h6>
-								<h6 class="text-danger">$<%=RecommendedProduct[i].product_price%></h6>
-								<p class="text-danger mb-0"> 
-									<strike class="text-muted">$<%=RecommendedProduct[i].product_original_price%>
-									</strike>
-									<small class="text-muted"> $<%=RecommendedProduct[i].category_id%>%</small>
-								</p>
-								<div class="w-100 mt-0 pb-3">
-									
-									<span class="fa fa-star text-warning"></span>
-									<span class="fa fa-star text-warning"></span>
-									<span class="fa fa-star text-warning"></span>
-									<span class="fa fa-star text-warning"></span>
-									<span class="fa fa-star"></span>
-									
+								<div class="w-100 pl-2">
+									<h6> {{ $rec->product_name }} </h6>
+									<h6 class="text-danger">{{ $rec->product_price }}</h6>
+									<p class="text-danger mb-0"> 
+										<strike class="text-muted">
+
+											{{ $rec->product_original_price }}
+										</strike>
+										<small class="text-muted"> 
+										{{ $rec->category_id }}
+										</small>
+									</p>
+									<div class="w-100 mt-0 pb-3">
+
+										<span class="fa fa-star text-warning"></span>
+										<span class="fa fa-star text-warning"></span>
+										<span class="fa fa-star text-warning"></span>
+										<span class="fa fa-star text-warning"></span>
+										<span class="fa fa-star"></span>
+
+									</div>
+
+
 								</div>
-								
 
 							</div>
 
-						</div>
-
-</a>
+						</a>
 
 						
 					</div>
 
 
 
-					<% 
-					}
-					%>
+					@php
+					$i++;
+					@endphp
+
+					@break($i==12)
 
 
-						
+					@endforeach
+
+
+
 				</div>
 			</div>
 		</div>
@@ -221,9 +213,9 @@ $i++;
 
 
 
-
 <!-- just in products ends -->
 
+<!--Recommended product category added -->
 
 
 <!-- load more button -->

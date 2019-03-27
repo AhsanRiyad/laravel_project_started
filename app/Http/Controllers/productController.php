@@ -9,7 +9,8 @@ class productController extends Controller
 {
     public function getProducts(){
     	$products = productModel::getAllProducts();
-    	 return view('index' , [ 'products' => $products]);
+    	$recommendProducts = productModel::getRecProducts(1);
+    	 return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts  ]);
     	// return $products;
     }
 }
