@@ -17,6 +17,7 @@ Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Na
 
 Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
 
+Route::post('/login', 'authenticationController@loginCheck' )->Name('authentication.login');
 
 Route::get('/db', 'testController@dbTest');
 

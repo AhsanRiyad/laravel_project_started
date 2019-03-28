@@ -11,7 +11,10 @@ $loginStatus=false;
 
 
 <!-- login form starts -->
-<form  method="post" action="http://localhost:3000/auth">
+<form  method="post" action="#">
+
+  @csrf
+
   <div class="container-fluid">
     <div class="row justify-content-xl-center admin_background">
       <div class="col-12 col-xl-6 ">
@@ -20,18 +23,17 @@ $loginStatus=false;
             
               
 
-              <% if(validCheck == true)
-              { %>
+              @if($validCheck == true)
+              
                 <p class="text-dark h4" id="login_id">
               Welcome to Umart! Please login
               
-              <%
-              }else{
-               %>
+              @else
+               
                <p class="text-danger h4 bg-white" id="login_id">
               Email/Password Not Matched
-              <%
-              }%> 
+              
+              @endif
 
               </p>
           </div>
@@ -39,6 +41,7 @@ $loginStatus=false;
           <div class="row justify-content-xl-center bg-white py-5 mb-5">
 
             <div class="col-12 col-xl-6 ">
+
               <div class="form-group">
                 <label for="exampleInputEmail1" ><small id="idExampleInputEmail1Small">Email address*</small>
                   <br>
