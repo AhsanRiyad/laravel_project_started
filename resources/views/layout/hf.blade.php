@@ -1,6 +1,7 @@
 @php
 
 $logo = 'img/logo.png' ; 
+$loginStatus = false ; 
 
 @endphp
 
@@ -107,33 +108,81 @@ $logo = 'img/logo.png' ;
 
               </div>
 
-               <div class=" col-lg-1 col-3 mt-3 mb-3 mb-lg-0 mt-lg-0 d-flex justify-content-center align-self-lg-center">
+             <div class="col-lg-1  col-3 offset-1 mt-3 mb-3 mb-lg-0 mt-lg-0 offset-lg-0 d-flex justify-content-center align-self-lg-center">
 
-                <a href="<%=signin%>" class="btn btn-danger px-4">Support
-                
+                @if($loginStatus == false)
+
+                <a href="<%=signup%>" class="btn btn-success px-4">Sign Up </span>
                 </a> 
-
-
-              </div>
-
-
-              <div class=" col-lg-1 col-3 mt-3 mb-3 mb-lg-0 mt-lg-0 d-flex justify-content-center align-self-lg-center">
-
-                <a href="<%=signin%>" class="btn btn-danger px-4">Support
+          
                 
-                </a> 
+              @elseif($loginStatus==true)
+
+              <a href="http://localhost:3000/product/cart" class="btn btn-warning ">Cart<span class="badge badge-light" id="cart_count"> <%=cart_count%> </span>
+              </a> 
+
+              
+              @endif
 
 
-              </div>
 
- <div class=" col-lg-1 col-3 mt-3 mb-3 mb-lg-0 mt-lg-0 d-flex justify-content-center align-self-lg-center">
+          </div>
 
-                <a href="<%=signin%>" class="btn btn-danger px-4">Support
-                
-                </a> 
+          <div class=" col-lg-2 col-xl-1 col-3 mt-3 mb-3 mb-lg-0 mt-lg-0 d-flex justify-content-center align-self-lg-center">
 
 
-              </div>
+
+
+
+           @if($loginStatus==false)
+
+            <a href="http://localhost:3000/product/cart" class="btn btn-warning ">Support</span>
+            </a> 
+
+           @elseif($loginStatus==true)
+
+          <a href="<%=dashboard%>" class="btn btn-info">Dashboard</a>
+
+
+         @endif
+
+
+      </div>
+
+
+
+
+
+
+      <div class=" col-lg-1 col-3 mt-3 mb-3 mb-lg-0 mt-lg-0 d-flex justify-content-center align-self-lg-center">
+
+
+
+
+
+
+
+        @if($loginStatus==false)
+
+        <a href="<%=signin%>" class="btn btn-danger px-4">
+          Sign In
+
+        </a>
+
+        @elseif($loginStatus==true)
+
+      <a href="http://localhost:3000/auth/logout" class="btn btn-danger">
+        SignOut
+
+      </a>
+
+ @endif
+
+
+
+
+
+  </div>
              
 
 
