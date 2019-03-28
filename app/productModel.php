@@ -23,4 +23,11 @@ class productModel extends Model
     }
 
 
+    public static function getReviews($pid){
+    	$reviews = DB::select('select * from review where product_id =(?)' , [$pid]);
+    	return $reviews;
+    }
+
+
+
 }

@@ -1,3 +1,9 @@
+@php
+
+$loginStatus=false;
+
+@endphp
+
 @extends('layout.hf')
 
 
@@ -23,15 +29,11 @@
 			<div>
 
 
-				<%
-				if(loginStatus==false){ 
-				%>
+				@if($loginStatus==false)
 
 				<button disabled class="btn btn-warning mt-2"> Please login to buy or Post a Review</button>
-				<%
-			}
-			else if(loginStatus==true){ 
-			%>
+
+				@elseif($loginStatus==true)
 
 			<input type="text" hidden="true"  value="<%=product.product_id%>" id="productId">
 			
@@ -86,10 +88,7 @@
 
 
 
-			<%
-		}
-		%>
-
+			     @endif
 
 
 

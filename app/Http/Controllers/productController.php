@@ -19,8 +19,10 @@ class productController extends Controller
 
     public function getProductDetails($pid){
     	$products = productModel::getProductDetails($pid);
-    	//return $products;
 
+    	$reviews = productModel::getReviews($pid);
+    	
+    	//return $reviews;
     	return view('product/productdetails' , $products);
 
     }
