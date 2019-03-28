@@ -14,9 +14,9 @@ $loginStatus=false;
 		<div class="col-6">
 			<img class="img-fluid" src="http://localhost:3000/lib/img/product_demo.png" alt="">
 			<hr>
-			<h3>Name: <%=product.product_name%></h3>
-			<h4>Price: <%=product.product_price%> </h4>	
-			<h4>Description: <%=product.descriptions%> </h4>	
+			<h3>Name: {{ $products[0]->product_name }} </h3>
+			<h4>Price: {{ $products[0]->product_price }} </h4>	
+			<h4>Description: {{ $products[0]->descriptions }} </h4>	
 
 			<b>Quantity:  </b>
 			<select class="px-4" name="productQuantity" id="productQuantity">
@@ -52,23 +52,18 @@ $loginStatus=false;
 				<div class="container">
 					<h1 class="display-6">Reviews</h1>
 					
-					<%
-					for(var i = 0 ; i<reviews.length ; i++)
-					{
-					%>
+					@foreach ($reviews as $review)
 					
 
 
 					<hr>
 					<p class="lead">
-						<%= reviews[i].review_text %>
+						 {{ $review->review_text  }} 
 
 					</p>
 					<hr>
 
-					<%
-					}
-					%>
+					@endforeach
 
 
 

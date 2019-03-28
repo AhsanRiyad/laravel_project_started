@@ -112,7 +112,7 @@ $loginStatus = false ;
 
                 @if($loginStatus == false)
 
-                <a href="<%=signup%>" class="btn btn-success px-4">Sign Up </span>
+                <a href="<%=signup%>" class="btn btn-success ">Sign Up </span>
                 </a> 
           
                 
@@ -164,7 +164,7 @@ $loginStatus = false ;
 
         @if($loginStatus==false)
 
-        <a href="<%=signin%>" class="btn btn-danger px-4">
+        <a href="<%=signin%>" class="btn btn-danger ">
           Sign In
 
         </a>

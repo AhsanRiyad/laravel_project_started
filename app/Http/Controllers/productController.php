@@ -22,8 +22,10 @@ class productController extends Controller
 
     	$reviews = productModel::getReviews($pid);
     	
-    	//return $reviews;
-    	return view('product/productdetails' , $products);
+    	//$pAndr = [ 'products' => $products , 'reviews' =>  $reviews  ];
+
+    	//return $products[0]->product_name;
+    	return view('product/productdetails' , [ 'products' => $products , 'reviews' =>  $reviews  ]);
 
     }
 
