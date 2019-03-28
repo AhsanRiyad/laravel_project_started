@@ -15,7 +15,7 @@ class testController extends Controller
 		$tb = testModel::testDB();
 
 
-		 return $tb;
+		 return $tb[1];
 		//print_r($tb);
 	}
 
