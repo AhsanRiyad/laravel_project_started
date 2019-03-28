@@ -15,6 +15,8 @@ Route::get('/', 'productController@getProducts' )->Name('index');
 
 Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
 
+Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
+
 
 Route::get('/db', 'testController@dbTest');
 

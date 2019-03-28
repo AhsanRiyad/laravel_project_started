@@ -164,7 +164,7 @@ $loginStatus = false ;
 
         @if($loginStatus==false)
 
-        <a href="<%=signin%>" class="btn btn-danger ">
+        <a href="{{ route('authentication.login') }}" class="btn btn-danger ">
           Sign In
 
         </a>

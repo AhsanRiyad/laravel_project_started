@@ -1,4 +1,13 @@
-<% include ../header %>
+@php
+
+$loginStatus=false;
+
+@endphp
+
+@extends('layout.hf')
+
+
+@section('content')
 
 
 <!-- login form starts -->
@@ -79,4 +88,5 @@
 
 
 
-<% include ../footer %>
+
+@endsection
