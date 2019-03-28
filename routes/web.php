@@ -13,9 +13,7 @@
 
 Route::get('/', 'productController@getProducts' )->Name('index');
 
-Route::get('/product/details/{id}', function(){
-
-})->Name('product.details');
+Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
 
 
 Route::get('/db', 'testController@dbTest');

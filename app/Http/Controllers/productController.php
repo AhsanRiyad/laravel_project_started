@@ -9,8 +9,21 @@ class productController extends Controller
 {
     public function getProducts(){
     	$products = productModel::getAllProducts();
-    	$recommendProducts = productModel::getRecProducts(1);
+    	$clientIP = request()->ip();
+    	$recommendProducts = productModel::getRecProducts('::1');
     	 return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts  ]);
-    	// return $products;
+
+    	//return $clientIP;
+    	
     }
+
+    public function getProductDetails($pid){
+    	$products = productModel::getProductDetails($pid);
+    	//return $products;
+
+    	return view('product/productdetails' , $products);
+
+    }
+
+
 }

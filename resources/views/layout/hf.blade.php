@@ -17,6 +17,8 @@ $logo = 'img/logo.png' ;
 
   <title>First page</title>
 
+  <link rel="icon" href="{{ asset('img/fevicon.png') }}" type="image/gif" sizes="16x16">
+
 
   <!-- jquery ui -->
   <link rel="stylesheet" href="{{ asset('/css/jquery-ui.css') }}">

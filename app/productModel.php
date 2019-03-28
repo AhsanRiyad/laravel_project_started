@@ -12,8 +12,13 @@ class productModel extends Model
     	return $products;
     }
     public static function getRecProducts($userip){
-    	$products = DB::select("select products.* from visit , products where visit.product_id = products.product_id and user_ip='::1'
-");
+    	$products = DB::select("select products.* from visit , products where visit.product_id = products.product_id and user_ip=(?)
+" , [$userip]);
+    	return $products;
+    }
+
+    public static function getProductDetails($pid){
+    	$products = DB::select('select * from products where product_id =(?)' , [$pid]);
     	return $products;
     }
 
