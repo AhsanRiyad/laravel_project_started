@@ -72,6 +72,8 @@ $signout = "authenticationController.logout";
                           </div>
                         </div>
 
+                        
+                        <p hidden="true" id="autosearchUrl">{{ route('productController.autosearch') }}</p>
 
                         <input type="text" class="form-control" id="autosearch" placeholder="Search" name="searchbox">
 

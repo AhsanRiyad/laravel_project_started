@@ -236,59 +236,9 @@ $("#idButtonUpdateProfileDashboard").on('click' , function(){
 
 
 
-//search suggestion using json p is solved
-	
-	/*$("#idcategory").change(function(){
-
-	var catValue =  $("#idcategory").val();
-      
-      console.log(catValue);
-
-
-	});
-
-	
-
-
-
- 
-    $( "#autosearch" ).autocomplete({
-      source: function( request, response ) {
-
-      	var catValue =  $("#idcategory").val();
-      	$("#idcategory").change(function(){
-
-	var catValue =  $("#idcategory").val();
-      
-      console.log(catValue);
-
-
-	});
-
-
-        $.ajax( {
-          url: "http://localhost:3000/product/autosearch",
-          dataType: "jsonp",
-          data: {
-            term: request.term,
-            catValue : catValue
-          },
-          success: function( data ) {
-          	console.log(data);
-            response( data );
-          }
-        } );
-      },
-      minLength: 2,
-      select: function( event, ui ) {
-        log( "Selected: " + ui.item.value + " aka " + ui.item.id );
-      }
-    } );
-
-*/
-
-
-
+//search suggestion 
+var reqUrl = $('#autosearchUrl').html();
+	console.log(reqUrl);
 $( function() {
     
     function split( val ) {
@@ -309,7 +259,7 @@ $( function() {
       })
       .autocomplete({
         source: function( request, response ) {
-          $.getJSON( "http://localhost:3000/product/autosearch", {
+          $.getJSON( reqUrl , {
             term: extractLast( request.term )
           }, response );
         },
