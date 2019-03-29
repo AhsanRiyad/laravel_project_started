@@ -153,13 +153,16 @@ public function getProductDetails(Request $req, $pid){
     //$h = ['ih' , 'ihoa' , $req->term , $req->cat];
     //$j = json_encode($h);
 
-    //$searchDetails = ['searchText' => $req->term , 'category' => $req->cat];
-    $searchDetails = ['searchText' => 'ram' , 'category' => 'all'];
+    $searchDetails = ['searchText' => $req->term , 'category' => $req->cat];
+    //$searchDetails = ['searchText' => 'ram' , 'category' => 'all'];
+
+
 
     $results = productModel::autosearch($searchDetails);
     //$results = ['riyad' , 'hellow' , 'hi' , 'riyad'];
 
-    $abc = [];
+    if($results!=[]){
+          $abc = [];
       for($i = 0 ; $i<sizeof($results); $i++)
       {
         //console.log(i);
@@ -177,6 +180,12 @@ public function getProductDetails(Request $req, $pid){
     echo $j;
 
     //echo $results[0]->product_name;
+    }else{
+      $abc = ['results' => 'no results'];
+      $j = json_encode($abc);
+      echo $j;
+    }
+
 
 
   }
