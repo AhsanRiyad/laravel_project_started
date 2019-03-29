@@ -43,14 +43,16 @@ class productModel extends Model
     	
     }
 
-    private function insertIp($visitTable){
-    	
-		//var sql = "INSERT INTO `visit`(`product_id`,`user_ip`) VALUES ("+ip.productid+" , '"+ip.ip+"')";
-    	
-    	
-    	
+
+    public static function cart_count($uid){
+        //var sql = "SELECT COUNT(*) as cart_count FROM `cart` WHERE user_id = "+uid+";"
+        $status = DB::select("SELECT COUNT(*) as cart_count FROM `cart` WHERE user_id =(?)" , [$uid]);
+
+        return $status;
 
     }
+
+    
 
 
 }

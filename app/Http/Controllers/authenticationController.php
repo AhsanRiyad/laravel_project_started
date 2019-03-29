@@ -66,6 +66,9 @@ class authenticationController extends Controller
         $user = ['msg' => 'Welcome, Create your Umart Account' , 'loginStatus' => false] ;
         $user['checkbox'] = '';  
         $user['validCheck'] = true; 
+        $obj['nullVal'] = false;
+        $obj['regSuceess'] = 'other';;
+
         return view('authentication/registration' , $user);
 
     }
@@ -77,15 +80,34 @@ class authenticationController extends Controller
         $user['validCheck'] = true; 
 
 
+        $userinfo = [];
+        $userinfo['email'] = $req->email;
+        $userinfo['password'] = $req->password;
+        $userinfo['month'] = $req->month;
+        $userinfo['day'] = $req->day;
+        $userinfo['year'] = $req->year;
+        $userinfo['gender'] = $req->gender;
+        $userinfo['first_name'] = $req->first_name;
+        $userinfo['last_name'] = $req->last_name;
+        $userinfo['phone'] = $req->phone;
+        $userinfo['user_type'] = $req->user_type;
+
+
+        $status = authenticationModel::regCheck($userinfo);
+        
+        if($status=='error'){
+           $user['msg'] = 'email already registered';
+           return view('authentication/registration' , $user);
+        }else{
+            $user['msg'] = 'success';
+           return view('authentication/registration' , $user);
+        }
+
         
 
 
-        
 
-
-
-
-        return view('authentication/registration' , $user);
+        //return view('authentication/registration' , $user);
 
     }
 

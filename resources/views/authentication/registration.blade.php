@@ -12,6 +12,7 @@ $loginStatus=false;
 
 <!-- registration page starts now -->
 <form action="#" method="post">
+	@csrf
 	<div class="container-fluid">
 		<div class="row justify-content-xl-center admin_background">
 			<div class="col-12 col-xl-6 ">
@@ -57,7 +58,7 @@ $loginStatus=false;
 
 						@if($msg=='email already registered')
 						
-						<p class="text-success  h4" id='msg'>
+						<p class="text-danger  h4" id='msg'>
 							Email already used
 						</p>		
 

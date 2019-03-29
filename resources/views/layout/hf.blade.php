@@ -1,10 +1,11 @@
 @php
 
 $logo = 'img/logo.png' ; 
-$loginStatus = false ; 
 $signup = 'authentication.signup';
 
 @endphp
+
+<!-- $loginStatus = false ;  -->
 
 
 <!doctype html>
@@ -119,7 +120,7 @@ $signup = 'authentication.signup';
                 
               @elseif($loginStatus==true)
 
-              <a href="http://localhost:3000/product/cart" class="btn btn-warning ">Cart<span class="badge badge-light" id="cart_count"> <%=cart_count%> </span>
+              <a href="http://localhost:3000/product/cart" class="btn btn-warning ">Cart<span class="badge badge-light" id="cart_count"> {{$cart_count}} </span>
               </a> 
 
               
