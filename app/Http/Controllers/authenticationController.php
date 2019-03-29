@@ -15,6 +15,16 @@ class authenticationController extends Controller
     	return view('authentication/login' , $user);
 
     }
+
+    public static function logout(Request $req){
+        $req->session()->forget('userinfo');
+        $user = ['msg' => 'Welcome, Create your Umart Account' , 'loginStatus' => false] ; 
+        $user['validCheck'] = true; 
+        return redirect()->route('authentication.login');
+
+    }
+
+
     public static function loginCheck(Request $req){
 
 

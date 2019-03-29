@@ -2,9 +2,9 @@
 $logoSrc = "img/logo_dashboard.png";
 $addPromo = "http://localhost:3000/product/addpromo";
 $viewPromo = "http://localhost:3000/product/viewpromo";
-$signout = "http://localhost:3000/auth/logout";
+$signout = "authenticationController.logout";
 $homepage = "http://localhost:3000/";
-$u_type = 'admin';
+$u_type = $userinfo[0]['u_type'];
 
 @endphp
 
@@ -135,7 +135,7 @@ $u_type = 'admin';
 
           </div></a>
 
-            <a class="text-white" href='<%=signout%>'>
+            <a class="text-white" href="  {{ route($signout) }}  ">
               <div class="  bg-danger py-2 text-center my-4">
 
                 <i class="fas fa-sign-out-alt"></i>Sign Out

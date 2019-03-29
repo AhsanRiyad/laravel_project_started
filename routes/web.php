@@ -22,5 +22,8 @@ Route::post('/login', 'authenticationController@loginCheck' )->Name('authenticat
 
 Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardController.dashboard');
 
+Route::get('/logout', 'authenticationController@logout' )->Name('authenticationController.logout');
+
+
 Route::get('/db', 'testController@dbTest');
 
