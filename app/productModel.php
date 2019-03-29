@@ -28,6 +28,29 @@ class productModel extends Model
     	return $reviews;
     }
 
+    public static function recommendProduct($visitTable){
+
+		//var sql = "select * from visit where product_id="+visitTable.productid+" and user_ip='"+visitTable.ip+"'";
+		//var sql = "select * from visit where product_id=(?) and user_ip=(?)";
+
+		$results = DB::select("select * from visit where product_id=(?) and user_ip=(?)", [$visitTable['productid'] , $visitTable['ip']]);
+
+		if($results==[])
+		{
+			$status = DB::insert( "INSERT INTO `visit`(`product_id`,`user_ip`) VALUES (? , ?)" , [$visitTable['productid'] , $visitTable['ip']] );
+		}
+
+    	
+    }
+
+    private function insertIp($visitTable){
+    	
+		//var sql = "INSERT INTO `visit`(`product_id`,`user_ip`) VALUES ("+ip.productid+" , '"+ip.ip+"')";
+    	
+    	
+    	
+
+    }
 
 
 }
