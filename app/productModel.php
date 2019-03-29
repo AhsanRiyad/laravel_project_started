@@ -120,6 +120,7 @@ class productModel extends Model
 
         }else{
             $results = DB::select("select `product_name` from products where product_name like (?) and category_name = (?) ", [$pname , $catName] );
+            return $results;
         }   
         }catch(QueryException $ex){ 
             //$msg = $ex->getMessage(); 

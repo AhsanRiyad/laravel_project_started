@@ -161,7 +161,9 @@ public function getProductDetails(Request $req, $pid){
     $results = productModel::autosearch($searchDetails);
     //$results = ['riyad' , 'hellow' , 'hi' , 'riyad'];
 
+
     if($results!=[]){
+      //multiple element to single element json conversion
           $abc = [];
       for($i = 0 ; $i<sizeof($results); $i++)
       {
@@ -185,7 +187,6 @@ public function getProductDetails(Request $req, $pid){
       $j = json_encode($abc);
       echo $j;
     }
-
 
 
   }
