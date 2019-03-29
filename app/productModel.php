@@ -109,7 +109,7 @@ class productModel extends Model
 
         
         
-        //fixed
+        
 
 
         try{
