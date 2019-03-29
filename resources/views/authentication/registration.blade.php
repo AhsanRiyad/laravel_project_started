@@ -94,15 +94,15 @@ $loginStatus=false;
 							<div class="form-group">
 								<label > 
 
-						<% if(msg=='invalid'){ %>
+						@if($msg=='invalid')
 						
 						<small id="idExampleInputEmail1Small" style="color: red;"> Invalid Email [server]</small>
 
-						<%}else
-						{%>
+						@else
+						
 						<small id="idExampleInputEmail1Small" style="color: black;">Email*</small>
 						
-						<%}%>
+						@endif
 
 
 
@@ -276,15 +276,15 @@ $loginStatus=false;
 							<label class="custom-control-label" for="customControlInline"> 
 
 
-						<% if(checkbox=='invalid'){ %>
+						@if($checkbox=='invalid')
 						
 						<small id="idExampleInputEmail1Small" style="color: red;"> You must agree with the TOC [server]</small>
 
-						<%}else
-						{%>
+						@else
+						
 						<small id="idExampleInputEmail1Small" style="color: black;">Yes, I agree with TOC</small>
 						
-						<%}%>
+						@endif
 
 
 							</label>
