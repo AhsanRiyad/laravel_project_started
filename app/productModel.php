@@ -98,7 +98,37 @@ class productModel extends Model
     }
  
     
-    
 
+
+
+    
+    public static function autosearch($searchDetails){
+        
+        $pname ='%' . $searchDetails['searchText'] . '%' ;
+        $catName = $searchDetails['category'] ;
+
+        
+        
+        
+
+
+        try{
+        if($catName == 'all'){
+            $results = DB::select( "select `product_name` from products where product_name like (?) " , [$pname]);
+
+            return $results;
+
+        }else{
+            $results = DB::select("select `product_name` from products where product_name like (?) and category_name = (?) ", [$pname , $catName] );
+        }   
+        }catch(QueryException $ex){ 
+            //$msg = $ex->getMessage(); 
+            return 'error'; 
+
+        }
+
+        
+
+    }
 
 }

@@ -38,5 +38,6 @@ Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardContr
 Route::get('/logout', 'authenticationController@logout' )->Name('authenticationController.logout');
 
 
-Route::get('/db', 'testController@dbTest');
+//Route::get('/db', 'testController@dbTest');
+Route::get('/db', 'productController@autosearch');
 
