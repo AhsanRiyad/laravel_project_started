@@ -150,7 +150,7 @@ public function getProductDetails(Request $req, $pid){
 
   public static function autosearch(Request $req){
 
-    $h = ['ih' , 'ihoa' , $req->term];
+    $h = ['ih' , 'ihoa' , $req->term , $req->cat];
     $j = json_encode($h);
 
     echo $j;

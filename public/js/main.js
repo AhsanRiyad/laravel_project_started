@@ -11,16 +11,16 @@
 
 
 $( document ).ready(function() {
-  
+
 	
-  
+
 });
 
 //csrf problem
 $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+	headers: {
+		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
 });
 
 
@@ -238,47 +238,64 @@ $("#idButtonUpdateProfileDashboard").on('click' , function(){
 
 //search suggestion 
 var reqUrl = $('#autosearchUrl').html();
-	console.log(reqUrl);
-$( function() {
-    
-    function split( val ) {
-      return val.split(  );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
 
- 	
-    $( "#autosearch" )
+$( function() {
+
+	function split( val ) {
+		return val.split(  );
+	}
+	function extractLast( term ) {
+		return split( term ).pop();
+	}
+
+
+
+
+
+	$( "#autosearch" )
       // don't navigate away from the field on tab when selecting an item
       .on( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).autocomplete( "instance" ).menu.active ) {
-          event.preventDefault();
-        }
-      })
+      	if ( event.keyCode === $.ui.keyCode.TAB &&
+      		$( this ).autocomplete( "instance" ).menu.active ) {
+      		event.preventDefault();
+      }
+  })
       .autocomplete({
-        source: function( request, response ) {
-          $.getJSON( reqUrl , {
-            term: extractLast( request.term )
-          }, response );
-        },
-        search: function() {
+      	source: function( request, response ) {
+
+      		//getting category value
+      		var catValue =  $("#idcategory").val();
+      		$("#idcategory").change(function(){
+
+      			var catValue =  $("#idcategory").val();
+
+      			console.log(catValue);
+
+
+      		});
+
+
+      		$.getJSON( reqUrl , {
+      			term: extractLast( request.term ) , 
+      			cat : catValue
+      		}, response );
+      	},
+      	search: function() {
           // custom minLength
           var term = extractLast( this.value );
           if ( term.length < 2 ) {
-            return false;
+          	return false;
           }
-        },
-        focus: function() {
+      },
+      focus: function() {
           // prevent value inserted on focus
           return false;
-        }
-      });
+      }
+  });
   } );
 
 
-       
+
 
 //add to cart 
 $("#addToCart").on('click' , function(){
@@ -289,10 +306,10 @@ $("#addToCart").on('click' , function(){
 		 var userid =  $('#user_id').val();
 		 var productid = $('#productId').val();
 		 var qntity = $('#productQuantity').val();
-		
+
 		 
 		 	 //alert(userid + 'user' + productid + 'pro');
-		
+
 		 	 var user = {
 		 	 	'uid' : userid , 
 		 	 	'pid' : productid,
@@ -301,16 +318,16 @@ $("#addToCart").on('click' , function(){
 		 	 }
 		 	 
 		 	 var jsonString = JSON.stringify(user);
-		
-				$.ajax({
-		 		url: $('#postReviewUrl').html(),
-		 		method: 'POST',
-		 		data: { 'myinfo': jsonString 
-		 				
-		 		},
-		 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-		 		success: function(reply){
-					 var res = JSON.parse(reply);
+
+		 	 $.ajax({
+		 	 	url: $('#postReviewUrl').html(),
+		 	 	method: 'POST',
+		 	 	data: { 'myinfo': jsonString 
+
+		 	 },
+		 	 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		 	 success: function(reply){
+		 	 	var res = JSON.parse(reply);
 					 //alert(reply.status);
 					 alert(res.status);
 
@@ -327,14 +344,14 @@ $("#addToCart").on('click' , function(){
 
 
 
-				},
-				error: function(error){
-					alert(error);
-				}
-			});
+					},
+					error: function(error){
+						alert(error);
+					}
+				});
 
 
-		});
+		 	});
 /*
 if(reply == 'updated'){
 					 	alert('added to cart // qntity');
