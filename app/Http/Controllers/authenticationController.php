@@ -32,7 +32,10 @@ class authenticationController extends Controller
     	if($userDetails!=[])
     	{	
     		$user['validCheck'] = true; 
-    		return view('authentication/login' , $user);
+
+            session(['userinfo'=>$userDetails]);
+            $userinfo = session('userinfo');
+    		return redirect()->route('dashboardController.dashboard');
     	}else{
     		$user['validCheck'] = false; 
     		return view('authentication/login' , $user);

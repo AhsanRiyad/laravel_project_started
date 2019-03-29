@@ -1,20 +1,68 @@
-<% include ../headerDashboard %>
+@php
+$logoSrc = "img/logo_dashboard.png";
+$addPromo = "http://localhost:3000/product/addpromo";
+$viewPromo = "http://localhost:3000/product/viewpromo";
+$signout = "http://localhost:3000/auth/logout";
+$homepage = "http://localhost:3000/";
+$u_type = 'admin';
+
+@endphp
+
+
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- csrf_token for vue js -->
+  <meta name="csrf-token" content="{{ csrf_token() }}" >
+  <script> window.Laravel = { csrfToken : '{{ csrf_token() }}' } </script>
+
+  <title>First page</title>
+
+  <link rel="icon" href="{{ asset('img/fevicon.png') }}" type="image/gif" sizes="16x16">
+
+
+  <!-- jquery ui -->
+  <link rel="stylesheet" href="{{ asset('/css/jquery-ui.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/jquery-ui.structure.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/jquery-ui.theme.css') }}">
+
+  <!-- boostrap -->
+  <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-reboot.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.css') }}">
 
 
 
-<% 
-var logoSrc = "http://localhost:3000/lib/img/logo_dashboard.png";
-var addPromo = "http://localhost:3000/product/addpromo";
-var viewPromo = "http://localhost:3000/product/viewpromo";
-var signout = "http://localhost:3000/auth/logout";
-var homepage = "http://localhost:3000/";
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-%>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+  <body>
+
+
+  @yield('content');
+
+
+
+
 
 <!-- navigation bar and search bar starts -->
   <!-- fixed horizontal -->
   <div class="admin_navbar_horizontal bg-secondary justify-content-center d-flex align-items-center">
-    <p class="text-white h3">Good Morning, <%=userinfo[0].last_name%> </p>
+    <p class="text-white h3">Good Morning, <%=userinfo[0].last_name%>
+
+      {{$userinfo['last_name']}}
+    
+     </p>
   </div>
 
 
@@ -22,14 +70,13 @@ var homepage = "http://localhost:3000/";
   <!-- fixed vertical -->
   <div class=" admin_navbar_veritcal bg-dark ">
     <div class=" bg-light d-flex justify-content-center">
-      <a href=><img class=" py-1" src=<%= logoSrc %> alt=""></a>
+      <a href=><img class=" py-1" src="{{ asset( $logoSrc ) }}" alt=""></a>
 
     </div>
 
-    <%
-    if(userinfo[0].u_type == 'admin')
-    {
-    %>
+    
+    @if($u_type == 'admin')
+    
 
     
       <a class="text-white" href="http://localhost:3000/user/viewuser">
@@ -99,16 +146,11 @@ var homepage = "http://localhost:3000/";
       
 
 
-    <%
-    }
-    %>
+    @endif
 
 
 
-    <%
-    if(userinfo[0].u_type == 'user')
-    {
-    %>
+    @if($u_type == 'user')
   <!-- <a class="text-light" href='http://localhost:3000/dashboard/profile'>
           <div class="
           py-2 text-center my-4 bg-secondary">
@@ -146,9 +188,7 @@ var homepage = "http://localhost:3000/";
 
 
 
-    <%
-    }
-    %>
+    @endif
 
     
 
@@ -156,4 +196,21 @@ var homepage = "http://localhost:3000/";
 
 
 
-<% include ../footerDashboard %>
+<!-- jquery -->
+    <script src="{{ asset('js/jquery-3.3.1.js') }}" ></script>
+
+    <!-- jquery ui -->
+    <script src="{{ asset('js/jquery-ui.js') }}" ></script>
+
+    <!-- bootstrap -->
+    <script src="{{ asset('js/bootstrap.js') }}" ></script>
+    <script src="{{ asset('js/bootstrap.bundle.js') }}" ></script>
+
+
+
+    <!-- main js -->
+    <script src="{{ asset('js/main.js') }}" ></script>
+
+
+
+  </body>

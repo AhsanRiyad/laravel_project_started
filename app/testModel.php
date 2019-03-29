@@ -16,13 +16,14 @@ class testModel extends Model
     	//$users = DB::select("call test1");
 
         //$results = multipleSelectModel::CallRaw('spGetData',$params);
-        $params = [];
-        $results = multipleSelectModel::CallRaw('test1', $params);
+        //$params = [];
+        //$results = multipleSelectModel::CallRaw('test1', $params);
         //$users = multipleSelectModel::select("call test1");
 
-    	$age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+    	//$age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
 
-    	session(['hi' => $age]);
+        $results = DB::select('select * from user');
+    	session(['hi' => $results]);
     	//$users = 'hi';
 
     	return $results;

@@ -14,8 +14,9 @@ class testController extends Controller
 		//$tb = DB::select('select * from user');
 		$tb = testModel::testDB();
 
-
-		 return $tb[1];
+		$results = session('hi');
+		$resultArray = json_decode(json_encode($results), true);
+		return $resultArray[0]['last_name'];
 		//print_r($tb);
 	}
 

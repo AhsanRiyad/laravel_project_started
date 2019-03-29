@@ -1,6 +1,8 @@
 
-<% include ../headerDashboard %>
-<% include dashboardheader %>
+@extends('layout.hf_dboard')
+
+
+@section('content')
 
 
 
@@ -144,4 +146,4 @@
 </div>
 
 
-<% include ../footerDashboard %>
+@endsection
