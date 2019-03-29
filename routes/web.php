@@ -19,6 +19,11 @@ Route::get('/login', 'authenticationController@login' )->Name('authentication.lo
 
 Route::post('/login', 'authenticationController@loginCheck' )->Name('authentication.login');
 
+Route::get('/signup', 'authenticationController@signUp' )->Name('authentication.signup');
+
+Route::post('/signup', 'authenticationController@signUpCheck' )->Name('authentication.signup');
+
+
 
 Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardController.dashboard');
 

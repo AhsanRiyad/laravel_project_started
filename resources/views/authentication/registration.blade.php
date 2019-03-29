@@ -1,4 +1,13 @@
-<% include ../header %>
+@php
+
+$loginStatus=false;
+
+@endphp
+
+@extends('layout.hf')
+
+
+@section('content')
 
 
 <!-- registration page starts now -->
@@ -10,82 +19,69 @@
 					<div class="row pt-4 pb-1">
 
 
-						<%
-						if(msg=='Welcome, Create your Umart Account'){
-						%>
+						
+						@if($msg=='Welcome, Create your Umart Account')
 						
 						<p class="text-dark  h4" id='msg'>
 							Welcome, Create your Umart Account
 						</p>		
 
-						<%}%>
+						@endif
 
-						<%
-						if(msg=='Invalid email [server]'){
-						%>
+						@if($msg=='Invalid email [server]')
 						
 						<p class="text-success  h4" id='msg'>
 							'Invalid email [server]'
 						</p>		
 
-						<%}%>
+						@endif
 
 
-						<%
-						if(msg=='invalid'){
-						%>
+						@if($msg=='invalid')
 						
 						<p class="text-success  h4" id='msg'>
 							'Invalid email [server]'
 						</p>		
 
-						<%}%>
+						@endif
 
 
-						<%
-						if(msg=='Invalid'){
-						%>
+						@if($msg=='Invalid')
 						
 						<p class="text-success  h4" id='msg'>
 							'Invalid email [server]'
 						</p>		
 
-						<%}%>
+						@endif
 
 
-						<%
-						if(msg=='email already registered'){
-						%>
+						@if($msg=='email already registered')
 						
 						<p class="text-success  h4" id='msg'>
 							Email already used
 						</p>		
 
-						<%}%>
+						@endif
 
 
 
-						<%
-						if(msg=='success'){
-						%>
+						@if($msg=='success')
 						
 						<p class="text-success  h4" id='msg'>
 							Reg successful
 						</p>		
 
-						<%}%>
+						@endif
 
 
 						
-						<%
-						if(msg=='null value'){
-						%>
+						@if($msg=='null value')
 						
 						<p class="text-success  h4" id='msg'>
 							Null value detected
 						</p>		
 
-						<%}%>
+						@endif
 
 						
 						<span class="ml-auto mt-auto pt-3"><small >Alredy member? <a href="http://localhost:3000/auth">Login</a> here</small></span>
@@ -316,4 +312,4 @@
 
 
 
-<% include ../footer %>
+@endsection

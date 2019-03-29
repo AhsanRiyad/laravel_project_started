@@ -2,6 +2,7 @@
 
 $logo = 'img/logo.png' ; 
 $loginStatus = false ; 
+$signup = 'authentication.signup';
 
 @endphp
 
@@ -112,7 +113,7 @@ $loginStatus = false ;
 
                 @if($loginStatus == false)
 
-                <a href="<%=signup%>" class="btn btn-success ">Sign Up </span>
+                <a href="{{ route($signup) }}" class="btn btn-success ">Sign Up </span>
                 </a> 
           
                 

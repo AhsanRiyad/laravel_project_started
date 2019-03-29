@@ -25,6 +25,8 @@ class authenticationController extends Controller
     }
 
 
+
+
     public static function loginCheck(Request $req){
 
 
@@ -58,4 +60,21 @@ class authenticationController extends Controller
     	
 
     }
+
+    public static function signUp(Request $req){
+
+        $user = ['msg' => 'Welcome, Create your Umart Account' , 'loginStatus' => false] ; 
+        $user['validCheck'] = true; 
+        return view('authentication/registration' , $user);
+
+    }
+
+    public static function signUpCheck(Request $req){
+
+        $user = ['msg' => 'Welcome, Create your Umart Account' , 'loginStatus' => false] ; 
+        $user['validCheck'] = true; 
+        return view('authentication/registration' , $user);
+
+    }
+
 }
