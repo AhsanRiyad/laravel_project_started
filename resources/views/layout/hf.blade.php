@@ -1,7 +1,8 @@
 @php
-
+$homepage = "http://localhost:3000/";
 $logo = 'img/logo.png' ; 
 $signup = 'authentication.signup';
+$signout = "authenticationController.logout";
 
 @endphp
 
@@ -173,7 +174,7 @@ $signup = 'authentication.signup';
 
         @elseif($loginStatus==true)
 
-      <a href="http://localhost:3000/auth/logout" class="btn btn-danger">
+      <a href="{{ route($signout) }}" class="btn btn-danger">
         SignOut
 
       </a>

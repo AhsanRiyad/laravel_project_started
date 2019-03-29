@@ -3,7 +3,7 @@ $logoSrc = "img/logo_dashboard.png";
 $addPromo = "http://localhost:3000/product/addpromo";
 $viewPromo = "http://localhost:3000/product/viewpromo";
 $signout = "authenticationController.logout";
-$homepage = "http://localhost:3000/";
+$homepage = "index";
 $u_type = $userinfo[0]['u_type'];
 
 @endphp
@@ -128,7 +128,7 @@ $u_type = $userinfo[0]['u_type'];
 
             </div></a>
 
-          <a class="text-white" href='<%=homepage%>'>
+          <a class="text-white" href='{{ route($homepage) }}'>
           <div class="bg-success py-2 text-center my-4">
 
             <i class="fas fa-shopping-cart"></i> Back to Shop Page

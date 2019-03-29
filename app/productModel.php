@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
@@ -27,6 +27,30 @@ class productModel extends Model
     	$reviews = DB::select('select * from review where product_id =(?)' , [$pid]);
     	return $reviews;
     }
+
+    public static function postReview($revInfo){
+        
+        //$status = "call review("+revInfo.user_id+" , "+revInfo.productId+" , '"+revInfo.rev_text+"' , '"+revInfo.rev_date+"');";
+        
+
+        try{
+        $status = DB::select("call review(? , ? , ? , ?)" , [$revInfo['user_id'] , $revInfo['productId'] , $revInfo['rev_text'] , $revInfo['rev_date']] );
+
+            return 'success';
+        }catch(QueryException $ex){ 
+            //$msg = $ex->getMessage(); 
+            return 'error'; 
+
+        }
+
+
+
+
+
+    }
+
+
+
 
     public static function recommendProduct($visitTable){
 

@@ -1,7 +1,7 @@
 @php
 
-$loginStatus=false;
-
+$productImg = 'img/product_demo.png';
+$postReview = "product.postReview";
 @endphp
 
 @extends('layout.hf')
@@ -12,7 +12,7 @@ $loginStatus=false;
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-6">
-			<img class="img-fluid" src="http://localhost:3000/lib/img/product_demo.png" alt="">
+			<img class="img-fluid" src="{{ asset($productImg) }}" alt="">
 			<hr>
 			<h3>Name: {{ $products[0]->product_name }} </h3>
 			<h4>Price: {{ $products[0]->product_price }} </h4>	
@@ -69,12 +69,13 @@ $loginStatus=false;
 
 				</div>
 			</div>
-
-			<form method="POST" action="http://localhost:3000/product/review">
-
+			
+			
+			<form method="POST" action="{{ route($postReview) }}">
+				@csrf
 				<div class="form-group">
-					<input type="text" hidden="true" value="<%=pid%>" name="productid"> 
-					<input type="text" hidden="true" value="<%=user_id_P%>" name="uid"> 
+					<input type="text" hidden="true" value=" {{ $pid }} " name="productid"> 
+					<input type="text" hidden="true" value="{{ $uid }}" name="uid"> 
 					<label for="exampleFormControlTextarea1" class=""> Add a Review </label>
 					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="rev_text"></textarea>
 					<input type="submit" value="Post Review" name="submit" class="btn btn-success mt-2">

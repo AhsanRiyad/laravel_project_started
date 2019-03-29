@@ -15,6 +15,12 @@ Route::get('/', 'productController@getProducts' )->Name('index');
 
 Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
 
+Route::post('/product/postReview', 'productController@postReview' )->Name('product.postReview');
+
+
+
+
+
 Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
 
 Route::post('/login', 'authenticationController@loginCheck' )->Name('authentication.login');
