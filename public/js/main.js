@@ -316,17 +316,17 @@ $("#addToCart").on('click' , function(){
 		 		},
 		 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		 		success: function(reply){
-					 //var res = JSON.parse(reply);
+					 var res = JSON.parse(reply);
 					 //alert(reply.status);
-					 alert('sss');
+					 alert(res.status);
 
 					 if(reply.status == 'updated'){
-					 	alert(reply);
-					 	$('#cart_count').html(reply.cart_count) ;
+					 	//alert(reply);
+					 	$('#cart_count').html(res.cartCount) ;
 
 					 }else{
-					 	alert(reply);
-					 	$('#cart_count').html(reply) ;
+					 	//alert(reply);
+					 	$('#cart_count').html(res.cartCount) ;
 
 					 }
 

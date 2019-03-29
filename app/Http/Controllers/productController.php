@@ -100,13 +100,29 @@ public function getProductDetails(Request $req, $pid){
 }
 
   public static function addtocart(Request $req){
-    echo $req->myinfo; 
+    //echo $req->myinfo; 
     $t = json_decode($req->myinfo , true);
     //echo $t;
 
     //echo $t['uid'];
     //echo $t['pid'];
     //echo $t['qntity'];
+
+    $cartInfo['uid'] = $t['uid'];
+    $cartInfo['pid'] = $t['pid'];
+    $cartInfo['qntity'] = $t['qntity'];
+
+    $info = productModel::addToCart($cartInfo);
+
+    $c = productModel::cart_count($t['uid']);
+    $cart_count = $c[0]->cart_count;
+
+    $i = ['cartCount'=> $cart_count , 'status' => $info ];
+    $res = json_encode($i);
+
+    echo $res;
+    
+
 
   }
 

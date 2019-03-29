@@ -76,6 +76,28 @@ class productModel extends Model
 
     }
 
+    public static function addToCart($cartInfo){
+        //var sql = "SELECT COUNT(*) as cart_count FROM `cart` WHERE user_id = "+uid+";"
+        //var sql = "call cart("+Number(info.pid)+" , "+Number(info.uid)+" , "+Number(info.qntity)+" );";
+
+        
+
+
+        try{
+        $status = DB::insert("call cart( ?, ?  , ?  )" , [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ] );
+
+            return 'success';
+        }catch(QueryException $ex){ 
+            //$msg = $ex->getMessage(); 
+            return 'error'; 
+
+        }
+
+        
+
+    }
+ 
+    
     
 
 
