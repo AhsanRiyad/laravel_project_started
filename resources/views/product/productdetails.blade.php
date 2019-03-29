@@ -35,13 +35,13 @@ $postReview = "product.postReview";
 
 				@elseif($loginStatus==true)
 
-			<input type="text" hidden="true"  value="<%=product.product_id%>" id="productId">
+			<input type="text" hidden="true"  value="{{ $pid }}" id="productId">
 			
-			<input type="text" hidden="true"  value="<%=user_id_P%>" id="user_id">
+			<input type="text" hidden="true"  value="{{ $uid }}" id="user_id">
 
 
 
-			<a onclick="jsFuntionAddToCart(this)" href="#" class="btn btn-warning mb-3 mt-2" id="addToCart">Add to Cart</a>
+			<a onclick="" href="#" class="btn btn-warning mb-3 mt-2" id="addToCart">Add to Cart</a>
 
 			<!-- <a onclick="jsFuntionAddToCart(this)" href="#" class="btn btn-success mb-3 mt-2" >Buy now</a> -->
 
@@ -70,7 +70,7 @@ $postReview = "product.postReview";
 				</div>
 			</div>
 			
-			
+			<p hidden="true" id="postReviewUrl">{{ route('productController.addtocart') }}</p>
 			<form method="POST" action="{{ route($postReview) }}">
 				@csrf
 				<div class="form-group">

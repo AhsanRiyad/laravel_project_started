@@ -16,8 +16,12 @@ $( document ).ready(function() {
   
 });
 
-
-
+//csrf problem
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
 
 
@@ -286,7 +290,7 @@ $("#idButtonUpdateProfileDashboard").on('click' , function(){
 $("#addToCart").on('click' , function(){
 		 // var i = $('#input').val();
 		 // alert(i); 
-
+		 //alert('hello');
 
 		 var userid =  $('#user_id').val();
 		 var productid = $('#productId').val();
@@ -299,25 +303,30 @@ $("#addToCart").on('click' , function(){
 		 	 	'uid' : userid , 
 		 	 	'pid' : productid,
 		 	 	'qntity': qntity
-		 	 }
 
+		 	 }
+		 	 
 		 	 var jsonString = JSON.stringify(user);
 		
 				$.ajax({
-		 		url: 'http://localhost:3000/product/addtocart',
+		 		url: $('#postReviewUrl').html(),
 		 		method: 'POST',
-		 		data: { 'myinfo': jsonString},
+		 		data: { 'myinfo': jsonString 
+		 				
+		 		},
+		 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		 		success: function(reply){
 					 //var res = JSON.parse(reply);
 					 //alert(reply.status);
+					 alert('sss');
 
 					 if(reply.status == 'updated'){
-					 	alert('added to cart // qntity');
+					 	alert(reply);
 					 	$('#cart_count').html(reply.cart_count) ;
 
 					 }else{
-					 	alert('added to cart // added');
-					 	$('#cart_count').html(reply.cart_count) ;
+					 	alert(reply);
+					 	$('#cart_count').html(reply) ;
 
 					 }
 

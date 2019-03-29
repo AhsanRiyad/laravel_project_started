@@ -99,7 +99,16 @@ public function getProductDetails(Request $req, $pid){
 
 }
 
+  public static function addtocart(Request $req){
+    echo $req->myinfo; 
+    $t = json_decode($req->myinfo , true);
+    //echo $t;
 
+    //echo $t['uid'];
+    //echo $t['pid'];
+    //echo $t['qntity'];
+
+  }
 
   public static function postReview(Request $req){
 

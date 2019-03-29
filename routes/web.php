@@ -17,7 +17,7 @@ Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Na
 
 Route::post('/product/postReview', 'productController@postReview' )->Name('product.postReview');
 
-
+Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
 
 
 
