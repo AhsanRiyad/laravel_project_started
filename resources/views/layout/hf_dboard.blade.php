@@ -58,9 +58,9 @@ $u_type = 'admin';
 <!-- navigation bar and search bar starts -->
   <!-- fixed horizontal -->
   <div class="admin_navbar_horizontal bg-secondary justify-content-center d-flex align-items-center">
-    <p class="text-white h3">Good Morning, <%=userinfo[0].last_name%>
+    <p class="text-white h3">Good Morning, {{ $userinfo[0]['last_name'] }}
 
-      {{$userinfo['last_name']}}
+      
     
      </p>
   </div>
