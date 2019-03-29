@@ -145,5 +145,20 @@ public function getProductDetails(Request $req, $pid){
 
 
 
+  
+
+
+  public static function autosearch(Request $req){
+
+    $h = ['ih' , 'ihoa' , $req->term];
+    $j = json_encode($h);
+
+    echo $j;
+
+
+  }
+
+
+
 
 }

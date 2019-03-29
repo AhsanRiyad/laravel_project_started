@@ -238,7 +238,7 @@ $("#idButtonUpdateProfileDashboard").on('click' , function(){
 
 //search suggestion using json p is solved
 	
-	$("#idcategory").change(function(){
+	/*$("#idcategory").change(function(){
 
 	var catValue =  $("#idcategory").val();
       
@@ -267,13 +267,14 @@ $("#idButtonUpdateProfileDashboard").on('click' , function(){
 
 
         $.ajax( {
-          url: "http://localhost:3000/product/autosearch/"+request.term+"/"+catValue,
+          url: "http://localhost:3000/product/autosearch",
           dataType: "jsonp",
           data: {
             term: request.term,
             catValue : catValue
           },
           success: function( data ) {
+          	console.log(data);
             response( data );
           }
         } );
@@ -284,7 +285,50 @@ $("#idButtonUpdateProfileDashboard").on('click' , function(){
       }
     } );
 
+*/
 
+
+
+$( function() {
+    
+    function split( val ) {
+      return val.split(  );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+
+ 	
+    $( "#autosearch" )
+      // don't navigate away from the field on tab when selecting an item
+      .on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        source: function( request, response ) {
+          $.getJSON( "http://localhost:3000/product/autosearch", {
+            term: extractLast( request.term )
+          }, response );
+        },
+        search: function() {
+          // custom minLength
+          var term = extractLast( this.value );
+          if ( term.length < 2 ) {
+            return false;
+          }
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        }
+      });
+  } );
+
+
+       
 
 //add to cart 
 $("#addToCart").on('click' , function(){

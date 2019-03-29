@@ -30,6 +30,8 @@ Route::get('/signup', 'authenticationController@signUp' )->Name('authentication.
 Route::post('/signup', 'authenticationController@signUpCheck' )->Name('authentication.signup');
 
 
+Route::get('/product/autosearch', 'productController@autosearch' )->Name('productController.autosearch');
+
 
 Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardController.dashboard');
 
