@@ -19,7 +19,7 @@ Route::post('/product/postReview', 'productController@postReview' )->Name('produ
 
 Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
 
-Route::get('/product/search/{text}/{cat}', 'productController@searchProducts' )->Name('product.searchProducts');
+Route::get('/product/search', 'productController@searchProducts' )->Name('product.searchProducts');
 
 
 Route::get('/login', 'authenticationController@login' )->Name('authentication.login');

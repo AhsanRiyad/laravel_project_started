@@ -58,7 +58,7 @@ $signout = "authenticationController.logout";
 
               <div class="col-lg-6 col-12 align-self-lg-center">
 
-                <form action="" method="GET">
+                <form action="{{ route('product.searchProducts') }}" method="GET">
 
 
 

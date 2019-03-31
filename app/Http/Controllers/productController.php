@@ -192,9 +192,10 @@ public function getProductDetails(Request $req, $pid){
   }
 
 
-   public static function searchProducts(Request $req , $text , $cat){
+   public static function searchProducts(Request $req){
 
-    $searchDetails = ['searchText' => $text , 'category' => $cat];
+    //$searchDetails = ['searchText' => $text , 'category' => $cat];
+    $searchDetails = ['searchText' => $req->searchbox , 'category' => $req->catValue];
     $products = productModel::searchProducts($searchDetails);
 
     //return $products;
