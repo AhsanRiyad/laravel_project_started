@@ -19,6 +19,7 @@ Route::post('/product/postReview', 'productController@postReview' )->Name('produ
 
 Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
 
+Route::get('/product/search/{text}/{cat}', 'productController@searchProducts' )->Name('product.searchProducts');
 
 
 Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
@@ -36,6 +37,8 @@ Route::get('/product/autosearch', 'productController@autosearch' )->Name('produc
 Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardController.dashboard');
 
 Route::get('/logout', 'authenticationController@logout' )->Name('authenticationController.logout');
+
+
 
 
 //Route::get('/db', 'testController@dbTest');

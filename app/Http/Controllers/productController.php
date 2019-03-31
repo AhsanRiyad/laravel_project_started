@@ -192,6 +192,49 @@ public function getProductDetails(Request $req, $pid){
   }
 
 
+   public static function searchProducts(Request $req , $text , $cat){
+
+    $searchDetails = ['searchText' => $text , 'category' => $cat];
+    $products = productModel::searchProducts($searchDetails);
+
+    //return $products;
+
+    if($req->session()->has('userinfo')){
+    $loginStatus = true;
+
+    $userinfo = session('userinfo');
+    //print_r($userinfo);
+    $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+    $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+    $c = productModel::cart_count($uid);
+    $cart_count = $c[0]->cart_count;
+    
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
+
+
+  }else{
+    $cart_count = 0;
+    $loginStatus = false;
+  }
+
+
+
+    return view('product\productSearch', [ 'products' => $products ,  'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);
+    
+
+
+   }
+
+
+
+
 
 
 }

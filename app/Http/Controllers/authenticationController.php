@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\authenticationModel;
+use App;
 
 class authenticationController extends Controller
 {

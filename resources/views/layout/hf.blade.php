@@ -58,7 +58,7 @@ $signout = "authenticationController.logout";
 
               <div class="col-lg-6 col-12 align-self-lg-center">
 
-                <form action="http://localhost:3000/product/search" method="GET">
+                <form action="" method="GET">
 
 
 
