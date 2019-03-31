@@ -22,7 +22,11 @@ $loginStatus = false;
 					<a class="text-dark" href="#"><h3>Featured Products</h3></a>
 					<div class="w-100"></div>
 
-
+					@if( $products == [] )
+					
+					<h1 class="text-danger">Search keyword does not match!!!</h1>
+					
+					@endif
 					
 					@php
 					$i = 0;

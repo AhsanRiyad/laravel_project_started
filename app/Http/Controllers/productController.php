@@ -195,6 +195,11 @@ public function getProductDetails(Request $req, $pid){
    public static function searchProducts(Request $req){
 
     //$searchDetails = ['searchText' => $text , 'category' => $cat];
+
+    if($req->searchbox==''){
+      $req->searchbox = 'nothing';
+    }
+
     $searchDetails = ['searchText' => $req->searchbox , 'category' => $req->catValue];
     $products = productModel::searchProducts($searchDetails);
 
