@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\productModel;
+use DB;
 
+
+/////////////////////////////////////////////
 class productController extends Controller
 {
+
+  ///////////////////////////////////////////
   public function getProducts(Request $req){
    $products = productModel::getAllProducts();
    $clientIP = request()->ip();
@@ -43,11 +48,50 @@ class productController extends Controller
 
 }
 
+///////////////////////////////////////
+
+////////////////////////////////////
+//cart starts
+public function cart (Request $req){
+  
+  $uid = 0;
+  if($req->session()->has('userinfo')){
+    $loginStatus = true;
+
+    $userinfo = session('userinfo');
+    //print_r($userinfo);
+    $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+    $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+    $c = productModel::cart_count($uid);
+    $cart_count = $c[0]->cart_count;
+    
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
+
+
+  }else{
+    $cart_count = 0;
+    $loginStatus = false;
+  }
+
+  $results = DB::select("call cartPage(?)" , [$uid]);
+  return $results;
+}
+//cart ends
+////////////////////////////////////
+
+
 public function getProductDetails(Request $req, $pid){
  $products = productModel::getProductDetails($pid);
  $uid = '';
 
-        //visit table works
+  //visit table works
  $clientIP = $req->ip();
    //echo $clientIP;
  $visitTable = ['ip'=> $clientIP , 'productid'=> $pid];

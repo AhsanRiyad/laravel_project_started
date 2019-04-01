@@ -21,6 +21,8 @@ Route::post('/addtocart', 'productController@addtocart' )->Name('productControll
 
 Route::get('/product/search', 'productController@searchProducts' )->Name('product.searchProducts');
 
+Route::get('/cart', 'productController@cart' )->Name('product.cart');
+
 
 Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
 
