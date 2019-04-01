@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\productModel;
 use DB;
-
+use App\multipleSelectModel;
 
 /////////////////////////////////////////////
 class productController extends Controller
@@ -80,8 +80,14 @@ public function cart (Request $req){
     $loginStatus = false;
   }
 
-  $results = DB::select("call cartPage(?)" , [$uid]);
-  return $results;
+  
+  $params = [$uid];
+  $results = multipleSelectModel::CallRaw('cartPage', $params);
+
+  // return $results;
+ // return $results[0][0]->product_id;
+  $r = [ 'products'=> $results , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
+  return view('product.cart'  , $r);
 }
 //cart ends
 ////////////////////////////////////

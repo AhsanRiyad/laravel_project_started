@@ -123,7 +123,7 @@ $signout = "authenticationController.logout";
                 
               @elseif($loginStatus==true)
 
-              <a href="http://localhost:3000/product/cart" class="btn btn-warning ">Cart<span class="badge badge-light" id="cart_count"> {{$cart_count}} </span>
+              <a href="{{ route('product.cart') }}" class="btn btn-warning ">Cart<span class="badge badge-light" id="cart_count"> {{$cart_count}} </span>
               </a> 
 
               

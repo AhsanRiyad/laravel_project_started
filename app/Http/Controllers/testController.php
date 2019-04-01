@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\testModel;
 use DB;
+use App\multipleSelectModel;
 
 class testController extends Controller
 {
