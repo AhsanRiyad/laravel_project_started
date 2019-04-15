@@ -61,5 +61,7 @@ Route::get('/a_cart' , function(){
 });
 
 
-Route::post('/a_cart_delete/{id}/{user_id}' , 'AProductController@a_cart_delete')->name('AProductController.a_cart_delete');
+Route::post('/a_cart_delete/{cart_id}/{user_id}' , 'AProductController@a_cart_delete')->name('AProductController.a_cart_delete');
+
+Route::post('/a_cart_update/{cart_id}/{user_id}/{qntity}' , 'AProductController@a_cart_update')->name('AProductController.a_cart_update');
 

@@ -82,6 +82,36 @@ class AProductController extends Controller
 
   }
 
+
+
+  public function a_cart_update($cart_id , $user_id , $qntity){
+
+    //echo $id;
+
+    $status = DB::update('update cart set quantity = (?) where cart_id=(?)', [ $qntity ,$cart_id]);
+
+    $cartProducts = DB::select('select * from cart c , products p where  p.product_id=c.product_id and user_id = (?)', [$user_id] ); 
+
+    $i = [ 'cart_products' => $cartProducts ];
+
+    $res = json_encode($i);
+
+    echo $res;
+
+    //echo $cart_id . $user_id . 'from response' ;
+
+
+
+
+
+  }
+
+
+
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *

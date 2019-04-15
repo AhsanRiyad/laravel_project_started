@@ -40,25 +40,27 @@
   
   <div class="form-group">
     <label for="inputState">Select User</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
+      <select id="user_id_input" class="form-control">
+        <option selected value=''>Choose...</option>
 
         @foreach($users as $user)
-        <option> {{ $user->u_id }} - {{ $user->last_name }}</option>
+        <option value='{{ $user->u_id }}' > {{ $user->u_id }} - {{ $user->last_name }}</option>
         @endforeach
 
       </select>
   </div>
   <div class="form-group">
     <label for="inputAddress">Total</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <input disabled="true" type="text" class="form-control" id="totalAmount" placeholder="0">
   </div>
 
   <div class="form-group">
-    <label for="inputState">Point of sell</label>
+    <label for="inputState">Sell's Point</label>
       <select id="inputState" class="form-control">
         <option selected>Choose...</option>
-        <option>...</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
       </select>
   </div>
 
