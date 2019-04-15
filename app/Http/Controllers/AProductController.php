@@ -108,7 +108,14 @@ class AProductController extends Controller
 
 
 
+  public function a_cart_reset($user_id){
 
+    $status  = DB::delete('delete from cart where user_id = (?)' , [$user_id]);
+
+    echo 'success';
+
+
+  }
 
 
 

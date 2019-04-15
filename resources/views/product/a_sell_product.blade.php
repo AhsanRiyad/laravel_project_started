@@ -76,7 +76,7 @@
   </div>
 
 
-  <button type="submit" class="btn btn-primary">Sign in</button>
+  <button type="submit" class="btn btn-primary">Confirm Order</button>
 </form>
 
 
@@ -114,7 +114,10 @@
   </div>
 
 
-  <button id="button_add_product" class="btn btn-primary">Sign in</button>
+  <button id="button_add_product" class="btn btn-primary">Add Product</button>
+
+  <button id="button_reset_product" class="btn btn-primary">Reset</button>
+
 
 
 

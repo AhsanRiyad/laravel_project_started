@@ -65,3 +65,6 @@ Route::post('/a_cart_delete/{cart_id}/{user_id}' , 'AProductController@a_cart_de
 
 Route::post('/a_cart_update/{cart_id}/{user_id}/{qntity}' , 'AProductController@a_cart_update')->name('AProductController.a_cart_update');
 
+
+Route::post('/a_cart_reset/{user_id}' , 'AProductController@a_cart_reset')->name('AProductController.a_cart_reset');
+

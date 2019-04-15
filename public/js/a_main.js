@@ -236,7 +236,19 @@ function delete_it(cart_id , user_id){
 					// alert(res.cart_products.length);
 					var element = '';
 
+					if(res.cart_products.length==0){
+							var element = '';
+							$('#product_list_div').html(element);
+							return;
+						}
+
 					for(var i=0; i<res.cart_products.length; i++){
+
+						if(res.cart_products.length==0){
+							var element = '';
+							$('#product_list_div').html(element);
+							break;
+						}
 
 						total = total + res.cart_products[i].product_sell_price;
 
@@ -375,18 +387,6 @@ total = 0;
 					}
 			});
 
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -407,6 +407,36 @@ $('#user_id_input').change(function(){
 	total = 0 ; 
 
 	$('#totalAmount').val(total);
+
+
+});
+
+
+
+
+
+
+$('#button_reset_product').click(function(){
+	userid = $('#user_id_input').val();
+	alert(userid);
+
+	$.ajax({
+		 	 	url:'http://localhost:3000/a_cart_reset/'+userid,
+		 	 	method: 'POST',
+		 	
+		 	 success: function(reply){
+		 	 	
+		 	 		alert(reply);
+		 	 		$('#product_list_div').html('');
+
+
+					},
+					error: function(error){
+						//alert(error);
+					 alert('error');
+
+					}
+			});
 
 
 });
