@@ -122,41 +122,48 @@
 	
 <h3>Product List</h3>
 
-	<form>
-  @csrf
-
- <div class="form-row">
+	
+  <div id='product_list_div'>
     
-    <div class="form-group col-md-2">
-      <label for="inputEmail4">Product id</label>
-      <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email">
+
+    <div class='form-row'>
+    
+    <div class='form-group col-md-2'>
+      <label for='inputEmail4'>Product id</label>
+      <input disabled type='email' class='form-control' id='inputEmail4' placeholder='Email'>
     </div>
-    <div class="form-group col-md-2">
-      <label for="inputPassword4">Product Name</label>
-      <input  type="password" class="form-control" id="inputPassword4" placeholder="Password">
+    <div class='form-group col-md-2'>
+      <label for='inputPassword4'>Product Name</label>
+      <input  type='password' class='form-control' id='inputPassword4' placeholder='Password'>
     </div>
 
-	<div class="form-group col-md-2">
-    <label for="inputState">Quantity</label>
-      <select id="inputState" class="form-control">
+  <div class='form-group col-md-2'>
+    <label for='inputState'>Quantity</label>
+      <select id='inputState' class='form-control'>
         <option selected>Choose...</option>
         <option>...</option>
       </select>
   </div>
-	<div class="form-group col-md-2">
-    <label for="inputState">Update</label>
-       <input type="submit" value="update" class="btn btn-primary form-control">
-	</div>
-	
-	<div class="form-group col-md-2">
-    <label for="inputState">Update</label>
-       <input type="submit" value="update" class="btn btn-primary form-control">
-	</div>
+  <div class='form-group col-md-2'>
+    <label for='inputState'>Update</label>
+       <input type='submit' value='update' class='btn btn-primary form-control'>
+  </div>
+  
+  <div class='form-group col-md-2'>
+    <label for='inputState'>Update</label>
+       <input type='submit' value='update' class='btn btn-primary form-control'>
+  </div>
   </div>
 
 
+  </div>
+
  
-</form>
+  
+
+
+
+
 
 
 </div>

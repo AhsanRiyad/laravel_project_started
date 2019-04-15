@@ -25,7 +25,7 @@ class AProductController extends Controller
     }
 
     public static function addtocart(Request $req){
-    echo $req->myinfo; 
+    //echo $req->myinfo; 
     $t = json_decode($req->myinfo , true);
     //$res = json_encode($t);
     //echo $res;
@@ -43,11 +43,15 @@ class AProductController extends Controller
     $info = productModel::addToCart($cartInfo);
 
     $c = productModel::cart_count($t['uid']);
+    
     $cartProducts = DB::select('select * from cart where user_id = (?)', [$t['uid']] ); 
 
     $cart_count = $c[0]->cart_count;
 
-    $i = ['cartCount'=> $cart_count , 'status' => $info , 'cart_products' => $cartProducts ];
+   // $i = ['cartCount'=> $cart_count , 'status' => $info , 'cart_products' => $cartProducts ];
+
+    $i = [ 'cart_products' => $cartProducts ];
+
     $res = json_encode($i);
 
     echo $res;

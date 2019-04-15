@@ -24,7 +24,65 @@ var $products = $('#select_products').val();*/
 });
 */
 
+
+
+
+
+
+
+
+
+var element1 = '<div class="form-row"> \
+    \
+    <div class="form-group col-md-2"> \
+      <label for="inputEmail4">Product id</label> \
+      <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email"> \
+    </div>\
+    <div class="form-group col-md-2"> \
+      <label for="inputPassword4">Product Name</label>\
+      <input  type="password" class="form-control" id="inputPassword4" placeholder="Password">\
+    </div>\
+\
+  <div class="form-group col-md-2">\
+    <label for="inputState">Quantity</label>\
+      <select id="inputState" class="form-control">\
+        <option selected>Choose...</option>\
+        <option>...</option>\
+      </select>\
+  </div>\
+  <div class="form-group col-md-2">\
+    <label for="inputState">Update</label>\
+       <input type="submit" value="update" class="btn btn-primary form-control">\
+  </div>\
+  \
+  <div class="form-group col-md-2">\
+    <label for="inputState">+Update+</label>\
+       <input type="submit" value="update" class="btn btn-primary form-control">\
+  </div>\
+  </div>';
+
+
+
+
+
+
+
+
+
+
+
+
 $('#button_add_product').click(function(){
+
+
+
+
+
+
+
+
+
+
 
 
 	var products = $('#select_products').val();
@@ -62,10 +120,68 @@ $('#button_add_product').click(function(){
 		 	 },
 		 	 
 		 	 success: function(reply){
-		 	 	//var res = JSON.parse(reply);
+		 	 	var res = JSON.parse(reply);
 					 // alert(reply);
 					 //alert(reply);
 					alert(reply);
+					alert(res.cart_products.length);
+
+					//alert(res.cart_products[0].cart_id);
+					// alert(res.cart_products.length);
+					var element = '';
+
+					for(var i=0; i<res.cart_products.length; i++){
+
+						var element1 = '<div class="form-row"> \
+    \
+    <div class="form-group col-md-2"> \
+      <label for="inputEmail4">Product id</label> \
+      <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+res.cart_products[i].product_id+'> \
+    </div>\
+    <div class="form-group col-md-2"> \
+      <label for="inputPassword4">Product Name</label>\
+      <input  type="text" class="form-control" id="inputPassword4" placeholder="Password" value='+res.cart_products[i].product_name+'>\
+    </div>\
+\
+  <div class="form-group col-md-2">\
+    <label for="inputState">Quantity</label>\
+      <select id="inputState" class="form-control">\
+        <option selected>Choose...</option>\
+        <option selected value='+res.cart_products[i].quantity+' >'+res.cart_products[i].quantity+'</option>\ \
+      </select>\
+  </div>\
+  <div class="form-group col-md-2">\
+    <label for="inputState">Update</label>\
+       <input type="submit" value="update" class="btn btn-primary form-control">\
+  </div>\
+  \
+  <div class="form-group col-md-2">\
+    <label for="inputState">Delete</label>\
+       <input type="submit" value="update" class="btn btn-primary form-control">\
+  </div>\
+  </div>';
+
+  					element = element + element1;
+
+
+
+
+
+
+
+
+						
+						
+						$('#product_list_div').html(element);
+
+
+					};
+
+					
+
+
+
+
 
 					},
 					error: function(error){
