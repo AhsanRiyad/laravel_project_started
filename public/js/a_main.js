@@ -60,11 +60,13 @@ $('#button_add_product').click(function(){
 		 	 	data: { 'myinfo': jsonString 
 
 		 	 },
-		 	 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		 	 
 		 	 success: function(reply){
 		 	 	//var res = JSON.parse(reply);
 					 // alert(reply);
-					 alert('success');
+					 //alert(reply);
+					alert(reply);
+
 					},
 					error: function(error){
 						//alert(error);

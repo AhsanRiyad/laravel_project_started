@@ -25,30 +25,32 @@ class AProductController extends Controller
     }
 
     public static function addtocart(Request $req){
-    //echo $req->myinfo; 
-    //$t = json_decode($req->myinfo , true);
+    echo $req->myinfo; 
+    $t = json_decode($req->myinfo , true);
     //$res = json_encode($t);
-    //echo $res
+    //echo $res;
 
-    echo 'hello';
+    //echo 'hello';
 
     //echo $t['uid'];
     //echo $t['pid'];
     //echo $t['qntity'];
 
-    //$cartInfo['uid'] = $t['uid'];
-    //$cartInfo['pid'] = $t['pid'];
-    //$cartInfo['qntity'] = $t['qntity'];
+    $cartInfo['uid'] = $t['uid'];
+    $cartInfo['pid'] = $t['pid'];
+    $cartInfo['qntity'] = $t['qntity'];
 
-    //$info = productModel::addToCart($cartInfo);
+    $info = productModel::addToCart($cartInfo);
 
-    //$c = productModel::cart_count($t['uid']);
-    //$cart_count = $c[0]->cart_count;
+    $c = productModel::cart_count($t['uid']);
+    $cartProducts = DB::select('select * from cart where user_id = (?)', [$t['uid']] ); 
 
-    //$i = ['cartCount'=> $cart_count , 'status' => $info ];
-    //$res = json_encode($i);
+    $cart_count = $c[0]->cart_count;
 
-    //echo $res;
+    $i = ['cartCount'=> $cart_count , 'status' => $info , 'cart_products' => $cartProducts ];
+    $res = json_encode($i);
+
+    echo $res;
   }
 
 
