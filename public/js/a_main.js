@@ -75,16 +75,6 @@ var element1 = '<div class="form-row"> \
 $('#button_add_product').click(function(){
 
 
-
-
-
-
-
-
-
-
-
-
 	var products = $('#select_products').val();
 	var pat   = /([0-9]*)[\s]{0,}[-]{1}[\s]{0,}([a-zA-Z0-1]*)/;
 	var v1 = pat.exec(products);
@@ -152,12 +142,13 @@ $('#button_add_product').click(function(){
   </div>\
   <div class="form-group col-md-2">\
     <label for="inputState">Update</label>\
-       <input type="submit" value="update" class="btn btn-primary form-control">\
+       <button onClick = "update_it();"  class="btn btn-primary form-control">Update</button>\
   </div>\
   \
   <div class="form-group col-md-2">\
     <label for="inputState">Delete</label>\
-       <input type="submit" value="update" class="btn btn-primary form-control">\
+       \
+       <a onClick = "delete_it('+res.cart_products[i].cart_id+' , '+res.cart_products[i].user_id+');"><button class="btn btn-primary form-control">Delete</button></a>\
   </div>\
   </div>';
 
@@ -197,3 +188,47 @@ $('#button_add_product').click(function(){
 
 
 
+
+
+
+
+function delete_it(cart_id , user_id){
+	alert('hi on click' + cart_id + ' '+ user_id);
+
+
+
+
+
+
+	$.ajax({
+		 	 	url: 'http://localhost:3000/a_cart_delete/'+cart_id+'/'+user_id,
+		 	 	method: 'POST',
+		 	
+		 	 success: function(reply){
+		 	 	
+
+		 	 	alert(reply);
+
+
+
+					},
+					error: function(error){
+						//alert(error);
+					 alert('error');
+
+					}
+			});
+
+
+
+
+
+
+
+
+	
+}
+
+function update_it(){
+	alert('hi on click' + cart_id);
+}

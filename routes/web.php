@@ -53,8 +53,13 @@ Route::resource('/a_pos' , 'AProductController');
 
 
 //
-Route::post('/a_cart' , 'AProductController@addtocart');
+Route::post('/a_cart' , 'AProductController@addtocart')->name('AProductController.addtocart');
+
+
 Route::get('/a_cart' , function(){
 	return 'hellow';
 });
+
+
+Route::post('/a_cart_delete/{id}/{user_id}' , 'AProductController@a_cart_delete')->name('AProductController.a_cart_delete');
 

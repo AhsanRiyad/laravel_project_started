@@ -44,9 +44,11 @@ class AProductController extends Controller
 
     $c = productModel::cart_count($t['uid']);
     
-    $cartProducts = DB::select('select * from cart where user_id = (?)', [$t['uid']] ); 
+    $cartProducts = DB::select('select * from cart c , products p where  p.product_id=c.product_id and user_id = (?)', [$t['uid']] ); 
 
     $cart_count = $c[0]->cart_count;
+
+
 
    // $i = ['cartCount'=> $cart_count , 'status' => $info , 'cart_products' => $cartProducts ];
 
@@ -58,7 +60,27 @@ class AProductController extends Controller
   }
 
 
+  public function a_cart_delete($cart_id , $user_id){
 
+    //echo $id;
+
+    $status = DB::delete('delete from cart where cart_id=(?)', [$cart_id]);
+
+    $cartProducts = DB::select('select * from cart c , products p where  p.product_id=c.product_id and user_id = (?)', [$user_id] ); 
+
+    $i = [ 'cart_products' => $cartProducts ];
+
+    $res = json_encode($i);
+
+    echo $res;
+
+    //echo $cart_id . $user_id . 'from response' ;
+
+
+
+
+
+  }
 
     /**
      * Show the form for creating a new resource.
