@@ -14,7 +14,7 @@
 
 
 <div class="row top-margin">
-	<div class="col-2 offset-2 p-5  bg-warning">
+	<div class="col-2 offset-2 p-5  bg-info text-white">
 	
 	<h3>Point of Sales</h3>
 
@@ -66,7 +66,7 @@
 	</div>
 
 
-<div class="col-3 p-5  bg-success">
+<div class="col-3 p-5  text-white bg-success">
 	
 
 	<h3>Select Product</h3>
@@ -110,7 +110,7 @@
 
 	
 
-<div class="col-4 bg-info p-5">
+<div class="col-4 bg-secondary text-white p-5">
 	
 <h3>Product List</h3>
 
