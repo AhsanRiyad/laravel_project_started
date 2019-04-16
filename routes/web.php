@@ -78,3 +78,16 @@ Route::post('/a_cart_order' , 'AProductController@a_cart_order')->name('AProduct
 
 
 
+Route::get('/add_user' , 'userController@addUser')->name('userController.addUser');
+
+
+Route::get('/add_factory' , 'userController@add_factory')->name('userController.add_factory');
+
+
+Route::get('/ship_req_india' , 'userController@ship_req_india')->name('userController.ship_req_india');
+
+
+
+Route::get('/add_raw_materials' , 'userController@add_raw_materials')->name('userController.add_raw_materials');
+
+

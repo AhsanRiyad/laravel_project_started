@@ -90,53 +90,57 @@ $u_type = $userinfo[0]['u_type'];
 
       </div></a>
 
-      <a class="text-white" href="http://localhost:3000/user/adduser">
+      <a class="text-white" href="{{ route('userController.addUser') }}">
         <div class=" bg-secondary py-2 text-center my-4">
 
-          <i class="fas w_f fa-chart-line"></i> Add User
+          <i class="fas w_f fa-chart-line"></i> Add Customer
 
         </div></a>
 
       
 
-        <a class="text-light" href='http://localhost:3000/dashboard/profile'>
+        <a class="text-light" href='{{ route("userController.add_factory") }}'>
           <div class="
           py-2 text-center my-4 bg-secondary">
 
-          <i class="fas w_f fa-user "></i> Profile
+          <i class="fas w_f fa-user "></i> Add Factory
 
         </div></a>
 
-        <a class="text-light" href='<%=addPromo%>'>
+        <a class="text-light" href='{{ route("userController.ship_req_india") }}'>
           <div class="  
           py-2 text-center my-4 bg-secondary">
 
-          <i class="fas fa-shopping-cart"></i> Add Promo
+          <i class="fas fa-shopping-cart"></i> Shipment Request
 
         </div></a>
 
 
-        <a class="text-white" href="<%=viewPromo%>">
+        <a class="text-white" href="{{ route('userController.add_raw_materials') }}">
           <div class="  bg-secondary py-2 text-center my-4">
 
-            <i class="fas w_f fa-envelope"></i> View Promo
+            <i class="fas w_f fa-envelope"></i> Raw Materials
 
           </div></a>
+        
+       <a class="text-white" href='{{ route($homepage) }}'>
+          <div class="bg-secondary py-2 text-center my-4">
+
+            <i class="fas fa-shopping-cart"></i> Money Transfer
+
+          </div>
+
+        </a>
 
 
           <a class="text-white" href="http://localhost:3000/product/viewproducts">
             <div class="  bg-secondary py-2 text-center my-4">
 
-              <i class="fab fa-product-hunt"></i> Manipulate Reviews
+              <i class="fab fa-product-hunt"></i> Reports
 
             </div></a>
 
-          <a class="text-white" href='{{ route($homepage) }}'>
-          <div class="bg-success py-2 text-center my-4">
 
-            <i class="fas fa-shopping-cart"></i> Back to Shop Page
-
-          </div></a>
 
             <a class="text-white" href="  {{ route($signout) }}  ">
               <div class="  bg-danger py-2 text-center my-4">

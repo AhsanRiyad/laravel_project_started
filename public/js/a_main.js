@@ -38,11 +38,11 @@ var userid = $('#user_id_input').val();
 var element1 = '<div class="form-row"> \
     \
     <div class="form-group col-md-2"> \
-      <label for="inputEmail4">Product id</label> \
+      <label for="inputEmail4"> id</label> \
       <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email"> \
     </div>\
     <div class="form-group col-md-2"> \
-      <label for="inputPassword4">Product Name</label>\
+      <label for="inputPassword4">Name</label>\
       <input disabled type="password" class="form-control" id="inputPassword4" placeholder="Password">\
     </div>\
 \
@@ -139,11 +139,11 @@ $('#button_add_product').click(function(){
 						var element1 = '<div class="form-row"> \
     \
     <div class="form-group col-md-2"> \
-      <label for="inputEmail4">Product id</label> \
+      <label for="inputEmail4"> id</label> \
       <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+res.cart_products[i].product_id+'> \
     </div>\
     <div class="form-group col-md-2"> \
-      <label for="inputPassword4">Product Name</label>\
+      <label for="inputPassword4">Name</label>\
       <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="'+res.cart_products[i].product_name+'"">\
     </div>\
 \
@@ -257,11 +257,11 @@ function delete_it(cart_id , user_id){
 						var element1 = '<div class="form-row"> \
     \
     <div class="form-group col-md-2"> \
-      <label for="inputEmail4">Product id</label> \
+      <label for="inputEmail4"> id</label> \
       <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+res.cart_products[i].product_id+'> \
     </div>\
     <div class="form-group col-md-2"> \
-      <label for="inputPassword4">Product Name</label>\
+      <label for="inputPassword4">Name</label>\
       <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="'+res.cart_products[i].product_name+'"">\
     </div>\
 \
@@ -339,11 +339,11 @@ total = 0;
 						var element1 = '<div class="form-row"> \
     \
     <div class="form-group col-md-2"> \
-      <label for="inputEmail4">Product id</label> \
+      <label for="inputEmail4"> id</label> \
       <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+res.cart_products[i].product_id+'> \
     </div>\
     <div class="form-group col-md-2"> \
-      <label for="inputPassword4">Product Name</label>\
+      <label for="inputPassword4">Name</label>\
       <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="'+res.cart_products[i].product_name+'"">\
     </div>\
 \
@@ -512,11 +512,11 @@ userid = $('#user_id_input').val();
 						var element1 = '<div class="form-row"> \
     \
     <div class="form-group col-md-2"> \
-      <label for="inputEmail4">Product id</label> \
+      <label for="inputEmail4"> id</label> \
       <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+res.cart_products[i].product_id+'> \
     </div>\
     <div class="form-group col-md-2"> \
-      <label for="inputPassword4">Product Name</label>\
+      <label for="inputPassword4">Name</label>\
       <input  type="text" class="form-control" id="inputPassword4" placeholder="Password" value='+res.cart_products[i].product_name+'>\
     </div>\
 \
