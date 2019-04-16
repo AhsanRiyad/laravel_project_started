@@ -118,6 +118,21 @@ class AProductController extends Controller
   }
 
 
+  
+  public function a_cart_show($user_id){
+
+    $cartProducts = DB::select('select * from cart c , products p where  p.product_id=c.product_id and user_id = (?)', [$user_id] ); 
+
+    $i = [ 'cart_products' => $cartProducts ];
+
+    $res = json_encode($i);
+
+    echo $res;
+
+
+  }
+
+
 
     /**
      * Show the form for creating a new resource.

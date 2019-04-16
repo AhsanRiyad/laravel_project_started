@@ -118,7 +118,7 @@
 
   <button id="button_reset_product" class="btn btn-primary">Reset</button>
 
-   <button hidden="true" id="button_show_product" class="btn btn-primary">Show</button>
+   <button  id="button_show_product" class="btn btn-primary">Show</button>
 
 
 

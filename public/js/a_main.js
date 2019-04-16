@@ -43,7 +43,7 @@ var element1 = '<div class="form-row"> \
     </div>\
     <div class="form-group col-md-2"> \
       <label for="inputPassword4">Product Name</label>\
-      <input  type="password" class="form-control" id="inputPassword4" placeholder="Password">\
+      <input disabled type="password" class="form-control" id="inputPassword4" placeholder="Password">\
     </div>\
 \
   <div class="form-group col-md-2">\
@@ -144,7 +144,7 @@ $('#button_add_product').click(function(){
     </div>\
     <div class="form-group col-md-2"> \
       <label for="inputPassword4">Product Name</label>\
-      <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value='+res.cart_products[i].product_name+'>\
+      <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="'+res.cart_products[i].product_name+'"">\
     </div>\
 \
   <div class="form-group col-md-2">\
@@ -262,7 +262,7 @@ function delete_it(cart_id , user_id){
     </div>\
     <div class="form-group col-md-2"> \
       <label for="inputPassword4">Product Name</label>\
-      <input  type="text" class="form-control" id="inputPassword4" placeholder="Password" value='+res.cart_products[i].product_name+'>\
+      <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="'+res.cart_products[i].product_name+'"">\
     </div>\
 \
   <div class="form-group col-md-2">\
@@ -344,7 +344,7 @@ total = 0;
     </div>\
     <div class="form-group col-md-2"> \
       <label for="inputPassword4">Product Name</label>\
-      <input  type="text" class="form-control" id="inputPassword4" placeholder="Password" value='+res.cart_products[i].product_name+'>\
+      <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="'+res.cart_products[i].product_name+'"">\
     </div>\
 \
   <div class="form-group col-md-2">\
@@ -460,5 +460,99 @@ $('#amount_paid_input').change(function(){
 	 	alert('invalid amount');
 	 	$('#amount_left_input').val(0);
 	 }
+
+});
+
+
+
+
+
+
+
+$('#button_show_product').click(function(){
+
+
+
+
+	//alert('hi on click' + cart_id);
+total = 0;
+userid = $('#user_id_input').val();
+//alert(userid);
+	$.ajax({
+		 	 	url: 'http://localhost:3000/a_cart_show/'+userid,
+		 	 	method: 'POST',
+		 	
+		 	 success: function(reply){
+		 	 	
+
+
+		 	 	var res = JSON.parse(reply);
+		 	 	//alert(res);
+					 // alert(reply);
+					 //alert(reply);
+					//alert(reply);
+					//alert(res.cart_products.length);
+
+					//alert(res.cart_products[0].cart_id);
+					// alert(res.cart_products.length);
+					var element = '';
+
+					for(var i=0; i<res.cart_products.length; i++){
+
+
+						total = total + res.cart_products[i].product_sell_price;
+
+						$('#totalAmount').val(total);
+
+						var element1 = '<div class="form-row"> \
+    \
+    <div class="form-group col-md-2"> \
+      <label for="inputEmail4">Product id</label> \
+      <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+res.cart_products[i].product_id+'> \
+    </div>\
+    <div class="form-group col-md-2"> \
+      <label for="inputPassword4">Product Name</label>\
+      <input  type="text" class="form-control" id="inputPassword4" placeholder="Password" value='+res.cart_products[i].product_name+'>\
+    </div>\
+\
+  <div class="form-group col-md-2">\
+    <label for="inputState">Quantity</label>\
+      <select onchange="changeQntity(this);" id="inputState" class="form-control">\
+        <option selected>Choose...</option>\
+        <option >1</option>\
+        <option >1</option>\
+        <option >2</option>\
+        <option >3</option>\
+        <option selected value='+res.cart_products[i].quantity+' >'+res.cart_products[i].quantity+'</option>\ \
+      </select>\
+  </div>\
+  <div class="form-group col-md-2">\
+    <label for="inputState">Update</label>\
+       <button onClick = "update_it('+res.cart_products[i].cart_id+' , '+res.cart_products[i].user_id+');"  class="btn btn-primary form-control">Update</button>\
+  </div>\
+  \
+  <div class="form-group col-md-2">\
+    <label for="inputState">Delete</label>\
+       \
+       <a onClick = "delete_it('+res.cart_products[i].cart_id+' , '+res.cart_products[i].user_id+');"><button class="btn btn-primary form-control">Delete</button></a>\
+  </div>\
+  </div>';
+
+  					element = element + element1;
+				
+						
+						$('#product_list_div').html(element);
+
+
+					};
+					//alert('quantity updated');
+
+					},
+					error: function(error){
+						//alert(error);
+					 alert('error');
+
+					}
+			});
 
 });
