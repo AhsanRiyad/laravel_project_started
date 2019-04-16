@@ -43,7 +43,8 @@
         <option selected value=''>Choose...</option>
 
         @foreach($users as $user)
-        <option value='{{ $user->u_id }}' > {{ $user->u_id }} - {{ $user->last_name }}</option>
+        <option value='{{ $user->u_id }}' > {{ $user->u_id }} - {{ $user->last_name }}
+        </option>
         @endforeach
 
       </select>
@@ -57,9 +58,9 @@
     <label for="inputState">Sell's Point</label>
       <select id="salesPoint_id" class="form-control">
         <option selected>Choose...</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        <option value="New Delhi">New Delhi</option>
+        <option value="Agrabad">Agrabad</option>
+        <option value="Banglore">Banglore</option>
       </select>
   </div>
 

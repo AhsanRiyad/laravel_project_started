@@ -139,16 +139,42 @@ class AProductController extends Controller
 
     $t = json_decode($req->myinfo , true);
 
-    $cartInfo['uid'] = $t['uid'];
+    /*$cartInfo['uid'] = $t['uid'];
     $cartInfo['total'] = $t['total'];
     $cartInfo['paid'] = $t['paid'];
-    $cartInfo['salesPoint'] = $t['salesPoint'];
+    $cartInfo['salesPoint'] = $t['salesPoint'];*/
 
-    
+    //$sql =  "call a_order_t(".$t['uid']." , ".$t['total']." , ".$t['paid']." , '".$t['salesPoint']."')";
+    //$status = DB::select($sql);
+    //return $sql;
+    //echo 'hi';
+    //echo 'hello';
+
+
+    try{
+       $status = DB::insert("call a_order_t( ?, ?  , ? , ? )" , [ $t['uid'] , $t['total'] ,  $t['paid'] , $t['salesPoint'] ] );
+
+            return 'success';
+        }catch(QueryException $ex){ 
+            //$msg = $ex->getMessage(); 
+            return 'error'; 
+
+        }
+
+
+    //echo json_encode($t);
+    //echo $t['uid'].' '.$t['paid'].' '.$t['total'].' '.$t['salesPoint'];
+
+    //echo $sql;
 
 
 
-  }
+
+
+
+
+
+}
 
 
     /**

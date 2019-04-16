@@ -88,7 +88,7 @@ $('#button_add_product').click(function(){
 	
 	
 	var product_name = v1[2];
-
+	userid = $('#user_id_input').val();
 
 	var productid = v1[1];
 	var qntity = $('#select_product_qntity').val();
@@ -429,10 +429,10 @@ $('#button_reset_product').click(function(){
 		 	 		
 		 	 		$('#product_list_div').html('');
 		 	 		//alert('reset done');
-		 	 		 $('#user_id_input').val(0);
+		 	 		 $('#user_id_input').val('');
 					$('#totalAmount').val(0);
 					 $('#amount_paid_input').val(0);
-					$('#salesPoint_id').val(0);
+					$('#salesPoint_id').val('');
 					},
 					error: function(error){
 						//alert(error);
@@ -449,8 +449,10 @@ $('#button_reset_product').click(function(){
 
 $('#amount_paid_input').change(function(){
 
-	 var tk =  $(this).val();
-	 var total =  $('#totalAmount').val();
+	 
+	 var tk =  parseInt( $(this).val() , 10); 
+	 
+	 var total = parseInt( $('#totalAmount').val() , 10);
 	 var pat = /^[\d]*$/;
 
 	 var status = pat.test(tk);
@@ -610,7 +612,7 @@ $('#button_confirm_order').click(function(){
 					},
 					error: function(error){
 						//alert(error);
-					 alert('error');
+					 alert(error);
 
 					}
 			});
