@@ -135,8 +135,16 @@ class AProductController extends Controller
 
   public function a_cart_order(Request $req){
 
-    echo $req->myinfo;
+    //echo $req->myinfo;
 
+    $t = json_decode($req->myinfo , true);
+
+    $cartInfo['uid'] = $t['uid'];
+    $cartInfo['total'] = $t['total'];
+    $cartInfo['paid'] = $t['paid'];
+    $cartInfo['salesPoint'] = $t['salesPoint'];
+
+    
 
 
 

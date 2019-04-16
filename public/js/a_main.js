@@ -429,7 +429,10 @@ $('#button_reset_product').click(function(){
 		 	 		
 		 	 		$('#product_list_div').html('');
 		 	 		//alert('reset done');
-
+		 	 		 $('#user_id_input').val(0);
+					$('#totalAmount').val(0);
+					 $('#amount_paid_input').val(0);
+					$('#salesPoint_id').val(0);
 					},
 					error: function(error){
 						//alert(error);
