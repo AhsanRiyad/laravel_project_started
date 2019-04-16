@@ -440,3 +440,25 @@ $('#button_reset_product').click(function(){
 
 
 });
+
+
+
+
+$('#amount_paid_input').change(function(){
+
+	 var tk =  $(this).val();
+	 var total =  $('#totalAmount').val();
+	 var pat = /^[\d]*$/;
+
+	 var status = pat.test(tk);
+	 //alert(total + ' ' + tk);
+	 if(status && tk<=total){
+	 	var amount_left = total - tk ; 
+
+	 	$('#amount_left_input').val(amount_left);
+	 }else{
+	 	alert('invalid amount');
+	 	$('#amount_left_input').val(0);
+	 }
+
+});

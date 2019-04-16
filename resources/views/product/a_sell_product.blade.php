@@ -26,7 +26,7 @@
 <body>
 
 <p id="user_id" hidden="true" >1</p>
-<p id='postReviewUrl'>
+<p hidden="true" id='postReviewUrl'>
 {{ route('AProductController.addtocart') }}</p>
 
 
@@ -66,12 +66,12 @@
 
  <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Amount Paid</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+      <label for="">Amount Paid</label>
+      <input type="text" class="form-control" id="amount_paid_input" placeholder="0">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Amount Left</label>
-      <input disabled type="password" class="form-control" id="inputPassword4" placeholder="Password">
+      <label for="">Amount Left</label>
+      <input disabled type="text" class="form-control" id="amount_left_input" placeholder="Password">
     </div>
   </div>
 
@@ -117,6 +117,8 @@
   <button id="button_add_product" class="btn btn-primary">Add Product</button>
 
   <button id="button_reset_product" class="btn btn-primary">Reset</button>
+
+   <button hidden="true" id="button_show_product" class="btn btn-primary">Show</button>
 
 
 
