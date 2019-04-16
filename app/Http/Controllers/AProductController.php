@@ -118,7 +118,7 @@ class AProductController extends Controller
   }
 
 
-  
+
   public function a_cart_show($user_id){
 
     $cartProducts = DB::select('select * from cart c , products p where  p.product_id=c.product_id and user_id = (?)', [$user_id] ); 
@@ -132,6 +132,15 @@ class AProductController extends Controller
 
   }
 
+
+  public function a_cart_order(Request $req){
+
+    echo $req->myinfo;
+
+
+
+
+  }
 
 
     /**

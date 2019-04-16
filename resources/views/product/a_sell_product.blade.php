@@ -35,8 +35,7 @@
 	
 	<h3>Point of Sales</h3>
 
-	<form>
-    @csrf
+	
   
   <div class="form-group">
     <label for="inputState">Select User</label>
@@ -56,11 +55,11 @@
 
   <div class="form-group">
     <label for="inputState">Sell's Point</label>
-      <select id="inputState" class="form-control">
+      <select id="salesPoint_id" class="form-control">
         <option selected>Choose...</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
       </select>
   </div>
 
@@ -76,8 +75,8 @@
   </div>
 
 
-  <button type="submit" class="btn btn-primary">Confirm Order</button>
-</form>
+  <button id="button_confirm_order" class="btn btn-primary">Confirm Order</button>
+
 
 
 	</div>

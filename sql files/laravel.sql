@@ -7,6 +7,41 @@
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
+
+
+DELIMITER $$
+CREATE OR REPLACE DEFINER=`root`@`localhost` PROCEDURE `a_order_t`(IN `uid` INT, IN `total` INT , IN `paid` INT)
+BEGIN
+DECLARE o_no, p_id , qntity INT;
+DECLARE status VARCHAR(20);
+DECLARE b INT DEFAULT 0;
+DECLARE cur_1 CURSOR FOR 
+SELECT product_id , quantity FROM CART WHERE user_id = uid;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET b = 1;
+
+SELECT MAX(order_id) INTO o_no FROM ORDER_T;
+INSERT INTO `order_t`(`order_id`, `order_date`,   `user_id` , `total_amount` , `paid`) VALUES (o_no+1 , SYSDATE() ,  uid , total_amount , paid );
+
+OPEN cur_1;
+REPEAT FETCH cur_1 INTO p_id , qntity ;
+
+INSERT INTO `order_includ_product`(`order_id`, `product_id`, `qntity`) VALUES (o_no+1 , p_id ,qntity);
+
+
+SELECT p_id , qntity;
+
+UNTIL b = 1
+END REPEAT;
+CLOSE cur_1;
+SET status = 'done' ;
+DELETE FROM `cart` WHERE user_id = uid;
+SELECT status;
+END$$
+DELIMITER ;
+
+
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;

@@ -556,3 +556,61 @@ userid = $('#user_id_input').val();
 			});
 
 });
+
+
+
+
+
+$('#button_confirm_order').click(function(){
+
+
+	
+	userid = $('#user_id_input').val();
+	var total = $('#totalAmount').val();
+	var paid = $('#amount_paid_input').val();
+	var salesPoint = $('#salesPoint_id').val();
+
+
+	 var user = {
+		 	 	'uid' : userid , 
+		 	 	'total' : total,
+		 	 	'paid': paid,
+		 	 	'salesPoint' : salesPoint
+
+		 	 }
+
+	//alert(user);
+
+	var jsonString = JSON.stringify(user);
+	//alert(jsonString);
+	//var url = $('#postReviewUrl').html();
+	//alert(url);
+
+	$.ajax({
+		 	 	url: 'http://localhost:3000/a_cart_order',
+		 	 	method: 'POST',
+		 	 	data: { 'myinfo': jsonString 
+
+		 	 },
+		 	 
+		 	 success: function(reply){
+		 	 	//var res = JSON.parse(reply);
+
+					  alert(reply);
+					 //alert(reply);
+					//alert(reply);
+					//alert(res.cart_products.length);
+
+					//alert(res.cart_products[0].cart_id);
+					// alert(res.cart_products.length);
+					//var element = '';
+					},
+					error: function(error){
+						//alert(error);
+					 alert('error');
+
+					}
+			});
+
+
+});
