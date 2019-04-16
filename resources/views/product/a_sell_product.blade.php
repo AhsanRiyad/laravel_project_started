@@ -1,37 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>bootstrp </title>
-  
-  <!-- jquery ui -->
-  <link rel="stylesheet" href="{{ asset('/css/jquery-ui.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/jquery-ui.structure.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/jquery-ui.theme.css') }}">
-
-  <!-- boostrap -->
-  <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap-reboot.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.css') }}">
-
-
-
-  <!-- font awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	
+@extends('layout.hf_dboard')
 
   <!-- stylesheet -->
+@section('stylesheet')
   <link rel="stylesheet" href="{{ asset('/css/a_style.css') }}">
-  
-</head>
-<body>
+@endsection
 
+
+
+@section('content')
 <p id="user_id" hidden="true" >1</p>
 <p hidden="true" id='postReviewUrl'>
 {{ route('AProductController.addtocart') }}</p>
 
 
-<div class="row">
-	<div class="col-3 offset-1">
+<div class="row top-margin">
+	<div class="col-2 offset-3">
 	
 	<h3>Point of Sales</h3>
 
@@ -151,29 +134,11 @@
 
 
 </div>
+@endsection
 
-
-
-
-</body>
-
-
-
-
-
-
-  <script src="{{ asset('js/jquery-3.3.1.js') }}" ></script>
-
-    <!-- jquery ui -->
-    <script src="{{ asset('js/jquery-ui.js') }}" ></script>
-
-    <!-- bootstrap -->
-    <script src="{{ asset('js/bootstrap.js') }}" ></script>
-    <script src="{{ asset('js/bootstrap.bundle.js') }}" ></script>
-
-
+@section('script')
 <!-- main js -->
     <script src="{{ asset('js/a_main.js') }}" ></script>
 
-</body>
-</html>
+@endsection
+

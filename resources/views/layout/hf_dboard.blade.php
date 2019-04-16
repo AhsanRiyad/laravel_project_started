@@ -46,6 +46,9 @@ $u_type = $userinfo[0]['u_type'];
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+  @yield('stylesheet');
+
+
   <body>
 
 
@@ -79,11 +82,11 @@ $u_type = $userinfo[0]['u_type'];
     
 
     
-      <a class="text-white" href="http://localhost:3000/user/viewuser">
+      <a class="text-white" href="{{ route('a_pos.index') }}">
       <div class="      
         py-2 text-center my-4 bg-secondary">
 
-        <i class="fas w_f fa-tachometer-alt"></i> View User
+        <i class="fas w_f fa-tachometer-alt"></i> Point Of Sale
 
       </div></a>
 
@@ -211,6 +214,7 @@ $u_type = $userinfo[0]['u_type'];
     <!-- main js -->
     <script src="{{ asset('js/main.js') }}" ></script>
 
-
+   @yield('script');
+    
 
   </body>

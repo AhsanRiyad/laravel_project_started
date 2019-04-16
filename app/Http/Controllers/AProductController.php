@@ -14,14 +14,32 @@ class AProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         //
         $products = DB::select('select * from products');
 
         $users = DB::select("select * from user where u_type = 'user' ");
         //return $results;
-        return view('product.a_sell_product')->withProducts($products)->withUsers($users);
+
+        if($req->session()->has('userinfo')){
+        $userinfo1 = session('userinfo');
+        $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+        $userinfo['userinfo'] = $userinfo2;
+
+
+        //return $userinfo[0]['u_id'];
+        return view('product.a_sell_product')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2);
+        //return view('dashboard/dashboard' , $userinfo);
+        }else{
+            return redirect()->route('authenticationController.logout');
+        }
+
+
+
+
+        
     }
 
     public static function addtocart(Request $req){

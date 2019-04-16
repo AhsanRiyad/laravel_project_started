@@ -47,7 +47,7 @@ class authenticationController extends Controller
 
             session(['userinfo'=>$userDetails]);
             $userinfo = session('userinfo');
-    		return redirect()->route('dashboardController.dashboard');
+    		return redirect()->route('a_pos.index');
     	}else{
     		$user['validCheck'] = false; 
     		return view('authentication/login' , $user);
