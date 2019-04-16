@@ -107,7 +107,7 @@ $('#button_add_product').click(function(){
 	var jsonString = JSON.stringify(user);
 	//alert(jsonString);
 	var url = $('#postReviewUrl').html();
-	alert(url);
+	//alert(url);
 
 	$.ajax({
 		 	 	url: url,
@@ -120,8 +120,8 @@ $('#button_add_product').click(function(){
 		 	 	var res = JSON.parse(reply);
 					 // alert(reply);
 					 //alert(reply);
-					alert(reply);
-					alert(res.cart_products.length);
+					//alert(reply);
+					//alert(res.cart_products.length);
 
 					//alert(res.cart_products[0].cart_id);
 					// alert(res.cart_products.length);
@@ -211,7 +211,7 @@ $('#button_add_product').click(function(){
 
 
 function delete_it(cart_id , user_id){
-	alert('hi on click' + cart_id + ' '+ user_id);
+	//alert('hi on click' + cart_id + ' '+ user_id);
 
 
 
@@ -229,8 +229,8 @@ function delete_it(cart_id , user_id){
 		 	 	var res = JSON.parse(reply);
 					 // alert(reply);
 					 //alert(reply);
-					alert(reply);
-					alert(res.cart_products.length);
+					//alert(reply);
+					//alert(res.cart_products.length);
 
 					//alert(res.cart_products[0].cart_id);
 					// alert(res.cart_products.length);
@@ -322,8 +322,8 @@ total = 0;
 		 	 	var res = JSON.parse(reply);
 					 // alert(reply);
 					 //alert(reply);
-					alert(reply);
-					alert(res.cart_products.length);
+					//alert(reply);
+					//alert(res.cart_products.length);
 
 					//alert(res.cart_products[0].cart_id);
 					// alert(res.cart_products.length);
@@ -377,7 +377,7 @@ total = 0;
 
 
 					};
-
+					alert('quantity updated');
 
 					},
 					error: function(error){
@@ -391,7 +391,7 @@ total = 0;
 
 
 function changeQntity(e){
-	alert(e.value);
+	//alert(e.value);
 
 	quantity = e.value;
 }
@@ -418,7 +418,7 @@ $('#user_id_input').change(function(){
 
 $('#button_reset_product').click(function(){
 	userid = $('#user_id_input').val();
-	alert(userid);
+	//alert(userid);
 
 	$.ajax({
 		 	 	url:'http://localhost:3000/a_cart_reset/'+userid,
@@ -426,9 +426,9 @@ $('#button_reset_product').click(function(){
 		 	
 		 	 success: function(reply){
 		 	 	
-		 	 		alert(reply);
+		 	 		
 		 	 		$('#product_list_div').html('');
-
+		 	 		//alert('reset done');
 
 					},
 					error: function(error){
