@@ -14,8 +14,8 @@
 
 
 
-<div class="container">
-  <h2>Shipment Request</h2>
+<div class="container mt-5">
+  <h2 class="text-center bg-info text-white py-2 ">Shipment Request</h2>
   
   <table class="table">
     <thead class="thead-dark">
@@ -32,18 +32,6 @@
         <td>Doe</td>
         <td><button class="btn btn-success" >Accept</button></td>
         <td><button class="btn btn-danger" >Reject</button></td>
-      </tr>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>john@example.com</td>
       </tr>
     </tbody>
   </table>

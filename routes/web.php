@@ -94,6 +94,10 @@ Route::get('/ship_req_india' , 'userController@ship_req_india')->name('userContr
 
 
 
+Route::get('/ship_req_bd' , 'userController@ship_req_bd')->name('userController.ship_req_bd');
+
+
+
 Route::get('/add_raw_materials' , 'userController@add_raw_materials')->name('userController.add_raw_materials');
 
 

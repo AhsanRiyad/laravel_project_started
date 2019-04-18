@@ -170,6 +170,34 @@ public function ship_req_india(Request $req){
 }
 
 
+public function ship_req_bd(Request $req){
+
+    $products = DB::select('select * from products');
+
+        $users = DB::select("select * from user where u_type = 'user' ");
+        //return $results;
+
+        if($req->session()->has('userinfo')){
+        $userinfo1 = session('userinfo');
+        $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+        $userinfo['userinfo'] = $userinfo2;
+
+        //return $userinfo1[0]->u_id;
+        //return $userinfo[0]['u_id'];
+        return view('product.ship_req_bd')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2);
+        //return view('dashboard/dashboard' , $userinfo);
+        }else{
+            return redirect()->route('authenticationController.logout');
+        }
+
+   
+}
+
+
+
+
+
 public function add_raw_materials(Request $req){
 
 
