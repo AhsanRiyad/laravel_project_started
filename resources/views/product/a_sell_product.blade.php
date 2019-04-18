@@ -6,7 +6,6 @@
 @endsection
 
 
-
 @section('content')
 <p id="user_id" hidden="true" >1</p>
 <p hidden="true" id='postReviewUrl'>
@@ -38,7 +37,7 @@
   </div>
 
   <div class="form-group">
-    <label for="inputState">Sell's Point</label>
+    <label for="inputState">Sell's Point </label>
       <select id="salesPoint_id" class="form-control">
         <option selected>Choose...</option>
         <option value="New Delhi">New Delhi</option>

@@ -9,6 +9,9 @@ $signout = "authenticationController.logout";
 <!-- $loginStatus = false ;  -->
 
 
+<p id="getUrl">{{ asset('') }}</p>
+
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>

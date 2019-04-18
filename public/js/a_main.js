@@ -67,9 +67,6 @@ var element1 = '<div class="form-row"> \
 
 
 
-
-
-
 $('#button_add_product').click(function(){
 
 	if($('#user_id_input').val()=='')
@@ -217,9 +214,12 @@ function delete_it(cart_id , user_id){
 
 	total = 0;
 
+	var url = $('#getUrl').html();
+
+	var fullUrl = url+'a_cart_delete/'+cart_id+'/'+user_id;
 
 	$.ajax({
-		 	 	url: 'http://localhost:3000/a_cart_delete/'+cart_id+'/'+user_id,
+		 	 	url: fullUrl,
 		 	 	method: 'POST',
 		 	
 		 	 success: function(reply){
@@ -310,9 +310,12 @@ function delete_it(cart_id , user_id){
 function update_it(cart_id , user_id){
 	//alert('hi on click' + cart_id);
 total = 0;
+	var url = $('#getUrl').html();
 
+	
+	var fullUrl = url+'a_cart_update/'+cart_id+'/'+user_id+'/'+quantity;
 	$.ajax({
-		 	 	url: 'http://localhost:3000/a_cart_update/'+cart_id+'/'+user_id+'/'+quantity,
+		 	 	url: fullUrl ,
 		 	 	method: 'POST',
 		 	
 		 	 success: function(reply){
@@ -420,8 +423,15 @@ $('#button_reset_product').click(function(){
 	userid = $('#user_id_input').val();
 	//alert(userid);
 
+	var url = $('#getUrl').html();
+
+	
+	
+	var fullUrl = url+'a_cart_reset/'+userid;
+	//alert(fullUrl);
+
 	$.ajax({
-		 	 	url:'http://localhost:3000/a_cart_reset/'+userid,
+		 	 	url:fullUrl,
 		 	 	method: 'POST',
 		 	
 		 	 success: function(reply){
@@ -477,14 +487,14 @@ $('#amount_paid_input').change(function(){
 $('#button_show_product').click(function(){
 
 
-
+	var url = $('#getUrl').html();
 
 	//alert('hi on click' + cart_id);
 total = 0;
 userid = $('#user_id_input').val();
 //alert(userid);
 	$.ajax({
-		 	 	url: 'http://localhost:3000/a_cart_show/'+userid,
+		 	 	url: url+'a_cart_show/'+userid,
 		 	 	method: 'POST',
 		 	
 		 	 success: function(reply){
@@ -590,9 +600,10 @@ $('#button_confirm_order').click(function(){
 	//alert(jsonString);
 	//var url = $('#postReviewUrl').html();
 	//alert(url);
+	var url = $('#getUrl').html();
 
 	$.ajax({
-		 	 	url: 'http://localhost:3000/a_cart_order',
+		 	 	url: url+'a_cart_order',
 		 	 	method: 'POST',
 		 	 	data: { 'myinfo': jsonString 
 
@@ -619,3 +630,4 @@ $('#button_confirm_order').click(function(){
 
 
 });
+

@@ -15,7 +15,7 @@
 
 
 	<div class="row">
-	<div class="col-3 offset-5 top-margin">
+	<div class="col-3 text-white offset-5 top-margin bg-info rounded p-5">
 	
 	<h3>Register User</h3>
 
@@ -64,7 +64,7 @@
       </select>
   </div>
 
-	<input  class="btn btn-primary" type="submit" name="submit" value="Register">
+	<input  class="btn btn-primary bg-primary" type="submit" name="submit" value="Register">
  
 </form>
 </div>
