@@ -13,43 +13,24 @@
 
 
 	<div class="row">
-	<div class="col-3 offset-5 top-margin">
+	<div class="col-3 offset-5 bg-secondary text-white p-5 rounded top-margin">
 	
 	<h3>Add Factory</h3>
 
-	@if($msg=='null')
-		
-		
-		<h1 align="center" class="text-danger"> Null Submission </h1>
-		
-		
-		@elseif($msg=='added')
-		
-		
-		<h1 align="center" class="text-success"> User Added </h1>
-		
-		
-		@elseif ($msg == 'db'){%>
-		<h1 align="center" class="text-danger"> DB problem </h1>
+	<h4 class="text-warning" >{{ $msg }}</h4>
 
-		
-		@elseif ($msg == 'none')
-		<h1 align="center" class="text-danger">  </h1>
-
-		@endif
-
-	<form class="" method='post' action='#'>
+<form class="" method='post' action='#'>
   
   <div class="form-group">
     <label for="inputAddress">Factory Name</label>
-    <input name="user_password" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <input name="name" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
   </div>
   <div class="form-group">
     <label for="inputAddress" name="user_email">Location</label>
-    <input type="text" class="form-control" id="totalAmount" placeholder="1234 Main St">
+    <input name="location" type="text" class="form-control" id="totalAmount" placeholder="1234 Main St">
   </div>
   
-<input  class="btn btn-primary" type="submit" name="submit" value="Register">
+<input  class="btn btn-primary" type="submit" name="submit" value="Add Factory">
  
 </form>
 </div>
