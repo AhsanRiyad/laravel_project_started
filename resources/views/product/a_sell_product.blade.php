@@ -7,7 +7,7 @@
 
 
 @section('content')
-<p id="user_id" hidden="true" >1</p>
+<p id="user_id" hidden >{{ $userinfo[0]['u_id'] }}</p>
 <p hidden="true" id='postReviewUrl'>
 {{ route('AProductController.addtocart') }}</p>
 

@@ -10,7 +10,7 @@
 {{ route('AProductController.addtocart') }}</p>
 
 @section('content')
-<p id="user_id" hidden="true" >1</p>
+
 
 
 
@@ -23,11 +23,11 @@
 
 	<h3>Select Product</h3>
 
-
+  <p id="user_id" hidden >{{ $userinfo[0]['u_id'] }}</p>
   <div class="form-group">
     <label for="inputState">Products</label>
       <select id="select_products" class="form-control">
-        <option selected>Choose...</option>
+        <option selected value="0">Choose...</option>
 
         @foreach($products as $product)
         <option> {{ $product->product_id }} - {{ $product->product_name }}</option>
@@ -49,11 +49,11 @@
   </div>
 
 
-  <button id="button_add_product" class="btn btn-primary">Add Product</button>
+  <button id="button_add_product_shipment" class="btn btn-primary">Add Product</button>
 
-  <button id="button_add_product_shipment" class="btn btn-primary">Reset</button>
+  <button id="button_reset_product_shipment" class="btn btn-primary">Reset</button>
 
-   
+  <button id="button_request_shipment" class="btn btn-primary">Request Shipment</button>
 
 
 

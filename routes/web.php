@@ -98,6 +98,14 @@ Route::get('/ship_req_bd' , 'userController@ship_req_bd')->name('userController.
 
 
 
+Route::post('/ship_req_bd' , 'userController@ship_req_bd_post')->name('userController.ship_req_bd');
+
+
+
+Route::post('/a_shipment_reset/{uid}' , 'userController@a_shipment_reset')->name('userController.a_shipment_reset');
+
+
+
 Route::get('/add_raw_materials' , 'userController@add_raw_materials')->name('userController.add_raw_materials');
 
 

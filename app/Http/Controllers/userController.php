@@ -182,7 +182,7 @@ public function ship_req_bd(Request $req){
         $userinfo2 = json_decode(json_encode($userinfo1), true);
 
         $userinfo['userinfo'] = $userinfo2;
-
+        //return $userinfo['userinfo'];
         //return $userinfo1[0]->u_id;
         //return $userinfo[0]['u_id'];
         return view('product.ship_req_bd')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2);
@@ -195,7 +195,47 @@ public function ship_req_bd(Request $req){
 }
 
 
+public function ship_req_bd_post(Request $req){
 
+    //echo 'hellow';
+    //echo $req->myinfo;
+
+    $t = json_decode($req->myinfo);
+    //echo $t->uid;
+
+
+    $status = DB::statement('call shipment_cart(?,?,?)',[$t->uid , $t->pid , $t->qntity]);
+
+
+
+    $products = DB::select('SELECT s.* , p.product_name FROM `shipment_temp` s , products p WHERE p.product_id = s.product_id and s.admin_id = (?)' , [$t->uid]);
+
+
+
+
+
+
+    return json_encode($products);
+
+
+
+
+
+   
+}
+
+
+public function a_shipment_reset($uid){
+
+    //echo $uid;
+    //echo 'hellow';
+
+
+    $status = DB::delete('delete from shipment_temp where admin_id = (?)', [$uid]);
+
+
+
+}
 
 
 public function add_raw_materials(Request $req){
