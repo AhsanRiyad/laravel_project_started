@@ -19,6 +19,7 @@ then
 set o_no =  0;
 end if;
 
+
 INSERT INTO `order_t`(`order_id`, `order_date`,   `user_id` , `total_amount` , `paid` , `sales_point`) VALUES (o_no+1 , SYSDATE() ,  uid , total_amount , paid , sales_point );
 
 OPEN cur_1;

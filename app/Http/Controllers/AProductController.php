@@ -28,7 +28,7 @@ class AProductController extends Controller
 
         $userinfo['userinfo'] = $userinfo2;
 
-
+        //return $userinfo1[0]->u_id;
         //return $userinfo[0]['u_id'];
         return view('product.a_sell_product')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2);
         //return view('dashboard/dashboard' , $userinfo);
@@ -167,10 +167,26 @@ class AProductController extends Controller
     //return $sql;
     //echo 'hi';
     //echo 'hello';
+    //$userinfo1 = session('userinfo');
+    //var_dump($userinfo);
+    //return $userinfo1['u_id'];
+    //return $userinfo1->u_id;
 
 
-    try{
-       $status = DB::insert("call a_order_t( ?, ?  , ? , ? )" , [ $t['uid'] , $t['total'] ,  $t['paid'] , $t['salesPoint'] ] );
+
+
+    if($req->session()->has('userinfo')){
+        $userinfo1 = session('userinfo');
+        $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+        $userinfo['userinfo'] = $userinfo2;
+        //return $userinfo1[0]->u_id;
+
+        //return $userinfo['u_id'];
+        //return 'hellow';
+        
+        try{
+       $status = DB::statement("call a_order_t( ?, ?  , ? , ? , ? )" , [ $t['uid'] , $t['total'] ,  $t['paid'] , $t['salesPoint'] , $userinfo1[0]->u_id  ] );
 
             return 'success';
         }catch(QueryException $ex){ 
@@ -179,6 +195,29 @@ class AProductController extends Controller
 
         }
 
+
+
+
+        //return view('dashboard/dashboard' , $userinfo);
+        }else{
+            return redirect()->route('authenticationController.logout');
+        }
+
+
+
+
+
+
+    /*try{
+       $status = DB::statement("call a_order_t( ?, ?  , ? , ? , ? )" , [ $t['uid'] , $t['total'] ,  $t['paid'] , $t['salesPoint'] , $userinfo1['u_id']  ] );
+
+            return 'success';
+        }catch(QueryException $ex){ 
+            //$msg = $ex->getMessage(); 
+            return 'error'; 
+
+        }
+*/
 
     //echo json_encode($t);
     //echo $t['uid'].' '.$t['paid'].' '.$t['total'].' '.$t['salesPoint'];

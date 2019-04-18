@@ -84,7 +84,7 @@ class productModel extends Model
 
 
         try{
-        $status = DB::insert("call cart( ?, ?  , ?  )" , [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ] );
+        $status = DB::statement("call cart( ?, ?  , ?  )" , [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ] );
 
             return 'success';
         }catch(QueryException $ex){ 
