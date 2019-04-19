@@ -879,7 +879,7 @@ function ship_details(id)
 	//alert('reset button');
 	var url = $('#getUrl').html();
 
-	
+	//alert(id);
 	
 	var fullUrl = url+'a_shipment_details/'+id;
 	//alert(fullUrl);

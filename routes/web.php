@@ -114,6 +114,7 @@ Route::post('/a_shipment_details/{ship_id}' , 'userController@a_shipment_details
 
 
 
+
 Route::post('/ship_accept/{ship_id}/{admin_id}' , 'userController@ship_accept')->name('userController.ship_accept');
 
 

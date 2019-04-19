@@ -69,6 +69,49 @@
   
 <div id='product_list_div'>
 
+  @if($productList !=[])
+
+  @foreach($productList as $p)
+
+  <div class="form-row"> 
+            
+            <div class="form-group col-md-2"> 
+            <label for="inputEmail4"> id</label> 
+            <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='{{$p->product_id}}'> 
+            </div>
+            <div class="form-group col-md-2"> 
+            <label for="inputPassword4">Name</label>
+            <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="{{ $p->product_name }}">
+            </div>
+            
+            <div class="form-group col-md-2">
+            <label for="inputState">Quantity</label>
+            <select onchange="changeQntity(this);" id="inputState" class="form-control">
+            <option >Choose...</option>
+            <option >1</option>
+            <option >1</option>
+            <option >2</option>
+            <option >3</option>
+            <option selected value='{{$p->product_quantity}}' >{{$p->product_quantity}}</option>
+            </select>
+            </div>
+            <div class="form-group col-md-2">
+            <label for="inputState">Update</label>
+            <button onClick = "update_it_ship({{$p->id}} , {{$p->admin_id}});"  class="btn btn-primary form-control">Update</button>
+            </div>
+            
+            <div class="form-group col-md-2">
+            <label for="inputState">Delete</label>
+            
+            <a onClick = "delete_it_ship({{$p->id}} , {{$p->admin_id}});"><button class="btn btn-primary form-control">Delete</button></a>
+            </div>
+            </div>
+  
+
+  @endforeach
+
+  @endif
+
 </div>
  
 

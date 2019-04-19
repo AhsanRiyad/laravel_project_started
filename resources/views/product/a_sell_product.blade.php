@@ -48,11 +48,11 @@
 
  <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="">Amount Paid</label>
+      <label for="">Paid</label>
       <input type="text" class="form-control" id="amount_paid_input" placeholder="0">
     </div>
     <div class="form-group col-md-6">
-      <label for="">Amount Left</label>
+      <label for="">Left</label>
       <input disabled type="text" class="form-control" id="amount_left_input" placeholder="0">
     </div>
   </div>

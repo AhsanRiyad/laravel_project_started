@@ -187,11 +187,15 @@ public function ship_req_bd(Request $req){
         $userinfo1 = session('userinfo');
         $userinfo2 = json_decode(json_encode($userinfo1), true);
 
+
+
+        $productList = DB::select('SELECT s.* , p.product_name FROM `shipment_temp` s , products p WHERE p.product_id = s.product_id and s.admin_id = (?)' , [$userinfo1[0]->u_id]);
+
         $userinfo['userinfo'] = $userinfo2;
         //return $userinfo['userinfo'];
         //return $userinfo1[0]->u_id;
         //return $userinfo[0]['u_id'];
-        return view('product.ship_req_bd')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2);
+        return view('product.ship_req_bd')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2)->with('productList' , $productList);
         //return view('dashboard/dashboard' , $userinfo);
         }else{
             return redirect()->route('authenticationController.logout');
