@@ -901,10 +901,10 @@ function ship_details(id)
 								<th>Product Name</th>\
 								<th>Quantity</th>\
 								</thead>\
-								';
+								'
 
 			var hleg =  '</tbody>\
-						</table>';
+						</table>'
 
 			for(var i=0; i<reply.length ; i++){
 
@@ -913,7 +913,7 @@ function ship_details(id)
 								<td>'+reply[i].product_id+'</td>\
 								<td>'+reply[i].product_name+'</td>\
 								<td>'+reply[i].product_quantity+'</td>\
-								</tr>;'
+								</tr>'
 				var h = h + ht ;
 
 

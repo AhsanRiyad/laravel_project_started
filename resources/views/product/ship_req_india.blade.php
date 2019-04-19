@@ -62,36 +62,6 @@
 <!-- main js -->
     <script src="{{ asset('js/a_main.js') }}" ></script>
     
-    
-
-
-    <script>
-      
-    /*function ship_details(id)
-    { 
-      $('#dialog').html(id);
-
-      $( "#dialog" ).dialog({
-      autoOpen: false,
-      show: {
-        effect: "blind",
-        duration: 1000
-      },
-      width: 630,
-      position: { my: 'top', at: 'top+150' },
-      hide: {
-        effect: "explode",
-        duration: 1000
-      }
-    });
  
-   
-      $( "#dialog" ).dialog( "open" );
-   
-
-    }*/
-
-    </script>
-
 
 @endsection
