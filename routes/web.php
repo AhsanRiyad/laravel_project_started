@@ -115,6 +115,8 @@ Route::post('/a_shipment_details/{ship_id}' , 'userController@a_shipment_details
 
 
 Route::post('/ship_accept/{ship_id}/{admin_id}' , 'userController@ship_accept')->name('userController.ship_accept');
+
+
 Route::post('/ship_reject/{ship_id}/{admin_id}' , 'userController@ship_reject')->name('userController.ship_reject');
 
 
@@ -124,5 +126,8 @@ Route::post('/ship_reject/{ship_id}/{admin_id}' , 'userController@ship_reject')-
 
 
 Route::get('/add_raw_materials' , 'userController@add_raw_materials')->name('userController.add_raw_materials');
+
+
+Route::post('/add_raw_materials' , 'userController@add_raw_materialsPost')->name('userController.add_raw_materials');
 
 

@@ -1056,10 +1056,7 @@ function ship_reject(id){
 
 					}
 				});
-
-
-
-
-
-
 }
+
+
+

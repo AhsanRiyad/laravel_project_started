@@ -308,13 +308,6 @@ public function ship_reject($admin_id , $ship_id){
 
     return $ship_reqs;
 
-
-
-
-
-
-
-
 }
 
 
@@ -342,7 +335,7 @@ public function a_shipment_request($uid){
 
 public function add_raw_materials(Request $req){
 
-
+    //return 'hellow';
 
     if($req->session()->has('userinfo')){
         $userinfo1 = session('userinfo');
@@ -350,13 +343,27 @@ public function add_raw_materials(Request $req){
 
         $userinfo['userinfo'] = $userinfo2;
 
+        $rawMaterials = DB::select('select * from raw_materials');
+
+        $factories = DB::select('select * from factory');
+
 
         //return $userinfo[0]['u_id'];
-        return view('product.add_raw_materials')->withMsg('none')->withUserinfo($userinfo2);
+        return view('product.add_raw_materials')->withMsg('')->withUserinfo($userinfo2)->with('rawMaterials' , $rawMaterials)->with('factories' , $factories);
         //return view('dashboard/dashboard' , $userinfo);
     }else{
         return redirect()->route('authenticationController.logout');
     }
 }
+
+public function add_raw_materialsPost(Request $req){
+
+
+
+}
+
+
+
+
 
 }
