@@ -278,14 +278,11 @@ public function ship_accept($admin_id , $ship_id){
 
 
     $counter = DB::select('select count(*) as c from shipment where status = 0');
+    $sta = DB::statement('call shipment_to_products(?)' , [$ship_id]);
+
 
     $results = [$ship_reqs , $counter];
     return $results;
-
-
-
-
-
 
 
 
@@ -316,6 +313,7 @@ public function ship_reject($admin_id , $ship_id){
     return $results;
 
 }
+
 
 
 public function a_shipment_request($uid){
