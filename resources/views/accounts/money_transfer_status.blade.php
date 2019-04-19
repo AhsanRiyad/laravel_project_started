@@ -49,9 +49,9 @@
       <td>
         
         @if ($m->status==0)
-        pending 
+        <p class="text-white bg-warning text-center p-1 rounded" >pending </p>
         @else
-         approved 
+         <p class="text-white bg-success text-center p-1 rounded" > approved</p>
         @endif
 
       </td>
