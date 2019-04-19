@@ -858,29 +858,31 @@ function ship_details(id)
 			//$( "#dialog" ).dialog( "open" );
 			alert(reply[0].product_id);
 			var h = '';
-			for(var i=0; i<reply.length ; i++){
 
-				var ht = 
-				'<table class="table">\
+			var thead = '<table class="table">\
 								<thead class="thead-dark">\
-								<tr>\
 								<th>Product Name</th>\
 								<th>Quantity</th>\	\
 								</thead>\
-								</tr>\
-								<tbody>\
+								';
+
+			var hleg =  '</tbody>\
+						</table>';
+
+			for(var i=0; i<reply.length ; i++){
+
+				var ht = 
+				'<tbody>\
 								<tr>\
 								<td>'+reply[i].product_name+'</td>\
 								<td>'+reply[i].product_quantity+'</td>\
-								</tr>\
-								</tbody>\
-								</table>';
+								</tr>;'
 				var h = h + ht ;
 
 
 			}
 
-			$('#dialog').html(h);
+			$('#dialog').html(thead+h+hleg);
 			$( "#dialog" ).dialog( "open" );
 
 
