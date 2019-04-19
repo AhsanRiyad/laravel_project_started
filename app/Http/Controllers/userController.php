@@ -231,6 +231,8 @@ public function ship_req_bd_post(Request $req){
 }
 
 
+
+
 public function a_shipment_reset($uid){
 
     //echo $uid;
@@ -253,6 +255,63 @@ public function a_shipment_details($ship_id){
 
     return $results;
     
+
+
+
+}
+
+public function ship_accept($admin_id , $ship_id){
+
+    //echo $uid;
+    // echo 'hellow';
+
+    //$results = DB::select('select s.* , p.product_name from shipment_product s , products p where s.product_id = p.product_id and shipment_id = (?)' , [$ship_id]);
+
+    // return $results;
+    // echo 'hellow'+$admin_id+' '+$ship_id;
+    // echo $admin_id;
+    
+    $status = DB::update('update shipment set status = 1 ,  acc_date = SYSDATE() , admin_id_acc = (?)  where id = (?) ' , [$ship_id , $admin_id]);
+
+
+    $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0 ');
+
+
+    return $ship_reqs;
+
+
+
+
+
+
+
+
+}
+
+
+public function ship_reject($admin_id , $ship_id){
+
+    //echo $uid;
+    // echo 'hellow';
+
+    //$results = DB::select('select s.* , p.product_name from shipment_product s , products p where s.product_id = p.product_id and shipment_id = (?)' , [$ship_id]);
+
+    // return $results;
+    // echo 'hellow'+$admin_id+' '+$ship_id;
+    // echo $admin_id;
+    
+    $status = DB::update('update shipment set status = 2 ,  acc_date = SYSDATE() , admin_id_acc = (?)  where id = (?) ' , [$ship_id , $admin_id]);
+
+
+    $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0 ');
+
+
+    return $ship_reqs;
+
+
+
+
+
 
 
 

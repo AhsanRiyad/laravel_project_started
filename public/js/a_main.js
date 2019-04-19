@@ -856,13 +856,13 @@ function ship_details(id)
 			//var res = JSON.stringify(reply);
 			//$('#dialog').html(reply);
 			//$( "#dialog" ).dialog( "open" );
-			alert(reply[0].product_id);
+			//alert(reply[0].product_id);
 			var h = '';
 
 			var thead = '<table class="table">\
 								<thead class="thead-dark">\
 								<th>Product Name</th>\
-								<th>Quantity</th>\	\
+								<th>Quantity</th>\
 								</thead>\
 								';
 
@@ -924,3 +924,142 @@ function ship_details(id)
 
 
   }
+
+
+
+function ship_accept(id){
+
+	var url = $('#getUrl').html();
+
+	var userid = $('#user_id').html();
+	
+	var fullUrl = url+'ship_accept/'+id+'/'+userid;
+	//alert(fullUrl);
+
+	$.ajax({
+		url:fullUrl,
+		method: 'POST',
+		success: function(reply){
+			//var res = JSON.stringify(reply);
+			//$('#dialog').html(reply);
+			//$( "#dialog" ).dialog( "open" );
+			//alert(reply[0].product_id);
+			//alert(res);
+			
+
+			//alert('accepted');
+
+			var tr = '';
+
+			for(var i=0; reply.length>i ; i++){
+				//alert(reply[i].id);
+
+			var tr1 = '<tr>\
+			        <td> '+reply[i].id+' </td>\
+			        <td>'+reply[i].req_date+'</td>\
+			        <td> '+reply[i].last_name+'  </td>\
+			        <td><button onclick="ship_details('+reply[i].id+')" class="btn btn-success" >Details</button></td>\
+			        <td><button onclick="ship_accept('+reply[i].id+')" class="btn btn-success" >Accept</button></td>\
+			        <td><button onclick="ship_reject('+reply[i].id+')" class="btn btn-danger" >Reject</button></td>\
+			      	</tr>';
+
+
+			   tr = tr + tr1;
+
+			   //alert(tr);
+
+
+
+			   alert('accepted');
+
+
+
+			}
+
+			$('#tbody').html(tr);
+
+
+			//$('#product_list_div').html('');
+			//alert('Shipment Request Sent Successfully');
+		},
+		error: function(error){
+						//alert(error);
+						alert('error');
+
+					}
+				});
+
+
+
+}
+
+
+function ship_reject(id){
+	
+
+	var url = $('#getUrl').html();
+
+	var userid = $('#user_id').html();
+	
+	var fullUrl = url+'ship_accept/'+id+'/'+userid;
+	//alert(fullUrl);
+
+	$.ajax({
+		url:fullUrl,
+		method: 'POST',
+		success: function(reply){
+			//var res = JSON.stringify(reply);
+			//$('#dialog').html(reply);
+			//$( "#dialog" ).dialog( "open" );
+			//alert(reply[0].product_id);
+			//alert(res);
+			
+
+			//alert('accepted');
+
+			var tr = '';
+
+			for(var i=0; reply.length>i ; i++){
+				//alert(reply[i].id);
+
+			var tr1 = '<tr>\
+			        <td> '+reply[i].id+' </td>\
+			        <td>'+reply[i].req_date+'</td>\
+			        <td> '+reply[i].last_name+'  </td>\
+			        <td><button onclick="ship_details('+reply[i].id+')" class="btn btn-success" >Details</button></td>\
+			        <td><button onclick="ship_accept('+reply[i].id+')" class="btn btn-success" >Accept</button></td>\
+			        <td><button onclick="ship_reject('+reply[i].id+')" class="btn btn-danger" >Reject</button></td>\
+			      	</tr>';
+
+
+			   tr = tr + tr1;
+
+			   //alert(tr);
+
+
+
+			   alert('rejected');
+
+
+
+			}
+
+			$('#tbody').html(tr);
+
+
+			//$('#product_list_div').html('');
+			//alert('Shipment Request Sent Successfully');
+		},
+		error: function(error){
+						//alert(error);
+						alert('error');
+
+					}
+				});
+
+
+
+
+
+
+}

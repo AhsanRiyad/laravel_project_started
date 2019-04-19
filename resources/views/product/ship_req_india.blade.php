@@ -10,6 +10,7 @@
 
 @section('content')
 
+  <p id="user_id" hidden >{{ $userinfo[0]['u_id'] }}</p>
 
 
 
@@ -22,7 +23,7 @@
 
 
   <table class="table">
-    <thead class="thead-dark">
+    <thead  class="thead-dark">
       <tr>
         <th>id</th>
         <th>Req Date</th>
@@ -33,18 +34,18 @@
 
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tbody">
 
     @foreach($ship_reqs as $reqs)
 
       <tr>
-        <td>{{ $ship_reqs[0]->id }}</td>
-        <td>{{ $ship_reqs[0]->req_date }}</td>
-        <td>{{ $ship_reqs[0]->last_name }}</td>
+        <td>{{ $reqs->id }}</td>
+        <td>{{ $reqs->req_date }}</td>
+        <td>{{ $reqs->last_name }}</td>
         
-        <td><button onclick="ship_details('{{ $ship_reqs[0]->id }}')" class="btn btn-success" >Details</button></td>
-        <td><button class="btn btn-success" >Accept</button></td>
-        <td><button class="btn btn-danger" >Reject</button></td>
+        <td><button onclick="ship_details('{{ $reqs->id }}')" class="btn btn-success" >Details</button></td>
+        <td><button onclick="ship_accept('{{ $reqs->id }}')" class="btn btn-success" >Accept</button></td>
+        <td><button onclick="ship_reject('{{ $reqs->id }}')" class="btn btn-danger" >Reject</button></td>
       </tr>
 
   @endforeach
@@ -53,7 +54,7 @@
   </table>
 
 
-<div id="dialog" title="Basic dialog">
+<div id="dialog" title="Shipment Dtails">
 </div>
 @endsection
 
