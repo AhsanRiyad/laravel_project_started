@@ -765,23 +765,23 @@ $('#button_add_product_shipment').click(function(){
 						<div class="form-group col-md-2">\
 						<label for="inputState">Quantity</label>\
 						<select onchange="changeQntity(this);" id="inputState" class="form-control">\
-						<option selected>Choose...</option>\
-						<option >1</option>\
-						<option >1</option>\
-						<option >2</option>\
-						<option >3</option>\
+						<option id="ship_quantity" value="0" selected>Choose...</option>\
+						<option value="1" >1</option>\
+						<option value="2" >2</option>\
+						<option value="3" >3</option>\
+						<option value="4" >4</option>\
 						<option selected value='+res[i].product_quantity+' >'+res[i].product_quantity+'</option>\ \
 						</select>\
 						</div>\
 						<div class="form-group col-md-2">\
 						<label for="inputState">Update</label>\
-						<button onClick = "update_it('+res[i].id+' , '+res[i].admin_id+');"  class="btn btn-primary form-control">Update</button>\
+						<button onClick = "update_it_ship('+res[i].id+' );"  class="btn btn-primary form-control">Update</button>\
 						</div>\
 						\
 						<div class="form-group col-md-2">\
 						<label for="inputState">Delete</label>\
 						\
-						<a onClick = "delete_it('+res[i].id+' , '+res[i].admin_id+');"><button class="btn btn-primary form-control">Delete</button></a>\
+						<a onClick = "delete_it_ship('+res[i].id+');"><button class="btn btn-primary form-control">Delete</button></a>\
 						</div>\
 						</div>';
 
@@ -1102,3 +1102,136 @@ function ship_reject(id){
 
 
 
+
+
+function delete_it_ship(ship_temp_id){
+
+	alert(ship_temp_id );
+
+
+
+
+
+	var url = $('#getUrl').html();
+
+	var userid = $('#user_id').html();
+	
+	var fullUrl = url+'delete_it_ship/'+ship_temp_id+'/'+userid;
+	//alert(fullUrl);
+
+	$.ajax({
+		url:fullUrl,
+		method: 'POST',
+		success: function(reply){
+			//var res = JSON.stringify(reply);
+			//$('#dialog').html(reply);
+			//$( "#dialog" ).dialog( "open" );
+			//alert(reply[0].product_id);
+			//alert(res);
+			
+			//alert(reply);
+			//alert('accepted');
+
+
+
+			var element = '';
+
+					
+						//alert(reply[i].product_id);
+
+
+						var element = '';
+
+					for(var i=0; i<reply.length; i++){
+						//alert(reply[i].product_id);
+
+						//total = total + reply.cart_products[i].product_sell_price;
+
+						//$('#totalAmount').val(total);
+
+						//alert(total);
+
+						alert(reply[i].product_id);
+						var element1 = '<div class="form-row"> \
+						\
+						<div class="form-group col-md-2"> \
+						<label for="inputEmail4"> id</label> \
+						<input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+reply[i].product_id+'> \
+						</div>\
+						<div class="form-group col-md-2"> \
+						<label for="inputPassword4">Name</label>\
+						<input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="'+reply[i].product_name+'"">\
+						</div>\
+						\
+						<div class="form-group col-md-2">\
+						<label for="inputState">Quantity</label>\
+						<select onchange="changeQntity(this);" id="inputState" class="form-control">\
+						<option id="ship_quantity" value="0" selected>Choose...</option>\
+						<option value="1" >1</option>\
+						<option value="2" >2</option>\
+						<option value="3" >3</option>\
+						<option value="4" >4</option>\
+						<option selected value='+reply[i].product_quantity+' >'+reply[i].product_quantity+'</option>\ \
+						</select>\
+						</div>\
+						<div class="form-group col-md-2">\
+						<label for="inputState">Update</label>\
+						<button onClick = "update_it_ship('+reply[i].id+' );"  class="btn btn-primary form-control">Update</button>\
+						</div>\
+						\
+						<div class="form-group col-md-2">\
+						<label for="inputState">Delete</label>\
+						\
+						<a onClick = "delete_it_ship('+reply[i].id+');"><button class="btn btn-primary form-control">Delete</button></a>\
+						</div>\
+						</div>';
+
+						element = element + element1;	
+						
+						
+
+					}
+					$('#product_list_div').html(element);
+
+						//total = total + res.cart_products[i].product_sell_price;
+
+						//$('#totalAmount').val(total);
+
+						//alert(total);
+
+
+			//$('#product_list_div').html('');
+			//alert('Shipment Request Sent Successfully');
+		},
+		error: function(error){
+						//alert(error);
+						alert('error');
+
+					}
+				});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+function update_it_ship(ship_temp_id){
+
+	//alert($('#ship_quantity').val());
+	//alert(ship_temp_id);
+
+
+
+
+
+}

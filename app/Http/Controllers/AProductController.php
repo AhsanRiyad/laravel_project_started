@@ -252,6 +252,27 @@ public function req_countPost(){
 }
 
 
+public function delete_it_ship($ship_id , $admin_id){
+
+
+
+    //echo 'hellow';
+
+    $status = DB::delete('delete from shipment_temp where id =(?)' , [$ship_id]);
+
+    return $productList = DB::select('SELECT s.* , p.product_name FROM `shipment_temp` s , products p WHERE p.product_id = s.product_id and s.admin_id = (?)' , [$admin_id]);
+
+
+
+    //return json_encode($productList);
+
+
+
+}
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *

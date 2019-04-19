@@ -86,24 +86,24 @@
             
             <div class="form-group col-md-2">
             <label for="inputState">Quantity</label>
-            <select onchange="changeQntity(this);" id="inputState" class="form-control">
-            <option >Choose...</option>
-            <option >1</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
+            <select onchange="changeQntity(this);" id="ship_quantity" class="form-control">
+            <option value="0" >Choose...</option>
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+            <option value="4" >4</option>
             <option selected value='{{$p->product_quantity}}' >{{$p->product_quantity}}</option>
             </select>
             </div>
             <div class="form-group col-md-2">
             <label for="inputState">Update</label>
-            <button onClick = "update_it_ship({{$p->id}} , {{$p->admin_id}});"  class="btn btn-primary form-control">Update</button>
+            <button onClick = "update_it_ship('{{$p->id}}');"  class="btn btn-primary form-control">Update</button>
             </div>
             
             <div class="form-group col-md-2">
             <label for="inputState">Delete</label>
             
-            <a onClick = "delete_it_ship({{$p->id}} , {{$p->admin_id}});"><button class="btn btn-primary form-control">Delete</button></a>
+            <a onClick = "delete_it_ship({{$p->id}});"><button class="btn btn-primary form-control">Delete</button></a>
             </div>
             </div>
   
