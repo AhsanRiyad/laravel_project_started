@@ -896,6 +896,7 @@ function ship_details(id)
 
 			var thead = '<table class="table">\
 								<thead class="thead-dark">\
+								<th>Id</th>\
 								<th>Product Name</th>\
 								<th>Quantity</th>\
 								</thead>\
@@ -907,8 +908,8 @@ function ship_details(id)
 			for(var i=0; i<reply.length ; i++){
 
 				var ht = 
-				'<tbody>\
-								<tr>\
+				'<tbody>\<tr>\
+								<td>'+reply[i].product_id+'</td>\
 								<td>'+reply[i].product_name+'</td>\
 								<td>'+reply[i].product_quantity+'</td>\
 								</tr>;'
