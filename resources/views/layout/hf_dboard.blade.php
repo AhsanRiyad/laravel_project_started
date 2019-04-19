@@ -137,7 +137,7 @@ $u_type = $userinfo[0]['u_type'];
 
           </div></a>
         
-       <a class="text-white" href='{{ route($homepage) }}'>
+       <a class="text-white" href='{{ route("accountController.money_transfer") }}'>
           <div class="bg-secondary py-2 text-center my-4">
 
             <i class="fas fa-shopping-cart"></i> Money Transfer

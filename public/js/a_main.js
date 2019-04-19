@@ -1322,3 +1322,25 @@ function update_it_ship(ship_temp_id){
 
 
 }
+
+
+$('#amount').change(function(){
+
+	var amount = parseInt($(this).val(), 10);
+	var balance = parseInt($('#balance').val(), 10);
+	//alert('invalid amount');
+
+	if(amount>balance)
+	{
+		alert('invalid amount');
+		$("#confirm_button").attr("disabled","true");
+	}else{
+		alert('Valid');
+		$("#confirm_button").removeAttr("disabled");
+	}
+
+
+
+});
+
+

@@ -137,3 +137,11 @@ Route::post('/add_raw_materials' , 'userController@add_raw_materialsPost')->name
 Route::post('/req_count' , 'AProductController@req_countPost')->name('AProductController.req_count');
 
 
+Route::get('/money_transfer' , 'accountController@money_transfer')->name('accountController.money_transfer');
+
+
+Route::post('/money_transfer' , 'accountController@money_transferPost')->name('accountController.money_transfer');
+
+
+
+

@@ -10,7 +10,6 @@
 @section('content')
 
 
-
 <div class="row">
 	<div class="col-3 offset-5 top-margin bg-info rounded p-5 text-white">
 	
