@@ -167,10 +167,10 @@ $u_type = $userinfo[0]['u_type'];
         </a>
 
 
-          <a class="text-white" href="http://localhost:3000/product/viewproducts">
+          <a class="text-white" href="{{ route('accountController.sales_report') }}">
             <div class="  bg-secondary py-2 text-center my-4">
 
-              <i class="fab fa-product-hunt"></i> Reports
+              <i class="fab fa-product-hunt"></i> Sales  Reports
 
             </div></a>
 

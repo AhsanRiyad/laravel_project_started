@@ -149,5 +149,11 @@ Route::get('/money_transfer_status' , 'accountController@money_transfer_status')
 Route::get('/shipment_status' , 'accountController@shipment_status')->name('accountController.shipment_status');
 
 
+Route::get('/sales_report' , 'accountController@sales_report')->name('accountController.sales_report');
+
+
+Route::get('/sales_report_yearly' , 'accountController@sales_report_yearly')->name('accountController.sales_report_yearly');
+
+
 
 
