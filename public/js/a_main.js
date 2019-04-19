@@ -756,8 +756,8 @@ $('#button_add_product_shipment').click(function(){
 
 					}
 
-					},
-					error: function(error){
+				},
+				error: function(error){
 						//alert(error);
 						alert('error');
 
@@ -789,8 +789,8 @@ $('#button_reset_product_shipment').click(function(){
 			//alert(reply);
 			$('#product_list_div').html('');
 			
-		 	 	},
-		 	 	error: function(error){
+		},
+		error: function(error){
 						//alert(error);
 						alert('error');
 
@@ -821,8 +821,8 @@ $('#button_request_shipment').click(function(){
 			//alert(reply);
 			$('#product_list_div').html('');
 			alert('Shipment Request Sent Successfully');
-		 	 	},
-		 	 	error: function(error){
+		},
+		error: function(error){
 						//alert(error);
 						alert('error');
 
@@ -834,11 +834,11 @@ $('#button_request_shipment').click(function(){
 
 
 function ship_details(id)
-    { 
+{ 
 
 
+    //alert('hi');
 
-    	$('#button_request_shipment').click(function(){
 	//var userid = $('#user_id').html();
 	//alert(userid);
 	//alert('reset button');
@@ -852,15 +852,46 @@ function ship_details(id)
 	$.ajax({
 		url:fullUrl,
 		method: 'POST',
-
 		success: function(reply){
-			
-			 $( "#dialog" ).dialog( "open" );
-			//alert(reply);
+			//var res = JSON.stringify(reply);
+			//$('#dialog').html(reply);
+			//$( "#dialog" ).dialog( "open" );
+			alert(reply[0].product_id);
+			var h = '';
+			for(var i=0; i<reply.length ; i++){
+
+				var ht = 
+				'<table class="table">\
+								<thead class="thead-dark">\
+								<tr>\
+								<th>Product Name</th>\
+								<th>Quantity</th>\	\
+								</thead>\
+								</tr>\
+								<tbody>\
+								<tr>\
+								<td>'+reply[i].product_name+'</td>\
+								<td>'+reply[i].product_quantity+'</td>\
+								</tr>\
+								</tbody>\
+								</table>';
+				var h = h + ht ;
+
+
+			}
+
+			$('#dialog').html(h);
+			$( "#dialog" ).dialog( "open" );
+
+
+
+
+
+
 			//$('#product_list_div').html('');
 			//alert('Shipment Request Sent Successfully');
-		 	 	},
-		 	 	error: function(error){
+		},
+		error: function(error){
 						//alert(error);
 						alert('error');
 
@@ -868,35 +899,26 @@ function ship_details(id)
 				});
 
 
-		});
+	
 
 
 
+	$( "#dialog" ).dialog({
+		autoOpen: false,
+		show: {
+			effect: "blind",
+			duration: 1000
+		},
+		width: 630,
+		position: { my: 'top', at: 'top+150' },
+		hide: {
+			effect: "explode",
+			duration: 1000
+		}
+	});
 
 
+      //$( "#dialog" ).dialog( "open" );
 
 
-
-
-
-      $('#dialog').html(id);
-
-      $( "#dialog" ).dialog({
-      autoOpen: false,
-      show: {
-        effect: "blind",
-        duration: 1000
-      },
-      width: 630,
-      position: { my: 'top', at: 'top+150' },
-      hide: {
-        effect: "explode",
-        duration: 1000
-      }
-    });
- 
-   
-      $( "#dialog" ).dialog( "open" );
-   
-
-    }
+  }

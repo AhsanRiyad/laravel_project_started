@@ -244,10 +244,14 @@ public function a_shipment_reset($uid){
 }
 
 
-public function a_shipment_details($uid){
+public function a_shipment_details($ship_id){
 
     //echo $uid;
-    echo 'hellow';
+    // echo 'hellow';
+
+    $results = DB::select('select s.* , p.product_name from shipment_product s , products p where s.product_id = p.product_id and shipment_id = (?)' , [$ship_id]);
+
+    return $results;
     
 
 
