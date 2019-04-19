@@ -42,7 +42,8 @@ $(function() {
 			//alert(res);
 
 			// alert(reply[0].c);
-			$('#reqCount').html(reply[0].c);
+			$('#reqCount').html(reply[0][0].c);
+			$('#moneyTrCount').html(reply[1][0].c);
 
 
 			
@@ -1342,5 +1343,27 @@ $('#amount').change(function(){
 
 
 });
+
+
+
+
+
+
+
+
+function money_accept(id){
+
+	alert(id);
+
+
+	var url = $('#getUrl').html();
+
+	var userid = $('#user_id').html();
+	
+	var fullUrl = url+'update_it_ship/'+ship_temp_id+'/'+userid+'/'+qntity;
+	//alert(fullUrl);
+
+
+}
 
 

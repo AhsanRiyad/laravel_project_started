@@ -154,6 +154,16 @@ $u_type = $userinfo[0]['u_type'];
           </div>
 
         </a>
+        
+
+        <a class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
+          <div class="bg-secondary py-2 text-center my-4">
+
+            <i class="fas fa-shopping-cart"></i> Money Transfer Req <span class="badge badge-primary p-2 text-white " id="moneyTrCount">0</span>
+
+          </div>
+
+        </a>
 
 
 

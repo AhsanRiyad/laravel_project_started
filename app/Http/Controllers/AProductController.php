@@ -155,6 +155,10 @@ public function req_countPost(){
     
     $reqCount = DB::select('select count(*) as c from shipment where status =0'); 
 
+
+
+    $moneyReq =  DB::select('select count(*) as c from money_transfer where status =0'); 
+
    // $i = [ 'cart_products' => $reqCount ];
 
 //res = json_encode($i);
@@ -162,7 +166,7 @@ public function req_countPost(){
     //echo $reqCount;
    // echo 'helo';
 
-    return $reqCount;
+    return [$reqCount, $moneyReq];
 
    // return 'hellow';
 

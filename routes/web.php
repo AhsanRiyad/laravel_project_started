@@ -155,5 +155,16 @@ Route::get('/sales_report' , 'accountController@sales_report')->name('accountCon
 Route::get('/sales_report_yearly' , 'accountController@sales_report_yearly')->name('accountController.sales_report_yearly');
 
 
+Route::get('/money_transfer_request' , 'accountController@money_transfer_request')->name('accountController.money_transfer_request');
+
+
+
+Route::post('/money_transfer_request' , 'accountController@money_transfer_requestPost')->name('accountController.money_transfer_request');
+
+
+
+Route::post('/money_accept/{id}/{admin_id}' , 'accountController@money_accept')->name('accountController.money_accept');
+
+
 
 
