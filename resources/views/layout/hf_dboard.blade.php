@@ -116,7 +116,7 @@ $u_type = $userinfo[0]['u_type'];
           <div class="  
           py-2 text-center my-4 bg-secondary">
 
-          <i class="fas fa-shopping-cart"></i> Shipment Request
+          <i class="fas fa-shopping-cart"></i> Shipment Request <span class="badge badge-primary p-2 text-white " id="reqCount">0</span>
 
         </div></a>
 

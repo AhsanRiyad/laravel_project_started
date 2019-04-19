@@ -274,10 +274,13 @@ public function ship_accept($admin_id , $ship_id){
     $status = DB::update('update shipment set status = 1 ,  acc_date = SYSDATE() , admin_id_acc = (?)  where id = (?) ' , [$ship_id , $admin_id]);
 
 
-    $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0 ');
+    $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u where u.u_id = s.admin_id_req and s.status = 0');
 
 
-    return $ship_reqs;
+    $counter = DB::select('select count(*) as c from shipment where status = 0');
+
+    $results = [$ship_reqs , $counter];
+    return $results;
 
 
 
@@ -306,7 +309,11 @@ public function ship_reject($admin_id , $ship_id){
     $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0 ');
 
 
-    return $ship_reqs;
+    
+    $counter = DB::select('select count(*) as c from shipment where status = 0');
+
+    $results = [$ship_reqs , $counter];
+    return $results;
 
 }
 

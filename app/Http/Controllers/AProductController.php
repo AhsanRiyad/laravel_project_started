@@ -150,6 +150,24 @@ class AProductController extends Controller
 
   }
 
+public function req_countPost(){
+
+    
+    $reqCount = DB::select('select count(*) as c from shipment where status =0'); 
+
+   // $i = [ 'cart_products' => $reqCount ];
+
+//res = json_encode($i);
+
+    //echo $reqCount;
+   // echo 'helo';
+
+    return $reqCount;
+
+   // return 'hellow';
+
+  }
+
 
   public function a_cart_order(Request $req){
 

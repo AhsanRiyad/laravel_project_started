@@ -131,3 +131,6 @@ Route::get('/add_raw_materials' , 'userController@add_raw_materials')->name('use
 Route::post('/add_raw_materials' , 'userController@add_raw_materialsPost')->name('userController.add_raw_materials');
 
 
+Route::post('/req_count' , 'AProductController@req_countPost')->name('AProductController.req_count');
+
+

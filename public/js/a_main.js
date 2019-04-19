@@ -25,6 +25,41 @@ var $products = $('#select_products').val();*/
 */
 
 
+$(function() {
+    
+	var url = $('#getUrl').html();
+
+	var fullUrl = url+'req_count';
+
+
+	//alert(fullUrl);
+    $.ajax({
+		url:fullUrl,
+		method: 'POST',
+
+		success: function(reply){
+			//var res = JSON.stringify(reply);
+			//alert(res);
+
+			// alert(reply[0].c);
+			$('#reqCount').html(reply[0].c);
+
+
+			
+		},
+		error: function(error){
+						//alert(error);
+						alert('error');
+
+					}
+				});
+
+
+
+
+});
+
+
 
 var quantity = 0 ; 
 
@@ -951,16 +986,16 @@ function ship_accept(id){
 
 			var tr = '';
 
-			for(var i=0; reply.length>i ; i++){
+			for(var i=0; reply[0].length>i ; i++){
 				//alert(reply[i].id);
 
 			var tr1 = '<tr>\
-			        <td> '+reply[i].id+' </td>\
-			        <td>'+reply[i].req_date+'</td>\
-			        <td> '+reply[i].last_name+'  </td>\
-			        <td><button onclick="ship_details('+reply[i].id+')" class="btn btn-success" >Details</button></td>\
-			        <td><button onclick="ship_accept('+reply[i].id+')" class="btn btn-success" >Accept</button></td>\
-			        <td><button onclick="ship_reject('+reply[i].id+')" class="btn btn-danger" >Reject</button></td>\
+			        <td> '+reply[0][i].id+' </td>\
+			        <td>'+reply[0][i].req_date+'</td>\
+			        <td> '+reply[0][i].last_name+'  </td>\
+			        <td><button onclick="ship_details('+reply[0][i].id+')" class="btn btn-success" >Details</button></td>\
+			        <td><button onclick="ship_accept('+reply[0][i].id+')" class="btn btn-success" >Accept</button></td>\
+			        <td><button onclick="ship_reject('+reply[0][i].id+')" class="btn btn-danger" >Reject</button></td>\
 			      	</tr>';
 
 
@@ -977,6 +1012,10 @@ function ship_accept(id){
 			}
 
 			$('#tbody').html(tr);
+			//res = JSON.stringify(reply);
+			//alert(res);
+			//alert(reply[1][0].c);
+			$('#reqCount').text(reply[1][0].c);
 
 
 			//$('#product_list_div').html('');
@@ -1019,16 +1058,16 @@ function ship_reject(id){
 
 			var tr = '';
 
-			for(var i=0; reply.length>i ; i++){
+			for(var i=0; reply[0].length>i ; i++){
 				//alert(reply[i].id);
 
 			var tr1 = '<tr>\
-			        <td> '+reply[i].id+' </td>\
-			        <td>'+reply[i].req_date+'</td>\
-			        <td> '+reply[i].last_name+'  </td>\
-			        <td><button onclick="ship_details('+reply[i].id+')" class="btn btn-success" >Details</button></td>\
-			        <td><button onclick="ship_accept('+reply[i].id+')" class="btn btn-success" >Accept</button></td>\
-			        <td><button onclick="ship_reject('+reply[i].id+')" class="btn btn-danger" >Reject</button></td>\
+			        <td> '+reply[0][i].id+' </td>\
+			        <td>'+reply[0][i].req_date+'</td>\
+			        <td> '+reply[0][i].last_name+'  </td>\
+			        <td><button onclick="ship_details('+reply[0][i].id+')" class="btn btn-success" >Details</button></td>\
+			        <td><button onclick="ship_accept('+reply[0][i].id+')" class="btn btn-success" >Accept</button></td>\
+			        <td><button onclick="ship_reject('+reply[0][i].id+')" class="btn btn-danger" >Reject</button></td>\
 			      	</tr>';
 
 
@@ -1038,13 +1077,15 @@ function ship_reject(id){
 
 
 
-			   alert('rejected');
+			   
+
 
 
 
 			}
-
+			alert('rejected');
 			$('#tbody').html(tr);
+			$('#reqCount').text(reply[1][0].c);
 
 
 			//$('#product_list_div').html('');
