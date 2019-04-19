@@ -270,6 +270,24 @@ public function delete_it_ship($ship_id , $admin_id){
 
 }
 
+public function update_it_ship($ship_id , $admin_id , $qntity){
+
+
+
+    //echo 'hellow';
+
+    $status = DB::update('update shipment_temp set product_quantity = (?) where id =(?)' , [ $qntity , $ship_id]);
+
+    return $productList = DB::select('SELECT s.* , p.product_name FROM `shipment_temp` s , products p WHERE p.product_id = s.product_id and s.admin_id = (?)' , [$admin_id]);
+
+
+
+    //return json_encode($productList);
+
+
+
+}
+
 
 
 

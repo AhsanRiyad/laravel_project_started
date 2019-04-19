@@ -108,6 +108,9 @@ Route::post('/a_shipment_reset/{uid}' , 'userController@a_shipment_reset')->name
 Route::post('/delete_it_ship/{ship_id}/{admin_id}' , 'AProductController@delete_it_ship')->name('AProductController.delete_it_ship');
 
 
+Route::post('/update_it_ship/{ship_id}/{admin_id}/{qntity}' , 'AProductController@update_it_ship')->name('AProductController.update_it_ship');
+
+
 
 Route::post('/a_shipment_request/{uid}' , 'userController@a_shipment_request')->name('userController.a_shipment_request');
 
