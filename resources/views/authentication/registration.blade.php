@@ -218,9 +218,9 @@ $loginStatus=false;
 								
 
 								<div class="input-group">
-									<select name="user_type" class="custom-select rounded-0 pl-1 pl-lg-2 " id="inputGroupSelect01">
+									<select  disabled name="user_type" class="custom-select rounded-0 pl-1 pl-lg-2 " id="inputGroupSelect01">
 										<option  value="type">Type</option>
-										<option  value="admin">Admin</option>
+										<option selected value="admin">Admin</option>
 										<option 
 										
 										value="user">User</option>
