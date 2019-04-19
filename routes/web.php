@@ -143,5 +143,11 @@ Route::get('/money_transfer' , 'accountController@money_transfer')->name('accoun
 Route::post('/money_transfer' , 'accountController@money_transferPost')->name('accountController.money_transfer');
 
 
+Route::get('/money_transfer_status' , 'accountController@money_transfer_status')->name('accountController.money_transfer_status');
+
+
+Route::get('/shipment_status' , 'accountController@shipment_status')->name('accountController.shipment_status');
+
+
 
 

@@ -127,6 +127,15 @@ $u_type = $userinfo[0]['u_type'];
 
           <i class="fas fa-shopping-cart"></i> Request Shipment BD 
 
+        </div></a> 
+
+
+        <a class="text-light" href='{{ route("accountController.shipment_status") }}'>
+          <div class="  
+          py-2 text-center my-4 bg-secondary">
+
+          <i class="fas fa-shopping-cart"></i> Shipment Status 
+
         </div></a>
 
 
@@ -141,6 +150,17 @@ $u_type = $userinfo[0]['u_type'];
           <div class="bg-secondary py-2 text-center my-4">
 
             <i class="fas fa-shopping-cart"></i> Money Transfer
+
+          </div>
+
+        </a>
+
+
+
+         <a class="text-white" href='{{ route("accountController.money_transfer") }}'>
+          <div class="bg-secondary py-2 text-center my-4">
+
+            <i class="fas fa-shopping-cart"></i> Money Transfer Status 
 
           </div>
 

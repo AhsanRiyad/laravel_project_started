@@ -1041,7 +1041,7 @@ function ship_reject(id){
 
 	var userid = $('#user_id').html();
 	
-	var fullUrl = url+'ship_accept/'+id+'/'+userid;
+	var fullUrl = url+'ship_reject/'+id+'/'+userid;
 	//alert(fullUrl);
 
 	$.ajax({
