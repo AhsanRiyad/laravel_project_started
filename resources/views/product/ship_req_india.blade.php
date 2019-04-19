@@ -66,7 +66,7 @@
 
     <script>
       
-    function ship_details(id)
+    /*function ship_details(id)
     { 
       $('#dialog').html(id);
 
@@ -88,7 +88,7 @@
       $( "#dialog" ).dialog( "open" );
    
 
-    }
+    }*/
 
     </script>
 

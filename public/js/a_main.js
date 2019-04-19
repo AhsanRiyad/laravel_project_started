@@ -833,3 +833,70 @@ $('#button_request_shipment').click(function(){
 });
 
 
+function ship_details(id)
+    { 
+
+
+
+    	$('#button_request_shipment').click(function(){
+	//var userid = $('#user_id').html();
+	//alert(userid);
+	//alert('reset button');
+	var url = $('#getUrl').html();
+
+	
+	
+	var fullUrl = url+'a_shipment_details/'+id;
+	//alert(fullUrl);
+
+	$.ajax({
+		url:fullUrl,
+		method: 'POST',
+
+		success: function(reply){
+			
+			 $( "#dialog" ).dialog( "open" );
+			//alert(reply);
+			//$('#product_list_div').html('');
+			//alert('Shipment Request Sent Successfully');
+		 	 	},
+		 	 	error: function(error){
+						//alert(error);
+						alert('error');
+
+					}
+				});
+
+
+		});
+
+
+
+
+
+
+
+
+
+
+      $('#dialog').html(id);
+
+      $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      width: 630,
+      position: { my: 'top', at: 'top+150' },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+   
+      $( "#dialog" ).dialog( "open" );
+   
+
+    }
