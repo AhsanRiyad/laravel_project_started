@@ -77,27 +77,26 @@
   
 
     
-    
-      <tr>
-      <td>
-        <a href="">
-        <button class="btn btn-info">
-          Monthly Sales Report    
-        </button>
-        </a>
-
-
-      </td>
-
-      <td>
-        <a href="">
-        <button class="btn btn-info">
-          Yearly Sales Report    
-        </button>
-        </a>
-
-        
-      </td>
+   <tr>
+     <td>
+       <a href="">
+       <button class="btn btn-info">
+         Monthly Sales Report    
+       </button>
+       </a>
+   
+   
+     </td>
+   
+     <td>
+       <a href="">
+       <button class="btn btn-info">
+         Yearly Sales Report    
+       </button>
+       </a>
+   
+       
+     </td>
 
 
       <td>
