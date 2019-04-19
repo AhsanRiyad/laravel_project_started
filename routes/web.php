@@ -110,6 +110,10 @@ Route::post('/a_shipment_request/{uid}' , 'userController@a_shipment_request')->
 
 
 
+Route::post('/a_shipment_details/{ship_id}' , 'userController@a_shipment_details')->name('userController.a_shipment_details');
+
+
+
 
 
 

@@ -38,6 +38,9 @@ $u_type = $userinfo[0]['u_type'];
 
   <!-- font awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  
+  
+
 
   <!-- stylesheet -->
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
@@ -46,7 +49,7 @@ $u_type = $userinfo[0]['u_type'];
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-  @yield('stylesheet');
+  @yield('stylesheet')
 
 
   <body>
@@ -54,7 +57,7 @@ $u_type = $userinfo[0]['u_type'];
   
 <p hidden id="getUrl">{{ asset('') }}</p>
 
-  @yield('content');
+  @yield('content')
 
 
 
@@ -217,10 +220,11 @@ $u_type = $userinfo[0]['u_type'];
 
 
 
+
     <!-- main js -->
     <script src="{{ asset('js/main.js') }}" ></script>
 
-   @yield('script');
+   @yield('script')
     
 
   </body>

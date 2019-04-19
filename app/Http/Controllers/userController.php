@@ -161,8 +161,14 @@ public function ship_req_india(Request $req){
     $userinfo['userinfo'] = $userinfo2;
 
 
+    $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0 ');
+
+    // return $ship_reqs;
+    //dd($ship_reqs);
+
+
         //return $userinfo[0]['u_id'];
-    return view('product.ship_req_india')->withMsg('none')->withUserinfo($userinfo2);
+    return view('product.ship_req_india')->withMsg('none')->withUserinfo($userinfo2)->with('ship_reqs' , $ship_reqs );
         //return view('dashboard/dashboard' , $userinfo);
 }else{
     return redirect()->route('authenticationController.logout');
@@ -238,6 +244,17 @@ public function a_shipment_reset($uid){
 }
 
 
+public function a_shipment_details($uid){
+
+    //echo $uid;
+    echo 'hellow';
+    
+
+
+
+}
+
+
 public function a_shipment_request($uid){
 
     //echo $uid;
@@ -245,13 +262,10 @@ public function a_shipment_request($uid){
 
 
     //$status = DB::delete('delete from shipment_temp where admin_id = (?)', [$uid]);
+     //echo 'hellow';
 
-
-    //echo 'hellow';
 
     $status = DB::statement("call shipment_req(?)" , [$uid]);
-
-
 
 
 }
