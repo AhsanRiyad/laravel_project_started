@@ -49,7 +49,7 @@
   <div class="form-group">
     <label for="inputState" >Quantity</label>
       <select name="quantity" id="inputState" class="form-control">
-        <option selected>Choose...</option>
+        <option value="0" selected>Choose...</option>
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="30">20</option>

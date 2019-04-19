@@ -359,6 +359,38 @@ public function add_raw_materials(Request $req){
 public function add_raw_materialsPost(Request $req){
 
 
+    if($req->session()->has('userinfo')){
+        $userinfo1 = session('userinfo');
+        $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+        $userinfo['userinfo'] = $userinfo2;
+
+
+        $factory_id = $req->factory_name;
+        $materials_id = $req->materials;
+        $qntity = $req->quantity;
+
+
+        $status = DB::insert('INSERT INTO `factory_materials`(`factory_id`, `materials_id`, `qntity`) VALUES (? ,? , ?)' , [$factory_id , $materials_id , $qntity]);
+
+
+
+
+
+        $rawMaterials = DB::select('select * from raw_materials');
+
+        $factories = DB::select('select * from factory');
+
+
+        //return $userinfo[0]['u_id'];
+        return view('product.add_raw_materials')->withMsg('Successful')->withUserinfo($userinfo2)->with('rawMaterials' , $rawMaterials)->with('factories' , $factories);
+        //return view('dashboard/dashboard' , $userinfo);
+    }else{
+        return redirect()->route('authenticationController.logout');
+    }
+
+
+
 
 }
 
