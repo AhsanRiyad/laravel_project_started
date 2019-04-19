@@ -48,7 +48,7 @@ Route::get('/db', 'productController@autosearch');
 
 
 
-//assignment routes
+///////////////////////assignment routes//////////////////////////////
 Route::resource('/a_pos' , 'AProductController');
 
 
@@ -118,10 +118,6 @@ Route::post('/ship_accept/{ship_id}/{admin_id}' , 'userController@ship_accept')-
 
 
 Route::post('/ship_reject/{ship_id}/{admin_id}' , 'userController@ship_reject')->name('userController.ship_reject');
-
-
-
-
 
 
 
