@@ -9,7 +9,7 @@ $signout = "authenticationController.logout";
 <!-- $loginStatus = false ;  -->
 
 
-<p id="getUrl">{{ asset('') }}</p>
+<p hidden id="getUrl">{{ asset('') }}</p>
 
 
 <!doctype html>

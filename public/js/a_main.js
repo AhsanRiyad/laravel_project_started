@@ -683,7 +683,7 @@ $('#button_add_product_shipment').click(function(){
 	var url = $('#getUrl').html();
 	//alert(url);
 	var fullUrl = url+'ship_req_bd';
-	alert(fullUrl);
+	//alert(fullUrl);
 	$.ajax({
 		url: fullUrl,
 		method: 'POST',
@@ -750,26 +750,9 @@ $('#button_add_product_shipment').click(function(){
 						</div>\
 						</div>';
 
-						element = element + element1;
-
-
-
-
-
-
-
-
-						
+						element = element + element1;	
 						
 						$('#product_list_div').html(element);
-
-
-
-
-
-
-
-
 
 					}
 
@@ -806,6 +789,38 @@ $('#button_reset_product_shipment').click(function(){
 			//alert(reply);
 			$('#product_list_div').html('');
 			
+		 	 	},
+		 	 	error: function(error){
+						//alert(error);
+						alert('error');
+
+					}
+				});
+
+
+});
+
+
+$('#button_request_shipment').click(function(){
+	var userid = $('#user_id').html();
+	//alert(userid);
+	//alert('reset button');
+	var url = $('#getUrl').html();
+
+	
+	
+	var fullUrl = url+'a_shipment_request/'+userid;
+	//alert(fullUrl);
+
+	$.ajax({
+		url:fullUrl,
+		method: 'POST',
+
+		success: function(reply){
+
+			//alert(reply);
+			$('#product_list_div').html('');
+			alert('Shipment Request Sent Successfully');
 		 	 	},
 		 	 	error: function(error){
 						//alert(error);

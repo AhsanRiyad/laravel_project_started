@@ -52,7 +52,7 @@ $u_type = $userinfo[0]['u_type'];
   <body>
   
   
-<p id="getUrl">{{ asset('') }}</p>
+<p hidden id="getUrl">{{ asset('') }}</p>
 
   @yield('content');
 

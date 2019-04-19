@@ -238,6 +238,31 @@ public function a_shipment_reset($uid){
 }
 
 
+public function a_shipment_request($uid){
+
+    //echo $uid;
+    //echo 'hellow';
+
+
+    //$status = DB::delete('delete from shipment_temp where admin_id = (?)', [$uid]);
+
+
+    //echo 'hellow';
+
+    $status = DB::statement("call shipment_req(?)" , [$uid]);
+
+
+
+
+}
+
+
+
+
+
+
+
+
 public function add_raw_materials(Request $req){
 
 

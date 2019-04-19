@@ -106,6 +106,14 @@ Route::post('/a_shipment_reset/{uid}' , 'userController@a_shipment_reset')->name
 
 
 
+Route::post('/a_shipment_request/{uid}' , 'userController@a_shipment_request')->name('userController.a_shipment_request');
+
+
+
+
+
+
+
 Route::get('/add_raw_materials' , 'userController@add_raw_materials')->name('userController.add_raw_materials');
 
 
