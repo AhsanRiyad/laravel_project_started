@@ -43,13 +43,24 @@ class authenticationController extends Controller
 
     	if($userDetails!=[])
     	{	
-    		$user['validCheck'] = true; 
+    		$user['validCheck'] = 'true'; 
 
             session(['userinfo'=>$userDetails]);
             $userinfo = session('userinfo');
-    		return redirect()->route('a_pos.index');
+
+            //return $userDetails;
+
+            if($userDetails[0]->u_type == 'admin'){
+                return redirect()->route('a_pos.index');
+            }else{
+
+            $user['validCheck'] = 'user'; 
+            return view('authentication/login' )->with('validCheck' , 'user');
+            }
+
+    		
     	}else{
-    		$user['validCheck'] = false; 
+    		$user['validCheck'] = 'false'; 
     		return view('authentication/login' , $user);
     	}
 

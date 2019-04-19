@@ -23,11 +23,16 @@ $loginStatus=false;
             
               
 
-              @if($validCheck == true)
+              @if($validCheck == 'true')
               
-                <p class="text-dark h4" id="login_id">
+              <p class="text-dark h4" id="login_id">
               Welcome to Umart! Please login
               
+              @elseif ($validCheck == 'user')
+              
+              <p class="text-white bg-danger "> User Can not login <br>
+                only admin is allowed
+
               @else
                
                <p class="text-danger h4 bg-white" id="login_id">
