@@ -3,6 +3,9 @@
   <!-- stylesheet -->
 @section('stylesheet')
   <link rel="stylesheet" href="{{ asset('/css/a_style.css') }}">
+
+
+
 @endsection
 
 

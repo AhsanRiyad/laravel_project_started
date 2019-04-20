@@ -25,6 +25,7 @@ var $products = $('#select_products').val();*/
 */
 
 
+
 $(function() {
     
 	var url = $('#getUrl').html();
@@ -843,6 +844,10 @@ $('#button_request_shipment').click(function(){
 	//alert('reset button');
 	var url = $('#getUrl').html();
 
+
+
+
+
 	//alert(userid);
 	
 	var fullUrl = url+'a_shipment_request/'+userid;
@@ -897,6 +902,14 @@ function ship_details(id)
 			//alert(reply[0].product_id);
 			var h = '';
 
+			
+	var i = document.querySelector('body > div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable > div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle > button');
+
+	$(i).removeClass(' ui-dialog-titlebar-close ');
+
+	$(i).html('  <i class="far fa-window-close"></i>  ');
+			
+			
 			var thead = '<table class="table">\
 								<thead class="thead-dark">\
 								<th>Id</th>\
