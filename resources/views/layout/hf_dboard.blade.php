@@ -6,7 +6,13 @@ $signout = "authenticationController.logout";
 $homepage = "index";
 $u_type = $userinfo[0]['u_type'];
 
+$hourMin = date('H');
+$time = date('H:m A');
+
 @endphp
+
+
+
 
 
 <!doctype html>
@@ -66,12 +72,28 @@ $u_type = $userinfo[0]['u_type'];
     <!-- navigation bar and search bar starts -->
     <!-- fixed horizontal -->
 
+    <p hidden id="name_" >{{ $userinfo[0]['last_name'] }}</p>
 
     <div class="admin_navbar_horizontal bg-secondary justify-content-center d-flex align-items-center">
-      <p class="text-white h3">Good Morning, {{ $userinfo[0]['last_name'] }}
+      <p class="text-white h3" id="greetings">
+
+        <!-- @if ($hourMin >=5 and $hourMin < 12)  
+        Good Morning, 
+               {{ $userinfo[0]['last_name'] }}
+        @elseif ($hourMin > 12 and $hourMin < 17)
+        Good Afternoon, 
+               {{ $userinfo[0]['last_name'] }}
+               @elseif ($hourMin > 17 and $hourMin < 21)
+        Good Evening, 
+               {{ $userinfo[0]['last_name'] }}
+               @elseif ($hourMin > 21 and $hourMin < 24)
+               {{ $userinfo[0]['last_name'] }}, it's time to sleep
+               @elseif ($hourMin > 4 and $hourMin < 0)
+               {{ $userinfo[0]['last_name'] }}, it's mid night now, <br> you should sleep
+               @endif -->
 
 
-
+      
       </p>
     </div>
 

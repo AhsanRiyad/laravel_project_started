@@ -25,16 +25,48 @@ var $products = $('#select_products').val();*/
 */
 
 
+///time greetings
+var date1 = new Date();
+var hourMin =  date1.getHours();
+var name = $('#name_').html();
+
+//alert(name);
+if (hourMin >=5  && hourMin < 12)  {
+	$('#greetings').html('Good Morning, '+name); 
+
+}
+	     
+else if (hourMin > 12 && hourMin < 17){
+	$('#greetings').html('Good Afternoon, '+name); 
+}
+
+else if (hourMin > 17 && hourMin < 21){
+	$('#greetings').html('Good Evening, '+name);
+}
+
+else if (hourMin > 21 && hourMin < 24){
+	$('#greetings').html(name+ " ,it's time to sleep");
+}
+
+else if (hourMin > 0 && hourMin < 5){
+	$('#greetings').html(name+ " ,it's mid night now,  you should sleep");
+}
+
+
+
+
+
+
 
 $(function() {
-    
+
 	var url = $('#getUrl').html();
 
 	var fullUrl = url+'req_count';
 
 
 	//alert(fullUrl);
-    $.ajax({
+	$.ajax({
 		url:fullUrl,
 		method: 'POST',
 
@@ -277,7 +309,7 @@ function delete_it(cart_id , user_id){
 					if(res.cart_products.length==0){
 						var element = '';
 						$('#totalAmount').val(0);
-		 	 			$('#amount_paid_input').val(0);
+						$('#amount_paid_input').val(0);
 						$('#product_list_div').html(element);
 						return;
 					}
@@ -881,7 +913,7 @@ $('#button_request_shipment').click(function(){
 		error: function(error){
 						//alert(error);
 						//res = JSON.stringify(error);
-						 alert('No Product Selected');
+						alert('No Product Selected');
 						console.log('No Product Selected');
 
 					}
@@ -918,32 +950,32 @@ function ship_details(id)
 			var h = '';
 
 			
-	var i = document.querySelector('body > div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable > div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle > button');
+			var i = document.querySelector('body > div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable > div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle > button');
 
-	$(i).removeClass(' ui-dialog-titlebar-close ');
+			$(i).removeClass(' ui-dialog-titlebar-close ');
 
-	$(i).html('  <i class="far fa-window-close"></i>  ');
+			$(i).html('  <i class="far fa-window-close"></i>  ');
 			
 			
 			var thead = '<table class="table">\
-								<thead class="thead-dark">\
-								<th>Id</th>\
-								<th>Product Name</th>\
-								<th>Quantity</th>\
-								</thead>\
-								'
+			<thead class="thead-dark">\
+			<th>Id</th>\
+			<th>Product Name</th>\
+			<th>Quantity</th>\
+			</thead>\
+			'
 
 			var hleg =  '</tbody>\
-						</table>'
+			</table>'
 
 			for(var i=0; i<reply.length ; i++){
 
 				var ht = 
 				'<tbody>\<tr>\
-								<td>'+reply[i].product_id+'</td>\
-								<td>'+reply[i].product_name+'</td>\
-								<td>'+reply[i].product_quantity+'</td>\
-								</tr>'
+				<td>'+reply[i].product_id+'</td>\
+				<td>'+reply[i].product_name+'</td>\
+				<td>'+reply[i].product_quantity+'</td>\
+				</tr>'
 				var h = h + ht ;
 
 
@@ -992,7 +1024,7 @@ function ship_details(id)
 
 
   function order_details(id)
-{ 
+  { 
 
 
     //alert('hi');
@@ -1022,34 +1054,34 @@ function ship_details(id)
 
 			//alert('success');
 			
-	var i = document.querySelector('body > div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable > div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle > button');
+			var i = document.querySelector('body > div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable > div.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle > button');
 
-	$(i).removeClass(' ui-dialog-titlebar-close ');
+			$(i).removeClass(' ui-dialog-titlebar-close ');
 
-	$(i).html('  <i class="far fa-window-close"></i>  ');
+			$(i).html('  <i class="far fa-window-close"></i>  ');
 			
 			
 			var thead = '<table class="table">\
-								<thead class="thead-dark">\
-								<th>Id</th>\
-								<th>Product Name</th>\
-								<th>Quantity</th>\
-								<th>Price</th>\
-								</thead>\
-								'
+			<thead class="thead-dark">\
+			<th>Id</th>\
+			<th>Product Name</th>\
+			<th>Quantity</th>\
+			<th>Price</th>\
+			</thead>\
+			'
 
 			var hleg =  '</tbody>\
-						</table>'
+			</table>'
 
 			for(var i=0; i<reply.length ; i++){
 
 				var ht = 
 				'<tbody>\<tr>\
-								<td>'+reply[i].product_id+'</td>\
-								<td>'+reply[i].product_name+'</td>\
-								<td>'+reply[i].qntity+'</td>\
-								<td>'+reply[i].product_sell_price+'</td>\
-								</tr>'
+				<td>'+reply[i].product_id+'</td>\
+				<td>'+reply[i].product_name+'</td>\
+				<td>'+reply[i].qntity+'</td>\
+				<td>'+reply[i].product_sell_price+'</td>\
+				</tr>'
 				var h = h + ht ;
 
 
@@ -1106,13 +1138,13 @@ function ship_details(id)
 
 
 
-function ship_accept(id){
+  function ship_accept(id){
 
-	var url = $('#getUrl').html();
+  	var url = $('#getUrl').html();
 
-	var userid = $('#user_id').html();
-	
-	var fullUrl = url+'ship_accept/'+id+'/'+userid;
+  	var userid = $('#user_id').html();
+
+  	var fullUrl = url+'ship_accept/'+id+'/'+userid;
 	//alert(fullUrl);
 
 	$.ajax({
@@ -1133,17 +1165,17 @@ function ship_accept(id){
 			for(var i=0; reply[0].length>i ; i++){
 				//alert(reply[i].id);
 
-			var tr1 = '<tr>\
-			        <td> '+reply[0][i].id+' </td>\
-			        <td>'+reply[0][i].req_date+'</td>\
-			        <td> '+reply[0][i].last_name+'  </td>\
-			        <td><button onclick="ship_details('+reply[0][i].id+')" class="btn btn-success" >Details</button></td>\
-			        <td><button onclick="ship_accept('+reply[0][i].id+')" class="btn btn-success" >Accept</button></td>\
-			        <td><button onclick="ship_reject('+reply[0][i].id+')" class="btn btn-danger" >Reject</button></td>\
-			      	</tr>';
+				var tr1 = '<tr>\
+				<td> '+reply[0][i].id+' </td>\
+				<td>'+reply[0][i].req_date+'</td>\
+				<td> '+reply[0][i].last_name+'  </td>\
+				<td><button onclick="ship_details('+reply[0][i].id+')" class="btn btn-success" >Details</button></td>\
+				<td><button onclick="ship_accept('+reply[0][i].id+')" class="btn btn-success" >Accept</button></td>\
+				<td><button onclick="ship_reject('+reply[0][i].id+')" class="btn btn-danger" >Reject</button></td>\
+				</tr>';
 
 
-			   tr = tr + tr1;
+				tr = tr + tr1;
 
 			   //alert(tr);
 
@@ -1205,17 +1237,17 @@ function ship_reject(id){
 			for(var i=0; reply[0].length>i ; i++){
 				//alert(reply[i].id);
 
-			var tr1 = '<tr>\
-			        <td> '+reply[0][i].id+' </td>\
-			        <td>'+reply[0][i].req_date+'</td>\
-			        <td> '+reply[0][i].last_name+'  </td>\
-			        <td><button onclick="ship_details('+reply[0][i].id+')" class="btn btn-success" >Details</button></td>\
-			        <td><button onclick="ship_accept('+reply[0][i].id+')" class="btn btn-success" >Accept</button></td>\
-			        <td><button onclick="ship_reject('+reply[0][i].id+')" class="btn btn-danger" >Reject</button></td>\
-			      	</tr>';
+				var tr1 = '<tr>\
+				<td> '+reply[0][i].id+' </td>\
+				<td>'+reply[0][i].req_date+'</td>\
+				<td> '+reply[0][i].last_name+'  </td>\
+				<td><button onclick="ship_details('+reply[0][i].id+')" class="btn btn-success" >Details</button></td>\
+				<td><button onclick="ship_accept('+reply[0][i].id+')" class="btn btn-success" >Accept</button></td>\
+				<td><button onclick="ship_reject('+reply[0][i].id+')" class="btn btn-danger" >Reject</button></td>\
+				</tr>';
 
 
-			   tr = tr + tr1;
+				tr = tr + tr1;
 
 			   //alert(tr);
 
@@ -1279,13 +1311,13 @@ function delete_it_ship(ship_temp_id){
 
 			var element = '';
 
-					
+
 						//alert(reply[i].product_id);
 
 
 						var element = '';
 
-					for(var i=0; i<reply.length; i++){
+						for(var i=0; i<reply.length; i++){
 						//alert(reply[i].product_id);
 
 						//total = total + reply.cart_products[i].product_sell_price;
@@ -1389,13 +1421,13 @@ function update_it_ship(ship_temp_id){
 
 			var element = '';
 
-					
+
 						//alert(reply[i].product_id);
 
 
 						var element = '';
 
-					for(var i=0; i<reply.length; i++){
+						for(var i=0; i<reply.length; i++){
 						//alert(reply[i].product_id);
 
 						//total = total + reply.cart_products[i].product_sell_price;
