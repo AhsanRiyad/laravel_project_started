@@ -12,12 +12,12 @@
 
 
 
-<div class="col-8">
+<div class="col-lg-8 col-7 offset-1">
   
 
 
 	<div class="row">
-	<div class="col-4 text-white offset-4 top-margin bg-info rounded p-5">
+	<div class="col-lg-5 col-12 text-white offset-lg-3 top-margin bg-info rounded p-5">
 	
 	<h3>Register User</h3>
 

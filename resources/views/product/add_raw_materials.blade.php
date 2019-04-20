@@ -9,13 +9,13 @@
 
 @section('content')
 
-<div class="col-8">
+<div class="col-lg-8 col-7 offset-1 offset-lg-0 top-margin">
   
 
 
 
 <div class="row">
-	<div class="col-4 offset-4 top-margin bg-info rounded p-5 text-white">
+	<div class="col-12 col-lg-5 offset-lg-3  bg-info rounded p-5 text-white">
 	
 	<h3>Add Raw Materials</h3>
 

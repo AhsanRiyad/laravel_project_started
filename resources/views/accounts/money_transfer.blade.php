@@ -9,13 +9,13 @@
 
 @section('content')
 
-<div class="col-8">
+<div class="col-lg-8 col-6 offset-2 offset-lg-0 top-margin">
   
 
 
 
 <div class="row">
-  <div class="col-5 offset-6 top-margin bg-info rounded p-5 text-white">
+  <div class="col-12 offset-5 offset-lg-6 col-lg-6  bg-info rounded p-5 text-white">
   
   <h3>Money Transfer To Bangladesh</h3>
 

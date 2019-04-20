@@ -14,7 +14,7 @@
 
   @section('content')
   
-  <div class="col-8">
+  <div class="col-lg-8 col-7 offset-1 ">
     
  
   <div class="row top-margin">
@@ -23,7 +23,7 @@
     <h1 class="p-2">Point of Sales</h1>
   </div>
 
-	<div class="col-3   p-5 rounded-left bg-info text-white">
+	<div class="col-lg-3 col-12  p-5 rounded-left bg-info text-white">
 	
 	<h3>Point of Sales</h3>
 
@@ -75,7 +75,7 @@
 	</div>
 
 
-<div class="col-4 p-5 t text-white bg-success">
+<div class="col-lg-4 col-12 p-5 t text-white bg-success">
 	
 
 	<h3>Select Product</h3>
@@ -119,7 +119,7 @@
 
 	
 
-<div class="col-5 bg-secondary rounded-right text-white p-5">
+<div class="col-lg-5 col-12 bg-secondary rounded-right text-white p-5">
 	
 <h3>Product List</h3>
 

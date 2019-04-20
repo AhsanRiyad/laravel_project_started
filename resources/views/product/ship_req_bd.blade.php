@@ -17,7 +17,7 @@
 
 
 
-<div class="col-8">
+<div class="col-lg-9 col-7 offset-1 offset-lg-0">
   
 
 
@@ -25,7 +25,7 @@
 	
 
 
-<div class="col-5 offset-2  p-5 t text-white bg-success">
+<div class="col-lg-5 offset-lg-1 col-11 offset-1  p-5 t text-white bg-success">
 	
 
 	<h3>Select Product</h3>
@@ -68,7 +68,7 @@
 
 	
 
-<div class="col-5 bg-secondary rounded-right text-white p-5">
+<div class="col-lg-6 col-11 offset-1 offset-lg-0 bg-secondary rounded-right text-white p-5">
 	
 <h3>Product List</h3>
 
@@ -86,7 +86,7 @@
             <label for="inputEmail4"> id</label> 
             <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='{{$p->product_id}}'> 
             </div>
-            <div class="form-group col-md-2"> 
+            <div class="form-group col-md-3"> 
             <label for="inputPassword4">Name</label>
             <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="{{ $p->product_name }}">
             </div>

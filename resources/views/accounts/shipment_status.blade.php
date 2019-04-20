@@ -10,20 +10,22 @@
 
 @section('content')
 
-  <p id="user_id" hidden >{{ $userinfo[0]['u_id'] }}</p>
+<p id="user_id" hidden >{{ $userinfo[0]['u_id'] }}</p>
 
-<div class="col-8">
+<div class="col-lg-8 col-7 offset-1 offset-lg-0 top-margin">
   
 
 
 <div class="row">
-  <div class="col">
+  <div class="col-12 col-lg-11 offset-lg-1  ">
  
 
-<div class="container top-margin ">
+
   <h2 class="text-center bg-info text-white py-2 ">Shipment Reques Status</h2>
+  </div>
   
 
+  <div class="col-12 col-lg-11 offset-lg-1  ">
   <table class="table">
     <thead  class="thead-dark">
       <tr>

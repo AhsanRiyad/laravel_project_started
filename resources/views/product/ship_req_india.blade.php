@@ -16,7 +16,7 @@
 
 
 
-<div class="col-8">
+<div class="col-lg-8 col-7 offset-1">
   
 
 

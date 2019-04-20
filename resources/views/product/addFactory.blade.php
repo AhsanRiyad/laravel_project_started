@@ -10,10 +10,10 @@
 @section('content')
 
 
-<div class="col-8">
+<div class="col-lg-8 col-7 offset-1">
 
 	<div class="row">
-	<div class="col-4 offset-5 bg-secondary text-white p-5 rounded top-margin">
+	<div class="col-lg-5 col-12 offset-lg-4 bg-secondary text-white p-5 rounded top-margin">
 	
 	<h3>Add Factory</h3>
 

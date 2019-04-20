@@ -266,19 +266,7 @@ public function a_shipment_details($ship_id){
 }
 
 
-public function order_details($id){
 
-    //echo $uid;
-    // echo 'hellow';
-
-    $results = DB::select('select s.* , p.product_name from order_includ_product  o, products p where o.product_id = p.product_id and order_id = (?)' , [$id]);
-
-    return $results;
-    
-
-
-
-}
 
 public function ship_accept($admin_id , $ship_id){
 
