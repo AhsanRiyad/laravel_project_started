@@ -12,15 +12,17 @@
 
   <p id="user_id" hidden >{{ $userinfo[0]['u_id'] }}</p>
 
-
-
-
-<div class="container top-margin ">
-  <h2 class="text-center bg-info text-white py-2 ">Shipment Request</h2>
+<div class="col-8">
   
 
+
+<div class="row">
+  <div class="col">
  
 
+<div class="container top-margin ">
+  <h2 class="text-center bg-info text-white py-2 ">Shipment Reques Status</h2>
+  
 
   <table class="table">
     <thead  class="thead-dark">
@@ -59,8 +61,10 @@
 
     </tbody>
   </table>
-
-
+</div>
+   
+  </div>
+</div>
 <div id="dialog" title="Shipment Dtails">
 </div>
 @endsection

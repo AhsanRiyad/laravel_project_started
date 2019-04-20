@@ -9,9 +9,13 @@
 
 @section('content')
 
+<div class="col-8">
+  
+
+
 
 <div class="row">
-	<div class="col-3 offset-5 top-margin bg-info rounded p-5 text-white">
+	<div class="col-4 offset-4 top-margin bg-info rounded p-5 text-white">
 	
 	<h3>Add Raw Materials</h3>
 
@@ -62,7 +66,7 @@
 </form>
 </div>
 </div>
-
+</div>
 @endsection
 
 @section('script')

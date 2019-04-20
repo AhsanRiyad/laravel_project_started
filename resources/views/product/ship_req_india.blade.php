@@ -15,11 +15,23 @@
 
 
 
-<div class="container top-margin ">
-  <h2 class="text-center bg-info text-white py-2 ">Shipment Request</h2>
+
+<div class="col-8">
   
 
+
+<div class="row top-margin text-center bg-info">
+  
+
+<div class="col">
+  
+
+  <h2 class="  text-white py-2 ">Shipment Request</h2>
+</div>
+</div>
  
+<div class="row">
+  
 
 
   <table class="table">
@@ -54,6 +66,9 @@
     
   </table>
 
+
+</div>
+</div>
 
 <div id="dialog" title="Shipment Dtails">
 </div>

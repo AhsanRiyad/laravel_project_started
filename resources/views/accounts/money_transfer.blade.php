@@ -9,9 +9,13 @@
 
 @section('content')
 
+<div class="col-8">
+  
+
+
 
 <div class="row">
-  <div class="col-3 offset-5 top-margin bg-info rounded p-5 text-white">
+  <div class="col-5 offset-6 top-margin bg-info rounded p-5 text-white">
   
   <h3>Money Transfer To Bangladesh</h3>
 
@@ -43,7 +47,7 @@
 </div>
 </div>
 
-
+</div>
 
 @section('script')
 <!-- main js -->

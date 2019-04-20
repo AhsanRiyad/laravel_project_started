@@ -12,10 +12,12 @@
 
 
 
+<div class="col-8">
+  
 
 
 	<div class="row">
-	<div class="col-3 text-white offset-5 top-margin bg-info rounded p-5">
+	<div class="col-4 text-white offset-4 top-margin bg-info rounded p-5">
 	
 	<h3>Register User</h3>
 
@@ -51,7 +53,7 @@
 </div>
 </div>
 
-
+</div>
 
 
 

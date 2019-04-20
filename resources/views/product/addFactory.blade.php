@@ -10,10 +10,10 @@
 @section('content')
 
 
-
+<div class="col-8">
 
 	<div class="row">
-	<div class="col-3 offset-5 bg-secondary text-white p-5 rounded top-margin">
+	<div class="col-4 offset-5 bg-secondary text-white p-5 rounded top-margin">
 	
 	<h3>Add Factory</h3>
 
@@ -41,7 +41,7 @@
 
 
 
-
+</div>
 
 
 

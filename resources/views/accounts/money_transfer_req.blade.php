@@ -14,8 +14,17 @@
 
 
 
+<div class="col-8">
+  
 
-<div class="container top-margin ">
+
+
+<div class="row top-margin ">
+
+  <div class="col-12">
+    
+ 
+
   <h2 class="text-center bg-info text-white py-2 ">Money Transfer
   
   <br>
@@ -25,8 +34,11 @@
   </h2>
   
 
- 
+  </div>
 
+  <div class="col-12">
+    
+ 
 
   <table class="table">
     <thead  class="thead-dark">
@@ -67,8 +79,8 @@
 
     </tbody>
   </table>
-
-
+</div>
+ </div>
 <div id="dialog" title="Shipment Dtails">
 </div>
 @endsection

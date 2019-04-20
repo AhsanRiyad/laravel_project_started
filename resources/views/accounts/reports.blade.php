@@ -14,13 +14,24 @@
 
 
 
-
-<div class="container top-margin ">
-  <h2 class="text-center bg-info text-white py-2 ">Daily Sales Report</h2>
+<div class="col-8">
   
 
+
+
+<div class="row top-margin ">
+
+
+  <div class="col-12">
+    
+ 
+  <h2 class="text-center bg-info text-white py-2 ">Daily Sales Report</h2>
+  
+ </div>
  
 
+<div class="col-12">
+  
 
   <table class="table">
     <thead  class="thead-dark">
@@ -117,8 +128,8 @@
 
   </table>
 
-
-
+</div>
+</div>
 
 @endsection
 

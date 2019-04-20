@@ -255,7 +255,7 @@ $u_type = $userinfo[0]['u_type'];
       @yield('content')
     
 
-      
+      </div>
 
 
       <!-- jquery -->
