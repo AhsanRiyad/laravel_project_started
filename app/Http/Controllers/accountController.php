@@ -218,7 +218,7 @@ class accountController extends Controller
               $money = DB::select('SELECT * FROM `money_transfer` WHERE STATUS = 0
 ');
 
-            return view('accounts.money_transfer_req')->withUserinfo($userinfo2)->with('money' , $money)->withMsg('Approved')with('page_name' , 'money_transfer_request');
+            return view('accounts.money_transfer_req')->withUserinfo($userinfo2)->with('money' , $money)->withMsg('Approved')->with('page_name' , 'money_transfer_request');
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
@@ -238,12 +238,6 @@ class accountController extends Controller
 
 
      public function money_accept( Request $req , $id , $admin_id){
-
-       
-
-
-
-
 
 }
 

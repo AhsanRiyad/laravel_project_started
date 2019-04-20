@@ -93,16 +93,28 @@ $u_type = $userinfo[0]['u_type'];
 
 
 
-          <a class="text-white" href="{{ route('a_pos.index') }}">
+          <a class="text-white  " href="{{ route('a_pos.index') }}">
             <div class="      
-            py-2 text-center my-4 bg-secondary">
+            py-2 text-center my-4 
+
+            @if($page_name == 'a_pos')
+            bg-success
+            @else
+            bg-secondary
+            @endif
+            ">
 
             <i class="fas w_f fa-tachometer-alt"></i> Point Of Sale
 
           </div></a>
 
           <a class="text-white" href="{{ route('userController.addUser') }}">
-            <div class=" bg-secondary py-2 text-center my-4">
+            <div class=" 
+            @if($page_name == 'addUser')
+            bg-success
+            @else
+            bg-secondary
+            @endif py-2 text-center my-4">
 
               <i class="fas w_f fa-chart-line"></i> Add Customer
 
@@ -112,7 +124,13 @@ $u_type = $userinfo[0]['u_type'];
 
             <a class="text-light" href='{{ route("userController.add_factory") }}'>
               <div class="
-              py-2 text-center my-4 bg-secondary">
+              py-2 text-center my-4 
+
+              @if($page_name == 'add_factory')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
 
               <i class="fas w_f fa-user "></i> Add Factory
 
@@ -120,7 +138,13 @@ $u_type = $userinfo[0]['u_type'];
 
             <a class="text-light" href='{{ route("userController.ship_req_india") }}'>
               <div class="  
-              py-2 text-center my-4 bg-secondary">
+              py-2 text-center my-4 
+
+              @if($page_name == 'ship_req_india')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
 
               <i class="fas fa-shopping-cart"></i> Shipment Request <span class="badge badge-primary p-2 text-white " id="reqCount">0</span>
 
@@ -129,7 +153,13 @@ $u_type = $userinfo[0]['u_type'];
 
             <a class="text-light" href='{{ route("userController.ship_req_bd") }}'>
               <div class="  
-              py-2 text-center my-4 bg-secondary">
+              py-2 text-center my-4 
+
+              @if($page_name == 'ship_req_bd')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
 
               <i class="fas fa-shopping-cart"></i> Request Shipment BD 
 
@@ -138,7 +168,13 @@ $u_type = $userinfo[0]['u_type'];
 
             <a class="text-light" href='{{ route("accountController.shipment_status") }}'>
               <div class="  
-              py-2 text-center my-4 bg-secondary">
+              py-2 text-center my-4 
+
+              @if($page_name == 'shipment_status')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
 
               <i class="fas fa-shopping-cart"></i> Shipment Status 
 
@@ -146,14 +182,26 @@ $u_type = $userinfo[0]['u_type'];
 
 
             <a class="text-white" href="{{ route('userController.add_raw_materials') }}">
-              <div class="  bg-secondary py-2 text-center my-4">
+              <div class="  
+              @if($page_name == 'add_raw_materials')
+              bg-success
+              @else
+              bg-secondary
+              @endif py-2 text-center my-4">
 
                 <i class="fas w_f fa-envelope"></i> Raw Materials
 
               </div></a>
 
               <a class="text-white" href='{{ route("accountController.money_transfer") }}'>
-                <div class="bg-secondary py-2 text-center my-4">
+                <div class="
+
+                @if($page_name == 'money_transfer')
+                bg-success
+                @else
+                bg-secondary
+                @endif 
+                py-2 text-center my-4">
 
                   <i class="fas fa-shopping-cart"></i> Money Transfer
 
@@ -163,7 +211,14 @@ $u_type = $userinfo[0]['u_type'];
 
 
               <a class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
-                <div class="bg-secondary py-2 text-center my-4">
+                <div class="
+
+                @if($page_name == 'money_transfer_request')
+                bg-success
+                @else
+                bg-secondary
+                @endif
+                py-2 text-center my-4">
 
                   <i class="fas fa-shopping-cart"></i> Money Transfer Req <span class="badge badge-primary p-2 text-white " id="moneyTrCount">0</span>
 
@@ -174,7 +229,15 @@ $u_type = $userinfo[0]['u_type'];
 
 
               <a class="text-white" href='{{ route("accountController.money_transfer_status") }}'>
-                <div class="bg-secondary py-2 text-center my-4">
+                <div class="
+
+                @if($page_name == 'money_transfer_status')
+                bg-success
+                @else
+                bg-secondary
+                @endif
+
+                 py-2 text-center my-4">
 
                   <i class="fas fa-shopping-cart"></i> Money Transfer Status 
 
@@ -184,7 +247,15 @@ $u_type = $userinfo[0]['u_type'];
 
 
               <a class="text-white" href="{{ route('accountController.sales_report') }}">
-                <div class="  bg-secondary py-2 text-center my-4">
+                <div class="  
+
+                @if($page_name == 'reports')
+                bg-success
+                @else
+                bg-secondary
+                @endif
+
+                 py-2 text-center my-4">
 
                   <i class="fab fa-product-hunt"></i> Sales  Reports
 

@@ -24,7 +24,7 @@ class userController extends Controller
 
         //return $req;
         //return $userinfo[0]['u_id'];
-            return view('user.addUser')->withMsg('')->withUserinfo($userinfo2);
+            return view('user.addUser')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'addUser');
         //return view('dashboard/dashboard' , $userinfo);
         }else{
             return redirect()->route('authenticationController.logout');
@@ -94,7 +94,7 @@ public function add_factory(Request $req){
 
 
         //return $userinfo[0]['u_id'];
-    return view('product.addFactory')->withMsg('')->withUserinfo($userinfo2);
+    return view('product.addFactory')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'add_factory');
         //return view('dashboard/dashboard' , $userinfo);
 }else{
     return redirect()->route('authenticationController.logout');
@@ -169,7 +169,7 @@ public function ship_req_india(Request $req){
 
 
         //return $userinfo[0]['u_id'];
-    return view('product.ship_req_india')->withMsg('none')->withUserinfo($userinfo2)->with('ship_reqs' , $ship_reqs );
+    return view('product.ship_req_india')->withMsg('none')->withUserinfo($userinfo2)->with('ship_reqs' , $ship_reqs )->with('page_name' , 'ship_req_india');
         //return view('dashboard/dashboard' , $userinfo);
 }else{
     return redirect()->route('authenticationController.logout');
@@ -196,7 +196,7 @@ public function ship_req_bd(Request $req){
         //return $userinfo['userinfo'];
         //return $userinfo1[0]->u_id;
         //return $userinfo[0]['u_id'];
-        return view('product.ship_req_bd')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2)->with('productList' , $productList);
+        return view('product.ship_req_bd')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2)->with('productList' , $productList)->with('page_name' , 'ship_req_bd');
         //return view('dashboard/dashboard' , $userinfo);
         }else{
             return redirect()->route('authenticationController.logout');
@@ -383,7 +383,7 @@ public function add_raw_materials(Request $req){
 
 
         //return $userinfo[0]['u_id'];
-        return view('product.add_raw_materials')->withMsg('')->withUserinfo($userinfo2)->with('rawMaterials' , $rawMaterials)->with('factories' , $factories);
+        return view('product.add_raw_materials')->withMsg('')->withUserinfo($userinfo2)->with('rawMaterials' , $rawMaterials)->with('factories' , $factories)->with('page_name' , 'add_raw_materials');
         //return view('dashboard/dashboard' , $userinfo);
     }else{
         return redirect()->route('authenticationController.logout');
