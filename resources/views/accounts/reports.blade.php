@@ -129,7 +129,7 @@
       </td>
 
       <td>
-        <a href="{{ route('accountController.money_transfer_status') }}">
+        <a href="{{ route('accountController.all_sales') }}">
         <button  class="btn btn-info px-5">
           All Sales 
         </button>
