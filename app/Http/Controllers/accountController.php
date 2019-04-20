@@ -143,6 +143,34 @@ class accountController extends Controller
     }
 
 
+
+    public function all_sales( Request $req){
+
+        //echo $amount.' '.$user_id;
+        if($req->session()->has('userinfo')){
+            $userinfo1 = session('userinfo');
+            $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+            $userinfo['userinfo'] = $userinfo2;
+
+            //$balance = DB::select('select balance_available from account where user_id = 0');
+
+            $reports = DB::select('SELECT o.* , (o.total_amount - o.paid) as due, u.last_name FROM `order_t` o, user u WHERE  u.u_id = o.user_id
+');
+
+
+            return view('accounts.all_sales')->withUserinfo($userinfo2)->with('reports' , $reports)->with('page_name' , 'reports');
+        //return $req;
+        ///return $userinfo[0]['u_id'];
+            //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
+        //return view('dashboard/dashboard' , $userinfo);
+        }else{
+            return redirect()->route('authenticationController.logout');
+        }
+
+    }
+
+
  public function sales_report_yearly( Request $req){
 
         //echo $amount.' '.$user_id;

@@ -149,6 +149,9 @@ Route::get('/shipment_status' , 'accountController@shipment_status')->name('acco
 Route::get('/sales_report' , 'accountController@sales_report')->name('accountController.sales_report');
 
 
+Route::get('/all_sales' , 'accountController@all_sales')->name('accountController.all_sales');
+
+
 Route::get('/sales_report_yearly' , 'accountController@sales_report_yearly')->name('accountController.sales_report_yearly');
 
 
