@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Validator;
+use App\multipleSelectModel;
 
 class userController extends Controller
 {
@@ -330,7 +331,9 @@ public function a_shipment_request($uid){
      //echo 'hellow';
 
 
-    $status = DB::statement("call shipment_req(?)" , [$uid]);
+    //$status = DB::select(DB::raw("CALL shipment_req(?)" , [$uid]));
+
+    $results = multipleSelectModel::CallRaw('shipment_req',  [$uid]);
 
 
 }

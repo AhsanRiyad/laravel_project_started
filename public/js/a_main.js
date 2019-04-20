@@ -843,7 +843,7 @@ $('#button_request_shipment').click(function(){
 	//alert('reset button');
 	var url = $('#getUrl').html();
 
-	
+	alert(userid);
 	
 	var fullUrl = url+'a_shipment_request/'+userid;
 	//alert(fullUrl);
@@ -921,10 +921,7 @@ function ship_details(id)
 
 			$('#dialog').html(thead+h+hleg);
 			$( "#dialog" ).dialog( "open" );
-
-
-
-
+			$( "#dialog" ).button({icons: {primary: 'icon-volume-up icon-large'}});
 
 
 			//$('#product_list_div').html('');

@@ -88,10 +88,7 @@ Route::get('/add_factory' , 'userController@add_factory')->name('userController.
 Route::post('/add_factory' , 'userController@add_factoryPost')->name('userController.add_factory');
 
 
-
-
 Route::get('/ship_req_india' , 'userController@ship_req_india')->name('userController.ship_req_india');
-
 
 
 Route::get('/ship_req_bd' , 'userController@ship_req_bd')->name('userController.ship_req_bd');
