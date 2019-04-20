@@ -30,7 +30,7 @@ class AProductController extends Controller
 
         //return $userinfo1[0]->u_id;
         //return $userinfo[0]['u_id'];
-        return view('product.a_sell_product')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2);
+        return view('product.a_pos')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2);
         //return view('dashboard/dashboard' , $userinfo);
         }else{
             return redirect()->route('authenticationController.logout');

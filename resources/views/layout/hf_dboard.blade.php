@@ -53,155 +53,161 @@ $u_type = $userinfo[0]['u_type'];
 
 
   <body>
-  
-  
-<p hidden id="getUrl">{{ asset('') }}</p>
 
-  @yield('content')
+
+    <p hidden id="getUrl">{{ asset('') }}</p>
 
 
 
 
 
-<!-- navigation bar and search bar starts -->
-  <!-- fixed horizontal -->
-  <div class="admin_navbar_horizontal bg-secondary justify-content-center d-flex align-items-center">
-    <p class="text-white h3">Good Morning, {{ $userinfo[0]['last_name'] }}
-
-      
-    
-     </p>
-  </div>
 
 
+    <!-- navigation bar and search bar starts -->
+    <!-- fixed horizontal -->
 
-  <!-- fixed vertical -->
-  <div class=" admin_navbar_veritcal bg-dark ">
-    <div class=" bg-light d-flex justify-content-center">
-      <a href=><img class=" py-1" src="{{ asset( $logoSrc ) }}" alt=""></a>
 
+    <div class="admin_navbar_horizontal bg-secondary justify-content-center d-flex align-items-center">
+      <p class="text-white h3">Good Morning, {{ $userinfo[0]['last_name'] }}
+
+
+
+      </p>
     </div>
 
-    
-    @if($u_type == 'admin')
-    
-
-    
-      <a class="text-white" href="{{ route('a_pos.index') }}">
-      <div class="      
-        py-2 text-center my-4 bg-secondary">
-
-        <i class="fas w_f fa-tachometer-alt"></i> Point Of Sale
-
-      </div></a>
-
-      <a class="text-white" href="{{ route('userController.addUser') }}">
-        <div class=" bg-secondary py-2 text-center my-4">
-
-          <i class="fas w_f fa-chart-line"></i> Add Customer
-
-        </div></a>
-
-      
-
-        <a class="text-light" href='{{ route("userController.add_factory") }}'>
-          <div class="
-          py-2 text-center my-4 bg-secondary">
-
-          <i class="fas w_f fa-user "></i> Add Factory
-
-        </div></a>
-
-        <a class="text-light" href='{{ route("userController.ship_req_india") }}'>
-          <div class="  
-          py-2 text-center my-4 bg-secondary">
-
-          <i class="fas fa-shopping-cart"></i> Shipment Request <span class="badge badge-primary p-2 text-white " id="reqCount">0</span>
-
-        </div></a> 
 
 
-        <a class="text-light" href='{{ route("userController.ship_req_bd") }}'>
-          <div class="  
-          py-2 text-center my-4 bg-secondary">
-
-          <i class="fas fa-shopping-cart"></i> Request Shipment BD 
-
-        </div></a> 
+    <!-- fixed vertical -->
+    <div class="row">
+      <div class="col-3 col-lg-2">
 
 
-        <a class="text-light" href='{{ route("accountController.shipment_status") }}'>
-          <div class="  
-          py-2 text-center my-4 bg-secondary">
+        <div class=" admin_navbar_veritcal bg-dark ">
+          <div class=" bg-light d-flex justify-content-center">
+            <a href=><img class=" py-1" src="{{ asset( $logoSrc ) }}" alt=""></a>
 
-          <i class="fas fa-shopping-cart"></i> Shipment Status 
-
-        </div></a>
+          </div>
 
 
-        <a class="text-white" href="{{ route('userController.add_raw_materials') }}">
-          <div class="  bg-secondary py-2 text-center my-4">
+          @if($u_type == 'admin')
 
-            <i class="fas w_f fa-envelope"></i> Raw Materials
+
+
+          <a class="text-white" href="{{ route('a_pos.index') }}">
+            <div class="      
+            py-2 text-center my-4 bg-secondary">
+
+            <i class="fas w_f fa-tachometer-alt"></i> Point Of Sale
 
           </div></a>
-        
-       <a class="text-white" href='{{ route("accountController.money_transfer") }}'>
-          <div class="bg-secondary py-2 text-center my-4">
 
-            <i class="fas fa-shopping-cart"></i> Money Transfer
+          <a class="text-white" href="{{ route('userController.addUser') }}">
+            <div class=" bg-secondary py-2 text-center my-4">
 
-          </div>
-
-        </a>
-        
-
-        <a class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
-          <div class="bg-secondary py-2 text-center my-4">
-
-            <i class="fas fa-shopping-cart"></i> Money Transfer Req <span class="badge badge-primary p-2 text-white " id="moneyTrCount">0</span>
-
-          </div>
-
-        </a>
-
-
-
-         <a class="text-white" href='{{ route("accountController.money_transfer_status") }}'>
-          <div class="bg-secondary py-2 text-center my-4">
-
-            <i class="fas fa-shopping-cart"></i> Money Transfer Status 
-
-          </div>
-
-        </a>
-
-
-          <a class="text-white" href="{{ route('accountController.sales_report') }}">
-            <div class="  bg-secondary py-2 text-center my-4">
-
-              <i class="fab fa-product-hunt"></i> Sales  Reports
+              <i class="fas w_f fa-chart-line"></i> Add Customer
 
             </div></a>
 
 
 
-            <a class="text-white" href="  {{ route($signout) }}  ">
-              <div class="  bg-danger py-2 text-center my-4">
+            <a class="text-light" href='{{ route("userController.add_factory") }}'>
+              <div class="
+              py-2 text-center my-4 bg-secondary">
 
-                <i class="fas fa-sign-out-alt"></i>Sign Out
+              <i class="fas w_f fa-user "></i> Add Factory
+
+            </div></a>
+
+            <a class="text-light" href='{{ route("userController.ship_req_india") }}'>
+              <div class="  
+              py-2 text-center my-4 bg-secondary">
+
+              <i class="fas fa-shopping-cart"></i> Shipment Request <span class="badge badge-primary p-2 text-white " id="reqCount">0</span>
+
+            </div></a> 
+
+
+            <a class="text-light" href='{{ route("userController.ship_req_bd") }}'>
+              <div class="  
+              py-2 text-center my-4 bg-secondary">
+
+              <i class="fas fa-shopping-cart"></i> Request Shipment BD 
+
+            </div></a> 
+
+
+            <a class="text-light" href='{{ route("accountController.shipment_status") }}'>
+              <div class="  
+              py-2 text-center my-4 bg-secondary">
+
+              <i class="fas fa-shopping-cart"></i> Shipment Status 
+
+            </div></a>
+
+
+            <a class="text-white" href="{{ route('userController.add_raw_materials') }}">
+              <div class="  bg-secondary py-2 text-center my-4">
+
+                <i class="fas w_f fa-envelope"></i> Raw Materials
 
               </div></a>
 
+              <a class="text-white" href='{{ route("accountController.money_transfer") }}'>
+                <div class="bg-secondary py-2 text-center my-4">
 
-      
+                  <i class="fas fa-shopping-cart"></i> Money Transfer
+
+                </div>
+
+              </a>
 
 
-    @endif
+              <a class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
+                <div class="bg-secondary py-2 text-center my-4">
+
+                  <i class="fas fa-shopping-cart"></i> Money Transfer Req <span class="badge badge-primary p-2 text-white " id="moneyTrCount">0</span>
+
+                </div>
+
+              </a>
 
 
 
-    @if($u_type == 'user')
+              <a class="text-white" href='{{ route("accountController.money_transfer_status") }}'>
+                <div class="bg-secondary py-2 text-center my-4">
+
+                  <i class="fas fa-shopping-cart"></i> Money Transfer Status 
+
+                </div>
+
+              </a>
+
+
+              <a class="text-white" href="{{ route('accountController.sales_report') }}">
+                <div class="  bg-secondary py-2 text-center my-4">
+
+                  <i class="fab fa-product-hunt"></i> Sales  Reports
+
+                </div></a>
+
+
+
+                <a class="text-white" href="  {{ route($signout) }}  ">
+                  <div class="  bg-danger py-2 text-center my-4">
+
+                    <i class="fas fa-sign-out-alt"></i>Sign Out
+
+                  </div></a>
+
+
+
+
+
+                  @endif
+
+
+
+                  @if($u_type == 'user')
   <!-- <a class="text-light" href='http://localhost:3000/dashboard/profile'>
           <div class="
           py-2 text-center my-4 bg-secondary">
@@ -210,60 +216,65 @@ $u_type = $userinfo[0]['u_type'];
   
         </div></a> -->
 
-    <a class="text-light" href='http://localhost:3000/dashboard/profile'>
+        <a class="text-light" href='http://localhost:3000/dashboard/profile'>
           <div class="
           py-2 text-center my-4 bg-secondary">
 
           <i class="fas w_f fa-user "></i> Profile
 
         </div></a>
-    
 
 
-    <a class="text-white" href='<%=homepage%>'>
+
+        <a class="text-white" href='<%=homepage%>'>
           <div class="bg-success py-2 text-center my-4">
 
             <i class="fas fa-shopping-cart"></i> Back to Shop Page
 
           </div></a>
 
-            <a class="text-white" href='<%=signout%>'>
-              <div class="  bg-danger py-2 text-center my-4">
+          <a class="text-white" href='<%=signout%>'>
+            <div class="  bg-danger py-2 text-center my-4">
 
-                <i class="fas fa-sign-out-alt"></i>Sign Out
+              <i class="fas fa-sign-out-alt"></i>Sign Out
 
-              </div></a>
-
-
+            </div></a>
 
 
 
 
-    @endif
 
+
+            @endif
+
+
+
+          </div>
+        </div>
+
+      @yield('content')
     
 
-            </div>
+      
+
+
+      <!-- jquery -->
+      <script src="{{ asset('js/jquery-3.3.1.js') }}" ></script>
+
+      <!-- jquery ui -->
+      <script src="{{ asset('js/jquery-ui.js') }}" ></script>
+
+      <!-- bootstrap -->
+      <script src="{{ asset('js/bootstrap.js') }}" ></script>
+      <script src="{{ asset('js/bootstrap.bundle.js') }}" ></script>
 
 
 
-<!-- jquery -->
-    <script src="{{ asset('js/jquery-3.3.1.js') }}" ></script>
 
-    <!-- jquery ui -->
-    <script src="{{ asset('js/jquery-ui.js') }}" ></script>
+      <!-- main js -->
+      <script src="{{ asset('js/main.js') }}" ></script>
 
-    <!-- bootstrap -->
-    <script src="{{ asset('js/bootstrap.js') }}" ></script>
-    <script src="{{ asset('js/bootstrap.bundle.js') }}" ></script>
+      @yield('script')
 
 
-
-
-    <!-- main js -->
-    <script src="{{ asset('js/main.js') }}" ></script>
-
-   @yield('script')
-    
-
-  </body>
+    </body>

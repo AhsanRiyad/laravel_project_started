@@ -6,14 +6,27 @@
 @endsection
 
 
-@section('content')
+
 <p id="user_id" hidden >{{ $userinfo[0]['u_id'] }}</p>
 <p hidden="true" id='postReviewUrl'>
 {{ route('AProductController.addtocart') }}</p>
 
 
-<div class="row top-margin">
-	<div class="col-2 offset-2 p-5 rounded-left bg-info text-white">
+
+
+  @section('content')
+  
+  <div class="col-8">
+    
+ 
+
+  <div class="row top-margin">
+    
+  <div class="col-12 text-center bg-dark text-white">
+    <h1 class="p-2">Point of Sales</h1>
+  </div>
+
+	<div class="col-4   p-5 rounded-left bg-info text-white">
 	
 	<h3>Point of Sales</h3>
 
@@ -47,11 +60,11 @@
   </div>
 
  <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-6">
       <label for="">Paid</label>
       <input type="text" class="form-control" id="amount_paid_input" placeholder="0">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-6">
       <label for="">Left</label>
       <input disabled type="text" class="form-control" id="amount_left_input" placeholder="0">
     </div>
@@ -65,7 +78,7 @@
 	</div>
 
 
-<div class="col-3 p-5 t text-white bg-success">
+<div class="col-4 p-5 t text-white bg-success">
 	
 
 	<h3>Select Product</h3>
@@ -121,10 +134,9 @@
  
 
 </div>
+ </div>
 
-
-
-
+</div>
 
 </div>
 @endsection
