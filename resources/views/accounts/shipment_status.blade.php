@@ -30,6 +30,7 @@
         <th>id</th>
         <th>Requset Date</th>
         <th>Approve Date</th>
+        <th>Details</th>
         <th>Status</th>
 
       </tr>
@@ -43,6 +44,8 @@
           
           <td>{{ $s->req_date }}</td>
           <td>{{ $s->acc_date }}</td>
+          <td><button onclick="ship_details('{{$s->id}}');" class="btn btn-info px-3">Details</button></td>
+
       <td>
         
         @if ($s->status==0)

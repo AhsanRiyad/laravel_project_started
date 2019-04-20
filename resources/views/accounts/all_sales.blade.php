@@ -41,6 +41,7 @@
         <th>Order Date</th>
         <th>Total tk</th>
         <th>tk_paid</th>
+        <th>Details</th>
         <th>Due</th>
         
 
@@ -73,6 +74,14 @@
 
         <td>
           {{ $r->paid }}
+          
+        </td>
+
+
+        <td>
+          <button onclick="order_details('{{ $r->order_id }}')"  class="btn btn-info">
+            Details
+          </button>
           
         </td>
 
@@ -137,6 +146,9 @@
   </table>
 
 </div>
+</div>
+
+<div id="dialog" title="Shipment Dtails">
 </div>
 
 @endsection

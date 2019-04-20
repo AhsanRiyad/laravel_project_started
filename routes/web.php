@@ -77,6 +77,9 @@ Route::post('/a_cart_show/{user_id}' , 'AProductController@a_cart_show')->name('
 Route::post('/a_cart_order' , 'AProductController@a_cart_order')->name('AProductController.a_cart_order');
 
 
+Route::post('/order_details/{id}' , 'AProductController@order_details')->name('AProductController.order_details');
+
+
 
 Route::get('/add_user' , 'userController@addUser')->name('userController.addUser');
 

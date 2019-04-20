@@ -173,6 +173,23 @@ public function req_countPost(){
   }
 
 
+
+public function order_details($id){
+
+    //echo $uid;
+    // echo 'hellow';
+
+    $results = DB::select('select o.* , p.product_name , p.product_sell_price from order_includ_product  o, products p where o.product_id = p.product_id and order_id = (?)' , [$id]);
+
+    return $results;
+    
+
+
+
+}
+
+
+
   public function a_cart_order(Request $req){
 
     //echo $req->myinfo;
