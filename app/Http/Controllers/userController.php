@@ -162,7 +162,7 @@ public function ship_req_india(Request $req){
     $userinfo['userinfo'] = $userinfo2;
 
 
-    $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0 ');
+    $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0  order by id desc');
 
     // return $ship_reqs;
     //dd($ship_reqs);
@@ -333,7 +333,29 @@ public function a_shipment_request($uid){
 
     //$status = DB::select(DB::raw("CALL shipment_req(?)" , [$uid]));
 
-    $results = multipleSelectModel::CallRaw('shipment_req',  [$uid]);
+     try {
+
+        $count = DB::select('select count(*) as c from shipment_temp where admin_id = (?)' , [$uid]);
+        
+
+         if($count[0]->c ==0){
+
+            throw new Exception("No Product Found", 1);
+            
+         }else{
+
+            $results = multipleSelectModel::CallRaw('shipment_req',  [$uid]);
+
+         }
+        
+
+
+    } catch (Exception $e) {
+        //report($e);
+
+        //return $e->getMessage;
+        return false;
+    }
 
 
 }

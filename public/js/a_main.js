@@ -843,7 +843,7 @@ $('#button_request_shipment').click(function(){
 	//alert('reset button');
 	var url = $('#getUrl').html();
 
-	alert(userid);
+	//alert(userid);
 	
 	var fullUrl = url+'a_shipment_request/'+userid;
 	//alert(fullUrl);
@@ -860,7 +860,9 @@ $('#button_request_shipment').click(function(){
 		},
 		error: function(error){
 						//alert(error);
-						alert('error');
+						//res = JSON.stringify(error);
+						 alert('No Product Selected');
+						console.log('No Product Selected');
 
 					}
 				});
