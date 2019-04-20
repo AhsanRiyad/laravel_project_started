@@ -12,21 +12,18 @@
 {{ route('AProductController.addtocart') }}</p>
 
 
-
-
   @section('content')
   
   <div class="col-8">
     
  
-
   <div class="row top-margin">
     
   <div class="col-12 text-center bg-dark text-white">
     <h1 class="p-2">Point of Sales</h1>
   </div>
 
-	<div class="col-4   p-5 rounded-left bg-info text-white">
+	<div class="col-3   p-5 rounded-left bg-info text-white">
 	
 	<h3>Point of Sales</h3>
 
@@ -122,7 +119,7 @@
 
 	
 
-<div class="col-4 bg-secondary rounded-right text-white p-5">
+<div class="col-5 bg-secondary rounded-right text-white p-5">
 	
 <h3>Product List</h3>
 

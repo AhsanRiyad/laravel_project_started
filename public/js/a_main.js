@@ -172,16 +172,16 @@ $('#button_add_product').click(function(){
 
 						var element1 = '<div class="form-row"> \
 						\
-						<div class="form-group col-md-2"> \
+						<div class="form-group col-2"> \
 						<label for="inputEmail4"> id</label> \
 						<input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+res.cart_products[i].product_id+'> \
 						</div>\
-						<div class="form-group col-md-2"> \
+						<div class="form-group col-4"> \
 						<label for="inputPassword4">Name</label>\
 						<input disabled type="text" class="form-control" id="inputPassword4" placeholder="Password" value="'+res.cart_products[i].product_name+'"">\
 						</div>\
 						\
-						<div class="form-group col-md-2">\
+						<div class="form-group col-2">\
 						<label for="inputState">Quantity</label>\
 						<select onchange="changeQntity(this);" id="inputState" class="form-control">\
 						<option selected>Choose...</option>\
@@ -192,12 +192,12 @@ $('#button_add_product').click(function(){
 						<option selected value='+res.cart_products[i].quantity+' >'+res.cart_products[i].quantity+'</option>\ \
 						</select>\
 						</div>\
-						<div class="form-group col-md-2">\
+						<div class="form-group col-2">\
 						<label for="inputState">Update</label>\
 						<button onClick = "update_it('+res.cart_products[i].cart_id+' , '+res.cart_products[i].user_id+');"  class="btn btn-primary form-control">Update</button>\
 						</div>\
 						\
-						<div class="form-group col-md-2">\
+						<div class="form-group col-2">\
 						<label for="inputState">Delete</label>\
 						\
 						<a onClick = "delete_it('+res.cart_products[i].cart_id+' , '+res.cart_products[i].user_id+');"><button class="btn btn-primary form-control">Delete</button></a>\
