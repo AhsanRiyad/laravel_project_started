@@ -24,7 +24,7 @@ class accountController extends Controller
 
         //return $req;
         ///return $userinfo[0]['u_id'];
-            return view('accounts.money_transfer')->withMsg('')->withUserinfo($userinfo2)->with('balance' , $balance);
+            return view('accounts.money_transfer')->withMsg('')->withUserinfo($userinfo2)->with('balance' , $balance)->with('page_name' , 'money_transfer');
         //return view('dashboard/dashboard' , $userinfo);
         }else{
             return redirect()->route('authenticationController.logout');
@@ -55,7 +55,7 @@ class accountController extends Controller
 
         //return $req;
         ///return $userinfo[0]['u_id'];
-            return view('accounts.money_transfer')->withMsg('Successful')->withUserinfo($userinfo2)->with('balance' , $balance);
+            return view('accounts.money_transfer')->withMsg('Successful')->withUserinfo($userinfo2)->with('balance' , $balance)->with('page_name' , 'money_transfer');
         //return view('dashboard/dashboard' , $userinfo);
         }else{
             return redirect()->route('authenticationController.logout');
@@ -81,7 +81,7 @@ class accountController extends Controller
 
         //return $req;
         ///return $userinfo[0]['u_id'];
-            return view('accounts.money_transfer_status')->withMsg('')->withUserinfo($userinfo2)->with('money_transfer' , $money_transfer);
+            return view('accounts.money_transfer_status')->withMsg('')->withUserinfo($userinfo2)->with('money_transfer' , $money_transfer)->with('page_name' , 'money_transfer_status');
         //return view('dashboard/dashboard' , $userinfo);
         }else{
             return redirect()->route('authenticationController.logout');
@@ -108,7 +108,7 @@ class accountController extends Controller
 
         //return $req;
         ///return $userinfo[0]['u_id'];
-            return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
+            return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log)->with('page_name' , 'shipment_status');
         //return view('dashboard/dashboard' , $userinfo);
         }else{
             return redirect()->route('authenticationController.logout');
@@ -131,7 +131,7 @@ class accountController extends Controller
 ');
 
 
-            return view('accounts.reports')->withUserinfo($userinfo2)->with('reports' , $reports);
+            return view('accounts.reports')->withUserinfo($userinfo2)->with('reports' , $reports)->with('page_name' , 'reports');
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
@@ -186,7 +186,7 @@ class accountController extends Controller
 ');
 
 
-            return view('accounts.money_transfer_req')->withUserinfo($userinfo2)->with('money' , $money)->withMsg('');
+            return view('accounts.money_transfer_req')->withUserinfo($userinfo2)->with('money' , $money)->withMsg('')->with('page_name' , 'money_transfer_request');
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
@@ -218,7 +218,7 @@ class accountController extends Controller
               $money = DB::select('SELECT * FROM `money_transfer` WHERE STATUS = 0
 ');
 
-            return view('accounts.money_transfer_req')->withUserinfo($userinfo2)->with('money' , $money)->withMsg('Approved');
+            return view('accounts.money_transfer_req')->withUserinfo($userinfo2)->with('money' , $money)->withMsg('Approved')with('page_name' , 'money_transfer_request');
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
