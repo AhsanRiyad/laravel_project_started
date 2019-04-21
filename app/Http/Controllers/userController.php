@@ -405,10 +405,6 @@ public function a_shipment_request($uid){
 
 
 
-
-
-
-
 public function add_raw_materials(Request $req){
 
     //return 'hellow';

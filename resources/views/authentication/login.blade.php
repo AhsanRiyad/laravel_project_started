@@ -21,8 +21,12 @@ $loginStatus=false;
         <div class="container">
           <div class="row py-4">
             
-              
 
+             @foreach($errors->all() as $message)
+                         {{$message}} <br/>
+                         @endforeach
+              
+              
               @if($validCheck == 'true')
               
               <p class="text-dark h4" id="login_id">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\authenticationModel;
+use App\Http\Requests\loginRequest;
+
 
 class authenticationController extends Controller
 {
@@ -27,7 +29,7 @@ class authenticationController extends Controller
 
 
 
-    public static function loginCheck(Request $req){
+    public static function loginCheck(loginRequest $req){
 
 
 

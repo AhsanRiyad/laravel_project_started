@@ -21,6 +21,12 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
+//when the project folder inside the XAMPP folder
+// require __DIR__.'/../../laravel_project_started/vendor/autoload.php';
+
+
+
+
 require __DIR__.'/../vendor/autoload.php';
 
 /*
@@ -35,6 +41,11 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
+
+
+
+//when the project folder inside the XAMPP folder
+// $app = require_once __DIR__.'/../../laravel_project_started/bootstrap/app.php';
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 /*
