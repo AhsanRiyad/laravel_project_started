@@ -23,16 +23,27 @@ class loginRequest extends FormRequest
      */
     public function rules()
     {
-        return [ 'email' => 'required'  , 'password' => 'required' ];
+        return [ 'email' => 'required|email'  , 'password' => 'required|string|size:6' ];
     }
 
 
 
-      public function messages(){
+    public function messages(){
         return [
             'email.required' => ':attribute field is empty',
             'password.required' => ':attribute No field is empty'
         ];
+    }
+
+
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($validator->errors()!=[]) {
+                $validator->errors()->add('msg', 'Field requirement not met up');
+            }
+        });
     }
 
 

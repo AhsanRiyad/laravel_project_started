@@ -11,7 +11,7 @@ $loginStatus=false;
 
 
 <!-- login form starts -->
-<form  method="post" action="{{ route('authentication.login1', [2]) }}">
+<form  method="post" action="{{ route('authentication.login', ) }}">
 
   @csrf
 
@@ -21,11 +21,12 @@ $loginStatus=false;
         <div class="container">
           <div class="row py-4">
             
+<!-- 
+            @foreach($errors->all() as $e)
+                {{ $e }}
 
-             @foreach($errors->all() as $message)
-                         {{$message}} <br/>
-                         @endforeach
-              
+            @endforeach
+               -->
               
               @if($validCheck == 'true')
               
@@ -45,14 +46,29 @@ $loginStatus=false;
               @endif
 
               </p>
+
+              <br>
+
+              
+
+
           </div>
 
           <div class="row justify-content-xl-center bg-white py-5 mb-5">
 
             <div class="col-12 col-xl-6 ">
-
+              <p class="text-danger h4 bg-white">
+                 {{ $errors->first('msg') }} 
+              </p>
               <div class="form-group">
-                <label for="exampleInputEmail1" ><small id="idExampleInputEmail1Small">Email address*</small>
+                <label for="exampleInputEmail1" ><small id="idExampleInputEmail1Small">Email address*
+
+                
+
+                </small>
+                <small class="text-danger">
+                      {{ $errors->first('email') }} 
+                    </small>
                   <br>
           
 
@@ -63,9 +79,14 @@ $loginStatus=false;
                 >
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1"><small>Password*</small>
+                <label for="exampleInputPassword1"><small>Password* 
+                </small>
+                    
+                    <small class="text-danger">
+                      {{ $errors->first('password') }} 
+                    </small>
                   <br>
-
+                
 
 
                 </label>
