@@ -86,19 +86,8 @@ public function add_factory(Request $req){
 
 
 
-   if($req->session()->has('userinfo')){
-    $userinfo1 = session('userinfo');
-    $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-    $userinfo['userinfo'] = $userinfo2;
-
-
-        //return $userinfo[0]['u_id'];
-    return view('product.addFactory')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'add_factory');
-        //return view('dashboard/dashboard' , $userinfo);
-}else{
-    return redirect()->route('authenticationController.logout');
-}
+    return view('product.addFactory')->withMsg('')->withUserinfo($req->userinfo)->with('page_name' , 'add_factory');
+    
 }
 
 

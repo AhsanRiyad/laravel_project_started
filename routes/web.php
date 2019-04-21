@@ -86,7 +86,7 @@ Route::get('/add_user' , 'userController@addUser')->name('userController.addUser
 Route::post('/add_user' , 'userController@addUserPost')->name('userController.addUser');
 
 
-Route::get('/add_factory' , 'userController@add_factory')->name('userController.add_factory');
+Route::get('/add_factory' , 'userController@add_factory')->name('userController.add_factory')->middleware('sessioncheck');
 
 Route::post('/add_factory' , 'userController@add_factoryPost')->name('userController.add_factory');
 
