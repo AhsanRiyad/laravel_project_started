@@ -53,13 +53,10 @@ Route::get('/db', 'productController@autosearch');
 
 
 
-
 Route::group(["middleware"=>['sessioncheck']], function(){
 
 
 Route::get('/add_factory' , 'userController@add_factory')->name('userController.add_factory');
-
-
 
 Route::resource('/a_pos' , 'AProductController');
 
@@ -67,10 +64,6 @@ Route::resource('/a_pos' , 'AProductController');
 
 Route::post('/a_cart' , 'AProductController@addtocart')->name('AProductController.addtocart');
 
-
-Route::get('/a_cart' , function(){
-	return 'hellow';
-});
 
 
 Route::post('/a_cart_delete/{cart_id}/{user_id}' , 'AProductController@a_cart_delete')->name('AProductController.a_cart_delete');
@@ -179,23 +172,15 @@ Route::post('/money_accept/{id}/{admin_id}' , 'accountController@money_accept')-
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
+
+
+
+//redirecting test route
+Route::get('/ff' , 'TestingController@test');
+
+Route::get('/f1' , 'TestingController@test2');
+
+
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\testing;
 use Illuminate\Http\Request;
 
+
 class TestingController extends Controller
 {
     /**
@@ -12,6 +13,23 @@ class TestingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function test()
+    {
+        return redirect('f1')->withR1('this is R1');
+    }
+
+    public function test2()
+    {
+        return session('r1');
+    }
+
+
+
+
+
+
     public function index()
     {
         //
