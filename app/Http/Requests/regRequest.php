@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class loginRequest extends FormRequest
+class regRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class loginRequest extends FormRequest
      */
     public function rules()
     {
-        return [ 'email' => 'required|email'  , 'password' => 'required|string|between:6,20' ];
+        return [ 'email' => 'required|email'  , 'password' => 'required|string|size:6' ];
     }
 
 
@@ -40,11 +40,9 @@ class loginRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            if ($validator->errors()->all()!=[]) {
+            if ($validator->errors()!=[]) {
                 $validator->errors()->add('msg', 'Field requirement not met up');
             }
         });
     }
-
-
 }
