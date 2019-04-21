@@ -49,10 +49,22 @@ Route::get('/db', 'productController@autosearch');
 
 
 ///////////////////////assignment routes//////////////////////////////
+
+
+
+
+
+Route::group(["middleware"=>['sessioncheck']], function(){
+
+
+Route::get('/add_factory' , 'userController@add_factory')->name('userController.add_factory');
+
+
+
 Route::resource('/a_pos' , 'AProductController');
 
 
-//
+
 Route::post('/a_cart' , 'AProductController@addtocart')->name('AProductController.addtocart');
 
 
@@ -84,9 +96,6 @@ Route::post('/order_details/{id}' , 'AProductController@order_details')->name('A
 Route::get('/add_user' , 'userController@addUser')->name('userController.addUser');
 
 Route::post('/add_user' , 'userController@addUserPost')->name('userController.addUser');
-
-
-Route::get('/add_factory' , 'userController@add_factory')->name('userController.add_factory')->middleware('sessioncheck');
 
 Route::post('/add_factory' , 'userController@add_factoryPost')->name('userController.add_factory');
 
@@ -171,3 +180,22 @@ Route::post('/money_accept/{id}/{admin_id}' , 'accountController@money_accept')-
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});

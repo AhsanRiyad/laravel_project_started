@@ -12,23 +12,17 @@ class accountController extends Controller
     public function money_transfer( Request $req){
 
     	//echo $amount.' '.$user_id;
-    	if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
 
-            $userinfo['userinfo'] = $userinfo2;
 
-            $balance = DB::select('select balance_available from account where user_id = 0');
+        $balance = DB::select('select balance_available from account where user_id = 0');
 
 
 
         //return $req;
         ///return $userinfo[0]['u_id'];
-            return view('accounts.money_transfer')->withMsg('')->withUserinfo($userinfo2)->with('balance' , $balance)->with('page_name' , 'money_transfer');
+            return view('accounts.money_transfer')->withMsg('')->withUserinfo($req->userinfo)->with('balance' , $balance)->with('page_name' , 'money_transfer');
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+        
 
     }
 
@@ -38,11 +32,7 @@ class accountController extends Controller
     public function money_transferPost( Request $req){
 
     	//echo $amount.' '.$user_id;
-    	if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
+    	
 
             
 
@@ -55,11 +45,9 @@ class accountController extends Controller
 
         //return $req;
         ///return $userinfo[0]['u_id'];
-            return view('accounts.money_transfer')->withMsg('Successful')->withUserinfo($userinfo2)->with('balance' , $balance)->with('page_name' , 'money_transfer');
+            return view('accounts.money_transfer')->withMsg('Successful')->withUserinfo($req->userinfo)->with('balance' , $balance)->with('page_name' , 'money_transfer');
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+        
 
     }
 
@@ -68,11 +56,7 @@ class accountController extends Controller
     public function money_transfer_status( Request $req){
 
     	//echo $amount.' '.$user_id;
-    	if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
+    	
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
@@ -81,12 +65,9 @@ class accountController extends Controller
 
         //return $req;
         ///return $userinfo[0]['u_id'];
-            return view('accounts.money_transfer_status')->withMsg('')->withUserinfo($userinfo2)->with('money_transfer' , $money_transfer)->with('page_name' , 'money_transfer_status');
+            return view('accounts.money_transfer_status')->withMsg('')->withUserinfo($req->userinfo)->with('money_transfer' , $money_transfer)->with('page_name' , 'money_transfer_status');
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
-
+        
     }
 
 
@@ -95,11 +76,7 @@ class accountController extends Controller
     public function shipment_status( Request $req){
 
     	//echo $amount.' '.$user_id;
-    	if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
+    	
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
@@ -108,22 +85,16 @@ class accountController extends Controller
 
         //return $req;
         ///return $userinfo[0]['u_id'];
-            return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log)->with('page_name' , 'shipment_status');
+            return view('accounts.shipment_status')->withMsg('')->withUserinfo($req->userinfo)->with('shipment_log' , $shipment_log)->with('page_name' , 'shipment_status');
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+        
 
     }
 
     public function sales_report( Request $req){
 
         //echo $amount.' '.$user_id;
-        if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
+        
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
@@ -131,14 +102,12 @@ class accountController extends Controller
 ');
 
 
-            return view('accounts.reports')->withUserinfo($userinfo2)->with('reports' , $reports)->with('page_name' , 'reports');
+            return view('accounts.reports')->withUserinfo($req->userinfo)->with('reports' , $reports)->with('page_name' , 'reports');
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+        
 
     }
 
@@ -147,11 +116,7 @@ class accountController extends Controller
     public function all_sales( Request $req){
 
         //echo $amount.' '.$user_id;
-        if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
+        
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
@@ -159,14 +124,12 @@ class accountController extends Controller
 ');
 
 
-            return view('accounts.all_sales')->withUserinfo($userinfo2)->with('reports' , $reports)->with('page_name' , 'reports');
+            return view('accounts.all_sales')->withUserinfo($req->userinfo)->with('reports' , $reports)->with('page_name' , 'reports');
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+       
 
     }
 
@@ -174,11 +137,7 @@ class accountController extends Controller
  public function sales_report_yearly( Request $req){
 
         //echo $amount.' '.$user_id;
-        if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
+     
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
@@ -186,14 +145,12 @@ class accountController extends Controller
 ');
 
 
-            return view('accounts.reports')->withUserinfo($userinfo2)->with('reports' , $reports);
+            return view('accounts.reports')->withUserinfo($req->userinfo)->with('reports' , $reports);
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+      
 
     }
 
@@ -202,11 +159,7 @@ class accountController extends Controller
      public function money_transfer_request( Request $req){
 
         //echo $amount.' '.$user_id;
-        if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
+        
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
@@ -214,14 +167,12 @@ class accountController extends Controller
 ');
 
 
-            return view('accounts.money_transfer_req')->withUserinfo($userinfo2)->with('money' , $money)->withMsg('')->with('page_name' , 'money_transfer_request');
+            return view('accounts.money_transfer_req')->withUserinfo($req->userinfo)->with('money' , $money)->withMsg('')->with('page_name' , 'money_transfer_request');
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+        
 
     }
 
@@ -231,11 +182,7 @@ class accountController extends Controller
 
      public function money_transfer_requestPost( Request $req){
 
-        if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
+        
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
@@ -246,14 +193,12 @@ class accountController extends Controller
               $money = DB::select('SELECT * FROM `money_transfer` WHERE STATUS = 0
 ');
 
-            return view('accounts.money_transfer_req')->withUserinfo($userinfo2)->with('money' , $money)->withMsg('Approved')->with('page_name' , 'money_transfer_request');
+            return view('accounts.money_transfer_req')->withUserinfo($req->userinfo)->with('money' , $money)->withMsg('Approved')->with('page_name' , 'money_transfer_request');
         //return $req;
         ///return $userinfo[0]['u_id'];
             //return view('accounts.shipment_status')->withMsg('')->withUserinfo($userinfo2)->with('shipment_log' , $shipment_log);
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+        
 
     }
 

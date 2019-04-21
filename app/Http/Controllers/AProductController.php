@@ -22,19 +22,13 @@ class AProductController extends Controller
         $users = DB::select("select * from user where u_type = 'user' ");
         //return $results;
 
-        if($req->session()->has('userinfo')){
-        $userinfo1 = session('userinfo');
-        $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-        $userinfo['userinfo'] = $userinfo2;
+       
 
         //return $userinfo1[0]->u_id;
         //return $userinfo[0]['u_id'];
-        return view('product.a_pos')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2)->with('page_name' , 'a_pos');
+        return view('product.a_pos')->withProducts($products)->withUsers($users)->withUserinfo($req->userinfo)->with('page_name' , 'a_pos');
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+        
 
 
 

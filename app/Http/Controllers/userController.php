@@ -6,29 +6,19 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 use App\multipleSelectModel;
+Use Exception;
 
 class userController extends Controller
 {
 
     public function addUser(Request $req){
 
-    	if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
 
-            $userinfo['userinfo'] = $userinfo2;
-
-
-
-
-
-        //return $req;
+     //return $req;
         //return $userinfo[0]['u_id'];
-            return view('user.addUser')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'addUser');
+        return view('user.addUser')->withMsg('')->withUserinfo($req->userinfo)->with('page_name' , 'addUser');
         //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
-        }
+        
 
     } 
 
@@ -36,49 +26,59 @@ class userController extends Controller
     public function addUserPost(Request $req){
 
 
-
-        if($req->session()->has('userinfo')){
-            $userinfo1 = session('userinfo');
-            $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-            $userinfo['userinfo'] = $userinfo2;
-
-            $status = 'successful' ;
-            $Validation = Validator::make($req->all() , [
-                'name'=>'required',
-                'email'=>'required',
-                'password'=>'required',
-                'type'=>'required'
-            ]);
+        $status = 'successful' ;
+        $Validation = Validator::make($req->all() , [
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'type'=>'required'
+        ]);
 
          //$Validation->Validate();
 
-            if($Validation->fails()){
+        if($Validation->fails()){
             //return $userinfo[0]['u_id'];
 
-                $msg = 'Some field missing';
+            $msg = 'Some field missing';
 
-                return view('user.addUser')->withMsg($msg)->withUserinfo($userinfo2);
-            }else{
+            return view('user.addUser')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser');
+        }else{
 
-               $status = DB::insert("INSERT INTO `user`(`u_password`, `u_email` , `u_type`,`last_name`) VALUES (?,?,?,?)" , [$req->password , $req->email , $req->type , $req->name ] );
 
-               $msg = 'Registration Successful';
+
+         try {
+
+            $status = DB::insert("INSERT INTO `user`(`u_password`, `u_email` , `u_type`,`last_name`) VALUES (?,?,?,?)" , [$req->password , $req->email , $req->type , $req->name ] );
+
+            $msg = 'Registration Successful';
             //return $status;
         //return $req->password;
         //return $userinfo[0]['u_id'];
-               return view('user.addUser')->withMsg($msg)->withUserinfo($userinfo2);
 
-           }
+            //throw new Exception("Duplicate Email", 1);
+
+            return view('user.addUser')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser');
+
+
+        } catch (Exception $e) {
+            //report($e);
+
+         $msg = 'Failed! Duplicate Email';
+            //return $status;
+        //return $req->password;
+        //return $userinfo[0]['u_id'];
+         return view('user.addUser')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser');
+     }
 
 
 
+
+
+ }
 
 
         //return view('dashboard/dashboard' , $userinfo);
-       }else{
-        return redirect()->route('authenticationController.logout');
-    }
+
 
 }
 
@@ -100,42 +100,51 @@ public function add_factoryPost(Request $req){
 
 
 
-    if($req->session()->has('userinfo')){
-        $userinfo1 = session('userinfo');
-        $userinfo2 = json_decode(json_encode($userinfo1), true);
 
-        $userinfo['userinfo'] = $userinfo2;
 
-        $userinfo['userinfo'] = $userinfo2;
 
-        
-        $Validation = Validator::make($req->all() , [
-            'name'=>'required',
-            'location'=>'required'
-        ]);
+    $Validation = Validator::make($req->all() , [
+        'name'=>'required',
+        'location'=>'required'
+    ]);
 
-        if($Validation->fails()){
+    if($Validation->fails()){
             //return $userinfo[0]['u_id'];
 
-            $msg = 'Some field missing';
+        $msg = 'Some field missing';
             //return 'failed';
-            return view('product.addFactory')->withMsg($msg)->withUserinfo($userinfo2);
-        }
-        else{
-
-             $status = DB::insert("INSERT INTO `factory`(`name`, `location`) VALUES (?,?)" , [$req->name , $req->location ] );
-
-               $msg = 'Registration Successful';
-
-            return view('product.addFactory')->withMsg($msg)->withUserinfo($userinfo2);
-
-
-        }
-
-        
-    }else{
-        return redirect()->route('authenticationController.logout');
+        return view('product.addFactory')->withMsg($msg)->withUserinfo($req->userinfo);
     }
+    else{
+
+
+
+        try {
+
+
+            $status = DB::insert("INSERT INTO `factory`(`name`, `location`) VALUES (?,?)" , [$req->name , $req->location ] );
+
+            $msg = 'Registration Successful';
+
+            return view('product.addFactory')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'add_factory');
+
+
+        } catch (Exception $e) {
+
+            $msg = 'Failed! Database Exception';
+
+            return view('product.addFactory')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'add_factory');
+
+
+        }
+
+
+
+
+
+    }
+
+
 }
 
 
@@ -144,54 +153,82 @@ public function ship_req_india(Request $req){
 
 
 
-   if($req->session()->has('userinfo')){
-    $userinfo1 = session('userinfo');
-    $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-    $userinfo['userinfo'] = $userinfo2;
-
-
-    $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0  order by id desc');
+    try {
+        $ship_reqs = DB::select('select s.* , u.last_name from shipment s , user u   where u.u_id = s.admin_id_req  and  s.status = 0  order by id desc');
 
     // return $ship_reqs;
     //dd($ship_reqs);
 
-
         //return $userinfo[0]['u_id'];
-    return view('product.ship_req_india')->withMsg('none')->withUserinfo($userinfo2)->with('ship_reqs' , $ship_reqs )->with('page_name' , 'ship_req_india');
+    return view('product.ship_req_india')->withMsg('none')->withUserinfo($req->userinfo)->with('ship_reqs' , $ship_reqs )->with('page_name' , 'ship_req_india');
+        
+    }
+    catch (Exception $e) 
+    {
+        return view('product.ship_req_india')->withMsg('none')->withUserinfo($req->userinfo)->with('ship_reqs' , $ship_reqs )->with('page_name' , 'ship_req_india');
+    }
+
+    
         //return view('dashboard/dashboard' , $userinfo);
-}else{
-    return redirect()->route('authenticationController.logout');
-}
+
 }
 
 
 public function ship_req_bd(Request $req){
 
-    $products = DB::select('select * from products');
+
+
+
+        
+        try {
+
+
+            $products = DB::select('select * from products');
 
         $users = DB::select("select * from user where u_type = 'user' ");
         //return $results;
 
-        if($req->session()->has('userinfo')){
-        $userinfo1 = session('userinfo');
-        $userinfo2 = json_decode(json_encode($userinfo1), true);
+        
 
 
 
-        $productList = DB::select('SELECT s.* , p.product_name FROM `shipment_temp` s , products p WHERE p.product_id = s.product_id and s.admin_id = (?)' , [$userinfo1[0]->u_id]);
+//return $req->userinfo[0]['u_id'];
 
-        $userinfo['userinfo'] = $userinfo2;
+
+        $productList = DB::select('SELECT s.* , p.product_name FROM `shipment_temp` s , products p WHERE p.product_id = s.product_id and s.admin_id = (?)' , [$req->userinfo[0]['u_id']]);
+
+
+        
         //return $userinfo['userinfo'];
         //return $userinfo1[0]->u_id;
         //return $userinfo[0]['u_id'];
-        return view('product.ship_req_bd')->withProducts($products)->withUsers($users)->withUserinfo($userinfo2)->with('productList' , $productList)->with('page_name' , 'ship_req_bd');
-        //return view('dashboard/dashboard' , $userinfo);
-        }else{
-            return redirect()->route('authenticationController.logout');
+        
+
+        return view('product.ship_req_bd')->withProducts($products)->withUsers($users)->withUserinfo($req->userinfo)->with('productList' , $productList)->with('page_name' , 'ship_req_bd');
+            
+        } catch (Exception $e) {
+            
+
+            return 'Database Exception';
+
         }
 
-   
+
+        
+
+
+
+
+
+
+
+
+        //return view('dashboard/dashboard' , $userinfo);
+        
+    
+        //return view('dashboard/dashboard' , $userinfo);
+    
+
 }
 
 
@@ -200,7 +237,11 @@ public function ship_req_bd_post(Request $req){
     //echo 'hellow';
     //echo $req->myinfo;
 
-    $t = json_decode($req->myinfo);
+
+    try {
+
+
+        $t = json_decode($req->myinfo);
     //echo $t->uid;
 
 
@@ -216,12 +257,21 @@ public function ship_req_bd_post(Request $req){
 
 
     return json_encode($products);
+        
+    } catch (Exception $e) {
+        
+
+        return 'Exception Occured';
+
+    }
+
+    
 
 
 
 
 
-   
+
 }
 
 
@@ -267,7 +317,7 @@ public function ship_accept($admin_id , $ship_id){
     // return $results;
     // echo 'hellow'+$admin_id+' '+$ship_id;
     // echo $admin_id;
-    
+
     $status = DB::update('update shipment set status = 1 ,  acc_date = SYSDATE() , admin_id_acc = (?)  where id = (?) ' , [$ship_id , $admin_id]);
 
 
@@ -296,7 +346,7 @@ public function ship_reject($admin_id , $ship_id){
     // return $results;
     // echo 'hellow'+$admin_id+' '+$ship_id;
     // echo $admin_id;
-    
+
     $status = DB::update('update shipment set status = 2 ,  acc_date = SYSDATE() , admin_id_acc = (?)  where id = (?) ' , [$ship_id , $admin_id]);
 
 
@@ -325,29 +375,29 @@ public function a_shipment_request($uid){
 
     //$status = DB::select(DB::raw("CALL shipment_req(?)" , [$uid]));
 
-     try {
+ try {
 
-        $count = DB::select('select count(*) as c from shipment_temp where admin_id = (?)' , [$uid]);
-        
-
-         if($count[0]->c ==0){
-
-            throw new Exception("No Product Found", 1);
-            
-         }else{
-
-            $results = multipleSelectModel::CallRaw('shipment_req',  [$uid]);
-
-         }
-        
+    $count = DB::select('select count(*) as c from shipment_temp where admin_id = (?)' , [$uid]);
 
 
-    } catch (Exception $e) {
+    if($count[0]->c ==0){
+
+        throw new Exception("No Product Found", 1);
+
+    }else{
+
+        $results = multipleSelectModel::CallRaw('shipment_req',  [$uid]);
+
+    }
+
+
+
+} catch (Exception $e) {
         //report($e);
 
         //return $e->getMessage;
-        return false;
-    }
+    return false;
+}
 
 
 }
@@ -363,35 +413,21 @@ public function add_raw_materials(Request $req){
 
     //return 'hellow';
 
-    if($req->session()->has('userinfo')){
-        $userinfo1 = session('userinfo');
-        $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-        $userinfo['userinfo'] = $userinfo2;
-
         $rawMaterials = DB::select('select * from raw_materials');
 
         $factories = DB::select('select * from factory');
 
 
         //return $userinfo[0]['u_id'];
-        return view('product.add_raw_materials')->withMsg('')->withUserinfo($userinfo2)->with('rawMaterials' , $rawMaterials)->with('factories' , $factories)->with('page_name' , 'add_raw_materials');
+        return view('product.add_raw_materials')->withMsg('')->withUserinfo($req->userinfo)->with('rawMaterials' , $rawMaterials)->with('factories' , $factories)->with('page_name' , 'add_raw_materials');
         //return view('dashboard/dashboard' , $userinfo);
-    }else{
-        return redirect()->route('authenticationController.logout');
-    }
+    
 }
 
 public function add_raw_materialsPost(Request $req){
 
 
-    if($req->session()->has('userinfo')){
-        $userinfo1 = session('userinfo');
-        $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-        $userinfo['userinfo'] = $userinfo2;
-
-
+    
         $factory_id = $req->factory_name;
         $materials_id = $req->materials;
         $qntity = $req->quantity;
@@ -400,20 +436,15 @@ public function add_raw_materialsPost(Request $req){
         $status = DB::insert('INSERT INTO `factory_materials`(`factory_id`, `materials_id`, `qntity`) VALUES (? ,? , ?)' , [$factory_id , $materials_id , $qntity]);
 
 
-
-
-
         $rawMaterials = DB::select('select * from raw_materials');
 
         $factories = DB::select('select * from factory');
 
 
         //return $userinfo[0]['u_id'];
-        return view('product.add_raw_materials')->withMsg('Successful')->withUserinfo($userinfo2)->with('rawMaterials' , $rawMaterials)->with('factories' , $factories);
+        return view('product.add_raw_materials')->withMsg('Successful')->withUserinfo($req->userinfo)->with('rawMaterials' , $rawMaterials)->with('factories' , $factories)->with('page_name' , 'add_raw_materials');
         //return view('dashboard/dashboard' , $userinfo);
-    }else{
-        return redirect()->route('authenticationController.logout');
-    }
+    
 
 
 
