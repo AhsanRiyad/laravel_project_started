@@ -81,13 +81,13 @@ class authenticationController extends Controller
         $user['checkbox'] = '';  
         $user['validCheck'] = true; 
         $obj['nullVal'] = false;
-        $obj['regSuceess'] = 'other';;
+        $obj['regSuceess'] = 'other';
 
         return view('authentication/registration' , $user);
 
     }
 
-    public static function signUpCheck(Request $req){
+    public static function signUpCheck(regRequest $req){
 
         $user = ['msg' => 'Welcome, Create your Umart Account' , 'loginStatus' => false] ;
         $user['checkbox'] = '';  
@@ -101,7 +101,7 @@ class authenticationController extends Controller
         $userinfo['day'] = $req->day;
         $userinfo['year'] = $req->year;
         $userinfo['gender'] = $req->gender;
-        $userinfo['first_name'] = $req->first_name;
+        $userinfo['first_name'] = '';
         $userinfo['last_name'] = $req->last_name;
         $userinfo['phone'] = $req->phone;
         $userinfo['user_type'] = $req->user_type;

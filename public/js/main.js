@@ -53,7 +53,7 @@ $('#exampleInputEmail1').change(function(){
 
 	var val =  $(this).val();
 
-	var emailPat = /[\D]+[a-zA-Z0-9]*@[a-zA-Z]{3,8}\.{1}[a-zA-Z]{2,3}/g;
+	var emailPat = /^[\D]+[a-zA-Z0-9]*@[a-zA-Z]{3,8}\.{1}[a-zA-Z]{2,3}$/g;
 	var result = emailPat.test(val);
 
 	if(result == true)
@@ -77,6 +77,21 @@ $('#exampleInputEmail1').change(function(){
  var pass1, pass2;
  $('#exampleInputPassword1').change(function(){
  	pass1 = $(this).val();
+ 	//alert(pass1);
+ 	var patt = /^[\S]{6,20}$/g;
+
+ 	var status = patt.test(pass1);
+
+ 	if(!status){
+ 		//alert('wrong passw');
+ 		$('#password_error').text('invalid password');
+ 		$('#password_error').removeClass('text-success').addClass('text-danger');
+ 	}else{
+ 		$('#password_error').text('valid');
+
+ 		$('#password_error').removeClass('text-danger').addClass('text-success');
+
+ 	}
 
  })
 

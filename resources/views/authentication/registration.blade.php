@@ -237,14 +237,38 @@ $loginStatus=false;
 					<!-- first name input -->
 					<div class="col-12 col-xl-5 ">
 
-						<div class="form-group">
-							<label for="exampleInputEmail1"><small id="fnLabel">First Name*</small>
-								<br>
-								
-								
-							</label>
-							<input name="first_name"  type="text" class="form-control rounded-0" id="fnInput" aria-describedby="emailHelp" placeholder="Enter first name" value="">
-						</div>
+
+					<label for="exampleInputEmail1" ><small id="idExampleInputEmail1Small">Email address*
+
+                
+
+                </small>
+                <small class="text-danger">
+                      {{ $errors->first('email') }} 
+                    </small>
+                  <br>
+          
+
+
+                </label>
+
+						<div class="input-group">
+
+
+
+				
+
+
+
+									<select   name="user_type" class="custom-select rounded-0 pl-1 pl-lg-2 " id="inputGroupSelect01">
+										<option  value="type">Country</option>
+										<option selected value="bangladesh">Bangladesh</option>
+										<option 
+										
+										value="india">India</option>
+									
+									</select>
+								</div>
 
 						<!-- last name input -->
 						<div class="form-group">

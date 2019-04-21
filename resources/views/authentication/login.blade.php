@@ -82,7 +82,7 @@ $loginStatus=false;
                 <label for="exampleInputPassword1"><small>Password* 
                 </small>
                     
-                    <small class="text-danger">
+                    <small class="text-danger font-weight-bold" id="password_error" >
                       {{ $errors->first('password') }} 
                     </small>
                   <br>
