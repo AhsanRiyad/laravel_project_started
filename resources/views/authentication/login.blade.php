@@ -11,7 +11,7 @@ $loginStatus=false;
 
 
 <!-- login form starts -->
-<form  method="post" action="#">
+<form  method="post" action="{{ route('authentication.login1', [2]) }}">
 
   @csrf
 

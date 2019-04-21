@@ -29,7 +29,7 @@ class authenticationController extends Controller
 
 
 
-    public static function loginCheck(loginRequest $req){
+    public static function loginCheck(loginRequest $req , $id){
 
 
 

@@ -26,7 +26,7 @@ Route::get('/cart', 'productController@cart' )->Name('product.cart');
 
 Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
 
-Route::post('/login', 'authenticationController@loginCheck' )->Name('authentication.login');
+Route::post('/login/{id}', 'authenticationController@loginCheck' )->Name('authentication.login1');
 
 Route::get('/signup', 'authenticationController@signUp' )->Name('authentication.signup');
 
