@@ -23,11 +23,20 @@
   
   <div class="form-group">
     <label for="inputAddress">Factory Name</label>
-    <input name="name" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    
+    <small class="text-danger">
+                      {{ $errors->first('name') }} 
+                    </small>
+
+    <input name="name" type="text" class="form-control" id="inputAddress" placeholder="" value="{{ old('name') }}">
   </div>
   <div class="form-group">
     <label for="inputAddress" name="user_email">Location</label>
-    <input name="location" type="text" class="form-control" id="totalAmount" placeholder="1234 Main St">
+
+    <small class="text-danger">
+                      {{ $errors->first('location') }} 
+                    </small>
+    <input name="location" type="text" class="form-control" id="totalAmount" placeholder="" value="{{ old('location') }}">
   </div>
   
 <input  class="btn btn-primary" type="submit" name="submit" value="Add Factory">

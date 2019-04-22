@@ -34,21 +34,11 @@ class userController extends Controller
             'type'=>'required'
         ]);
 
-         //$Validation->Validate();
-
-        if($Validation->fails()){
-            //return $userinfo[0]['u_id'];
-
-            $msg = 'Some field missing';
-
-            return view('user.addUser')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser')->withErrors($Validation->errors());
-
-           // return redirect('add_user')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser')->withErrors($Validation)->withInput();
-        }else{
+         $Validation->Validate();
 
 
 
-         try {
+        try {
 
             $status = DB::insert("INSERT INTO `user`(`u_password`, `u_email` , `u_type`,`last_name`) VALUES (?,?,?,?)" , [$req->password , $req->email , $req->type , $req->name ] );
 
@@ -74,9 +64,6 @@ class userController extends Controller
 
 
 
-
-
- }
 
 
         //return view('dashboard/dashboard' , $userinfo);
@@ -106,22 +93,14 @@ public function add_factoryPost(Request $req){
 
 
     $Validation = Validator::make($req->all() , [
-        'name'=>'required',
-        'location'=>'required'
+        'name'=>'required|between:3,20',
+        'location'=>'required|between:3,20'
     ]);
 
-    if($Validation->fails()){
-            //return $userinfo[0]['u_id'];
-
-        $msg = 'Some field missing';
-            //return 'failed';
-        return view('product.addFactory')->withMsg($msg)->withUserinfo($req->userinfo);
-    }
-    else{
+    $Validation->validate();
 
 
-
-        try {
+    try {
 
 
             $status = DB::insert("INSERT INTO `factory`(`name`, `location`) VALUES (?,?)" , [$req->name , $req->location ] );
@@ -140,11 +119,7 @@ public function add_factoryPost(Request $req){
 
         }
 
-
-
-
-
-    }
+    
 
 
 }
