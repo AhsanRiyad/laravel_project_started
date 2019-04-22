@@ -27,21 +27,32 @@
   
   <div class="form-group">
     <label for="inputAddress">Customer Name</label>
-    <input name="name" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <small class="text-danger">
+                      {{ $errors->first('name') }} 
+                    </small>
+    <input name="name" type="text" class="form-control" id="inputAddress" placeholder="" value="{{ old('name') }}">
   </div>
   <div class="form-group">
-    <label for="inputAddress" name="user_email">Email</label>
-    <input name="email" type="text" class="form-control" id="totalAmount" placeholder="1234 Main St">
+    <label for="inputAddress" name="user_email">Email</label> <small class="text-danger">
+                      {{ $errors->first('email') }} 
+                    </small>
+    <input name="email" type="text" class="form-control" id="totalAmount" placeholder="" value="{{ old('email') }}">
   </div>
   <div class="form-group">
     <label for="inputAddress">Password</label>
-    <input type="password" class="form-control" id="totalAmount" placeholder="1234 Main St" name="password">
+    <small class="text-danger">
+                      {{ $errors->first('password') }} 
+                    </small>
+    <input type="password" class="form-control" id="totalAmount" placeholder="" name="password" value="{{ old('password') }}">
   </div>
 
   <div class="form-group">
     <label for="inputState" >Type</label>
+    <small class="text-danger">
+                      {{ $errors->first('type') }} 
+                    </small>
       <select name="type" id="inputState" class="form-control">
-        <option selected>Choose...</option>
+        <option selected value="{{ old('type') }}">Choose...</option>
         <option value="user">user</option>
         <option value="admin">admin</option>
       </select>

@@ -28,9 +28,9 @@ class userController extends Controller
 
         $status = 'successful' ;
         $Validation = Validator::make($req->all() , [
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required',
+            'name'=>'required|between:3,20',
+            'email'=>'required|email',
+            'password'=>'required|between:6,20',
             'type'=>'required'
         ]);
 
@@ -41,7 +41,9 @@ class userController extends Controller
 
             $msg = 'Some field missing';
 
-            return view('user.addUser')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser');
+            return view('user.addUser')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser')->withErrors($Validation->errors());
+
+           // return redirect('add_user')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser')->withErrors($Validation)->withInput();
         }else{
 
 
