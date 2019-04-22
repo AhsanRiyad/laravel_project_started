@@ -18,8 +18,11 @@ $loginStatus=false;
 			<div class="col-12 col-xl-6 ">
 				<div class="container">
 					<div class="row pt-4 pb-1">
-
-
+						
+						<!-- @foreach($errors->all() as $e)
+							{{ $e }}
+						@endforeach -->
+	
 						
 						@if($msg=='Welcome, Create your Umart Account')
 						
@@ -89,9 +92,14 @@ $loginStatus=false;
 					</div>
 
 					<div class="row justify-content-xl-center bg-white py-5 mb-5">
-
+						
 						<!-- email input -->
 						<div class="col-12 col-xl-6 ">
+
+							<p class="text-danger h4 bg-white">
+                 			{{ $errors->first('msg') }} 
+             				 </p>
+
 							<div class="form-group">
 								<label > 
 
@@ -102,6 +110,10 @@ $loginStatus=false;
 						@else
 						
 						<small id="idExampleInputEmail1Small" style="color: black;">Email*</small>
+
+						<small class="text-danger">
+                      {{ $errors->first('email') }} 
+                    </small>
 						
 						@endif
 
@@ -115,14 +127,18 @@ $loginStatus=false;
 								</label>
 
 
-								<input name="email" type="text" class="form-control rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="">
+								<input name="email" type="text" class="form-control rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
 							</div>
 							<!-- password input -->
 							<div class="form-group">
 								<label for="exampleInputPassword1"><small id='idexampleInputPassword1'>Password*</small>
+
+									<small class="text-danger">
+                      			{{ $errors->first('password') }} 
+                    				</small>
 									<br>
 								</label>
-								<input name="password" type="password" class="form-control rounded-0" id="exampleInputPassword1" placeholder="Password" value="">
+								<input name="password" type="password" class="form-control rounded-0" id="exampleInputPassword1" placeholder="Password" value="{{ old('password') }}">
 							</div>
 
 							<!-- re-enter password input -->
@@ -238,13 +254,13 @@ $loginStatus=false;
 					<div class="col-12 col-xl-5 ">
 
 
-					<label for="exampleInputEmail1" ><small id="idExampleInputEmail1Small">Email address*
+					<label for="exampleInputEmail1" ><small id="idExampleInputEmail1Small">Country*
 
                 
 
                 </small>
                 <small class="text-danger">
-                      {{ $errors->first('email') }} 
+                      {{ $errors->first('country') }} 
                     </small>
                   <br>
           
@@ -260,8 +276,8 @@ $loginStatus=false;
 
 
 
-									<select   name="user_type" class="custom-select rounded-0 pl-1 pl-lg-2 " id="inputGroupSelect01">
-										<option  value="type">Country</option>
+									<select  name="country" class="custom-select rounded-0 pl-1 pl-lg-2 " id="inputGroupSelect01">
+										<option  value="">Country</option>
 										<option selected value="bangladesh">Bangladesh</option>
 										<option 
 										
@@ -271,24 +287,32 @@ $loginStatus=false;
 								</div>
 
 						<!-- last name input -->
-						<div class="form-group">
+						<div class="form-group mt-3">
 							<label for="exampleInputEmail1"><small id="lnLabel">Last Name*</small>
-								<br>
+								<small class="text-danger">
+                      {{ $errors->first('last_name') }} 
+                    </small>
+						<br>
 								
 
 							</label>
-							<input name="last_name"  type="text" class="form-control rounded-0" id="lnInput" aria-describedby="emailHelp" placeholder="Enter Last name" value="">
+							<input name="last_name"  type="text" class="form-control rounded-0" id="lnInput" aria-describedby="emailHelp" placeholder="Enter Last name" value="{{ old('last_name') }}">
 						</div>
 						
 						<!-- mobile number input -->
 						<div class="form-group mb-xl-3">
 							<label for="exampleInputEmail1"><small id="exampleLabelMobile">Mobile Number*</small>
+
+							<small class="text-danger">
+                      {{ $errors->first('phone') }} 
+                    </small>
+
 								<br>
 								
 							</label>
 							
 							<input name="phone" type="text" class="form-control rounded-0" id="exampleInputMobile" aria-describedby="emailHelp" placeholder="Enter mobile number"
-							value="">
+							value="{{ old('phone') }}">
 						</div>
 
 						<!-- toc terms and condition input -->

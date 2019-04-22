@@ -29,9 +29,12 @@ class authenticationModel extends Model
 
 
 		try { 
-     	$sql = DB::insert("INSERT INTO `user`(`u_password`, `u_email`, `u_mobile`, `dob`, `u_status`, `u_type`, `first_name`, `last_name`) VALUES (?,?,?,?,'valid',?,?,?)" , [$user['password'],$user['email'],$user['phone'],$dob,$user['user_type'],$user['first_name'],$user['last_name']]);
+     	$sql = DB::insert("INSERT INTO `user`(`u_password`, `u_email`, `u_mobile`, `dob`, `u_status`, `u_type`, `country`, `last_name`) VALUES (?,?,?,?,'valid','admin',?,?)" , [$user['password'],$user['email'],$user['phone'],$dob,$user['country'],$user['last_name']]);
 
-     		return 'success'; 
+     		 return 'success';
+     		//return $user['country']; 
+
+     		//return $user;
 
 		} catch(QueryException $ex){ 
 			//$msg = $ex->getMessage(); 

@@ -23,7 +23,15 @@ class regRequest extends FormRequest
      */
     public function rules()
     {
-        return [ 'email' => 'required|email'  , 'password' => 'required|string|size:6' ];
+        return [
+         'email' => 'required|email'  ,
+         'password' => 'required|string|between:6,20' , 
+         'country' => 'required|string|between:3,20' , 
+         'phone' => 'required|between:10,15' , 
+         'last_name' => 'required|string|between:3,15' , 
+
+
+     ];
     }
 
 
@@ -40,7 +48,7 @@ class regRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            if ($validator->errors()!=[]) {
+            if ($validator->errors()->all()!=[]) {
                 $validator->errors()->add('msg', 'Field requirement not met up');
             }
         });

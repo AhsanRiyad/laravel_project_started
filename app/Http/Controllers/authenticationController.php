@@ -101,7 +101,7 @@ class authenticationController extends Controller
         $userinfo['day'] = $req->day;
         $userinfo['year'] = $req->year;
         $userinfo['gender'] = $req->gender;
-        $userinfo['first_name'] = '';
+        $userinfo['country'] = $req->country;
         $userinfo['last_name'] = $req->last_name;
         $userinfo['phone'] = $req->phone;
         $userinfo['user_type'] = $req->user_type;
