@@ -5,12 +5,11 @@ $viewPromo = "http://localhost:3000/product/viewpromo";
 $signout = "authenticationController.logout";
 $homepage = "index";
 $u_type = $userinfo[0]['u_type'];
-
+$country = $userinfo[0]['country'];
 $hourMin = date('H');
 $time = date('H:m A');
 
 @endphp
-
 
 
 
@@ -64,6 +63,9 @@ $time = date('H:m A');
     <p hidden id="getUrl">{{ asset('') }}</p>
 
 
+    <p hidden id="country">{{ $country }}</p>
+
+
 
 
 
@@ -109,16 +111,129 @@ $time = date('H:m A');
             <a href=><img class=" py-1" src="{{ asset( $logoSrc ) }}" alt=""></a>
 
           </div>
+          
+
+          
+          @if($u_type == 'admin' && $country == 'bangladesh' )
+          
+            
+          
+          <a class="text-light" href='{{ route("userController.ship_req_bd") }}'>
+              <div class="  
+              py-2 text-center my-4 
+
+              @if($page_name == 'ship_req_bd')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
+
+              <i class="fas fa-shopping-cart"></i> Request Shipment BD 
+
+            </div></a> 
+
+        <a class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
+                <div class="
+
+                @if($page_name == 'money_transfer_request')
+                bg-success
+                @else
+                bg-secondary
+                @endif
+                py-2 text-center my-4">
+
+                  <i class="fas fa-shopping-cart"></i> Money Transfer Req <span class="badge badge-primary p-2 text-white " id="moneyTrCount">0</span>
+
+                </div>
+
+              </a>
+
+        <a class="text-white" href='{{ route("accountController.money_transfer_status") }}'>
+                <div class="
+
+                @if($page_name == 'money_transfer_status')
+                bg-success
+                @else
+                bg-secondary
+                @endif
+
+                 py-2 text-center my-4">
+
+                  <i class="fas fa-shopping-cart"></i> Money Transfer Status 
+
+                </div>
+
+              </a>
 
 
-          @if($u_type == 'admin')
 
 
+          <a class="text-white" href="{{ route('userController.addUser') }}">
+            <div class=" 
+            @if($page_name == 'addUser')
+            bg-success
+            @else
+            bg-secondary
+            @endif py-2 text-center my-4">
+
+              <i class="fas w_f fa-chart-line"></i> Add Customer
+
+            </div></a>
+
+
+
+         <a class="text-light" href='{{ route("userController.add_factory") }}'>
+              <div class="
+              py-2 text-center my-4 
+
+              @if($page_name == 'add_factory')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
+
+              <i class="fas w_f fa-user "></i> Add Factory
+
+            </div></a>
+
+          
+
+<a class="text-white" href="{{ route('userController.add_raw_materials') }}">
+              <div class="  
+              @if($page_name == 'add_raw_materials')
+              bg-success
+              @else
+              bg-secondary
+              @endif py-2 text-center my-4">
+
+                <i class="fas w_f fa-envelope"></i> Raw Materials
+
+              </div></a>
+
+
+
+
+
+<a class="text-white" href="  {{ route($signout) }}  ">
+                  <div class="  bg-danger py-2 text-center my-4">
+
+                    <i class="fas fa-sign-out-alt"></i>Sign Out
+
+                  </div></a>
+
+      
+
+
+
+          @endif
+
+          @if($u_type == 'admin' && $country == 'both' )
+          
+          
 
           <a class="text-white  " href="{{ route('a_pos.index') }}">
             <div class="      
             py-2 text-center my-4 
-
             @if($page_name == 'a_pos')
             bg-success
             @else
@@ -147,7 +262,6 @@ $time = date('H:m A');
             <a class="text-light" href='{{ route("userController.add_factory") }}'>
               <div class="
               py-2 text-center my-4 
-
               @if($page_name == 'add_factory')
               bg-success
               @else
@@ -161,7 +275,6 @@ $time = date('H:m A');
             <a class="text-light" href='{{ route("userController.ship_req_india") }}'>
               <div class="  
               py-2 text-center my-4 
-
               @if($page_name == 'ship_req_india')
               bg-success
               @else
@@ -176,7 +289,6 @@ $time = date('H:m A');
             <a class="text-light" href='{{ route("userController.ship_req_bd") }}'>
               <div class="  
               py-2 text-center my-4 
-
               @if($page_name == 'ship_req_bd')
               bg-success
               @else
@@ -191,7 +303,6 @@ $time = date('H:m A');
             <a class="text-light" href='{{ route("accountController.shipment_status") }}'>
               <div class="  
               py-2 text-center my-4 
-
               @if($page_name == 'shipment_status')
               bg-success
               @else
@@ -217,7 +328,6 @@ $time = date('H:m A');
 
               <a class="text-white" href='{{ route("accountController.money_transfer") }}'>
                 <div class="
-
                 @if($page_name == 'money_transfer')
                 bg-success
                 @else
@@ -234,7 +344,6 @@ $time = date('H:m A');
 
               <a class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
                 <div class="
-
                 @if($page_name == 'money_transfer_request')
                 bg-success
                 @else
@@ -247,6 +356,144 @@ $time = date('H:m A');
                 </div>
 
               </a>
+
+
+
+              <a class="text-white" href='{{ route("accountController.money_transfer_status") }}'>
+                <div class="
+                @if($page_name == 'money_transfer_status')
+                bg-success
+                @else
+                bg-secondary
+                @endif
+                 py-2 text-center my-4">
+
+                  <i class="fas fa-shopping-cart"></i> Money Transfer Status 
+
+                </div>
+
+              </a>
+
+
+              <a class="text-white" href="{{ route('accountController.sales_report') }}">
+                <div class="  
+                @if($page_name == 'reports')
+                bg-success
+                @else
+                bg-secondary
+                @endif
+                 py-2 text-center my-4">
+
+                  <i class="fab fa-product-hunt"></i> Sales  Reports
+
+                </div></a>
+
+
+
+                <a class="text-white" href="  {{ route($signout) }}  ">
+                  <div class="  bg-danger py-2 text-center my-4">
+
+                    <i class="fas fa-sign-out-alt"></i>Sign Out
+
+                  </div></a>
+
+
+
+
+
+
+          @endif
+
+
+
+          @if($u_type == 'admin' && $country == 'india' )
+
+
+
+          <a class="text-white  " href="{{ route('a_pos.index') }}">
+            <div class="      
+            py-2 text-center my-4 
+
+            @if($page_name == 'a_pos')
+            bg-success
+            @else
+            bg-secondary
+            @endif
+            ">
+
+            <i class="fas w_f fa-tachometer-alt"></i> Point Of Sale
+
+          </div></a>
+
+
+          <a class="text-light" href='{{ route("accountController.shipment_status") }}'>
+              <div class="  
+              py-2 text-center my-4 
+
+              @if($page_name == 'shipment_status')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
+
+              <i class="fas fa-shopping-cart"></i> Shipment Status 
+
+            </div></a>
+
+          <a class="text-white" href="{{ route('userController.addUser') }}">
+            <div class=" 
+            @if($page_name == 'addUser')
+            bg-success
+            @else
+            bg-secondary
+            @endif py-2 text-center my-4">
+
+              <i class="fas w_f fa-chart-line"></i> Add Customer
+
+            </div></a>
+
+
+
+            
+
+            <a class="text-light" href='{{ route("userController.ship_req_india") }}'>
+              <div class="  
+              py-2 text-center my-4 
+
+              @if($page_name == 'ship_req_india')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
+
+              <i class="fas fa-shopping-cart"></i> Shipment Request <span class="badge badge-primary p-2 text-white " id="reqCount">0</span>
+
+            </div></a> 
+
+
+            
+
+
+            
+
+              <a class="text-white" href='{{ route("accountController.money_transfer") }}'>
+                <div class="
+
+                @if($page_name == 'money_transfer')
+                bg-success
+                @else
+                bg-secondary
+                @endif 
+                py-2 text-center my-4">
+
+                  <i class="fas fa-shopping-cart"></i> Money Transfer
+
+                </div>
+
+              </a>
+
+
+              
 
 
 

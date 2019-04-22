@@ -53,9 +53,16 @@ class authenticationController extends Controller
 
             //return $userDetails;
 
-            if($userDetails[0]->u_type == 'admin'){
+            if($userDetails[0]->u_type == 'admin' && $userDetails[0]->country == 'india' || $userDetails[0]->country == 'both'){
                 return redirect()->route('a_pos.index');
-            }else{
+            }else if($userDetails[0]->u_type == 'admin' && $userDetails[0]->country == 'bangladesh'){
+
+            return redirect()->route('userController.ship_req_bd');
+
+            }
+
+
+            else{
 
             $user['validCheck'] = 'user'; 
             return view('authentication/login' )->with('validCheck' , 'user');

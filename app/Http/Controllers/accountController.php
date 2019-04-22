@@ -60,7 +60,7 @@ class accountController extends Controller
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
-        $money_transfer = DB::select('SELECT m.* , u.last_name as transfered_by , n.last_name as received_by FROM money_transfer m LEFT OUTER JOIN user u ON m.transfered_by=u.u_id LEFT OUTER JOIN user n ON m.received_by=n.u_id');
+        $money_transfer = DB::select('SELECT m.* , u.last_name as transfered_by , n.last_name as received_by FROM money_transfer m LEFT OUTER JOIN user u ON m.transfered_by=u.u_id LEFT OUTER JOIN user n ON m.received_by=n.u_id order by id desc');
 
 
         //return $req;

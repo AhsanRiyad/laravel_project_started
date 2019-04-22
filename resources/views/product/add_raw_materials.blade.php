@@ -25,8 +25,13 @@
   
   <div class="form-group">
     <label for="inputState" >Raw Materials</label>
+    
+    <small class="text-danger">
+                      {{ $errors->first('materials') }} 
+                    </small>
+
       <select name="materials" id="inputState" class="form-control">
-        <option value="0" selected>Choose...</option>
+        <option value="{{ old('materials') }}" selected>Choose...</option>
 
         @foreach($rawMaterials as $r)
 
@@ -38,8 +43,13 @@
 
 	<div class="form-group">
     <label for="inputState" >Factory</label>
+
+    <small class="text-danger">
+                      {{ $errors->first('factory_name') }} 
+                    </small>
+
       <select name="factory_name" id="inputState" class="form-control">
-        <option value="0" selected>Choose...</option>
+        <option value=" {{ old('factory_name') }}" selected>Choose...</option>
         @foreach($factories as $r)
         <option value="{{ $r->id }}">{{ $r->id }} - {{ $r->name }}</option>
 
@@ -51,8 +61,11 @@
 
   <div class="form-group">
     <label for="inputState" >Quantity</label>
+      <small class="text-danger">
+                      {{ $errors->first('quantity') }} 
+                    </small>
       <select name="quantity" id="inputState" class="form-control">
-        <option value="0" selected>Choose...</option>
+        <option value="{{ old('quantity') }}" selected>Choose...</option>
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="30">20</option>

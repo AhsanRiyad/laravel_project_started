@@ -406,6 +406,18 @@ public function add_raw_materialsPost(Request $req){
         $qntity = $req->quantity;
 
 
+
+        $Validation = Validator::make($req->all() , [
+            'factory_name'=>'required|between:1,20',
+            'materials'=>'required|between:1,10',
+            'quantity'=>'required|between:1,10',
+        
+        ]);
+
+         $Validation->Validate();
+
+
+
         $status = DB::insert('INSERT INTO `factory_materials`(`factory_id`, `materials_id`, `qntity`) VALUES (? ,? , ?)' , [$factory_id , $materials_id , $qntity]);
 
 
