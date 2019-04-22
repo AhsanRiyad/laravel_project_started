@@ -36,20 +36,25 @@ if (hourMin >=5  && hourMin < 12)  {
 
 }
 	     
-else if (hourMin > 12 && hourMin < 17){
+else if (hourMin >= 12 && hourMin < 17){
 	$('#greetings').html('Good Afternoon, '+name+' '+country); 
 }
 
-else if (hourMin > 17 && hourMin < 21){
+else if (hourMin >= 17 && hourMin < 21){
 	$('#greetings').html('Good Evening, '+name+' '+country);
 }
 
-else if (hourMin > 21 && hourMin < 24){
+else if (hourMin >= 21 && hourMin < 24){
 	$('#greetings').html(name+ " " +country+" ,it's time to sleep");
 }
 
-else if (hourMin > 0 && hourMin < 5){
+else if (hourMin >= 0 && hourMin < 5){
 	$('#greetings').html(name+ " " +country+" ,it's mid night now,  you should sleep");
+}
+else{
+	//alert(hourMin);
+	$('#greetings').html('Hellow, '+name+' '+country); 
+
 }
 
 

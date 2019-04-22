@@ -6,6 +6,8 @@ use App\a_product;
 use Illuminate\Http\Request;
 use DB;
 use App\productModel;
+use App\multipleSelectModel;
+
 
 class AProductController extends Controller
 {
@@ -219,7 +221,10 @@ public function order_details($id){
         //return 'hellow';
         
         try{
-       $status = DB::statement("call a_order_t( ?, ?  , ? , ? , ? )" , [ $t['uid'] , $t['total'] ,  $t['paid'] , $t['salesPoint'] , $userinfo1[0]->u_id  ] );
+
+       $status = multipleSelectModel::CallRaw('a_order_t',   [ $t['uid'] , $t['total'] ,  $t['paid'] , $t['salesPoint'] , $userinfo1[0]->u_id  ]);     
+
+       //$status = DB::statement("call a_order_t( ?, ?  , ? , ? , ? )" , [ $t['uid'] , $t['total'] ,  $t['paid'] , $t['salesPoint'] , $userinfo1[0]->u_id  ] );
 
             return 'success';
         }catch(QueryException $ex){ 

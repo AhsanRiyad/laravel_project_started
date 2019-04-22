@@ -222,9 +222,9 @@ public function ship_req_bd_post(Request $req){
     //echo $t->uid;
 
 
-    $status = DB::statement('call shipment_cart(?,?,?)',[$t->uid , $t->pid , $t->qntity]);
+    //$status = DB::statement('call shipment_cart(?,?,?)',[$t->uid , $t->pid , $t->qntity]);
 
-
+    $status = multipleSelectModel::CallRaw('shipment_cart',  [$t->uid , $t->pid , $t->qntity]);
 
     $products = DB::select('SELECT s.* , p.product_name FROM `shipment_temp` s , products p WHERE p.product_id = s.product_id and s.admin_id = (?)' , [$t->uid]);
 
@@ -302,8 +302,12 @@ public function ship_accept($admin_id , $ship_id){
 
 
     $counter = DB::select('select count(*) as c from shipment where status = 0');
-    $sta = DB::statement('call shipment_to_products(?)' , [$ship_id]);
 
+
+    //$sta = DB::statement('call shipment_to_products(?)' , [$ship_id]);
+
+
+    $sta = multipleSelectModel::CallRaw('shipment_to_products',  [$ship_id]);
 
     $results = [$ship_reqs , $counter];
     return $results;
