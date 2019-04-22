@@ -132,6 +132,25 @@ $time = date('H:m A');
 
             </div></a> 
 
+
+
+        
+          <a class="text-light" href='{{ route("accountController.shipment_status") }}'>
+              <div class="  
+              py-2 text-center my-4 
+
+              @if($page_name == 'shipment_status')
+              bg-success
+              @else
+              bg-secondary
+              @endif">
+
+              <i class="fas fa-shopping-cart"></i> Shipment Status 
+
+            </div></a>
+
+
+
         <a class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
                 <div class="
 
