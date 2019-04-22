@@ -24,7 +24,7 @@ $time = date('H:m A');
   <meta name="csrf-token" content="{{ csrf_token() }}" >
   <script> window.Laravel = { csrfToken : '{{ csrf_token() }}' } </script>
 
-  <title>First page</title>
+  <title>Assignment</title>
 
   <link rel="icon" href="{{ asset('img/fevicon.png') }}" type="image/gif" sizes="16x16">
 
