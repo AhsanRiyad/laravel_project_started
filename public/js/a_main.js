@@ -59,10 +59,6 @@ else{
 
 
 
-
-
-
-
 $(function() {
 
 	var url = $('#getUrl').html();

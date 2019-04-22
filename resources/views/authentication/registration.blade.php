@@ -88,7 +88,7 @@ $loginStatus=false;
 						@endif
 
 						
-						<span class="ml-auto mt-auto pt-3"><small >Alredy member? <a href="http://localhost:3000/auth">Login</a> here</small></span>
+						<span class="ml-auto mt-auto pt-3"><small >Alredy member? <a href="{{ route('authentication.login') }}">Login</a> here</small></span>
 					</div>
 
 					<div class="row justify-content-xl-center bg-white py-5 mb-5">

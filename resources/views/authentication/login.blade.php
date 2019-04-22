@@ -105,7 +105,7 @@ $loginStatus=false;
 
               <p class="text-danger h5 mt-2"><i>Not a member yet?</i></p>
 
-              <a href="http://localhost:3000/auth/reg"><button type="button" class="btn btn-primary rounded-0 w-100 py-2">Register Here</button></a>
+              <a href="{{ route('authentication.signup') }}"><button type="button" class="btn btn-primary rounded-0 w-100 py-2">Register Here</button></a>
 
             </div>
 
