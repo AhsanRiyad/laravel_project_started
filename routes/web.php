@@ -43,6 +43,7 @@ Route::get('/logout', 'authenticationController@logout' )->Name('authenticationC
 
 
 
+
 //Route::get('/db', 'testController@dbTest');
 Route::get('/db', 'productController@autosearch');
 

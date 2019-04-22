@@ -225,7 +225,7 @@ $time = date('H:m A');
               bg-secondary
               @endif py-2 text-center my-4">
 
-                <i class="fas w_f fa-envelope"></i> Raw Materials
+                <i class="fas w_f fa-envelope"></i> Add Raw Materials
 
               </div></a>
 
@@ -341,7 +341,7 @@ $time = date('H:m A');
               bg-secondary
               @endif py-2 text-center my-4">
 
-                <i class="fas w_f fa-envelope"></i> Raw Materials
+                <i class="fas w_f fa-envelope"></i> Add Raw Materials
 
               </div></a>
 

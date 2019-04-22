@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2019 at 01:25 PM
+-- Generation Time: Apr 22, 2019 at 03:33 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -283,7 +283,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `user_id`, `total_tk`, `paid_tk`, `balance_available`) VALUES
-(1, 0, 7604, 1312, 1312),
+(1, 0, 7604, 1312, 1212),
 (6, 14, 800, 100, 0),
 (7, 18, 2157, 500, 0),
 (8, 15, 4177, 700, 0),
@@ -333,6 +333,13 @@ CREATE TABLE `cart` (
   `product_id` int(5) NOT NULL,
   `quantity` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
+(1, 'cart', 14, 'user', 0, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -477,6 +484,13 @@ CREATE TABLE `money_transfer` (
   `status` int(3) NOT NULL DEFAULT '0',
   `amount` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `money_transfer`
+--
+
+INSERT INTO `money_transfer` (`id`, `transfer_date`, `receive_date`, `transfered_by`, `received_by`, `status`, `amount`) VALUES
+(1, '2019-04-22', NULL, 2, 0, 0, 100);
 
 -- --------------------------------------------------------
 
@@ -856,7 +870,8 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (111, 3, 3, 134),
 (112, 14, 3, 135),
 (113, 18, 3, 136),
-(114, 29, 6, 137);
+(114, 29, 6, 137),
+(1, 2, 0, 138);
 
 -- --------------------------------------------------------
 
@@ -1084,7 +1099,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`u_id`, `u_password`, `u_address`, `u_email`, `u_mobile`, `dob`, `u_status`, `u_type`, `first_name`, `last_name`, `country`) VALUES
 (2, '123456', '', 'riyad298@gmail.com', 1919448787, '2007-02-17', 'valid', 'admin', 'Muhammad Ahsan', 'Riyad', 'india'),
-(4, '123456', '', 'riyad298@yahoo.com', 666, '2007-02-14', 'valid', 'admin', 'Muhammad Ahsan', 'afa', 'bangladesh'),
+(4, '123456', '', 'riyad298@yahoo.com', 666, '2007-02-14', 'valid', 'admin', 'Muhammad Ahsan', 'Ahsan', 'bangladesh'),
 (12, '123456', '', 'riyad298@hotmail.com', 1919448787, '2007-03-15', 'valid', 'admin', 'Muhammad Ahsan', 'Riyad', 'both'),
 (14, 'arefa', '', 'riyadhellow298@gmail.com', 1919448787, '0000-00-00', 'valid', 'user', 'Muhammad Ahsan', 'Riyad', NULL),
 (15, '448787', '', 'riyad298@outlook.com', 1919448787, '0000-00-00', 'valid', 'user', 'Ahsan', 'Riyad', NULL),
@@ -1375,7 +1390,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1411,7 +1426,7 @@ ALTER TABLE `g_user_name`
 -- AUTO_INCREMENT for table `money_transfer`
 --
 ALTER TABLE `money_transfer`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `msg`
@@ -1447,7 +1462,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1489,7 +1504,7 @@ ALTER TABLE `shipment_product`
 -- AUTO_INCREMENT for table `shipment_temp`
 --
 ALTER TABLE `shipment_temp`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `supply_order`
