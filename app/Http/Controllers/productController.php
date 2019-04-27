@@ -36,17 +36,21 @@ class productController extends Controller
     //print_r($c[0]);
     //echo $c[0]->cart_count;
 
-    return redirect()->route('a_pos.index');
+
+
+    
+
+    //return redirect()->route('a_pos.index');
 
   }else{
     $cart_count = 0;
     $loginStatus = false;
 
-    return redirect()->route('authentication.login');
+    //return redirect()->route('authentication.login');
 
   }
 
-  /*return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts , 'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);*/
+  return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts , 'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);
 
     	//return $clientIP;
 
