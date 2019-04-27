@@ -338,4 +338,109 @@ return view('product.product_cat')->with('catName' , $catName)->with('subCat' , 
 
 
 
+public function confirmOrder(Request $req){
+
+$uid = 0;
+  if($req->session()->has('userinfo')){
+    $loginStatus = true;
+
+    $userinfo = session('userinfo');
+    //print_r($userinfo);
+    $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+    $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+    $c = productModel::cart_count($uid);
+    $cart_count = $c[0]->cart_count;
+    
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
+
+
+  }else{
+    $cart_count = 0;
+    $loginStatus = false;
+  }
+
+  
+  $params = [$uid];
+  $results = multipleSelectModel::CallRaw('cartPage', $params);
+
+  // return $results;
+ // return $results[0][0]->product_id;
+  $r = [ 'products'=> $results , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
+  return view('Order.confirm_order'  , $r);
+
+
+}
+
+
+
+
+
+
+
+
+public function confirmOrderPost(Request $req){
+
+$uid = 0;
+  if($req->session()->has('userinfo')){
+    $loginStatus = true;
+
+    $userinfo = session('userinfo');
+    //print_r($userinfo);
+    $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+    $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+    $c = productModel::cart_count($uid);
+    $cart_count = $c[0]->cart_count;
+    
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
+     
+
+    $params = [ $uid , $req->optradio ];
+
+    $results = multipleSelectModel::CallRaw('order_t', $params);
+
+
+
+
+  }else{
+    $cart_count = 0;
+    $loginStatus = false;
+  }
+
+  
+  //$params = [$uid];
+  
+
+  // return $results;
+ // return $results[0][0]->product_id;
+  $r = [  'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
+  return view('Order.done'  , $r);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 }

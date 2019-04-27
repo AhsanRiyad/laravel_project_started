@@ -1,4 +1,18 @@
-<% include ../header %>
+@php
+
+$carouselImg1 = 'img/product1.jpg' ; 
+$carouselImg2 = 'img/product2.jpg' ; 
+$carouselImg3 = 'img/product3.jpg' ; 
+$productImg = 'img/cat1.jpg';
+
+@endphp
+
+
+
+@extends('layout.hf')
+
+
+@section('content')
 
 
 <div class="row">
@@ -9,7 +23,7 @@
 			<p class="lead">Please select your payment method and your order will be on the way</p>
 			<hr class="my-4">
 
-			<form method="POST" action="http://localhost:3000/order/confirm">
+			<form method="POST" action="http://localhost:3000/confirmOrder">
 			<div class="radio">
 				<label><input type="radio" name="optradio" value="cash" checked> Cash On Delivery</label>
 			</div>
@@ -40,4 +54,5 @@
 
 
 
-<% include ../footer %>
+
+@endsection

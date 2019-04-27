@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2019 at 03:33 PM
+-- Generation Time: Apr 27, 2019 at 02:07 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -114,7 +114,7 @@ UPDATE account set balance_available = balance_available - amount_tk where user_
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `order_t` (IN `uid` INT, IN `o_date` DATE, IN `p_method` VARCHAR(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `order_t` (IN `uid` INT, IN `p_method` VARCHAR(20))  BEGIN
 DECLARE o_no, p_id , qntity INT;
 DECLARE status VARCHAR(20);
 DECLARE b INT DEFAULT 0;
@@ -123,7 +123,7 @@ SELECT product_id , quantity FROM CART WHERE user_id = uid;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET b = 1;
 
 SELECT MAX(order_id) INTO o_no FROM ORDER_T;
-INSERT INTO `order_t`(`order_id`, `order_date`, `payment_method`,  `user_id`) VALUES (o_no+1 , o_date , p_method , uid );
+INSERT INTO `order_t`(`order_id`, `order_date`, `payment_method`,  `user_id`) VALUES (o_no+1 , sysdate() , p_method , uid );
 
 OPEN cur_1;
 REPEAT FETCH cur_1 INTO p_id , qntity ;
@@ -321,6 +321,28 @@ CREATE TABLE `admin_name` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `all_sales`
+-- (See below for the actual view)
+--
+CREATE TABLE `all_sales` (
+`order_id` int(5)
+,`order_date` date
+,`payment_method` varchar(50)
+,`payment_status` varchar(50)
+,`return_id` int(5)
+,`user_id` int(8)
+,`counter` int(8)
+,`total_amount` int(11)
+,`paid` int(10)
+,`sales_point` varchar(50)
+,`admin_id` int(8)
+,`due` bigint(12)
+,`last_name` varchar(50)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cart`
 --
 
@@ -339,7 +361,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
-(1, 'cart', 14, 'user', 0, 2, 1);
+(2, 'cart', 16, 'user', 0, 7, 3),
+(6, 'cart', 15, 'user', 0, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -490,7 +513,7 @@ CREATE TABLE `money_transfer` (
 --
 
 INSERT INTO `money_transfer` (`id`, `transfer_date`, `receive_date`, `transfered_by`, `received_by`, `status`, `amount`) VALUES
-(1, '2019-04-22', NULL, 2, 0, 0, 100);
+(1, '2019-04-22', '2019-04-22', 2, 4, 1, 100);
 
 -- --------------------------------------------------------
 
@@ -580,7 +603,10 @@ INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter
 (6, 29, 6, 94),
 (6, 29, 6, 95),
 (7, 2, 2, 96),
-(7, 2, 2, 97);
+(7, 2, 2, 97),
+(8, 1, 7, 98),
+(8, 2, 2, 99),
+(8, 2, 2, 100);
 
 -- --------------------------------------------------------
 
@@ -613,7 +639,8 @@ INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_stat
 (4, '2019-04-22', 'default', '', 0, 15, 41, 1604, 200, 'New Delhi', 2),
 (5, '2019-04-22', 'default', '', 0, 18, 42, 1431, 300, 'Agrabad', 2),
 (6, '2019-04-22', 'default', '', 0, 15, 43, 1101, 400, 'New Delhi', 2),
-(7, '2019-04-22', 'default', '', 0, 16, 44, 470, 12, 'Choose...', 2);
+(7, '2019-04-22', 'default', '', 0, 16, 44, 470, 12, 'Choose...', 2),
+(8, '2019-04-27', 'cash', '', 0, 2, 45, 0, 0, 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -740,7 +767,7 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (4, 9, 2, 4),
 (5, 3, 57, 5),
 (6, 5, 13, 6),
-(7, 4, 27, 7),
+(7, 4, 33, 7),
 (8, 2, 27, 8),
 (9, 7, 3, 9),
 (10, 6, 3, 10),
@@ -871,7 +898,14 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (112, 14, 3, 135),
 (113, 18, 3, 136),
 (114, 29, 6, 137),
-(1, 2, 0, 138);
+(1, 2, 0, 138),
+(2, 7, 1, 139),
+(3, 2, 1, 140),
+(4, 1, 1, 141),
+(5, 10, 4, 142),
+(6, 2, 2, 143),
+(7, 1, 7, 144),
+(8, 2, 2, 145);
 
 -- --------------------------------------------------------
 
@@ -939,7 +973,7 @@ CREATE TABLE `review` (
 INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`, `product_id`, `user_id`) VALUES
 (14, 'it is a good product', '', '2019-02-19', 8, 2),
 (15, 'it is a good product', '', '2019-02-19', 7, 2),
-(16, 'nope at least', '', '2019-03-29', 1, 2),
+(16, 'afafearfaerf', '', '2019-04-27', 1, 2),
 (17, 'really nice product', '', '2019-03-29', 9, 2),
 (18, 'good products', '', '2019-04-02', 2, 2);
 
@@ -1122,7 +1156,8 @@ INSERT INTO `user` (`u_id`, `u_password`, `u_address`, `u_email`, `u_mobile`, `d
 (45, 'aerreafreafer', NULL, 'riyaarferferdffrea298@gmail.com', 1919448787, '2006-03-16', 'valid', 'admin', NULL, 'Riyad', 'bangladesh'),
 (46, 'aaaaaa', NULL, 'riz@gmail.com', 1919448787, '2007-01-16', 'valid', 'admin', NULL, 'Riyad', 'bangladesh'),
 (47, '1111111111', NULL, 'rarfaiyaerfaeadafe298@gmail.com', 0, NULL, NULL, 'user', NULL, 'faerferfearfae', NULL),
-(48, '1111111111', NULL, 'faerfaer@gmail.com', 0, NULL, NULL, 'user', NULL, 'rfearfea', NULL);
+(48, '1111111111', NULL, 'faerfaer@gmail.com', 0, NULL, NULL, 'user', NULL, 'rfearfea', NULL),
+(49, '123456', NULL, 'ariyfadfff298@gmail.com', 1919448787, NULL, 'valid', NULL, NULL, 'Riyad', 'bangladesh');
 
 -- --------------------------------------------------------
 
@@ -1201,6 +1236,15 @@ CREATE TABLE `wishlist` (
   `user_id` int(5) NOT NULL,
   `g_u_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `all_sales`
+--
+DROP TABLE IF EXISTS `all_sales`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_sales`  AS  select `o`.`order_id` AS `order_id`,`o`.`order_date` AS `order_date`,`o`.`payment_method` AS `payment_method`,`o`.`payment_status` AS `payment_status`,`o`.`return_id` AS `return_id`,`o`.`user_id` AS `user_id`,`o`.`counter` AS `counter`,`o`.`total_amount` AS `total_amount`,`o`.`paid` AS `paid`,`o`.`sales_point` AS `sales_point`,`o`.`admin_id` AS `admin_id`,(`o`.`total_amount` - `o`.`paid`) AS `due`,`u`.`last_name` AS `last_name` from (`order_t` `o` join `user` `u`) where (`u`.`u_id` = `o`.`user_id`) order by `o`.`order_id` desc ;
 
 --
 -- Indexes for dumped tables
@@ -1390,7 +1434,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1438,13 +1482,13 @@ ALTER TABLE `msg`
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `order_t`
 --
 ALTER TABLE `order_t`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1462,7 +1506,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1516,7 +1560,7 @@ ALTER TABLE `supply_order`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `u_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `user_name`

@@ -99,7 +99,7 @@ $productImg = 'img/cat1.jpg';
 
 
 
-<a href="http://localhost:3000/order/confirm" class="text-dark btn btn-warning">Confirm Order</a>
+<a href="{{ route('productController.confirmOrder') }}" class="text-dark btn btn-warning">Confirm Order</a>
 
 @endif
 

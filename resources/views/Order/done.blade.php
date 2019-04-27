@@ -1,7 +1,18 @@
-<% include ../header %>
+@php
+
+$carouselImg1 = 'img/product1.jpg' ; 
+$carouselImg2 = 'img/product2.jpg' ; 
+$carouselImg3 = 'img/product3.jpg' ; 
+$productImg = 'img/cat1.jpg';
+
+@endphp
 
 
 
+@extends('layout.hf')
+
+
+@section('content')
 
 
 <div class="row">
@@ -22,6 +33,4 @@
 
 
 
-
-
-<% include ../footer %>
+@endsection
