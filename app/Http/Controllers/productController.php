@@ -98,9 +98,69 @@ public function cart (Request $req){
  // return $results[0][0]->product_id;
   $r = [ 'products'=> $results , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
   return view('product.cart'  , $r);
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 //cart ends
 ////////////////////////////////////
+
+
+
+
+
+
+
+
+public function up_rev (Request $req){
+
+ 
+$products = DB::table('products')->paginate(10);
+
+
+if($req->session()->has('userinfo')){
+      $userinfo1 = session('userinfo');
+      $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+      $userinfo['userinfo'] = $userinfo2;
+
+     
+      $products = DB::table('products')->paginate(10);
+
+
+
+        //return $revenue;
+
+
+      //return $userinfo[0]['u_id'];
+        return view('product.viewproducts')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'up_rev')->with('products' , $products);      }
+        else{
+        return redirect()->route('authenticationController.logout');
+      }
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
 
 
 public function getProductDetails(Request $req, $pid){
@@ -158,6 +218,9 @@ public function getProductDetails(Request $req, $pid){
 return view('product/productdetails' , [ 'products' => $products , 'reviews' =>  $reviews , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus , 'uid' => $uid , 'pid' => $pid]);
 
 }
+
+
+
 
 public static function addtocart(Request $req){
     //echo $req->myinfo; 

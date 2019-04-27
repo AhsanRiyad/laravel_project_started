@@ -281,6 +281,9 @@ $time = date('H:m A');
           </div></a>
           
 
+             
+          
+
           <a class="text-white  " href="{{ route('a_pos.index') }}">
             <div class="      
             py-2 text-center my-4 
@@ -308,6 +311,25 @@ $time = date('H:m A');
 
             </div>
           </a>
+  
+          
+
+          <a class="text-white  " href="{{ route('product.up_rev') }}">
+            <div class="      
+            py-2 text-center my-4 
+            @if($page_name == 'up_rev')
+            bg-success
+            @else
+            bg-secondary
+            @endif
+            ">
+
+            <i class="fas w_f fa-tachometer-alt"></i> Manipulate Review
+
+          </div></a>
+
+
+
 
 
 

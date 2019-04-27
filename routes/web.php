@@ -17,6 +17,8 @@ Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Na
 
 Route::post('/product/postReview', 'productController@postReview' )->Name('product.postReview');
 
+Route::get('/up_rev', 'productController@up_rev' )->Name('product.up_rev');
+
 Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
 
 Route::get('/product/search', 'productController@searchProducts' )->Name('product.searchProducts');

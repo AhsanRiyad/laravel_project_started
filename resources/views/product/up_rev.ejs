@@ -1,9 +1,19 @@
-<% include ../headerDashboard %>
-<% include ../dashboard/dashboardheader %>
+@extends('layout.hf_dboard')
 
+  <!-- stylesheet -->
+@section('stylesheet')
+  <link rel="stylesheet" href="{{ asset('/css/a_style.css') }}">
+@endsection
+
+
+
+@section('content')
+
+<div class="col-lg-8 col-7 offset-1">
+  
 
 <div class="row">
-	<div class="col-7 offset-3" style="margin-top: 100px;">
+  <div class="col-12 top-margin">
 		<h1 class="text-secondary text-center">user List</h1>
 	<table class="table">
   <thead class="thead-light">
@@ -54,9 +64,13 @@
 	</div>
 </div>
 
+</div>
 
+@endsection
 
+@section('script')
+<!-- main js -->
+    <script src="{{ asset('js/a_main.js') }}" ></script>
 
+@endsection
 
-
-<% include ../footerDashboard %>
