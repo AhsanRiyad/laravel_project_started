@@ -59,7 +59,7 @@ Route::post('/add_product' , 'productController@add_productPost')->name('product
 //Route::get('/db', 'testController@dbTest');
 Route::get('/db', 'productController@autosearch');
 
-
+Route::get('/all_products' , 'productController@all_products')->name('productController.all_products');
 
 ///////////////////////assignment routes//////////////////////////////
 

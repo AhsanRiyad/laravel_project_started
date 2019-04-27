@@ -648,6 +648,51 @@ $uid = 0;
 
 
 
+public function all_products(Request $req){
+
+$uid = 0;
+  if($req->session()->has('userinfo')){
+    $loginStatus = true;
+
+    $userinfo = session('userinfo');
+    //print_r($userinfo);
+    $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+    $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+    $c = productModel::cart_count($uid);
+    $cart_count = $c[0]->cart_count;
+    
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
+
+
+  }else{
+    $cart_count = 0;
+    $loginStatus = false;
+  }
+
+  
+  $params = [$uid];
+  $results = DB::table('products')->paginate(18);
+
+  // return $results;
+ // return $results[0][0]->product_id;
+  $r = [ 'searchResult'=> $results , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
+  return view('product.all_products'  , $r);
+
+
+}
+
+
+
+
+
+
 
 
 
