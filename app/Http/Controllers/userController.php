@@ -11,6 +11,21 @@ Use Exception;
 class userController extends Controller
 {
 
+
+    public function viewUser(Request $req){
+
+
+        //$users = DB::select('select * from user');
+
+        $users = DB::table('user')->paginate(10);
+     //return $req;
+        //return $userinfo[0]['u_id'];
+        return view('user.viewUser')->withMsg('')->withUserinfo($req->userinfo)->with('page_name' , 'viewUser')->with('users' , $users);
+        //return view('dashboard/dashboard' , $userinfo);
+        
+
+    }
+
     public function addUser(Request $req){
 
 

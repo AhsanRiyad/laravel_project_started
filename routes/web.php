@@ -99,6 +99,8 @@ Route::get('/confirmOrder/confirm' , 'productController@confirmOrder')->name('pr
 
 Route::get('/add_user' , 'userController@addUser')->name('userController.addUser');
 
+Route::get('/view_user' , 'userController@viewUser')->name('userController.viewUser');
+
 Route::post('/add_user' , 'userController@addUserPost')->name('userController.addUser');
 
 Route::post('/add_factory' , 'userController@add_factoryPost')->name('userController.add_factory');

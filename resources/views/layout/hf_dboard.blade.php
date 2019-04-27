@@ -266,6 +266,21 @@ $time = date('H:m A');
           </div></a>
           
 
+             <a class="text-white  " href="{{ route('userController.viewUser') }}">
+            <div class="      
+            py-2 text-center my-4 
+            @if($page_name == 'viewUser')
+            bg-success
+            @else
+            bg-secondary
+            @endif
+            ">
+
+            <i class="fas w_f fa-tachometer-alt"></i> View User
+
+          </div></a>
+          
+
           <a class="text-white  " href="{{ route('a_pos.index') }}">
             <div class="      
             py-2 text-center my-4 
