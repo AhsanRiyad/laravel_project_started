@@ -190,12 +190,24 @@ public function add_productPost (Request $req){
         if($file->getClientOriginalExtension()=='png' || $file->getClientOriginalExtension()=='jpg' && $file->getMimeType()=='application\png' || $file->getMimeType()=='application\jpg'){
 
 
-          $destinationPath = 'uploads';
-          $file->move($destinationPath,$file->getClientOriginalName());
+          $destinationFolder = 'uploads';
 
-          $imgPath = $destinationPath.'/'.$file->getClientOriginalName();
+          $productId = DB::select('select max(product_id) as m from products');
+          $pid = $productId[0]->m;
+          //return $pid;
 
-          $status = DB::insert('insert into products (product_name , product_price , image) values (? , ? , ?)', [$req->name , $req->price , $imgPath]);
+          //$imgPath = $destinationPath.'/'.$file->getClientOriginalName();
+          
+          $justFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+          $imgName = $justFileName.$pid.'.'.$file->getClientOriginalExtension();
+          $destinationPath = $destinationFolder.'/'.$imgName;
+
+          $file->move($destinationFolder, $imgName);
+
+          //return $justFileName;
+
+          $status = DB::insert('insert into products (product_name , product_price , image) values (? , ? , ?)', [$req->name , $req->price , $destinationPath]);
 
             return redirect()->route('productController.add_product')->with('msgfls' , 'file type ok');
 
