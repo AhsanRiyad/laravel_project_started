@@ -161,13 +161,64 @@ public function add_productPost (Request $req){
      
       $products = DB::table('products')->paginate(10);
 
+      /*if($req->hasFile('img')){
+        $file = $req->file('img');
+        echo $file->getClientOriginalName();
+        echo '<br/>';
+        echo $file->getClientOriginalExtension();
+        echo '<br/>';
+        echo $file->getSize();
+        echo '<br/>';
+        echo $file->getRealPath();
+        echo '<br/>';
+        echo $file->getRealPath();
+        echo '<br/>';
+        echo $file->getMimeType();
+        echo '<br/>';
+
+        $destinationPath = 'uploads';
+       $file->move($destinationPath,$file->getClientOriginalName());
+       echo '<br/>';
+
+        return $file;
+      }
+*/
+
+      if($req->hasFile('img')){
+      
+        $file = $req->file('img');
+        if($file->getClientOriginalExtension()=='png' || $file->getClientOriginalExtension()=='jpg' && $file->getMimeType()=='application\png' || $file->getMimeType()=='application\jpg'){
 
 
-        return $req;
+          $destinationPath = 'uploads';
+          $file->move($destinationPath,$file->getClientOriginalName());
+
+          $imgPath = $destinationPath.'/'.$file->getClientOriginalName();
+
+          $status = DB::insert('insert into products (product_name , product_price , image) values (? , ? , ?)', [$req->name , $req->price , $imgPath]);
+
+            return redirect()->route('productController.add_product')->with('msgfls' , 'file type ok');
+
+        }else{
+
+          return redirect()->route('productController.add_product')->with('msgfls' , 'wrong file type');
+
+        }
+
+          //return 'true';
+       
+
+
+      
+
+      }else{
+        return redirect()->route('productController.add_product')->with('msgfls' , 'No file uploaded');
+      }
 
 
       //return $userinfo[0]['u_id'];
-        return view('product.addProduct')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'add_products')->with('products' , $products);      }
+             
+    }
         else{
         return redirect()->route('authenticationController.logout');
       }

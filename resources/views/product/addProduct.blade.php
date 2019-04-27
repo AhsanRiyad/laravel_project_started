@@ -19,9 +19,10 @@
 
 	<h4 class="text-warning" >{{ $msg }}</h4>
 
-<form class="" method='post' action='#'>
+<form enctype="multipart/form-data" class="" method='post' action='#'>
   
   <div class="form-group">
+    <h1 class="text-white">{{ session('msgfls') }}</h1>
     <label for="inputAddress">Product Name</label>
     
     <small class="text-danger">
