@@ -33,7 +33,7 @@
 						<div class=" d-block box2 bg-danger border border-light border-top-0 border-left-0 border-right-0 border-bottom d-flex  justify-content-center">
 
 
-							<p class="d-flex align-items-center h5 my-0 h">22,000</p>
+							<p class="d-flex align-items-center h5 my-0 h">{{ $revenue }} </p>
 
 						</div>
 
@@ -64,14 +64,14 @@
 						<div class=" d-block box2 bg-success border border-light border-top-0 border-left-0 border-right-0 border-bottom d-flex  justify-content-center">
 
 
-							<p class="d-flex align-items-center h5 my-0">22,000</p>
+							<p class="d-flex align-items-center h5 my-0">{{ $order }}</p>
 
 						</div>
 
 						<div class=" d-block box2 bg-success d-flex align-items-center justify-content-center">
 
 
-							SALES
+							ORDER
 
 						</div>
 
@@ -96,7 +96,7 @@
 						<div class=" d-block box2 bg-info border border-light border-top-0 border-left-0 border-right-0 border-bottom d-flex  justify-content-center">
 
 
-							<p class="d-flex align-items-center h5 my-0">22,000</p>
+							<p class="d-flex align-items-center h5 my-0">{{ $products }}</p>
 
 						</div>
 
@@ -128,7 +128,7 @@
 						<div class=" d-block box2 bg-warning border border-light border-top-0 border-left-0 border-right-0 border-bottom d-flex  justify-content-center">
 
 
-							<p class="d-flex align-items-center h5 my-0">22,000</p>
+							<p class="d-flex align-items-center h5 my-0">{{ $visit }}</p>
 
 						</div>
 

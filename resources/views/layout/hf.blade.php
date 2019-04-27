@@ -149,7 +149,7 @@ $signout = "authenticationController.logout";
 
            @elseif($loginStatus==true)
 
-          <a href="<%=dashboard%>" class="btn btn-info">Dashboard</a>
+          <a href="{{ route('dashboardController.dashboard') }}" class="btn btn-info">Dashboard</a>
 
 
          @endif

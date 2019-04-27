@@ -248,6 +248,22 @@ $time = date('H:m A');
 
           @if($u_type == 'admin' && $country == 'both' )
           
+
+
+
+          <a class="text-white  " href="{{ route('dashboardController.dashboard') }}">
+            <div class="      
+            py-2 text-center my-4 
+            @if($page_name == 'dashboard')
+            bg-success
+            @else
+            bg-secondary
+            @endif
+            ">
+
+            <i class="fas w_f fa-tachometer-alt"></i> Dashboard
+
+          </div></a>
           
 
           <a class="text-white  " href="{{ route('a_pos.index') }}">
@@ -264,6 +280,7 @@ $time = date('H:m A');
 
           </div></a>
 
+
           <a class="text-white" href="{{ route('userController.addUser') }}">
             <div class=" 
             @if($page_name == 'addUser')
@@ -272,9 +289,10 @@ $time = date('H:m A');
             bg-secondary
             @endif py-2 text-center my-4">
 
-              <i class="fas w_f fa-chart-line"></i> Add Customer
+              <i class="fas w_f fa-chart-line"></i> Add User
 
-            </div></a>
+            </div>
+          </a>
 
 
 
