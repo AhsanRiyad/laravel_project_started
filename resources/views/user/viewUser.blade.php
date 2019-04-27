@@ -16,6 +16,8 @@
 <div class="row">
 	<div class="col-12 top-margin">
 		<h1 class="text-secondary text-center">user List</h1>
+    <h1 class="text-secondary text-center text-danger">{{ session('msgflash') }}</h1>
+  
 	<table class="table">
   <thead class="thead-light">
     <tr>
@@ -26,7 +28,7 @@
       <th scope="col">Type</th>
       <th scope="col">Status</th>
       <th scope="col">delete</th>
-      <th scope="col">update</th>
+      <!-- <th scope="col">update</th> -->
     </tr>
   </thead>
   <tbody>
@@ -42,7 +44,7 @@
       <td>{{ $u->u_type }}</td>
       <td>{{ $u->u_status }}</td>
       <td> 
-        <form action="http://localhost:3000/user/deleteuser" method="post"> 
+        <form action="{{ route('userController.delete_user') }}" method="post"> 
         
        <input type="text" name="userIdDelete" hidden="true" value="{{  $u->u_id  }}">
 
@@ -51,12 +53,12 @@
       </form>
       </td>
       
-
+<!-- 
       <td> 
 
         <a class="btn btn-primary" href="http://localhost:3000/user/updateuser/{{ $u->u_id }}">Update</a>
 
-    </td>
+    </td> -->
 
     </tr>
     

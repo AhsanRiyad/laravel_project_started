@@ -86,6 +86,17 @@ class userController extends Controller
 
 }
 
+public function delete_user(Request $req){
+
+    DB::delete('DELETE FROM `user` WHERE u_id = (?)' , [$req->userIdDelete]);
+
+
+    return redirect()->route('userController.viewUser')->withMsgflash('User Deleted');
+
+
+
+}
+
 public function add_factory(Request $req){
 
 

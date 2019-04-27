@@ -101,6 +101,9 @@ Route::get('/add_user' , 'userController@addUser')->name('userController.addUser
 
 Route::get('/view_user' , 'userController@viewUser')->name('userController.viewUser');
 
+
+Route::post('/delete_user' , 'userController@delete_user')->name('userController.delete_user');
+
 Route::post('/add_user' , 'userController@addUserPost')->name('userController.addUser');
 
 Route::post('/add_factory' , 'userController@add_factoryPost')->name('userController.add_factory');
