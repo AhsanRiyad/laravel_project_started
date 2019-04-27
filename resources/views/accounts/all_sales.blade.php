@@ -137,6 +137,14 @@
       </td>
 
     </tr>
+
+
+
+    <tr>
+      <td>
+        {{  $reports->links() }}
+      </td>
+    </tr>
     
 
     </tbody>

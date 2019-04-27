@@ -100,7 +100,7 @@ class accountController extends Controller
 
      
 
-        $reports = DB::table('all_sales')->paginate(10);
+        $reports = DB::table('daily_sales')->paginate(10);
 
 
         return view('accounts.reports')->withUserinfo($req->userinfo)->with('reports' , $reports)->with('page_name' , 'reports');
@@ -121,8 +121,7 @@ class accountController extends Controller
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
-        $reports = DB::select('SELECT o.* , (o.total_amount - o.paid) as due, u.last_name FROM `order_t` o, user u WHERE  u.u_id = o.user_id order by order_id desc
-            ');
+        $reports = DB::table('daily_sales')->paginate(10);
 
 
         return view('accounts.all_sales')->withUserinfo($req->userinfo)->with('reports' , $reports)->with('page_name' , 'reports');

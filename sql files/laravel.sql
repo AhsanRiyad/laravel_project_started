@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2019 at 09:13 PM
+-- Generation Time: Apr 27, 2019 at 09:23 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -290,10 +290,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `user_id`, `total_tk`, `paid_tk`, `balance_available`) VALUES
-(1, 0, 8610, 1324, 1224),
+(1, 0, 9616, 1424, 1324),
 (6, 14, 800, 100, 0),
 (7, 18, 2157, 500, 0),
-(8, 15, 4647, 712, 0),
+(8, 15, 5653, 812, 0),
 (9, 16, 470, 12, 0),
 (10, 35, 536, 0, 0);
 
@@ -383,6 +383,28 @@ CREATE TABLE `categories` (
   `category_id` int(5) NOT NULL,
   `category_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `daily_sales`
+-- (See below for the actual view)
+--
+CREATE TABLE `daily_sales` (
+`order_id` int(5)
+,`order_date` date
+,`payment_method` varchar(50)
+,`payment_status` varchar(50)
+,`return_id` int(5)
+,`user_id` int(8)
+,`counter` int(8)
+,`total_amount` int(11)
+,`paid` int(10)
+,`sales_point` varchar(50)
+,`admin_id` int(8)
+,`due` bigint(12)
+,`last_name` varchar(50)
+);
 
 -- --------------------------------------------------------
 
@@ -649,7 +671,13 @@ INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter
 (19, 1, 4, 131),
 (20, 11, 2, 132),
 (20, 11, 2, 133),
-(21, 9, 1, 134);
+(21, 9, 1, 134),
+(22, 2, 2, 135),
+(22, 10, 2, 136),
+(22, 14, 2, 137),
+(22, 14, 2, 138),
+(23, 12, 2, 139),
+(24, 11, 4, 140);
 
 -- --------------------------------------------------------
 
@@ -696,7 +724,10 @@ INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_stat
 (18, '2019-04-28', 'nexus', '', 0, 12, 55, 132, 0, 'default', 0),
 (19, '2019-04-28', 'nexus', '', 0, 12, 56, 132, 0, 'default', 0),
 (20, '2019-04-28', 'ggffre', '', 0, 12, 57, 66, 0, 'default', 0),
-(21, '2019-04-28', 'cash', '', 0, 12, 58, 343, 0, 'default', 0);
+(21, '2019-04-28', 'cash', '', 0, 12, 58, 343, 0, 'default', 0),
+(22, '2019-04-28', 'default', '', 0, 15, 59, 1006, 100, 'Kurigram', 12),
+(23, '2019-04-28', 'bkash', '', 0, 12, 60, 686, 0, 'default', 0),
+(24, '2019-04-28', 'nexus', '', 0, 12, 61, 132, 0, 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -831,7 +862,12 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (33, 1, 4, 170),
 (34, 1, 4, 171),
 (35, 11, 2, 172),
-(36, 9, 1, 173);
+(36, 9, 1, 173),
+(37, 2, 2, 174),
+(38, 10, 2, 175),
+(39, 14, 2, 176),
+(40, 12, 2, 177),
+(41, 11, 4, 178);
 
 -- --------------------------------------------------------
 
@@ -1171,7 +1207,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(727, 0);
+(823, 0);
 
 -- --------------------------------------------------------
 
@@ -1193,7 +1229,16 @@ CREATE TABLE `wishlist` (
 --
 DROP TABLE IF EXISTS `all_sales`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_sales`  AS  select `o`.`order_id` AS `order_id`,`o`.`order_date` AS `order_date`,`o`.`payment_method` AS `payment_method`,`o`.`payment_status` AS `payment_status`,`o`.`return_id` AS `return_id`,`o`.`user_id` AS `user_id`,`o`.`counter` AS `counter`,`o`.`total_amount` AS `total_amount`,`o`.`paid` AS `paid`,`o`.`sales_point` AS `sales_point`,`o`.`admin_id` AS `admin_id`,(`o`.`total_amount` - `o`.`paid`) AS `due`,`u`.`last_name` AS `last_name` from (`order_t` `o` join `user` `u`) where ((`o`.`order_date` = curdate()) and (`u`.`u_id` = `o`.`user_id`)) order by `o`.`order_id` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_sales`  AS  select `o`.`order_id` AS `order_id`,`o`.`order_date` AS `order_date`,`o`.`payment_method` AS `payment_method`,`o`.`payment_status` AS `payment_status`,`o`.`return_id` AS `return_id`,`o`.`user_id` AS `user_id`,`o`.`counter` AS `counter`,`o`.`total_amount` AS `total_amount`,`o`.`paid` AS `paid`,`o`.`sales_point` AS `sales_point`,`o`.`admin_id` AS `admin_id`,(`o`.`total_amount` - `o`.`paid`) AS `due`,`u`.`last_name` AS `last_name` from (`order_t` `o` join `user` `u`) where (`u`.`u_id` = `o`.`user_id`) order by `o`.`order_id` desc ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `daily_sales`
+--
+DROP TABLE IF EXISTS `daily_sales`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `daily_sales`  AS  select `o`.`order_id` AS `order_id`,`o`.`order_date` AS `order_date`,`o`.`payment_method` AS `payment_method`,`o`.`payment_status` AS `payment_status`,`o`.`return_id` AS `return_id`,`o`.`user_id` AS `user_id`,`o`.`counter` AS `counter`,`o`.`total_amount` AS `total_amount`,`o`.`paid` AS `paid`,`o`.`sales_point` AS `sales_point`,`o`.`admin_id` AS `admin_id`,(`o`.`total_amount` - `o`.`paid`) AS `due`,`u`.`last_name` AS `last_name` from (`order_t` `o` join `user` `u`) where ((`o`.`order_date` = curdate()) and (`u`.`u_id` = `o`.`user_id`)) order by `o`.`order_id` desc ;
 
 --
 -- Indexes for dumped tables
@@ -1383,7 +1428,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1431,13 +1476,13 @@ ALTER TABLE `msg`
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `order_t`
 --
 ALTER TABLE `order_t`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1455,7 +1500,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
