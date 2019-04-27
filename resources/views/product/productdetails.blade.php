@@ -57,6 +57,8 @@ $postReview = "product.postReview";
 
 
 					<hr>
+					<p>review by : {{ $review->last_name }}</p>
+					<p>date:  {{ $review->review_date }}</p>
 					<p class="lead">
 						 {{ $review->review_text  }} 
 

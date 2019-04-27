@@ -23,7 +23,7 @@ $productImg = 'img/cat1.jpg';
 			<p class="lead">Please select your payment method and your order will be on the way</p>
 			<hr class="my-4">
 
-			<form method="POST" action="http://localhost:3000/confirmOrder">
+			<form method="POST" action="{{ route('productController.confirmOrder') }}">
 			<div class="radio">
 				<label><input type="radio" name="optradio" value="cash" checked> Cash On Delivery</label>
 			</div>
