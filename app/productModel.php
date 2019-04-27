@@ -3,6 +3,7 @@
 namespace App;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Model;
+use App\multipleSelectModel;
 use DB;
 
 class productModel extends Model
@@ -84,7 +85,9 @@ class productModel extends Model
 
 
         try{
-        $status = DB::statement("call cart( ?, ?  , ?  )" , [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ] );
+            $params = [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ];
+        $status = multipleSelectModel::CallRaw('cart', $params);
+        //$status = DB::statement("call cart( ?, ?  , ?  )" , [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ] );
 
             return 'success';
         }catch(QueryException $ex){ 
@@ -135,6 +138,8 @@ class productModel extends Model
  
         try{
         if($catName == 'all'){
+
+            
             $results = DB::select( "select * from products where product_name like (?) " , [$pname]);
 
             return $results;

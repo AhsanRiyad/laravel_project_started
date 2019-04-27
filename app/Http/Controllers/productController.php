@@ -92,7 +92,12 @@ public function cart (Request $req){
 
   
   $params = [$uid];
+  //return $params;
   $results = multipleSelectModel::CallRaw('cartPage', $params);
+
+  //$results = DB::select('call CartPage(?)' , [$uid]);
+
+  //return $results;
 
   // return $results;
  // return $results[0][0]->product_id;

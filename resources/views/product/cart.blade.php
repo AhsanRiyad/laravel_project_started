@@ -71,7 +71,10 @@ $productImg = 'img/cat1.jpg';
 			<td>{{ $products[0][$i]-> product_name }}</td>
 			<td>{{ $products[0][$i]-> descriptions  }}</td>
 			<td>{{$products[0][$i]->product_qntity  }}</td>
-			<td>{{$products[0][$i]->product_price }}</td>
+			<td>{{ $products[0][$i]->product_price*$products[0][$i]->product_qntity }}
+
+			
+			</td>
 
 		</tr>
 
