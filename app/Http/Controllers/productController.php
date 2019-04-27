@@ -38,7 +38,7 @@ class productController extends Controller
 
 
 
-    
+
 
     //return redirect()->route('a_pos.index');
 
@@ -63,7 +63,7 @@ class productController extends Controller
 ////////////////////////////////////
 //cart starts
 public function cart (Request $req){
-  
+
   $uid = 0;
   if($req->session()->has('userinfo')){
     $loginStatus = true;
@@ -124,113 +124,113 @@ public function getProductDetails(Request $req, $pid){
     	//return $products[0]->product_name;
 
  if($req->session()->has('userinfo')){
-    $loginStatus = true;
+  $loginStatus = true;
 
-    $userinfo = session('userinfo');
+  $userinfo = session('userinfo');
     //print_r($userinfo);
-    $userinfo2 = json_decode(json_encode($userinfo), true);
+  $userinfo2 = json_decode(json_encode($userinfo), true);
     //print_r($userinfo2);
 
     //echo $userinfo2[0]['u_id'];
-    $uid =  $userinfo2[0]['u_id'];
+  $uid =  $userinfo2[0]['u_id'];
 
     //for references
     //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
-    $c = productModel::cart_count($uid);
-    $cart_count = $c[0]->cart_count;
-    
+  $c = productModel::cart_count($uid);
+  $cart_count = $c[0]->cart_count;
+
     //print_r($c[0]);
     //echo $c[0]->cart_count;
 
 
-  }else{
-    $uid =  null;
+}else{
+  $uid =  null;
 
-    $cart_count = 0;
-    $loginStatus = false;
-  }
-
-
+  $cart_count = 0;
+  $loginStatus = false;
+}
 
 
 
 
- return view('product/productdetails' , [ 'products' => $products , 'reviews' =>  $reviews , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus , 'uid' => $uid , 'pid' => $pid]);
+
+
+return view('product/productdetails' , [ 'products' => $products , 'reviews' =>  $reviews , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus , 'uid' => $uid , 'pid' => $pid]);
 
 }
 
-  public static function addtocart(Request $req){
+public static function addtocart(Request $req){
     //echo $req->myinfo; 
-    $t = json_decode($req->myinfo , true);
+  $t = json_decode($req->myinfo , true);
     //echo $t;
 
     //echo $t['uid'];
     //echo $t['pid'];
     //echo $t['qntity'];
 
-    $cartInfo['uid'] = $t['uid'];
-    $cartInfo['pid'] = $t['pid'];
-    $cartInfo['qntity'] = $t['qntity'];
+  $cartInfo['uid'] = $t['uid'];
+  $cartInfo['pid'] = $t['pid'];
+  $cartInfo['qntity'] = $t['qntity'];
 
-    $info = productModel::addToCart($cartInfo);
+  $info = productModel::addToCart($cartInfo);
 
-    $c = productModel::cart_count($t['uid']);
-    $cart_count = $c[0]->cart_count;
+  $c = productModel::cart_count($t['uid']);
+  $cart_count = $c[0]->cart_count;
 
-    $i = ['cartCount'=> $cart_count , 'status' => $info ];
-    $res = json_encode($i);
+  $i = ['cartCount'=> $cart_count , 'status' => $info ];
+  $res = json_encode($i);
 
-    echo $res;
-    
+  echo $res;
 
 
-  }
 
-  public static function postReview(Request $req){
+}
+
+public static function postReview(Request $req){
 
     //var sql = "call review("+revInfo.user_id+" , "+revInfo.productId+" , '"+revInfo.rev_text+"' , '"+revInfo.rev_date+"');";
 
-    $rev_date = date('Y-m-d');
-    $revInfo['rev_text'] = $req->rev_text;
-    $revInfo['rev_date'] = $rev_date;
-    $revInfo['productId'] = $req->productid;
-    $revInfo['user_id'] = $req->uid;
+  $rev_date = date('Y-m-d');
+  $revInfo['rev_text'] = $req->rev_text;
+  $revInfo['rev_date'] = $rev_date;
+  $revInfo['productId'] = $req->productid;
+  $revInfo['user_id'] = $req->uid;
 
 
-    $status = productModel::postReview($revInfo);
+  $status = productModel::postReview($revInfo);
 
-    return redirect()->route('product.details' , [$req->productid]);
+  return redirect()->route('product.details' , [$req->productid]);
 
-  }
-
-
-
-  
+}
 
 
-  public static function autosearch(Request $req){
+
+
+
+
+public static function autosearch(Request $req){
 
     //$h = ['ih' , 'ihoa' , $req->term , $req->cat];
     //$j = json_encode($h);
 
-    $searchDetails = ['searchText' => $req->term , 'category' => $req->cat];
+  $searchDetails = ['searchText' => $req->term , 'category' => $req->cat];
     //$searchDetails = ['searchText' => 'ram' , 'category' => 'all'];
 
 
 
-    $results = productModel::autosearch($searchDetails);
+  $results = productModel::autosearch($searchDetails);
     //$results = ['riyad' , 'hellow' , 'hi' , 'riyad'];
 
 
-    if($results!=[]){
+  if($results!=[]){
       //multiple element to single element json conversion
-          $abc = [];
-      for($i = 0 ; $i<sizeof($results); $i++)
-      {
+    $abc = [];
+    for($i = 0 ; $i<sizeof($results); $i++)
+    {
         //console.log(i);
         //console.log(result[i].product_name);
-        $abc['product'.$i] = $results[$i]->product_name;
-      }
+      $abc['product'.$i] = $results[$i]->product_name;
+    }
 
       //echo sizeof($results);
     $j = json_encode($abc);
@@ -242,30 +242,30 @@ public function getProductDetails(Request $req, $pid){
     echo $j;
 
     //echo $results[0]->product_name;
-    }else{
-      $abc = ['results' => 'no results'];
-      $j = json_encode($abc);
-      echo $j;
-    }
-
-
+  }else{
+    $abc = ['results' => 'no results'];
+    $j = json_encode($abc);
+    echo $j;
   }
 
 
-   public static function searchProducts(Request $req){
+}
+
+
+public static function searchProducts(Request $req){
 
     //$searchDetails = ['searchText' => $text , 'category' => $cat];
 
-    if($req->searchbox==''){
-      $req->searchbox = 'nothing';
-    }
+  if($req->searchbox==''){
+    $req->searchbox = 'nothing';
+  }
 
-    $searchDetails = ['searchText' => $req->searchbox , 'category' => $req->catValue];
-    $products = productModel::searchProducts($searchDetails);
+  $searchDetails = ['searchText' => $req->searchbox , 'category' => $req->catValue];
+  $products = productModel::searchProducts($searchDetails);
 
     //return $products;
 
-    if($req->session()->has('userinfo')){
+  if($req->session()->has('userinfo')){
     $loginStatus = true;
 
     $userinfo = session('userinfo');
@@ -292,14 +292,49 @@ public function getProductDetails(Request $req, $pid){
 
 
 
-    return view('product\productSearch', [ 'products' => $products ,  'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);
-    
-
-
-   }
+  return view('product\productSearch', [ 'products' => $products ,  'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);
 
 
 
+}
+
+
+public function categorySearch(Request $req ,  $catName , $subCatName){
+
+
+
+  if($req->session()->has('userinfo')){
+   $loginStatus = true;
+
+   $userinfo = session('userinfo');
+    //print_r($userinfo);
+   $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+   $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+   $c = productModel::cart_count($uid);
+   $cart_count = $c[0]->cart_count;
+
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
+
+
+ }else{
+  $cart_count = 0;
+  $loginStatus = false;
+}
+
+
+$products = DB::select('select * from products where category_name = (?) and sub_category = (?)' , [$catName , $subCatName]);
+
+
+return view('product.product_cat')->with('catName' , $catName)->with('subCat' , $subCatName)->with('searchResult' , $products)->with('loginStatus' , $loginStatus)->with('cart_count' , $cart_count);
+
+}
 
 
 

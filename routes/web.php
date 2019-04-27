@@ -20,6 +20,8 @@ Route::post('/product/postReview', 'productController@postReview' )->Name('produ
 Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
 
 Route::get('/product/search', 'productController@searchProducts' )->Name('product.searchProducts');
+Route::get('product/category/{catName}/{subCatName}', 'productController@categorySearch' )->Name('product.categorySearch');
+
 
 Route::get('/cart', 'productController@cart' )->Name('product.cart');
 
