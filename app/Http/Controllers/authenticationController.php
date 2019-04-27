@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\authenticationModel;
+use App\Http\Requests\regRequest;
 
 class authenticationController extends Controller
 {
@@ -73,7 +74,7 @@ class authenticationController extends Controller
 
     }
 
-    public static function signUpCheck(Request $req){
+   public static function signUpCheck(regRequest $req){
 
         $user = ['msg' => 'Welcome, Create your Umart Account' , 'loginStatus' => false] ;
         $user['checkbox'] = '';  
@@ -87,7 +88,7 @@ class authenticationController extends Controller
         $userinfo['day'] = $req->day;
         $userinfo['year'] = $req->year;
         $userinfo['gender'] = $req->gender;
-        $userinfo['first_name'] = $req->first_name;
+        $userinfo['country'] = $req->country;
         $userinfo['last_name'] = $req->last_name;
         $userinfo['phone'] = $req->phone;
         $userinfo['user_type'] = $req->user_type;
