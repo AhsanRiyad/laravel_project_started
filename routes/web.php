@@ -51,7 +51,9 @@ Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardContr
 Route::get('/logout', 'authenticationController@logout' )->Name('authenticationController.logout');
 
 
+Route::get('/add_product' , 'productController@add_product')->name('productController.add_product');
 
+Route::post('/add_product' , 'productController@add_productPost')->name('productController.add_product');
 
 
 //Route::get('/db', 'testController@dbTest');

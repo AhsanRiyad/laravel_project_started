@@ -123,7 +123,59 @@ public function cart (Request $req){
 
 
 
+public function add_product (Request $req){
+  
+  if($req->session()->has('userinfo')){
+      $userinfo1 = session('userinfo');
+      $userinfo2 = json_decode(json_encode($userinfo1), true);
 
+      $userinfo['userinfo'] = $userinfo2;
+
+     
+      $products = DB::table('products')->paginate(10);
+
+
+
+        //return $revenue;
+
+
+      //return $userinfo[0]['u_id'];
+        return view('product.addProduct')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'add_products')->with('products' , $products);      }
+        else{
+        return redirect()->route('authenticationController.logout');
+      }
+
+
+
+
+}
+
+public function add_productPost (Request $req){
+  
+  if($req->session()->has('userinfo')){
+      $userinfo1 = session('userinfo');
+      $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+      $userinfo['userinfo'] = $userinfo2;
+
+     
+      $products = DB::table('products')->paginate(10);
+
+
+
+        return $req;
+
+
+      //return $userinfo[0]['u_id'];
+        return view('product.addProduct')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'add_products')->with('products' , $products);      }
+        else{
+        return redirect()->route('authenticationController.logout');
+      }
+
+
+
+
+}
 
 
 

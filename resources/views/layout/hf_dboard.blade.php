@@ -333,16 +333,16 @@ $time = date('H:m A');
 
 
 
-            <a hidden class="text-light" href='{{ route("userController.add_factory") }}'>
+            <a class="text-light" href='{{ route("productController.add_product") }}'>
               <div class="
               py-2 text-center my-4 
-              @if($page_name == 'add_factory')
+              @if($page_name == 'add_products')
               bg-success
               @else
               bg-secondary
               @endif">
 
-              <i class="fas w_f fa-user "></i> Add Factory
+              <i class="fas w_f fa-user "></i> Add Product
 
             </div></a>
 
