@@ -27,21 +27,21 @@
   </thead>
   <tbody>
     
-
-	<% for(var i=0; i< allReviews.length; i++) {%>	
+<p hidden >{{ $i=1 }}</p>
+	@foreach($review as $r)
 
     <tr>
-      <th scope="row"> <%=i+1%> </th>
-      <td> <%=allReviews[i].review_text%> </td>
-      <td> <%=allReviews[i].review_date%>  </td>
-      <td> <%=allReviews[i].user_id%>  </td>
+      <th scope="row"> {{ $i++ }} </th>
+      <td> {{ $r->review_text }} </td>
+      <td> {{ $r->review_date }} </td>
+      <td> {{ $r->user_id }} </td>
       <td> 
 
       	<form method="POST" action="http://localhost:3000/product/up_rev/<%=allReviews[i].product_id%>">
 
       	<input type="text" name="rev_id" hidden="true" value="<%=allReviews[i].review_id%>">
 
-        <input type="submit" class="btn btn-primary" name="submit">
+        <input type="submit" class="btn btn-danger" name="submit" value="delete">
 
         </form>
 
@@ -54,7 +54,14 @@
 
     </tr>
     
-    <%}%>
+  @endforeach
+
+
+  <tr>
+    <td>
+      {{ $review->links() }}
+    </td>
+  </tr>
 
 
   </tbody>

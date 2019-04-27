@@ -19,6 +19,12 @@ Route::post('/product/postReview', 'productController@postReview' )->Name('produ
 
 Route::get('/up_rev', 'productController@up_rev' )->Name('product.up_rev');
 
+
+Route::get('/view_review/{id}', 'productController@view_review' )->Name('product.view_review');
+
+
+
+
 Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
 
 Route::get('/product/search', 'productController@searchProducts' )->Name('product.searchProducts');

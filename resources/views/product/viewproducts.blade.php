@@ -37,7 +37,7 @@
       <td> {{ $p->product_id }} </td>
       <td> {{ $p->product_name }}  </td>
       <td> 
-        <a class="btn btn-primary" href="http://localhost:3000/product/up_rev/<%=allProducts[i].product_id%>">View Review</a>
+        <a class="btn btn-primary" href="{{ route('product.view_review' , [$p->product_id]) }}">View Review</a>
        </td>
       
       <!-- <td> 
