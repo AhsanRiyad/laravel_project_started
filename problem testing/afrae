@@ -1,0 +1,134 @@
+{"cart_products":[{"cart_id":5,"cart_status":"cart","user_id":1,"g_u_type":"user","order_id":0,"product_id":3,"quantity":30},{"cart_id":6,"cart_status":"cart","user_id":1,"g_u_type":"user","order_id":0,"product_id":5,"quantity":13},{"cart_id":7,"cart_status":"cart","user_id":1,"g_u_type":"user","order_id":0,"product_id":4,"quantity":21},{"cart_id":8,"cart_status":"cart","user_id":1,"g_u_type":"user","order_id":0,"product_id":2,"quantity":14},{"cart_id":9,"cart_status":"cart","user_id":1,"g_u_type":"user","order_id":0,"product_id":7,"quantity":3},{"cart_id":10,"cart_status":"cart","user_id":1,"g_u_type":"user","order_id":0,"product_id":6,"quantity":3},{"cart_id":11,"cart_status":"cart","user_id":1,"g_u_type":"user","order_id":0,"product_id":1,"quantity":4}]}
+
+
+
+
+
+
+
+
+<div id='product_list_div'>
+    
+
+    <div class='form-row'>
+    
+    <div class='form-group col-md-2'>
+      <label for='inputEmail4'>Product id</label>
+      <input disabled type='email' class='form-control' id='inputEmail4' placeholder='Email'>
+    </div>
+    <div class='form-group col-md-2'>
+      <label for='inputPassword4'>Product Name</label>
+      <input  type='password' class='form-control' id='inputPassword4' placeholder='Password'>
+    </div>
+
+  <div class='form-group col-md-2'>
+    <label for='inputState'>Quantity</label>
+      <select id='inputState' class='form-control'>
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+  </div>
+  <div class='form-group col-md-2'>
+    <label for='inputState'>Update</label>
+       <input type='submit' value='update' class='btn btn-primary form-control'>
+  </div>
+  
+  <div class='form-group col-md-2'>
+    <label for='inputState'>Update</label>
+       <input type='submit' value='update' class='btn btn-primary form-control'>
+  </div>
+  </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $.ajax({
+		 	 	url: 'http:localhost:3000/a_cart_delete/'+cart_id+'/'+user_id,
+		 	 	method: 'POST',
+		 	 	
+		 	 
+		 	 success: function(reply){
+		 	 	var res = JSON.parse(reply);
+					 // alert(reply);
+					 //alert(reply);
+					alert(reply);
+					alert(res.cart_products.length);
+
+					//alert(res.cart_products[0].cart_id);
+					// alert(res.cart_products.length);
+					var element = '';
+
+					for(var i=0; i<res.cart_products.length; i++){
+
+						var element1 = '<div class="form-row"> \
+    \
+    <div class="form-group col-md-2"> \
+      <label for="inputEmail4">Product id</label> \
+      <input disabled type="email" class="form-control" id="inputEmail4" placeholder="Email" value='+res.cart_products[i].product_id+'> \
+    </div>\
+    <div class="form-group col-md-2"> \
+      <label for="inputPassword4">Product Name</label>\
+      <input  type="text" class="form-control" id="inputPassword4" placeholder="Password" value='+res.cart_products[i].product_name+'>\
+    </div>\
+\
+  <div class="form-group col-md-2">\
+    <label for="inputState">Quantity</label>\
+      <select id="inputState" class="form-control">\
+        <option selected>Choose...</option>\
+        <option selected value='+res.cart_products[i].quantity+' >'+res.cart_products[i].quantity+'</option>\ \
+      </select>\
+  </div>\
+  <div class="form-group col-md-2">\
+    <label for="inputState">Update</label>\
+       <button onClick = "update_it();"  class="btn btn-primary form-control">Update</button>\
+  </div>\
+  \
+  <div class="form-group col-md-2">\
+    <label for="inputState">Delete</label>\
+       \
+       <a onClick = "delete_it('+res.cart_products[i].cart_id+');"><button class="btn btn-primary form-control">Delete</button></a>\
+  </div>\
+  </div>';
+
+  					element = element + element1;
+
+
+
+
+
+
+
+
+						
+						
+						$('#product_list_div').html(element);
+
+
+					};
+
+					
+
+
+
+
+
+					},
+					error: function(error){
+						//alert(error);
+					 alert('error');
+
+					}
+			});
+
