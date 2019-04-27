@@ -99,7 +99,7 @@ $signout = "authenticationController.logout";
                       </div>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-2">
                       <button type="submit" class="btn btn-primary py-4 " name="submit">Search</button>
 
 
@@ -116,7 +116,7 @@ $signout = "authenticationController.logout";
 
               </div>
 
-             <div class="col-lg-1  col-3 offset-1 mt-3 mb-3 mb-lg-0 mt-lg-0 offset-lg-0 d-flex justify-content-center align-self-lg-center">
+             <div class="col-lg-1 px-0  col-3 offset-1 mt-3 mb-3 mb-lg-0 mt-lg-0 offset-lg-0 d-flex  align-self-lg-center">
 
                 @if($loginStatus == false)
 
@@ -136,7 +136,7 @@ $signout = "authenticationController.logout";
 
           </div>
 
-          <div class=" col-lg-2 col-xl-1 col-3 mt-3 mb-3 mb-lg-0 mt-lg-0 d-flex justify-content-center align-self-lg-center">
+          <div style="margin-left: -10px;" class=" col-lg-1 px-0  col-3 offset-1 mt-3 mb-3 mb-lg-0 mt-lg-0 offset-lg-0 d-flex  align-self-lg-center">
 
 
 
@@ -162,7 +162,7 @@ $signout = "authenticationController.logout";
 
 
 
-      <div class=" col-lg-1 col-3 mt-3 mb-3 mb-lg-0 mt-lg-0 d-flex justify-content-center align-self-lg-center">
+      <div style="margin-left: 2px;" class=" col-lg-1 px-0  col-3 offset-1 mt-3 mb-3 mb-lg-0 mt-lg-0 offset-lg-0 d-flex  align-self-lg-center">
 
 
 
