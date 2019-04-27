@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2019 at 02:07 PM
+-- Generation Time: Apr 27, 2019 at 03:24 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -362,7 +362,8 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
 (2, 'cart', 16, 'user', 0, 7, 3),
-(6, 'cart', 15, 'user', 0, 2, 2);
+(6, 'cart', 15, 'user', 0, 2, 2),
+(9, 'cart', 2, 'user', 0, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -905,7 +906,8 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (5, 10, 4, 142),
 (6, 2, 2, 143),
 (7, 1, 7, 144),
-(8, 2, 2, 145);
+(8, 2, 2, 145),
+(9, 7, 1, 146);
 
 -- --------------------------------------------------------
 
@@ -1082,6 +1084,15 @@ CREATE TABLE `shipment_temp` (
   `product_quantity` int(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `shipment_temp`
+--
+
+INSERT INTO `shipment_temp` (`id`, `admin_id`, `product_id`, `product_quantity`) VALUES
+(1, 12, 3, 2),
+(2, 12, 9, 4),
+(3, 12, 14, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -1223,6 +1234,24 @@ INSERT INTO `visit` (`product_id`, `user_id`, `user_ip`, `hit_count`, `counter`)
 (1, 0, '127.0.0.1', 0, 34),
 (7, 0, '127.0.0.1', 0, 35),
 (9, 0, '127.0.0.1', 0, 36);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitcounter`
+--
+
+CREATE TABLE `visitcounter` (
+  `total` int(8) NOT NULL DEFAULT '0',
+  `id` int(8) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `visitcounter`
+--
+
+INSERT INTO `visitcounter` (`total`, `id`) VALUES
+(7, 0);
 
 -- --------------------------------------------------------
 
@@ -1434,7 +1463,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1506,7 +1535,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1548,7 +1577,7 @@ ALTER TABLE `shipment_product`
 -- AUTO_INCREMENT for table `shipment_temp`
 --
 ALTER TABLE `shipment_temp`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `supply_order`
