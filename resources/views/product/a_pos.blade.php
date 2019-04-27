@@ -50,9 +50,9 @@
     <label for="inputState">Sell's Point </label>
       <select id="salesPoint_id" class="form-control">
         <option selected>Choose...</option>
-        <option value="New Delhi">New Delhi</option>
-        <option value="Agrabad">Agrabad</option>
-        <option value="Banglore">Banglore</option>
+        <option value="Dhaka">Dhaka</option>
+        <option value="Kurigram">Kurigram</option>
+        <option value="Rangpur">Rangpur</option>
       </select>
   </div>
 

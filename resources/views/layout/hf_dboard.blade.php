@@ -294,7 +294,7 @@ $time = date('H:m A');
             @endif
             ">
 
-            <i class="fas w_f fa-tachometer-alt"></i> Point Of Sale
+            <i class="fas w_f fa-tachometer-alt"></i> Point of Sales
 
           </div></a>
 
@@ -333,7 +333,7 @@ $time = date('H:m A');
 
 
 
-            <a class="text-light" href='{{ route("userController.add_factory") }}'>
+            <a hidden class="text-light" href='{{ route("userController.add_factory") }}'>
               <div class="
               py-2 text-center my-4 
               @if($page_name == 'add_factory')
@@ -369,7 +369,7 @@ $time = date('H:m A');
               bg-secondary
               @endif">
 
-              <i class="fas fa-shopping-cart"></i> Request Shipment BD 
+              <i class="fas fa-shopping-cart"></i> Request Shipment
 
             </div></a> 
 
@@ -388,7 +388,7 @@ $time = date('H:m A');
             </div></a>
 
 
-            <a class="text-white" href="{{ route('userController.add_raw_materials') }}">
+            <a hidden class="text-white" href="{{ route('userController.add_raw_materials') }}">
               <div class="  
               @if($page_name == 'add_raw_materials')
               bg-success
@@ -400,7 +400,7 @@ $time = date('H:m A');
 
               </div></a>
 
-              <a class="text-white" href='{{ route("accountController.money_transfer") }}'>
+              <a hidden class="text-white" href='{{ route("accountController.money_transfer") }}'>
                 <div class="
                 @if($page_name == 'money_transfer')
                 bg-success
@@ -416,7 +416,7 @@ $time = date('H:m A');
               </a>
 
 
-              <a class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
+              <a hidden class="text-white" href='{{ route("accountController.money_transfer_request") }}'>
                 <div class="
                 @if($page_name == 'money_transfer_request')
                 bg-success
@@ -433,7 +433,7 @@ $time = date('H:m A');
 
 
 
-              <a class="text-white" href='{{ route("accountController.money_transfer_status") }}'>
+              <a hidden class="text-white" href='{{ route("accountController.money_transfer_status") }}'>
                 <div class="
                 @if($page_name == 'money_transfer_status')
                 bg-success
@@ -461,7 +461,21 @@ $time = date('H:m A');
                   <i class="fab fa-product-hunt"></i> Sales  Reports
 
                 </div></a>
+                
 
+
+                <a class="text-white" href="{{ route('index') }}">
+                <div class="  
+                @if($page_name == 'reports')
+                bg-info
+                @else
+                bg-info
+                @endif
+                 py-2 text-center my-4">
+
+                  <i class="fab fa-product-hunt"></i> Back to shop page
+
+                </div></a>
 
 
                 <a class="text-white" href="  {{ route($signout) }}  ">

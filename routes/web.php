@@ -104,6 +104,9 @@ Route::post('/confirmOrder' , 'productController@confirmOrderPost')->name('produ
 Route::get('/confirmOrder/confirm' , 'productController@confirmOrder')->name('productController.confirmOrder');
 
 
+Route::post('/confirmOrder/confirm' , 'productController@confirmOrderPost')->name('productController.confirmOrder');
+
+
 
 Route::get('/add_user' , 'userController@addUser')->name('userController.addUser');
 
