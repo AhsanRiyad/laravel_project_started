@@ -24,12 +24,12 @@ class regRequest extends FormRequest
     public function rules()
     {
         return [
-         'email' => 'required|email'  ,
+         'email' => 'required|email|unique:user,u_email'  ,
          'password' => 'required|string|between:6,20' , 
-         'country' => 'required|string|between:3,20' , 
+         //'country' => 'required|string|between:3,20' , 
          'phone' => 'required|between:10,15' , 
          'last_name' => 'required|string|between:3,15' , 
-
+         'confirm_password' => 'same:password' , 
 
      ];
     }

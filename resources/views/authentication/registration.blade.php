@@ -143,12 +143,19 @@ $loginStatus=false;
 
 							<!-- re-enter password input -->
 							<div class="form-group mb-4">
-								<label for="exampleInputPassword1"><small>Re-enter password*</small></label>
+								<label for="exampleInputPassword1"><small>Re-enter password*</small>
+									<small class="text-danger">
+                      			{{ $errors->first('confirm_password') }} 
+                    				</small>
+									<br>
+
+
+								</label>
 								<input name="confirm_password" type="password" class="form-control rounded-0" id="exampleInputPassword2" placeholder="Password" value="" >
 							</div>
 
 							<!-- month input -->
-							<div class="row">
+							<div hidden class="row">
 								<div class="col-3 pr-0">
 									<small>
 									DOB
@@ -276,12 +283,12 @@ $loginStatus=false;
 
 
 
-									<select  name="country" class="custom-select rounded-0 pl-1 pl-lg-2 " id="inputGroupSelect01">
-										<option  value="">Country</option>
-										<option selected value="bangladesh">Bangladesh</option>
+									<select disabled  name="country" class="custom-select rounded-0 pl-1 pl-lg-2 " id="inputGroupSelect01">
+										<option  value="both">Country</option>
+										<option selected value="both">Bangladesh</option>
 										<option 
 										
-										value="india">India</option>
+										value="both">India</option>
 									
 									</select>
 								</div>
@@ -316,7 +323,7 @@ $loginStatus=false;
 						</div>
 
 						<!-- toc terms and condition input -->
-						<div class="custom-control custom-checkbox my-1 mr-sm-2 my-0 py-0">
+						<div hidden class="custom-control custom-checkbox my-1 mr-sm-2 my-0 py-0">
 
 							
 							<input name="toc" value="yes" type="checkbox" class="custom-control-input" id="customControlInline"
