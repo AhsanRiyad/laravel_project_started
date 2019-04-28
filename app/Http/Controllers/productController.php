@@ -703,6 +703,39 @@ $uid = 0;
 
 
 
+public function delete_review (Request $req , $id){
+
+ 
+
+
+
+if($req->session()->has('userinfo')){
+      $userinfo1 = session('userinfo');
+      $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+      $userinfo['userinfo'] = $userinfo2;
+
+
+      $review = DB::table('review')->where('product_id' , $req->product_id)->paginate(10);
+
+        //return $revenue;
+
+      $status = DB::delete('delete from review where review_id = (?)' , [$id]);
+
+
+
+      //return $userinfo[0]['u_id'];
+        return redirect()->route('product.view_review' , [$req->product_id])->withMsgfls('Review Deleted');      }
+        else{
+        return redirect()->route('authenticationController.logout');
+      }
+
+
+
+
+
+
+}
 
 
 

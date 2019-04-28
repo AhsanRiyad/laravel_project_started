@@ -15,6 +15,7 @@
 <div class="row">
   <div class="col-12 top-margin">
 		<h1 class="text-secondary text-center">Review List</h1>
+    <h1 class="text-white bg-danger text-center">{{ session('msgfls') }}</h1>
 	<table class="table">
   <thead class="thead-light">
     <tr>
@@ -37,9 +38,11 @@
       <td> {{ $r->user_id }} </td>
       <td> 
 
-      	<form method="POST" action="http://localhost:3000/product/up_rev/<%=allReviews[i].product_id%>">
+      	<form method="POST" action="{{ route('product.delete_review' , [ $r->review_id  ]) }}">
 
-      	<input type="text" name="rev_id" hidden="true" value="<%=allReviews[i].review_id%>">
+      	<input type="text" name="rev_id" hidden="true" value="{{ $r->review_id }}">
+
+        <input type="text" name="product_id" hidden="true" value="{{ $r->product_id }}">
 
         <input type="submit" class="btn btn-danger" name="submit" value="delete">
 

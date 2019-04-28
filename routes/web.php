@@ -23,6 +23,9 @@ Route::get('/up_rev', 'productController@up_rev' )->Name('product.up_rev');
 Route::get('/view_review/{id}', 'productController@view_review' )->Name('product.view_review');
 
 
+Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('product.delete_review');
+
+
 
 
 Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
@@ -60,6 +63,10 @@ Route::post('/add_product' , 'productController@add_productPost')->name('product
 Route::get('/db', 'productController@autosearch');
 
 Route::get('/all_products' , 'productController@all_products')->name('productController.all_products');
+
+
+
+////////////////////////rest api/////////////////////////
 
 ///////////////////////assignment routes//////////////////////////////
 
