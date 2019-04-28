@@ -27,20 +27,20 @@
   
   <div class="form-group">
     <label for="inputAddress">Customer Name</label>
-    <small class="text-danger">
+    <small class="text-white bg-danger">
                       {{ $errors->first('name') }} 
                     </small>
     <input name="name" type="text" class="form-control" id="inputAddress" placeholder="" value="{{ old('name') }}">
   </div>
   <div class="form-group">
-    <label for="inputAddress" name="user_email">Email</label> <small class="text-danger">
+    <label for="inputAddress" name="user_email">Email</label> <small class="text-white bg-danger">
                       {{ $errors->first('email') }} 
                     </small>
     <input name="email" type="text" class="form-control" id="totalAmount" placeholder="" value="{{ old('email') }}">
   </div>
   <div class="form-group">
     <label for="inputAddress">Password</label>
-    <small class="text-danger">
+    <small class="text-white bg-danger">
                       {{ $errors->first('password') }} 
                     </small>
     <input type="password" class="form-control" id="totalAmount" placeholder="" name="password" value="{{ old('password') }}">
@@ -48,7 +48,7 @@
 
   <div class="form-group">
     <label for="inputState" >Type</label>
-    <small class="text-danger">
+    <small class="text-white bg-danger">
                       {{ $errors->first('type') }} 
                     </small>
       <select name="type" id="inputState" class="form-control">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\productModel;
 use DB;
 use App\multipleSelectModel;
+use Validator;
 
 /////////////////////////////////////////////
 class productController extends Controller
@@ -184,6 +185,16 @@ public function add_productPost (Request $req){
       }
 */
 
+      $Validation = Validator::make($req->all() , [
+            'name'=>'required|between:3,20',
+            'price'=>'required|integer|between:3,5000',
+            'img'=>'required|file|image',
+            //'type'=>'required'
+        ]);
+
+      $Validation->Validate();
+
+
       if($req->hasFile('img')){
       
         $file = $req->file('img');
@@ -209,7 +220,7 @@ public function add_productPost (Request $req){
 
           $status = DB::insert('insert into products (product_name , product_price , image) values (? , ? , ?)', [$req->name , $req->price , $destinationPath]);
 
-            return redirect()->route('productController.add_product')->with('msgfls' , 'file type ok');
+            return redirect()->route('productController.add_product')->with('msgfls' , 'Successful');
 
         }else{
 
