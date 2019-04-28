@@ -12,7 +12,7 @@ $postReview = "product.postReview";
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-6">
-			<img class="img-fluid" src="{{ asset($productImg) }}" alt="">
+			<img class="img-fluid" height="300" width="300" src="{{ asset($products[0]->image) }}" alt="">
 			<hr>
 			<h3>Name: {{ $products[0]->product_name }} </h3>
 			<h4>Price: {{ $products[0]->product_price }} </h4>	

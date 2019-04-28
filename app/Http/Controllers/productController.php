@@ -678,7 +678,7 @@ $uid = 0;
 
   
   $params = [$uid];
-  $results = DB::table('products')->paginate(18);
+  $results = DB::table('products')->orderBy('product_id' , 'desc')->paginate(18);
 
   // return $results;
  // return $results[0][0]->product_id;

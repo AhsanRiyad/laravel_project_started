@@ -31,7 +31,7 @@ $productImg = 'img/cat1.jpg';
 
 						<div class="col-xl-2 col-6  mt-xl-2 mt-3" >
 
-							<a style="color: black;" href="http://localhost:3000/product/productdetails/{{  $s->product_id }}">
+							<a style="color: black;" href="{{ route('product.details' , [$s->product_id]) }}">
 								<div class="w_p bg-white ">
 
 									<img class="img-fluid" src=" {{ $s->image }} " alt="">

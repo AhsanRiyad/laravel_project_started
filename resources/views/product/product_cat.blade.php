@@ -34,7 +34,7 @@ $productImg = 'img/cat1.jpg';
 							<a style="color: black;" href="http://localhost:3000/product/productdetails/{{  $s->product_id }}">
 								<div class="w_p bg-white ">
 
-									<img class="img-fluid" src=" {{ asset($productImg) }} " alt="">
+									<img class="img-fluid" src=" {{ asset($s->image) }} " alt="">
 
 									<div class="w-100 pl-2">
 										<h6> {{$s->product_name}} </h6>

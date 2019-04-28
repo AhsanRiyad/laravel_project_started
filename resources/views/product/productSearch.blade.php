@@ -39,7 +39,7 @@ $loginStatus = false;
 						
 						<a style="color: black;" href="{{ route('product.details' , [$product->product_id]) }}">
 							<div class="w_p bg-white ">
-								<img class="img-fluid" src="{{ asset($productImg) }}" alt="">
+								<img class="img-fluid" src="{{ asset($product->image) }}" alt="">
 
 								<div class="w-100 pl-2">
 									<h6> {{ $product->product_name }} </h6>

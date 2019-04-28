@@ -41,10 +41,10 @@
   </div>
 
   <div class="form-group">
-    <label for="inputAddress" name="price">Price</label>
+    <label for="inputAddress" name="price">Image</label>
 
     <small class="text-danger">
-                      {{ $errors->first('price') }} 
+                      {{ $errors->first('img') }} 
     </small>
     <input name="img" type="file" class="form-control" id="totalAmount" placeholder="" value="{{ old('location') }}">
   </div>
