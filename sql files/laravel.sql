@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2019 at 09:23 PM
+-- Generation Time: Apr 28, 2019 at 10:22 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -737,52 +737,62 @@ INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_stat
 
 CREATE TABLE `products` (
   `product_id` int(5) NOT NULL,
-  `product_name` varchar(50) NOT NULL,
-  `product_price` int(5) NOT NULL,
-  `product_avlble` int(5) NOT NULL,
-  `product_sell_price` int(5) NOT NULL,
-  `product_original_price` int(5) NOT NULL,
-  `category_id` int(5) NOT NULL,
-  `descriptions` varchar(100) NOT NULL,
-  `category_name` varchar(50) NOT NULL,
-  `sub_category` varchar(50) NOT NULL
+  `product_name` varchar(50) DEFAULT NULL,
+  `product_price` int(5) DEFAULT NULL,
+  `product_avlble` int(5) DEFAULT NULL,
+  `product_sell_price` int(5) DEFAULT NULL,
+  `product_original_price` int(5) DEFAULT NULL,
+  `category_id` int(5) DEFAULT NULL,
+  `descriptions` varchar(100) DEFAULT NULL,
+  `category_name` varchar(50) DEFAULT NULL,
+  `sub_category` varchar(50) DEFAULT NULL,
+  `image` varchar(100) NOT NULL DEFAULT 'img/cat1.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_avlble`, `product_sell_price`, `product_original_price`, `category_id`, `descriptions`, `category_name`, `sub_category`) VALUES
-(1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg'),
-(2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung'),
-(3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton'),
-(4, 'hard disk 1TB', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba'),
-(5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital'),
-(6, 'hard disk 4TB', 33, 37, 33, 34, 34, 'useful for home', 'hdd', 'adata'),
-(7, 'Printer Canon', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon'),
-(8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp'),
-(9, 'Ram Transcend', 343, 34, 235, 2356, 346, 'useful for home', 'ram', 'transcend'),
-(10, 'Ram Adata', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata'),
-(11, 'Ram Razor', 33, 39, 33, 34, 34, 'useful for home', 'ram', 'razor'),
-(12, 'Motherboard GigaByte', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'gigabyte'),
-(13, 'Motherboard Asus', 33, 33, 33, 34, 34, 'useful for home', 'motherboard', 'asus'),
-(14, 'Motherboard Intel', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel'),
-(15, 'Processor Intel', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel'),
-(16, 'Processor AMD', 33, 34, 235, 34, 34, 'Computer processor , high quality', 'processor', 'amd'),
-(17, 'Monitor LG Full HD', 33, 39, 33, 34, 34, 'useful for home', 'monitor', 'lg'),
-(18, 'Monitor LG Full HD', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg'),
-(19, 'Monitor Samsung 4K', 343, 34, 235, 2356, 346, 'useful for home', 'monitor', 'samsung'),
-(20, 'Monitor Walton Plasma', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton'),
-(21, 'hard disk 1TB 5400rpm', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba'),
-(22, 'hard disk 4TB 7200rpm', 33, 33, 33, 34, 34, 'useful for home', 'hdd', 'adata'),
-(23, 'Printer Canon For Photos', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon'),
-(24, 'Ram Adata 8GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata'),
-(25, 'Ram Razor 16GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'razor'),
-(26, 'Printer HP 1080P', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp'),
-(27, 'Motherboard Intel Gaming', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel'),
-(28, 'Processor Intel Core i3', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel'),
-(29, 'Processor Intel Core i5', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel'),
-(30, 'Processor Intel Core i9', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel');
+INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_avlble`, `product_sell_price`, `product_original_price`, `category_id`, `descriptions`, `category_name`, `sub_category`, `image`) VALUES
+(1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg'),
+(2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg'),
+(3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg'),
+(4, 'hard disk 1TB', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg'),
+(5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital', 'img/cat1.jpg'),
+(6, 'hard disk 4TB', 33, 37, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg'),
+(7, 'Printer Canon', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg'),
+(8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg'),
+(9, 'Ram Transcend', 343, 34, 235, 2356, 346, 'useful for home', 'ram', 'transcend', 'img/cat1.jpg'),
+(10, 'Ram Adata', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg'),
+(11, 'Ram Razor', 33, 39, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg'),
+(12, 'Motherboard GigaByte', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'gigabyte', 'img/cat1.jpg'),
+(13, 'Motherboard Asus', 33, 33, 33, 34, 34, 'useful for home', 'motherboard', 'asus', 'img/cat1.jpg'),
+(14, 'Motherboard Intel', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg'),
+(15, 'Processor Intel', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg'),
+(16, 'Processor AMD', 33, 34, 235, 34, 34, 'Computer processor , high quality', 'processor', 'amd', 'img/cat1.jpg'),
+(17, 'Monitor LG Full HD', 33, 39, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg'),
+(18, 'Monitor LG Full HD', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg'),
+(19, 'Monitor Samsung 4K', 343, 34, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg'),
+(20, 'Monitor Walton Plasma', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg'),
+(21, 'hard disk 1TB 5400rpm', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg'),
+(22, 'hard disk 4TB 7200rpm', 33, 33, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg'),
+(23, 'Printer Canon For Photos', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg'),
+(24, 'Ram Adata 8GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg'),
+(25, 'Ram Razor 16GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg'),
+(26, 'Printer HP 1080P', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg'),
+(27, 'Motherboard Intel Gaming', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg'),
+(28, 'Processor Intel Core i3', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg'),
+(29, 'Processor Intel Core i5', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg'),
+(30, 'Processor Intel Core i9', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg'),
+(31, 'arfeaf', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'C:\\xampp\\tmp\\phpFE53.tmp'),
+(32, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl.png'),
+(33, 'Afsana Moon', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy32png'),
+(34, 'Afsana Moon', 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl33png'),
+(35, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/.girl34png'),
+(36, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/.girl35png'),
+(37, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl36.png'),
+(38, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy37.png'),
+(39, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy38.png');
 
 -- --------------------------------------------------------
 
@@ -867,7 +877,11 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (38, 10, 2, 175),
 (39, 14, 2, 176),
 (40, 12, 2, 177),
-(41, 11, 4, 178);
+(41, 11, 4, 178),
+(42, 4, 3, 179),
+(43, 11, 3, 180),
+(44, 16, 3, 181),
+(45, 28, 3, 182);
 
 -- --------------------------------------------------------
 
@@ -993,7 +1007,9 @@ INSERT INTO `shipment` (`id`, `req_date`, `acc_date`, `status`, `admin_id_req`, 
 (2, '2019-04-22', '2019-04-22', 2, 4, 2),
 (3, '2019-04-22', '2019-04-22', 1, 4, 2),
 (4, '2019-04-22', NULL, 0, 4, NULL),
-(5, '2019-04-22', NULL, 0, 4, NULL);
+(5, '2019-04-22', NULL, 0, 4, NULL),
+(6, '2019-04-28', NULL, 0, 12, NULL),
+(7, '2019-04-28', NULL, 0, 12, NULL);
 
 -- --------------------------------------------------------
 
@@ -1030,7 +1046,15 @@ INSERT INTO `shipment_product` (`id`, `shipment_id`, `product_id`, `product_quan
 (240, 5, 4, 3),
 (241, 5, 12, 3),
 (242, 5, 17, 3),
-(243, 5, 19, 3);
+(243, 5, 19, 3),
+(244, 6, 3, 5),
+(245, 6, 9, 4),
+(246, 6, 14, 7),
+(247, 6, 16, 3),
+(248, 6, 28, 3),
+(249, 7, 10, 3),
+(250, 7, 17, 3),
+(251, 7, 19, 3);
 
 -- --------------------------------------------------------
 
@@ -1044,15 +1068,6 @@ CREATE TABLE `shipment_temp` (
   `product_id` int(8) DEFAULT NULL,
   `product_quantity` int(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `shipment_temp`
---
-
-INSERT INTO `shipment_temp` (`id`, `admin_id`, `product_id`, `product_quantity`) VALUES
-(1, 12, 3, 2),
-(2, 12, 9, 4),
-(3, 12, 14, 4);
 
 -- --------------------------------------------------------
 
@@ -1096,7 +1111,7 @@ CREATE TABLE `user` (
   `u_type` varchar(50) DEFAULT NULL,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
-  `country` varchar(50) DEFAULT NULL
+  `country` varchar(50) DEFAULT 'both'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1112,19 +1127,14 @@ INSERT INTO `user` (`u_id`, `u_password`, `u_address`, `u_email`, `u_mobile`, `d
 (19, '111', '', 'riyad28877722@gmail.com', 1919448787, '0000-00-00', 'valid', 'admin', 'sde', 'edf', NULL),
 (20, 'ffaf', NULL, 'riyad298faerfaer', 1919448787, '2007-02-14', 'valid', 'admin', 'Muhammad Ahsan', 'Riyad', NULL),
 (29, '11', NULL, 'riyadmail@gmail.com', 1919448787, '2008-01-09', 'valid', 'admin', 'Muhammad Ahsan', 'Riyad', NULL),
-(34, '1212', NULL, 'riyad298@yahooo.com', 1919448787, '2006-02-12', 'valid', NULL, 'Ahsan', 'Riyad', NULL),
-(35, '12', NULL, 'riyadfffffafa298@gmail.com', 0, NULL, NULL, 'user', NULL, 'arfrea', NULL),
-(36, '12', NULL, 'riyffarefad298@gmail.com', 0, NULL, NULL, 'user', NULL, 'araferf', NULL),
-(38, '12', NULL, 'riffffyffarefad298@gmail.com', 0, NULL, NULL, 'user', NULL, 'araferf', NULL),
 (39, 'fff', NULL, 'frafeaf', 0, '0000-00-00', 'valid', 'aferfea', NULL, 'fff', 'ffaf'),
-(42, 'aerfearferferfe', NULL, 'affafefreriyfffadffff298@gmail.com', 1919448787, '2005-05-16', 'valid', NULL, NULL, 'Riyad', 'bangladesh'),
-(43, 'zzzzzz', NULL, 'riy@gmail.com', 1919448787, '2007-03-15', 'valid', NULL, NULL, 'Riyad', 'bangladesh'),
 (44, 'rrrrrrr', NULL, 'riyadajofaeorfeaofj@gmail.com', 1919448787, '2006-02-13', 'valid', 'bangladesh', NULL, 'Riyad', 'admin'),
 (45, 'aerreafreafer', NULL, 'riyaarferferdffrea298@gmail.com', 1919448787, '2006-03-16', 'valid', 'admin', NULL, 'Riyad', 'bangladesh'),
 (46, 'aaaaaa', NULL, 'riz@gmail.com', 1919448787, '2007-01-16', 'valid', 'admin', NULL, 'Riyad', 'bangladesh'),
 (47, '1111111111', NULL, 'rarfaiyaerfaeadafe298@gmail.com', 0, NULL, NULL, 'user', NULL, 'faerferfearfae', NULL),
 (48, '1111111111', NULL, 'faerfaer@gmail.com', 0, NULL, NULL, 'user', NULL, 'rfearfea', NULL),
-(49, '123456', NULL, 'ariyfadfff298@gmail.com', 1919448787, NULL, 'valid', NULL, NULL, 'Riyad', 'bangladesh');
+(49, '123456', NULL, 'ariyfadfff298@gmail.com', 1919448787, NULL, 'valid', NULL, NULL, 'Riyad', 'bangladesh'),
+(51, '123456', NULL, 'rifyafd29f8f@gmail.com', 1919448787, NULL, 'valid', 'admin', NULL, 'Riyad', 'both');
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1199,9 @@ INSERT INTO `visit` (`product_id`, `user_id`, `user_ip`, `hit_count`, `counter`)
 (12, 0, '127.0.0.1', 0, 33),
 (1, 0, '127.0.0.1', 0, 34),
 (7, 0, '127.0.0.1', 0, 35),
-(9, 0, '127.0.0.1', 0, 36);
+(9, 0, '127.0.0.1', 0, 36),
+(37, 0, '127.0.0.1', 0, 37),
+(32, 0, '127.0.0.1', 0, 38);
 
 -- --------------------------------------------------------
 
@@ -1207,7 +1219,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(823, 0);
+(1599, 0);
 
 -- --------------------------------------------------------
 
@@ -1428,7 +1440,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1488,7 +1500,7 @@ ALTER TABLE `order_t`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `promo`
@@ -1500,7 +1512,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1530,19 +1542,19 @@ ALTER TABLE `seller`
 -- AUTO_INCREMENT for table `shipment`
 --
 ALTER TABLE `shipment`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `shipment_product`
 --
 ALTER TABLE `shipment_product`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
 
 --
 -- AUTO_INCREMENT for table `shipment_temp`
 --
 ALTER TABLE `shipment_temp`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `supply_order`
@@ -1554,7 +1566,7 @@ ALTER TABLE `supply_order`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `u_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `user_name`
@@ -1566,7 +1578,7 @@ ALTER TABLE `user_name`
 -- AUTO_INCREMENT for table `visit`
 --
 ALTER TABLE `visit`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
