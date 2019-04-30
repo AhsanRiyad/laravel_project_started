@@ -52,7 +52,6 @@ class userController extends Controller
          $Validation->Validate();
 
 
-
         try {
 
             $status = DB::insert("INSERT INTO `user`(`u_password`, `u_email` , `u_type`,`last_name`) VALUES (?,?,?,?)" , [$req->password , $req->email , $req->type , $req->name ] );
@@ -76,9 +75,6 @@ class userController extends Controller
         //return $userinfo[0]['u_id'];
          return view('user.addUser')->withMsg($msg)->withUserinfo($req->userinfo)->with('page_name' , 'addUser');
      }
-
-
-
 
 
         //return view('dashboard/dashboard' , $userinfo);
@@ -112,9 +108,6 @@ public function add_factory(Request $req){
 
 
 public function add_factoryPost(Request $req){
-
-
-
 
 
 

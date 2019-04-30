@@ -57,6 +57,12 @@ class productController extends Controller
 
 }
 
+public function get_reviews(){
+  $reviews = DB::select('select * from review');
+  return $reviews;
+}
+
+
 
 
 ///////////////////////////////////////
@@ -195,10 +201,10 @@ public function add_productPost (Request $req){
       $Validation->Validate();
 
 
-      if($req->hasFile('img')){
+      
       
         $file = $req->file('img');
-        if($file->getClientOriginalExtension()=='png' || $file->getClientOriginalExtension()=='jpg' && $file->getMimeType()=='application\png' || $file->getMimeType()=='application\jpg'){
+        
 
 
           $destinationFolder = 'uploads';
@@ -222,11 +228,7 @@ public function add_productPost (Request $req){
 
             return redirect()->route('productController.add_product')->with('msgfls' , 'Successful');
 
-        }else{
-
-          return redirect()->route('productController.add_product')->with('msgfls' , 'wrong file type');
-
-        }
+        
 
           //return 'true';
        
@@ -234,10 +236,7 @@ public function add_productPost (Request $req){
 
       
 
-      }else{
-        return redirect()->route('productController.add_product')->with('msgfls' , 'No file uploaded');
-      }
-
+      
 
       //return $userinfo[0]['u_id'];
              

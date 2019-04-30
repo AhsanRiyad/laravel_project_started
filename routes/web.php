@@ -68,6 +68,10 @@ Route::get('/all_products' , 'productController@all_products')->name('productCon
 
 ////////////////////////rest api/////////////////////////
 
+Route::get('/get_reviews' , 'productController@get_reviews')->name('productController.get_reviews');
+
+
+
 ///////////////////////assignment routes//////////////////////////////
 
 
