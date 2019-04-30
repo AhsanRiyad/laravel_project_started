@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2019 at 10:22 AM
+-- Generation Time: Apr 30, 2019 at 04:49 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -792,7 +792,8 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_
 (36, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/.girl35png'),
 (37, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl36.png'),
 (38, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy37.png'),
-(39, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy38.png');
+(39, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy38.png'),
+(40, 'iphone', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/iphone39.jpg');
 
 -- --------------------------------------------------------
 
@@ -949,7 +950,6 @@ CREATE TABLE `review` (
 INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`, `product_id`, `user_id`) VALUES
 (14, 'it is a good product', '', '2019-02-19', 8, 2),
 (15, 'it is a good product', '', '2019-02-19', 7, 2),
-(16, 'afafearfaerf', '', '2019-04-27', 1, 2),
 (17, 'really nice product', '', '2019-03-29', 9, 2),
 (18, 'good products', '', '2019-04-02', 2, 2),
 (19, 'hellow', '', '2019-04-27', 11, 12);
@@ -1006,10 +1006,10 @@ INSERT INTO `shipment` (`id`, `req_date`, `acc_date`, `status`, `admin_id_req`, 
 (1, '2019-04-22', '2019-04-22', 1, 4, 2),
 (2, '2019-04-22', '2019-04-22', 2, 4, 2),
 (3, '2019-04-22', '2019-04-22', 1, 4, 2),
-(4, '2019-04-22', NULL, 0, 4, NULL),
-(5, '2019-04-22', NULL, 0, 4, NULL),
-(6, '2019-04-28', NULL, 0, 12, NULL),
-(7, '2019-04-28', NULL, 0, 12, NULL);
+(4, '2019-04-22', '2019-04-28', 1, 4, 12),
+(5, '2019-04-22', '2019-04-28', 1, 4, 12),
+(6, '2019-04-28', '2019-04-28', 1, 12, 12),
+(7, '2019-04-28', '2019-04-28', 1, 12, 12);
 
 -- --------------------------------------------------------
 
@@ -1201,7 +1201,8 @@ INSERT INTO `visit` (`product_id`, `user_id`, `user_ip`, `hit_count`, `counter`)
 (7, 0, '127.0.0.1', 0, 35),
 (9, 0, '127.0.0.1', 0, 36),
 (37, 0, '127.0.0.1', 0, 37),
-(32, 0, '127.0.0.1', 0, 38);
+(32, 0, '127.0.0.1', 0, 38),
+(40, 0, '127.0.0.1', 0, 39);
 
 -- --------------------------------------------------------
 
@@ -1219,7 +1220,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(1599, 0);
+(1906, 0);
 
 -- --------------------------------------------------------
 
@@ -1500,7 +1501,7 @@ ALTER TABLE `order_t`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `promo`
@@ -1578,7 +1579,7 @@ ALTER TABLE `user_name`
 -- AUTO_INCREMENT for table `visit`
 --
 ALTER TABLE `visit`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
