@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2019 at 04:49 AM
+-- Generation Time: May 01, 2019 at 09:31 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -364,15 +364,6 @@ CREATE TABLE `cart` (
   `quantity` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
-(27, 'cart', 36, 'user', 0, 4, 3),
-(28, 'cart', 36, 'user', 0, 12, 5),
-(29, 'cart', 36, 'user', 0, 19, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -601,84 +592,6 @@ CREATE TABLE `order_includ_product` (
   `counter` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `order_includ_product`
---
-
-INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter`) VALUES
-(1, 3, 2, 69),
-(1, 10, 2, 70),
-(1, 14, 2, 71),
-(2, 15, 7, 72),
-(2, 5, 3, 73),
-(2, 24, 4, 74),
-(3, 3, 1, 75),
-(3, 6, 3, 76),
-(3, 14, 5, 77),
-(4, 3, 3, 78),
-(4, 6, 3, 79),
-(4, 14, 5, 80),
-(4, 25, 5, 81),
-(4, 15, 2, 82),
-(4, 15, 2, 83),
-(5, 15, 7, 84),
-(5, 5, 3, 85),
-(5, 24, 4, 86),
-(5, 28, 4, 87),
-(5, 29, 4, 88),
-(5, 9, 3, 89),
-(5, 9, 3, 90),
-(6, 3, 3, 91),
-(6, 14, 3, 92),
-(6, 18, 3, 93),
-(6, 29, 6, 94),
-(6, 29, 6, 95),
-(7, 2, 2, 96),
-(7, 2, 2, 97),
-(8, 1, 7, 98),
-(8, 2, 2, 99),
-(8, 2, 2, 100),
-(9, 11, 3, 101),
-(9, 11, 3, 102),
-(10, 3, 2, 103),
-(10, 12, 2, 104),
-(10, 12, 2, 105),
-(11, 8, 3, 106),
-(11, 8, 3, 107),
-(12, 7, 2, 108),
-(12, 10, 1, 109),
-(12, 11, 1, 110),
-(12, 12, 1, 111),
-(12, 12, 1, 112),
-(13, 7, 3, 113),
-(13, 1, 1, 114),
-(13, 1, 1, 115),
-(14, 8, 1, 116),
-(14, 1, 1, 117),
-(14, 12, 3, 118),
-(14, 12, 3, 119),
-(15, 1, 3, 120),
-(15, 7, 4, 121),
-(15, 7, 4, 122),
-(16, 2, 2, 123),
-(16, 2, 2, 124),
-(17, 10, 1, 125),
-(17, 1, 1, 126),
-(17, 1, 1, 127),
-(18, 1, 4, 128),
-(18, 1, 4, 129),
-(19, 1, 4, 130),
-(19, 1, 4, 131),
-(20, 11, 2, 132),
-(20, 11, 2, 133),
-(21, 9, 1, 134),
-(22, 2, 2, 135),
-(22, 10, 2, 136),
-(22, 14, 2, 137),
-(22, 14, 2, 138),
-(23, 12, 2, 139),
-(24, 11, 4, 140);
-
 -- --------------------------------------------------------
 
 --
@@ -698,36 +611,6 @@ CREATE TABLE `order_t` (
   `sales_point` varchar(50) NOT NULL DEFAULT 'default',
   `admin_id` int(8) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `order_t`
---
-
-INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_status`, `return_id`, `user_id`, `counter`, `total_amount`, `paid`, `sales_point`, `admin_id`) VALUES
-(1, '2019-04-22', 'default', '', 0, 14, 38, 800, 100, 'Agrabad', 2),
-(2, '2019-04-22', 'default', '', 0, 18, 39, 726, 200, 'Agrabad', 2),
-(3, '2019-04-22', 'default', '', 0, 15, 40, 1472, 100, 'Agrabad', 2),
-(4, '2019-04-22', 'default', '', 0, 15, 41, 1604, 200, 'New Delhi', 2),
-(5, '2019-04-22', 'default', '', 0, 18, 42, 1431, 300, 'Agrabad', 2),
-(6, '2019-04-22', 'default', '', 0, 15, 43, 1101, 400, 'New Delhi', 2),
-(7, '2019-04-22', 'default', '', 0, 16, 44, 470, 12, 'Choose...', 2),
-(8, '2019-04-27', 'cash', '', 0, 2, 45, 0, 0, 'default', 0),
-(9, '2019-04-27', 'cash', '', 0, 12, 46, 0, 0, 'default', 0),
-(10, '2019-04-27', 'default', '', 0, 35, 47, 536, 0, 'Kurigram', 12),
-(11, '2019-04-28', 'bkash', '', 0, 12, 48, 528, 0, 'default', 0),
-(12, '2019-04-28', 'cash', '', 0, 12, 49, 8054, 0, 'default', 0),
-(13, '2019-04-28', 'cash', '', 0, 12, 50, 4492, 0, 'default', 0),
-(14, '2019-04-28', 'cash', '', 0, 12, 51, 1095, 0, 'default', 0),
-(15, '2019-04-28', 'cash', '', 0, 12, 52, 1471, 0, 'default', 0),
-(16, '2019-04-28', 'default', '', 0, 15, 53, 470, 12, 'Kurigram', 12),
-(17, '2019-04-28', 'bkash', '', 0, 12, 54, 66, 0, 'default', 0),
-(18, '2019-04-28', 'nexus', '', 0, 12, 55, 132, 0, 'default', 0),
-(19, '2019-04-28', 'nexus', '', 0, 12, 56, 132, 0, 'default', 0),
-(20, '2019-04-28', 'ggffre', '', 0, 12, 57, 66, 0, 'default', 0),
-(21, '2019-04-28', 'cash', '', 0, 12, 58, 343, 0, 'default', 0),
-(22, '2019-04-28', 'default', '', 0, 15, 59, 1006, 100, 'Kurigram', 12),
-(23, '2019-04-28', 'bkash', '', 0, 12, 60, 686, 0, 'default', 0),
-(24, '2019-04-28', 'nexus', '', 0, 12, 61, 132, 0, 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -853,36 +736,6 @@ CREATE TABLE `p_include_cart` (
   `product_qntity` int(5) NOT NULL,
   `counter` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `p_include_cart`
---
-
-INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counter`) VALUES
-(22, 8, 1, 159),
-(23, 1, 1, 160),
-(24, 12, 3, 161),
-(25, 1, 3, 162),
-(26, 7, 4, 163),
-(27, 4, 3, 164),
-(28, 12, 5, 165),
-(29, 19, 5, 166),
-(30, 2, 2, 167),
-(31, 10, 1, 168),
-(32, 1, 1, 169),
-(33, 1, 4, 170),
-(34, 1, 4, 171),
-(35, 11, 2, 172),
-(36, 9, 1, 173),
-(37, 2, 2, 174),
-(38, 10, 2, 175),
-(39, 14, 2, 176),
-(40, 12, 2, 177),
-(41, 11, 4, 178),
-(42, 4, 3, 179),
-(43, 11, 3, 180),
-(44, 16, 3, 181),
-(45, 28, 3, 182);
 
 -- --------------------------------------------------------
 
@@ -1220,7 +1073,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(1906, 0);
+(2011, 0);
 
 -- --------------------------------------------------------
 
@@ -1441,7 +1294,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1513,7 +1366,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
