@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2019 at 09:31 AM
+-- Generation Time: May 01, 2019 at 09:50 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -54,9 +54,17 @@ end if;
 
 INSERT INTO `order_t`(`order_id`, `order_date`,   `user_id` , `admin_id` ,  `total_amount` , `paid` , `sales_point`) VALUES (o_no+1 , SYSDATE() ,  uid , admin_id ,total_amount+total , paid , sales_point );
 
-OPEN cur_1;
-REPEAT FETCH cur_1 INTO p_id , qntity ;
 
+
+
+OPEN cur_1;
+read_loop: LOOP
+FETCH cur_1 INTO p_id , qntity ;
+
+
+IF b  = 1 THEN
+LEAVE read_loop;
+ELSE
 if p_id is NOT NULL
 then
 INSERT INTO `order_includ_product`(`order_id`, `product_id`, `qntity`) VALUES (o_no+1 , p_id ,qntity);
@@ -65,9 +73,12 @@ end if;
 
 SELECT p_id , qntity;
 
-UNTIL b = 1
-END REPEAT;
+
+END IF;
+END LOOP;
 CLOSE cur_1;
+
+
 SET status = 'done' ;
 DELETE FROM `cart` WHERE user_id = uid;
 SELECT status;
@@ -290,10 +301,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `user_id`, `total_tk`, `paid_tk`, `balance_available`) VALUES
-(1, 0, 9616, 1424, 1324),
-(6, 14, 800, 100, 0),
+(1, 0, 12432, 1484, 1384),
+(6, 14, 3146, 148, 0),
 (7, 18, 2157, 500, 0),
-(8, 15, 5653, 812, 0),
+(8, 15, 6123, 824, 0),
 (9, 16, 470, 12, 0),
 (10, 35, 536, 0, 0);
 
@@ -592,6 +603,23 @@ CREATE TABLE `order_includ_product` (
   `counter` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `order_includ_product`
+--
+
+INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter`) VALUES
+(1, 2, 2, 141),
+(1, 9, 5, 142),
+(1, 15, 4, 143),
+(1, 15, 4, 144),
+(2, 3, 2, 145),
+(2, 3, 2, 146),
+(3, 9, 2, 147),
+(3, 9, 2, 148),
+(4, 2, 2, 149),
+(4, 2, 2, 150),
+(5, 1, 1, 151);
+
 -- --------------------------------------------------------
 
 --
@@ -611,6 +639,17 @@ CREATE TABLE `order_t` (
   `sales_point` varchar(50) NOT NULL DEFAULT 'default',
   `admin_id` int(8) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_t`
+--
+
+INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_status`, `return_id`, `user_id`, `counter`, `total_amount`, `paid`, `sales_point`, `admin_id`) VALUES
+(1, '2019-05-01', 'default', '', 0, 14, 62, 1777, 12, 'Kurigram', 12),
+(2, '2019-05-01', 'default', '', 0, 14, 63, 66, 12, 'Rangpur', 12),
+(3, '2019-05-01', 'default', '', 0, 15, 64, 470, 12, 'Kurigram', 12),
+(4, '2019-05-01', 'default', '', 0, 14, 65, 470, 12, 'Dhaka', 12),
+(5, '2019-05-01', 'default', '', 0, 14, 66, 33, 12, 'Rangpur', 12);
 
 -- --------------------------------------------------------
 
@@ -736,6 +775,19 @@ CREATE TABLE `p_include_cart` (
   `product_qntity` int(5) NOT NULL,
   `counter` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `p_include_cart`
+--
+
+INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counter`) VALUES
+(34, 2, 2, 187),
+(35, 9, 5, 188),
+(36, 15, 4, 189),
+(37, 3, 2, 190),
+(38, 9, 2, 191),
+(39, 2, 2, 192),
+(40, 1, 1, 193);
 
 -- --------------------------------------------------------
 
@@ -1073,7 +1125,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(2011, 0);
+(2063, 0);
 
 -- --------------------------------------------------------
 
@@ -1294,7 +1346,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1342,13 +1394,13 @@ ALTER TABLE `msg`
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `order_t`
 --
 ALTER TABLE `order_t`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1366,7 +1418,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
