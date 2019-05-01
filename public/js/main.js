@@ -333,7 +333,9 @@ $("#addToCart").on('click' , function(){
 		 	 }
 		 	 
 		 	 var jsonString = JSON.stringify(user);
-
+		 	 //var s = $('#postReviewUrl').html();
+		 	 //alert(s);
+		 	 //return;
 		 	 $.ajax({
 		 	 	url: $('#postReviewUrl').html(),
 		 	 	method: 'POST',

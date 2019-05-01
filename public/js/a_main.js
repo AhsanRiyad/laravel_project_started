@@ -175,6 +175,7 @@ $('#button_add_product').click(function(){
 	//alert(jsonString);
 	var url = $('#postReviewUrl').html();
 	//alert(url);
+	//return;
 
 	$.ajax({
 		url: url,
