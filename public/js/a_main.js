@@ -67,6 +67,7 @@ $(function() {
 
 
 	//alert(fullUrl);
+	
 	$.ajax({
 		url:fullUrl,
 		method: 'POST',

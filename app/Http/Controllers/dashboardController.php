@@ -20,7 +20,7 @@ class dashboardController extends Controller
 ');
         $visit = DB::select('select total as c from visitcounter');
 
-
+        
         $order = DB::select('SELECT COUNT(*) as c from order_t
         ');
 

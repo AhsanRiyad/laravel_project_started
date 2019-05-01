@@ -1,10 +1,17 @@
-
 @extends('layout.hf_dboard')
 
+  <!-- stylesheet -->
+@section('stylesheet')
+  <link rel="stylesheet" href="{{ asset('/css/a_style.css') }}">
+@endsection
 
-@section('content')
+
+<p id="user_id" hidden >{{ $userinfo[0]['u_id'] }}</p>
+<p hidden="true" id='postReviewUrl'>
+{{ route('AProductController.addtocart') }}</p>
 
 
+  @section('content')
 
 <div class="container-fluid bg-light mt-0 position-fixed">
 	<div class="row ">
@@ -145,5 +152,11 @@
 	</div>
 </div>
 
+@endsection
+
+@section('script')
+<!-- main js -->
+    <script src="{{ asset('js/a_main.js') }}" ></script>
 
 @endsection
+
