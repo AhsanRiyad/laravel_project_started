@@ -175,6 +175,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+
+/*        pdf generatior
+*/      
+        // for direct include
+        /*Barryvdh\DomPDF\ServiceProvider::class,*/
+        // for shortcode 
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
     ],
 
     /*

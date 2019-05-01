@@ -8,6 +8,7 @@ use DB;
 use App\multipleSelectModel;
 use Validator;
 use App\Http\Controllers\MailController;
+use PDF;
 /////////////////////////////////////////////
 class productController extends Controller
 {
@@ -646,15 +647,32 @@ $uid = 0;
     $loginStatus = false;
   }
 
+
+
+   $data = [];
+  $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/confirm.pdf');
+  //return $pdf->download('invoice.pdf');
+
+
+
+  
   
   //$params = [$uid];
   $email = new MailController();
   //$email->basic_email();
-  $email->html_email();
+  $email->attachment_email();
   unset($email);
+
+ 
+
+
+
 
   // return $results;
  // return $results[0][0]->product_id;
+
+
+
   $r = [  'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
   return view('Order.done'  , $r);
 
