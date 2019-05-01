@@ -7,7 +7,7 @@ use App\productModel;
 use DB;
 use App\multipleSelectModel;
 use Validator;
-
+use App\Http\Controllers\MailController;
 /////////////////////////////////////////////
 class productController extends Controller
 {
@@ -595,6 +595,9 @@ $uid = 0;
 
   // return $results;
  // return $results[0][0]->product_id;
+
+
+
   $r = [ 'products'=> $results , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
   return view('Order.confirm_order'  , $r);
 
@@ -645,7 +648,10 @@ $uid = 0;
 
   
   //$params = [$uid];
-  
+  $email = new MailController();
+  //$email->basic_email();
+  $email->html_email();
+  unset($email);
 
   // return $results;
  // return $results[0][0]->product_id;
