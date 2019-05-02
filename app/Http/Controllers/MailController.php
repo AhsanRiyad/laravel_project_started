@@ -30,7 +30,7 @@ class MailController extends Controller {
    }
    public function attachment_email() {
       $data = array('name'=>"Virat Gandhi");
-      Mail::send('email.orderConfirm', $data, function($message) {
+      Mail::send(['text'=>'email.plain_text'], $data, function($message) {
          $message->to('riyad298@gmail.com', 'Tutorials Point')->subject
             ('Laravel Testing Mail with Attachment');
          $message->attach(public_path().'/pdf/confirm.pdf');

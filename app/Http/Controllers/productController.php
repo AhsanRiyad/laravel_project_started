@@ -89,6 +89,8 @@ public function cart (Request $req){
     $c = productModel::cart_count($uid);
     $cart_count = $c[0]->cart_count;
     
+
+
     //print_r($c[0]);
     //echo $c[0]->cart_count;
 
@@ -110,6 +112,10 @@ public function cart (Request $req){
   // return $results;
  // return $results[0][0]->product_id;
   $r = [ 'products'=> $results , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
+
+
+  $pdf = PDF::loadView('email.orderConfirm', $r)->save('pdf/confirm.pdf');
+
   return view('product.cart'  , $r);
 
 
@@ -647,15 +653,13 @@ $uid = 0;
     $loginStatus = false;
   }
 
-
-
-   $data = [];
-  $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/confirm.pdf');
+  
+  // $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/confirm.pdf');
   //return $pdf->download('invoice.pdf');
 
 
 
-  
+
   
   //$params = [$uid];
   $email = new MailController();
@@ -663,11 +667,9 @@ $uid = 0;
   $email->attachment_email();
   unset($email);
 
+
+
  
-
-
-
-
   // return $results;
  // return $results[0][0]->product_id;
 
