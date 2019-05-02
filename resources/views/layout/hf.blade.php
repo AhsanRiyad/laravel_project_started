@@ -222,10 +222,10 @@ $signout = "authenticationController.logout";
                 Monitor
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="http://localhost:3000/product/category/monitor/lg">LG</a>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/monitor/samsung">Samsung</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['monitor' , 'lg']) }}">LG</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['monitor' , 'samsung']) }}">Samsung</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/monitor/walton">Walton</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['monitor' , 'walton']) }}">Walton</a>
               </div>
             </li>
 
@@ -235,10 +235,10 @@ $signout = "authenticationController.logout";
                 Hard Disk
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="http://localhost:3000/product/category/hdd/toshiba">Toshiba</a>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/hdd/western_digital">Western Digital</a>
+                <a class="dropdown-item" href="{{ route('product.categorySearch' , ['hdd' , 'toshiba']) }}">Toshiba</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['hdd' , 'western_digital']) }}">Western Digital</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/hdd/adata">Adata</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['hdd' , 'adata']) }} ">Adata</a>
               </div>
             </li>
 
@@ -247,8 +247,8 @@ $signout = "authenticationController.logout";
                 Printer
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="http://localhost:3000/product/category/printer/canon">Canon</a>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/hp">HP</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['printer' , 'canon']) }}">Canon</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['printer' , 'hp']) }}">HP</a>
               </div>
             </li>
 
@@ -257,9 +257,9 @@ $signout = "authenticationController.logout";
                 RAM
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="http://localhost:3000/product/category/ram/transcend">Transcend</a>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/ram/adata">Adata</a>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/ram/razor">Razor</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['ram' , 'transcend']) }} ">Transcend</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['ram' , 'adata']) }}  ">Adata</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['ram' , 'razor']) }}">Razor</a>
 
               </div>
             </li>
@@ -269,9 +269,9 @@ $signout = "authenticationController.logout";
                 Motherboard
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="http://localhost:3000/product/category/motherboard/gigabyte">GigaByte</a>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/motherboard/asus">Asus</a>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/motherboard/intel">Intel</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['motherboard' , 'gigabyte']) }}">GigaByte</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['motherboard' , 'asus']) }} ">Asus</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['motherboard' , 'intel']) }} ">Intel</a>
 
               </div>
             </li>
@@ -281,8 +281,8 @@ $signout = "authenticationController.logout";
                 Processor
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="http://localhost:3000/product/category/processor/intel">Intel</a>
-                <a class="dropdown-item" href="http://localhost:3000/product/category/processor/amd">AMD</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['processor' , 'intel']) }}">Intel</a>
+                <a class="dropdown-item" href=" {{ route('product.categorySearch' , ['processor' , 'amd']) }} ">AMD</a>
 
 
               </div>
