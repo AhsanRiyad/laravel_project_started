@@ -311,9 +311,6 @@ public function getProductDetails(Request $req, $pid){
  $visitTable = ['ip'=> $clientIP , 'productid'=> $pid];
    //$visitTable = array('ip'->$clientIP , 'productid'->$pid);
  productModel::recommendProduct($visitTable);
-
-
-
         //gets reviews
  $reviews = productModel::getReviews($pid);
 
@@ -437,34 +434,10 @@ public static function searchProducts(Request $req){
 
     //return $products;
 
-  if($req->session()->has('userinfo')){
-    $loginStatus = true;
-
-    $userinfo = session('userinfo');
-    //print_r($userinfo);
-    $userinfo2 = json_decode(json_encode($userinfo), true);
-    //print_r($userinfo2);
-
-    //echo $userinfo2[0]['u_id'];
-    $uid =  $userinfo2[0]['u_id'];
-
-    //for references
-    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
-    $c = productModel::cart_count($uid);
-    $cart_count = $c[0]->cart_count;
-    
-    //print_r($c[0]);
-    //echo $c[0]->cart_count;
+  
 
 
-  }else{
-    $cart_count = 0;
-    $loginStatus = false;
-  }
-
-
-
-  return view('product\productSearch', [ 'products' => $products ,  'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);
+ return view('product.productSearch', [ 'products' => $products ,  'loginStatus' =>  $req->s_login_status , 'cart_count' => $req->s_cart_count]);
 
 
 
@@ -474,37 +447,10 @@ public static function searchProducts(Request $req){
 public function categorySearch(Request $req ,  $catName , $subCatName){
 
 
-
-  if($req->session()->has('userinfo')){
-   $loginStatus = true;
-
-   $userinfo = session('userinfo');
-    //print_r($userinfo);
-   $userinfo2 = json_decode(json_encode($userinfo), true);
-    //print_r($userinfo2);
-
-    //echo $userinfo2[0]['u_id'];
-   $uid =  $userinfo2[0]['u_id'];
-
-    //for references
-    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
-   $c = productModel::cart_count($uid);
-   $cart_count = $c[0]->cart_count;
-
-    //print_r($c[0]);
-    //echo $c[0]->cart_count;
-
-
- }else{
-  $cart_count = 0;
-  $loginStatus = false;
-}
-
-
 $products = DB::select('select * from products where category_name = (?) and sub_category = (?)' , [$catName , $subCatName]);
 
 
-return view('product.product_cat')->with('catName' , $catName)->with('subCat' , $subCatName)->with('searchResult' , $products)->with('loginStatus' , $loginStatus)->with('cart_count' , $cart_count);
+ return view('product.product_cat', [ 'searchResult' => $products ,  'loginStatus' =>  $req->s_login_status , 'cart_count' => $req->s_cart_count , 'catName' => $catName ,  'subCat' => $subCatName  ]);
 
 }
 

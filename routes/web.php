@@ -18,17 +18,29 @@ Route::get('/', 'productController@getProducts' )->Name('index');
 
 Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
 
+Route::get('/product/search', 'productController@searchProducts' )->Name('product.searchProducts');
+
+
+Route::get('product/category/{catName}/{subCatName}', 'productController@categorySearch' )->Name('product.categorySearch');
+
 });
 
 
-
-
-
-
+///////////
 
 Route::post('/product/postReview', 'productController@postReview' )->Name('product.postReview');
 
+
+Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
+
+
+
+/////////////
+
+
+////////
 Route::get('/up_rev', 'productController@up_rev' )->Name('product.up_rev');
+
 
 
 Route::get('/view_review/{id}', 'productController@view_review' )->Name('product.view_review');
@@ -39,10 +51,20 @@ Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('pr
 
 
 
-Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
 
-Route::get('/product/search', 'productController@searchProducts' )->Name('product.searchProducts');
-Route::get('product/category/{catName}/{subCatName}', 'productController@categorySearch' )->Name('product.categorySearch');
+///////////
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/cart', 'productController@cart' )->Name('product.cart');

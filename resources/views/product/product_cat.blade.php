@@ -1,19 +1,13 @@
-<!-- variables -->
 @php
-
-$carouselImg1 = 'img/product1.jpg' ; 
-$carouselImg2 = 'img/product2.jpg' ; 
-$carouselImg3 = 'img/product3.jpg' ; 
 $productImg = 'img/cat1.jpg';
-
+$postReview = "product.postReview";
+$loginStatus = $loginStatus;
 @endphp
-
-
 
 @extends('layout.hf')
 
-
 @section('content')
+
 
 <!--New product category added -->
 <div class="container-fluid">
