@@ -9,6 +9,7 @@ use App\multipleSelectModel;
 use Validator;
 use App\Http\Controllers\MailController;
 use PDF;
+use Mail;
 /////////////////////////////////////////////
 class productController extends Controller
 {
@@ -656,19 +657,37 @@ $uid = 0;
   
   // $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/confirm.pdf');
   //return $pdf->download('invoice.pdf');
-
-
-
-
   
+  //return  $userinfo2[0]['u_email'];
+
+
+   $receiverEmail = $userinfo2[0]['u_email'];
+ $receiverName = $userinfo2[0]['last_name'];
+
+
+
+
+
   //$params = [$uid];
-  $email = new MailController();
+  //$email = new MailController();
   //$email->basic_email();
-  $email->attachment_email();
-  unset($email);
+  //$email->attachment_email($receiverName , $receiverEmail);
+  //unset($email);
 
+  $data = array('name'=>$receiverName);
+   Mail::send(['text'=>'email.plain_text'], $data, function($message) {
 
-
+        $userinfo = session('userinfo');
+        //print_r($userinfo);
+        $userinfo2 = json_decode(json_encode($userinfo), true);
+        $receiverEmail = $userinfo2[0]['u_email'];
+        $receiverName = $userinfo2[0]['last_name'];
+         $message->to($receiverEmail, $receiverName)->subject
+            ('Umart Shopping Invoice');
+         $message->attach(public_path().'/pdf/confirm.pdf');
+         //$message->attach('C:\laravel-master\laravel\public\uploads\test.txt');
+         $message->from('riyad.for.test@gmail.com','Ahsan Riyad');
+      });
  
   // return $results;
  // return $results[0][0]->product_id;
