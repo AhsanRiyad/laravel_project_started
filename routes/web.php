@@ -13,12 +13,16 @@
 
 
 Route::group(["middleware"=>['sessionFrontPage']], function(){
-
+//
 Route::get('/', 'productController@getProducts' )->Name('index');
 
 Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
 
 Route::get('/product/search', 'productController@searchProducts' )->Name('product.searchProducts');
+
+Route::get('/cart', 'productController@cart' )->Name('product.cart');
+
+///
 
 
 Route::get('product/category/{catName}/{subCatName}', 'productController@categorySearch' )->Name('product.categorySearch');
@@ -26,19 +30,22 @@ Route::get('product/category/{catName}/{subCatName}', 'productController@categor
 });
 
 
-///////////
+///////////not needed///////////
 
 Route::post('/product/postReview', 'productController@postReview' )->Name('product.postReview');
 
 
 Route::post('/addtocart', 'productController@addtocart' )->Name('productController.addtocart');
 
+Route::get('/product/autosearch', 'productController@autosearch' )->Name('productController.autosearch');
+
+
 
 
 /////////////
 
 
-////////
+////////for dashboard/////////
 Route::get('/up_rev', 'productController@up_rev' )->Name('product.up_rev');
 
 
@@ -48,6 +55,8 @@ Route::get('/view_review/{id}', 'productController@view_review' )->Name('product
 
 Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('product.delete_review');
 
+///////////
+
 
 
 
@@ -55,19 +64,12 @@ Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('pr
 ///////////
 
 
+////////////////
 
 
 
 
 
-
-
-
-
-
-
-
-Route::get('/cart', 'productController@cart' )->Name('product.cart');
 
 
 Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
@@ -78,8 +80,6 @@ Route::get('/signup', 'authenticationController@signUp' )->Name('authentication.
 
 Route::post('/signup', 'authenticationController@signUpCheck' )->Name('authentication.signup');
 
-
-Route::get('/product/autosearch', 'productController@autosearch' )->Name('productController.autosearch');
 
 
 Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardController.dashboard');

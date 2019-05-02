@@ -118,7 +118,7 @@ $productImg = 'img/cat1.jpg';
 
 
 
-<a href="http://localhost:3000" class="btn btn-info mt-1">Continue Shopping</a>
+<a href="{{ route('index') }}" class="btn btn-info mt-1">Continue Shopping</a>
 
 
 </div>

@@ -43,34 +43,8 @@ public function get_reviews(){
 //cart starts
 public function cart (Request $req){
 
-  $uid = 0;
-  if($req->session()->has('userinfo')){
-    $loginStatus = true;
-
-    $userinfo = session('userinfo');
-    //print_r($userinfo);
-    $userinfo2 = json_decode(json_encode($userinfo), true);
-    //print_r($userinfo2);
-
-    //echo $userinfo2[0]['u_id'];
-    $uid =  $userinfo2[0]['u_id'];
-
-    //for references
-    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
-    $c = productModel::cart_count($uid);
-    $cart_count = $c[0]->cart_count;
-    
-
-
-    //print_r($c[0]);
-    //echo $c[0]->cart_count;
-
-
-  }else{
-    $cart_count = 0;
-    $loginStatus = false;
-  }
-
+  $uid = $req->s_uid ;
+ 
   
   $params = [$uid];
   //return $params;
@@ -82,7 +56,7 @@ public function cart (Request $req){
 
   // return $results;
  // return $results[0][0]->product_id;
-  $r = [ 'products'=> $results , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
+  $r = [ 'products'=> $results , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status ];
 
 
   $pdf = PDF::loadView('email.orderConfirm', $r)->save('pdf/confirm.pdf');
