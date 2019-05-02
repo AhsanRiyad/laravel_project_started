@@ -19,9 +19,40 @@ class productController extends Controller
    $clientIP = request()->ip();
    $recommendProducts = productModel::getRecProducts($clientIP);
 
-   
+   if($req->session()->has('userinfo')){
+    $loginStatus = true;
 
-  return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts , 'loginStatus' =>  $req->s_login_status , 'cart_count' => $req->s_cart_count]);
+    $userinfo = session('userinfo');
+    //print_r($userinfo);
+    $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+    $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+    $c = productModel::cart_count($uid);
+    $cart_count = $c[0]->cart_count;
+    
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
+
+
+
+
+
+    //return redirect()->route('a_pos.index');
+
+  }else{
+    $cart_count = 0;
+    $loginStatus = false;
+
+    //return redirect()->route('authentication.login');
+
+  }
+
+  return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts , 'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);
 
     	//return $clientIP;
 
@@ -233,11 +264,26 @@ public function up_rev (Request $req){
  
 $products = DB::table('products')->paginate(10);
 
-     //return $revenue;
+
+if($req->session()->has('userinfo')){
+      $userinfo1 = session('userinfo');
+      $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+      $userinfo['userinfo'] = $userinfo2;
+
+     
+      $products = DB::table('products')->paginate(10);
+
+
+
+        //return $revenue;
 
 
       //return $userinfo[0]['u_id'];
-        return view('product.viewproducts')->withMsg('')->withUserinfo($req->userinfo)->with('page_name' , 'up_rev')->with('products' , $products);      
+        return view('product.viewproducts')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'up_rev')->with('products' , $products);      }
+        else{
+        return redirect()->route('authenticationController.logout');
+      }
 
 
 
@@ -252,13 +298,29 @@ public function view_review (Request $req , $id){
 
  
 
+
+
+if($req->session()->has('userinfo')){
+      $userinfo1 = session('userinfo');
+      $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+      $userinfo['userinfo'] = $userinfo2;
+
+
       $review = DB::table('review')->where('product_id' , $id)->paginate(10);
 
         //return $revenue;
 
 
       //return $userinfo[0]['u_id'];
-        return view('product.view_review')->withMsg('')->withUserinfo($req->userinfo)->with('page_name' , 'up_rev')->with('review' , $review); 
+        return view('product.view_review')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'up_rev')->with('review' , $review);      }
+        else{
+        return redirect()->route('authenticationController.logout');
+      }
+
+
+
+
 
 
 }
@@ -288,10 +350,39 @@ public function getProductDetails(Request $req, $pid){
 
     	//return $products[0]->product_name;
 
- 
+ if($req->session()->has('userinfo')){
+  $loginStatus = true;
+
+  $userinfo = session('userinfo');
+    //print_r($userinfo);
+  $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+  $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+  $c = productModel::cart_count($uid);
+  $cart_count = $c[0]->cart_count;
+
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
 
 
-return view('product/productdetails' , [ 'products' => $products , 'reviews' =>  $reviews , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'uid' => $uid , 'pid' => $pid]);
+}else{
+  $uid =  null;
+
+  $cart_count = 0;
+  $loginStatus = false;
+}
+
+
+
+
+
+
+return view('product/productdetails' , [ 'products' => $products , 'reviews' =>  $reviews , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus , 'uid' => $uid , 'pid' => $pid]);
 
 }
 
@@ -404,8 +495,34 @@ public static function searchProducts(Request $req){
 
     //return $products;
 
+  if($req->session()->has('userinfo')){
+    $loginStatus = true;
 
-  return view('product.productSearch', [ 'products' => $products ,  'loginStatus' =>  $req->s_login_status , 'cart_count' => $req->s_cart_count]);
+    $userinfo = session('userinfo');
+    //print_r($userinfo);
+    $userinfo2 = json_decode(json_encode($userinfo), true);
+    //print_r($userinfo2);
+
+    //echo $userinfo2[0]['u_id'];
+    $uid =  $userinfo2[0]['u_id'];
+
+    //for references
+    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
+    $c = productModel::cart_count($uid);
+    $cart_count = $c[0]->cart_count;
+    
+    //print_r($c[0]);
+    //echo $c[0]->cart_count;
+
+
+  }else{
+    $cart_count = 0;
+    $loginStatus = false;
+  }
+
+
+
+  return view('product\productSearch', [ 'products' => $products ,  'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);
 
 
 
@@ -613,14 +730,34 @@ $uid = 0;
 
 public function delete_review (Request $req , $id){
 
+ 
+
+
+
+if($req->session()->has('userinfo')){
+      $userinfo1 = session('userinfo');
+      $userinfo2 = json_decode(json_encode($userinfo1), true);
+
+      $userinfo['userinfo'] = $userinfo2;
+
+
       $review = DB::table('review')->where('product_id' , $req->product_id)->paginate(10);
 
         //return $revenue;
 
       $status = DB::delete('delete from review where review_id = (?)' , [$id]);
 
+
+
       //return $userinfo[0]['u_id'];
-        return redirect()->route('product.view_review' , [$req->product_id])->withMsgfls('Review Deleted');     
+        return redirect()->route('product.view_review' , [$req->product_id])->withMsgfls('Review Deleted');      }
+        else{
+        return redirect()->route('authenticationController.logout');
+      }
+
+
+
+
 
 
 }

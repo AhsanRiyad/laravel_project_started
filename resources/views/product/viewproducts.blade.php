@@ -17,7 +17,7 @@
   <div class="col-12 top-margin">
 
 
-		<h1 class="text-secondary text-center">Product List</h1>
+		<h1 class="text-secondary text-center">user List</h1>
 	<table class="table">
   <thead class="thead-light">
     <tr>

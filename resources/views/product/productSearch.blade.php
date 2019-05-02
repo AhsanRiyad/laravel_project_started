@@ -2,7 +2,7 @@
 
 $productImg = 'img/cat1.jpg';
 $postReview = "product.postReview";
-$loginStatus = $loginStatus;
+$loginStatus = false;
 @endphp
 
 @extends('layout.hf')
