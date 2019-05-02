@@ -15,13 +15,16 @@
 Route::group(["middleware"=>['sessionFrontPage']], function(){
 
 Route::get('/', 'productController@getProducts' )->Name('index');
+
+Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
+
 });
 
 
 
 
 
-Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
+
 
 Route::post('/product/postReview', 'productController@postReview' )->Name('product.postReview');
 
