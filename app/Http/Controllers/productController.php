@@ -20,40 +20,10 @@ class productController extends Controller
    $clientIP = request()->ip();
    $recommendProducts = productModel::getRecProducts($clientIP);
 
-   if($req->session()->has('userinfo')){
-    $loginStatus = true;
 
-    $userinfo = session('userinfo');
-    //print_r($userinfo);
-    $userinfo2 = json_decode(json_encode($userinfo), true);
-    //print_r($userinfo2);
+  //return $req->s_cart_count; 
 
-    //echo $userinfo2[0]['u_id'];
-    $uid =  $userinfo2[0]['u_id'];
-
-    //for references
-    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
-    $c = productModel::cart_count($uid);
-    $cart_count = $c[0]->cart_count;
-    
-    //print_r($c[0]);
-    //echo $c[0]->cart_count;
-
-
-
-
-
-    //return redirect()->route('a_pos.index');
-
-  }else{
-    $cart_count = 0;
-    $loginStatus = false;
-
-    //return redirect()->route('authentication.login');
-
-  }
-
-  return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts , 'loginStatus' =>  $loginStatus , 'cart_count' => $cart_count]);
+return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts , 'loginStatus' =>  $req->s_login_status , 'cart_count' => $req->s_cart_count]);
 
     	//return $clientIP;
 

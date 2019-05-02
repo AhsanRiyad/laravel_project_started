@@ -19,6 +19,8 @@ class sessionFrontPage
     public function handle($request, Closure $next)
     {
 
+
+        //error_log('inside middleware');
         if($request->session()->has('userinfo')){
             $loginStatus = true;
 
@@ -34,7 +36,8 @@ class sessionFrontPage
     //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
             $c = productModel::cart_count($uid);
             $cart_count = $c[0]->cart_count;
-
+            //error_log('inside the middleware');
+            //return;
     //print_r($c[0]);
     //echo $c[0]->cart_count;
 
@@ -50,8 +53,8 @@ class sessionFrontPage
         }else{
             $cart_count = 0;
             $loginStatus = false;
-
-
+            //error_log('inside the middleware');
+            //return;
             $request->s_uid = null;
             $request->s_cart_count = $cart_count;
             $request->s_login_status = $loginStatus;

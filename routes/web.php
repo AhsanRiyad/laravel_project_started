@@ -11,7 +11,15 @@
 |
 */
 
+
+Route::group(["middleware"=>['sessionFrontPage']], function(){
+
 Route::get('/', 'productController@getProducts' )->Name('index');
+});
+
+
+
+
 
 Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
 

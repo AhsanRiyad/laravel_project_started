@@ -48,8 +48,10 @@ class authenticationController extends Controller
     	{	
     		$user['validCheck'] = 'true'; 
 
-            session(['userinfo'=>$userDetails]);
-            $userinfo = session('userinfo');
+            //session(['userinfo'=>$userDetails]);
+            $req->session()->put('userinfo', $userDetails);
+            $userinfo = $req->session()->get('userinfo');
+            //$userinfo = session('userinfo');
 
             //return $userDetails;
 
