@@ -41,6 +41,15 @@ Route::get('/product/autosearch', 'productController@autosearch' )->Name('produc
 
 
 
+Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
+
+Route::post('/login', 'authenticationController@loginCheck' )->Name('authentication.login');
+
+
+
+Route::get('/signup', 'authenticationController@signUp' )->Name('authentication.signup');
+
+Route::post('/signup', 'authenticationController@signUpCheck' )->Name('authentication.signup');
 
 /////////////
 
@@ -55,7 +64,7 @@ Route::get('/view_review/{id}', 'productController@view_review' )->Name('product
 
 Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('product.delete_review');
 
-///////////
+///////////////////////////////
 
 
 
@@ -72,17 +81,10 @@ Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('pr
 
 
 
-Route::get('/login', 'authenticationController@login' )->Name('authentication.login');
-
-Route::post('/login', 'authenticationController@loginCheck' )->Name('authentication.login');
-
-Route::get('/signup', 'authenticationController@signUp' )->Name('authentication.signup');
-
-Route::post('/signup', 'authenticationController@signUpCheck' )->Name('authentication.signup');
 
 
 
-Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardController.dashboard');
+
 
 Route::get('/logout', 'authenticationController@logout' )->Name('authenticationController.logout');
 
@@ -113,8 +115,14 @@ Route::get('/get_reviews' , 'productController@get_reviews')->name('productContr
 Route::group(["middleware"=>['sessioncheck']], function(){
 
 
+//////////////////////
+
+Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardController.dashboard');
+
+
 Route::get('/add_factory' , 'userController@add_factory')->name('userController.add_factory');
 
+////////////////////////
 Route::resource('/a_pos' , 'AProductController');
 
 

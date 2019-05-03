@@ -10,11 +10,7 @@ class dashboardController extends Controller
 {
     public static function dashboard(Request $req){
 
-    	if($req->session()->has('userinfo')){
-    	$userinfo1 = session('userinfo');
-    	$userinfo2 = json_decode(json_encode($userinfo1), true);
-
-    	$userinfo['userinfo'] = $userinfo2;
+    	
 
         $revenue = DB::select('select sum(total_amount) as c from order_t
 ');
@@ -33,10 +29,8 @@ class dashboardController extends Controller
 
 
     	//return $userinfo[0]['u_id'];
-    	return view('dashboard/dashboard' , $userinfo)->with('page_name' , 'dashboard')->withVisit($visit[0]->c)->withOrder($order[0]->c)->withProducts($products[0]->c)->withRevenue($revenue[0]->c);
-    	}else{
-    		return redirect()->route('authenticationController.logout');
-    	}
+    	return view('dashboard/dashboard')->with('page_name' , 'dashboard')->withVisit($visit[0]->c)->withOrder($order[0]->c)->withProducts($products[0]->c)->withRevenue($revenue[0]->c)->withUserinfo($req->userinfo);
+    	
 
     	
     }
