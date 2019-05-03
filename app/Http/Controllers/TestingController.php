@@ -24,12 +24,12 @@ class TestingController extends Controller
     {
         $pdo = DB::connection('mysql')->getPdo();
         $hi = 'hellow dear';
-        $stmt = $pdo->prepare("CALL test( '".$hi."' , @hff );");
+        $stmt = $pdo->prepare("CALL test( :param1 , @hff );");
 
 
         //$stmt->bindParam(1, 'hellow');
-
-
+        $stmt -> bindValue(':param1', 'John');
+        
         //$stmt->bindParam(2, $return_value, \PDO::PARAM_STR, 4000); 
 
 // call the stored procedure
