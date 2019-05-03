@@ -29,7 +29,7 @@ class TestingController extends Controller
 
         //$stmt->bindParam(1, 'hellow');
         $stmt -> bindValue(':param1', 'John');
-        
+
         //$stmt->bindParam(2, $return_value, \PDO::PARAM_STR, 4000); 
 
 // call the stored procedure
@@ -84,7 +84,13 @@ class TestingController extends Controller
 
     public function test2()
     {
-        return session('r1');
+        $pdo = DB::connection('mysql')->getPdo();
+        $hi = 'hellow dear';
+        $stmt = $pdo->prepare("CALL order_invoice( :param1 , @hff , @gff , @tff );");
+        $stmt -> bindValue(':param1', 12);
+        $stmt->execute();
+        $res = DB::select("select @hff , @gff , @tff ");
+        return $res;
     }
 
 
