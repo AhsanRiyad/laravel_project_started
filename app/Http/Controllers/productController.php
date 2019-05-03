@@ -211,12 +211,6 @@ public function view_review (Request $req , $id){
 
 
 
-if($req->session()->has('userinfo')){
-      $userinfo1 = session('userinfo');
-      $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-      $userinfo['userinfo'] = $userinfo2;
-
 
       $review = DB::table('review')->where('product_id' , $id)->paginate(10);
 
@@ -224,11 +218,7 @@ if($req->session()->has('userinfo')){
 
 
       //return $userinfo[0]['u_id'];
-        return view('product.view_review')->withMsg('')->withUserinfo($userinfo2)->with('page_name' , 'up_rev')->with('review' , $review);      }
-        else{
-        return redirect()->route('authenticationController.logout');
-      }
-
+        return view('product.view_review')->withMsg('')->withUserinfo($req->userinfo)->with('page_name' , 'up_rev')->with('review' , $review);    
 
 
 
@@ -551,16 +541,6 @@ $uid = 0;
 
 public function delete_review (Request $req , $id){
 
- 
-
-
-
-if($req->session()->has('userinfo')){
-      $userinfo1 = session('userinfo');
-      $userinfo2 = json_decode(json_encode($userinfo1), true);
-
-      $userinfo['userinfo'] = $userinfo2;
-
 
       $review = DB::table('review')->where('product_id' , $req->product_id)->paginate(10);
 
@@ -571,11 +551,7 @@ if($req->session()->has('userinfo')){
 
 
       //return $userinfo[0]['u_id'];
-        return redirect()->route('product.view_review' , [$req->product_id])->withMsgfls('Review Deleted');      }
-        else{
-        return redirect()->route('authenticationController.logout');
-      }
-
+        return redirect()->route('product.view_review' , [$req->product_id])->withMsgfls('Review Deleted');     
 
 
 

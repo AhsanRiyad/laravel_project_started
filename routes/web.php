@@ -69,10 +69,6 @@ Route::post('/signup', 'authenticationController@signUpCheck' )->Name('authentic
 ////////for dashboard/////////
 
 
-Route::get('/view_review/{id}', 'productController@view_review' )->Name('product.view_review');
-
-
-Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('product.delete_review');
 
 ///////////////////////////////
 
@@ -89,7 +85,6 @@ Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('pr
 
 
 ////////////////////////rest api/////////////////////////
-
 Route::get('/get_reviews' , 'productController@get_reviews')->name('productController.get_reviews');
 
 
@@ -106,6 +101,11 @@ Route::group(["middleware"=>['sessioncheck']], function(){
 Route::get('/up_rev', 'productController@up_rev' )->Name('product.up_rev');
 
 
+
+Route::get('/view_review/{id}', 'productController@view_review' )->Name('product.view_review');
+
+
+Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('product.delete_review');
 
 Route::get('/add_product' , 'productController@add_product')->name('productController.add_product');
 
