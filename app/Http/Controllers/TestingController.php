@@ -22,23 +22,15 @@ class TestingController extends Controller
 
     public function test()
     {
+        $pdo = DB::connection('mysql')->getPdo();
+        $hi = 'hellow dear';
+        $stmt = $pdo->prepare("CALL test( '".$hi."' , @hff );");
 
 
-       // $pdo = new PDO('mysql:host=localhost;dbname=laravel;charset=UTF-8',
-              /* 'root',
-               '', 
-               array(PDO::ATTR_EMULATE_PREPARES => false,
-                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-               );
-*/
+        //$stmt->bindParam(1, 'hellow');
 
 
-
-
-       $pdo = DB::connection('mysql')->getPdo();
-        
-        $stmt = $pdo->prepare("CALL test(@hff);");
-        //$stmt->bindParam(1, $return_value, \PDO::PARAM_STR, 4000); 
+        //$stmt->bindParam(2, $return_value, \PDO::PARAM_STR, 4000); 
 
 // call the stored procedure
         $stmt->execute();
