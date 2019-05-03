@@ -388,34 +388,9 @@ $products = DB::select('select * from products where category_name = (?) and sub
 
 public function confirmOrder(Request $req){
 
-$uid = 0;
-  if($req->session()->has('userinfo')){
-    $loginStatus = true;
-
-    $userinfo = session('userinfo');
-    //print_r($userinfo);
-    $userinfo2 = json_decode(json_encode($userinfo), true);
-    //print_r($userinfo2);
-
-    //echo $userinfo2[0]['u_id'];
-    $uid =  $userinfo2[0]['u_id'];
-
-    //for references
-    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
-    $c = productModel::cart_count($uid);
-    $cart_count = $c[0]->cart_count;
-    
-    //print_r($c[0]);
-    //echo $c[0]->cart_count;
-
-
-  }else{
-    $cart_count = 0;
-    $loginStatus = false;
-  }
 
   
-  $params = [$uid];
+  $params = [$req->s_uid];
   $results = multipleSelectModel::CallRaw('cartPage', $params);
 
   // return $results;
@@ -423,7 +398,7 @@ $uid = 0;
 
 
 
-  $r = [ 'products'=> $results , 'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
+  $r = [ 'products'=> $results , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status ];
   return view('Order.confirm_order'  , $r);
 
 
@@ -438,48 +413,22 @@ $uid = 0;
 
 public function confirmOrderPost(Request $req){
 
-$uid = 0;
-  if($req->session()->has('userinfo')){
-    $loginStatus = true;
-
-    $userinfo = session('userinfo');
-    //print_r($userinfo);
-    $userinfo2 = json_decode(json_encode($userinfo), true);
-    //print_r($userinfo2);
-
-    //echo $userinfo2[0]['u_id'];
-    $uid =  $userinfo2[0]['u_id'];
-
-    //for references
-    //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
-    $c = productModel::cart_count($uid);
-    $cart_count = $c[0]->cart_count;
-    
-    //print_r($c[0]);
-    //echo $c[0]->cart_count;
-     
-
-    $params = [ $uid , $req->optradio ];
+    $params = [ $req->s_uid , $req->optradio ];
 
     $results = multipleSelectModel::CallRaw('order_t', $params);
 
 
-
-
-  }else{
-    $cart_count = 0;
-    $loginStatus = false;
-  }
-
-  
   // $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/confirm.pdf');
   //return $pdf->download('invoice.pdf');
   
   //return  $userinfo2[0]['u_email'];
 
 
-   $receiverEmail = $userinfo2[0]['u_email'];
- $receiverName = $userinfo2[0]['last_name'];
+    //return $req->userinfo[0]['u_email'];
+
+
+  $receiverEmail = $req->userinfo[0]['u_email'];
+ $receiverName =$req->userinfo[0]['last_name'];
 
 
 
@@ -511,7 +460,7 @@ $uid = 0;
 
 
 
-  $r = [  'cart_count' => $cart_count , 'loginStatus' => $loginStatus ];
+  $r = [  'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status ];
   return view('Order.done'  , $r);
 
 
@@ -549,22 +498,12 @@ public function delete_review (Request $req , $id){
       $status = DB::delete('delete from review where review_id = (?)' , [$id]);
 
 
-
       //return $userinfo[0]['u_id'];
         return redirect()->route('product.view_review' , [$req->product_id])->withMsgfls('Review Deleted');     
 
 
 
-
-
 }
-
-
-
-
-
-
-
 
 
 }

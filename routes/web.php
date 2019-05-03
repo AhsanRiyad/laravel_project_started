@@ -22,9 +22,28 @@ Route::get('/product/search', 'productController@searchProducts' )->Name('produc
 
 Route::get('/cart', 'productController@cart' )->Name('product.cart');
 
-///
+////////////////
+
+Route::get('/confirmOrder' , 'productController@confirmOrder')->name('productController.confirmOrder');
 
 
+Route::post('/confirmOrder' , 'productController@confirmOrderPost')->name('productController.confirmOrder');
+
+
+
+
+Route::get('/confirmOrder/confirm' , 'productController@confirmOrder')->name('productController.confirmOrder');
+
+
+Route::post('/confirmOrder/confirm' , 'productController@confirmOrderPost')->name('productController.confirmOrder');
+
+
+
+
+
+
+
+/////////////
 Route::get('product/category/{catName}/{subCatName}', 'productController@categorySearch' )->Name('product.categorySearch');
 
 
@@ -146,18 +165,6 @@ Route::post('/a_cart_order' , 'AProductController@a_cart_order')->name('AProduct
 
 
 Route::post('/order_details/{id}' , 'AProductController@order_details')->name('AProductController.order_details');
-
-Route::get('/confirmOrder' , 'productController@confirmOrder')->name('productController.confirmOrder');
-
-
-Route::post('/confirmOrder' , 'productController@confirmOrderPost')->name('productController.confirmOrder');
-
-
-Route::get('/confirmOrder/confirm' , 'productController@confirmOrder')->name('productController.confirmOrder');
-
-
-Route::post('/confirmOrder/confirm' , 'productController@confirmOrderPost')->name('productController.confirmOrder');
-
 
 
 Route::get('/add_user' , 'userController@addUser')->name('userController.addUser');
