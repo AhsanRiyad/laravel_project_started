@@ -27,6 +27,14 @@ Route::get('/cart', 'productController@cart' )->Name('product.cart');
 
 Route::get('product/category/{catName}/{subCatName}', 'productController@categorySearch' )->Name('product.categorySearch');
 
+
+
+
+Route::get('/all_products' , 'productController@all_products')->name('productController.all_products');
+
+
+
+
 });
 
 
@@ -46,17 +54,19 @@ Route::get('/login', 'authenticationController@login' )->Name('authentication.lo
 Route::post('/login', 'authenticationController@loginCheck' )->Name('authentication.login');
 
 
+Route::get('/logout', 'authenticationController@logout' )->Name('authenticationController.logout');
+
+
 
 Route::get('/signup', 'authenticationController@signUp' )->Name('authentication.signup');
 
 Route::post('/signup', 'authenticationController@signUpCheck' )->Name('authentication.signup');
 
-/////////////
+
+///////////////////////////
 
 
 ////////for dashboard/////////
-Route::get('/up_rev', 'productController@up_rev' )->Name('product.up_rev');
-
 
 
 Route::get('/view_review/{id}', 'productController@view_review' )->Name('product.view_review');
@@ -78,29 +88,6 @@ Route::post('/delete_review/{id}', 'productController@delete_review' )->Name('pr
 
 
 
-
-
-
-
-
-
-
-
-Route::get('/logout', 'authenticationController@logout' )->Name('authenticationController.logout');
-
-
-Route::get('/add_product' , 'productController@add_product')->name('productController.add_product');
-
-Route::post('/add_product' , 'productController@add_productPost')->name('productController.add_product');
-
-
-//Route::get('/db', 'testController@dbTest');
-Route::get('/db', 'productController@autosearch');
-
-Route::get('/all_products' , 'productController@all_products')->name('productController.all_products');
-
-
-
 ////////////////////////rest api/////////////////////////
 
 Route::get('/get_reviews' , 'productController@get_reviews')->name('productController.get_reviews');
@@ -116,6 +103,17 @@ Route::group(["middleware"=>['sessioncheck']], function(){
 
 
 //////////////////////
+Route::get('/up_rev', 'productController@up_rev' )->Name('product.up_rev');
+
+
+
+Route::get('/add_product' , 'productController@add_product')->name('productController.add_product');
+
+
+
+Route::post('/add_product' , 'productController@add_productPost')->name('productController.add_product');
+
+
 
 Route::get('/dashboard', 'dashboardController@dashboard' )->Name('dashboardController.dashboard');
 
@@ -264,4 +262,8 @@ Route::get('/f1' , 'TestingController@test2');
 
 
 
+
+
+//Route::get('/db', 'testController@dbTest');
+Route::get('/db', 'productController@autosearch');
 
