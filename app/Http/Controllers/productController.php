@@ -10,6 +10,8 @@ use Validator;
 use App\Http\Controllers\MailController;
 use PDF;
 use Mail;
+
+
 /////////////////////////////////////////////
 class productController extends Controller
 {
@@ -58,22 +60,15 @@ public function cart (Request $req){
  // return $results[0][0]->product_id;
   $r = [ 'products'=> $results , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status ];
 
+  
+
+  //$params = [$uid , '@order_id' , '@total' , '@date' ];
+  //$invoice_result = multipleSelectModel::CallRaw('order_invoice', $params);
+  //return $invoice_result;
 
   $pdf = PDF::loadView('email.orderConfirm', $r)->save('pdf/confirm.pdf');
 
   return view('product.cart'  , $r);
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 //cart ends
