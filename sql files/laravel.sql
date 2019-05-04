@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2019 at 07:18 PM
+-- Generation Time: May 04, 2019 at 08:14 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -839,55 +839,56 @@ CREATE TABLE `products` (
   `descriptions` varchar(100) DEFAULT NULL,
   `category_name` varchar(50) DEFAULT NULL,
   `sub_category` varchar(50) DEFAULT NULL,
-  `image` varchar(100) NOT NULL DEFAULT 'img/cat1.jpg'
+  `image` varchar(100) NOT NULL DEFAULT 'img/cat1.jpg',
+  `rating` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_avlble`, `product_sell_price`, `product_original_price`, `category_id`, `descriptions`, `category_name`, `sub_category`, `image`) VALUES
-(1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg'),
-(2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg'),
-(3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg'),
-(4, 'hard disk 1TB', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg'),
-(5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital', 'img/cat1.jpg'),
-(6, 'hard disk 4TB', 33, 37, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg'),
-(7, 'Printer Canon', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg'),
-(8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg'),
-(9, 'Ram Transcend', 343, 34, 235, 2356, 346, 'useful for home', 'ram', 'transcend', 'img/cat1.jpg'),
-(10, 'Ram Adata', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg'),
-(11, 'Ram Razor', 33, 39, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg'),
-(12, 'Motherboard GigaByte', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'gigabyte', 'img/cat1.jpg'),
-(13, 'Motherboard Asus', 33, 33, 33, 34, 34, 'useful for home', 'motherboard', 'asus', 'img/cat1.jpg'),
-(14, 'Motherboard Intel', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg'),
-(15, 'Processor Intel', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg'),
-(16, 'Processor AMD', 33, 34, 235, 34, 34, 'Computer processor , high quality', 'processor', 'amd', 'img/cat1.jpg'),
-(17, 'Monitor LG Full HD', 33, 39, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg'),
-(18, 'Monitor LG Full HD', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg'),
-(19, 'Monitor Samsung 4K', 343, 34, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg'),
-(20, 'Monitor Walton Plasma', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg'),
-(21, 'hard disk 1TB 5400rpm', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg'),
-(22, 'hard disk 4TB 7200rpm', 33, 33, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg'),
-(23, 'Printer Canon For Photos', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg'),
-(24, 'Ram Adata 8GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg'),
-(25, 'Ram Razor 16GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg'),
-(26, 'Printer HP 1080P', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg'),
-(27, 'Motherboard Intel Gaming', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg'),
-(28, 'Processor Intel Core i3', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg'),
-(29, 'Processor Intel Core i5', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg'),
-(30, 'Processor Intel Core i9', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg'),
-(31, 'arfeaf', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'C:\\xampp\\tmp\\phpFE53.tmp'),
-(32, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl.png'),
-(33, 'Afsana Moon', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy32png'),
-(34, 'Afsana Moon', 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl33png'),
-(35, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/.girl34png'),
-(36, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/.girl35png'),
-(37, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl36.png'),
-(38, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy37.png'),
-(39, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy38.png'),
-(40, 'iphone', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/iphone39.jpg'),
-(41, 'afaef', 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/Screenshot (2)40.png');
+INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_avlble`, `product_sell_price`, `product_original_price`, `category_id`, `descriptions`, `category_name`, `sub_category`, `image`, `rating`) VALUES
+(1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg', 4),
+(2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg', 0),
+(3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg', 2),
+(4, 'hard disk 1TB', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg', 0),
+(5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital', 'img/cat1.jpg', 0),
+(6, 'hard disk 4TB', 33, 37, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg', 0),
+(7, 'Printer Canon', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg', 0),
+(8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 0),
+(9, 'Ram Transcend', 343, 34, 235, 2356, 346, 'useful for home', 'ram', 'transcend', 'img/cat1.jpg', 0),
+(10, 'Ram Adata', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 0),
+(11, 'Ram Razor', 33, 39, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg', 0),
+(12, 'Motherboard GigaByte', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'gigabyte', 'img/cat1.jpg', 3),
+(13, 'Motherboard Asus', 33, 33, 33, 34, 34, 'useful for home', 'motherboard', 'asus', 'img/cat1.jpg', 0),
+(14, 'Motherboard Intel', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg', 0),
+(15, 'Processor Intel', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg', 0),
+(16, 'Processor AMD', 33, 34, 235, 34, 34, 'Computer processor , high quality', 'processor', 'amd', 'img/cat1.jpg', 0),
+(17, 'Monitor LG Full HD', 33, 39, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg', 0),
+(18, 'Monitor LG Full HD', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg', 0),
+(19, 'Monitor Samsung 4K', 343, 34, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg', 0),
+(20, 'Monitor Walton Plasma', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg', 0),
+(21, 'hard disk 1TB 5400rpm', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg', 0),
+(22, 'hard disk 4TB 7200rpm', 33, 33, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg', 0),
+(23, 'Printer Canon For Photos', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg', 0),
+(24, 'Ram Adata 8GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 0),
+(25, 'Ram Razor 16GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg', 0),
+(26, 'Printer HP 1080P', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 0),
+(27, 'Motherboard Intel Gaming', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg', 0),
+(28, 'Processor Intel Core i3', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg', 0),
+(29, 'Processor Intel Core i5', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg', 0),
+(30, 'Processor Intel Core i9', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg', 0),
+(31, 'arfeaf', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'C:\\xampp\\tmp\\phpFE53.tmp', 0),
+(32, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl.png', 0),
+(33, 'Afsana Moon', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy32png', 0),
+(34, 'Afsana Moon', 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl33png', 0),
+(35, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/.girl34png', 0),
+(36, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/.girl35png', 0),
+(37, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl36.png', 0),
+(38, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy37.png', 0),
+(39, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy38.png', 0),
+(40, 'iphone', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/iphone39.jpg', 0),
+(41, 'afaef', 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/Screenshot (2)40.png', 0);
 
 -- --------------------------------------------------------
 
@@ -1128,9 +1129,30 @@ INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`
 (17, 'really nice product', '', '2019-03-29', 9, 2, 0),
 (18, 'good products', '', '2019-04-02', 2, 2, 0),
 (19, 'frfarf', 'valid', '2019-05-14', 1, 1, 3),
-(20, 'afraefaefae', 'valid', '2019-05-04', 3, 12, 0),
+(20, 'feraa', 'valid', '2019-05-04', 3, 12, 2),
 (21, 'arfraef', 'valid', '2019-05-04', 7, 12, 2),
-(22, 'arfraef', 'valid', '2019-05-04', 2, 12, 3);
+(22, 'arfraef', 'valid', '2019-05-04', 2, 12, 3),
+(23, 'faer', 'valid', '2019-05-04', 1, 12, 4),
+(24, 'arefeaarfaef', 'valid', '2019-05-04', 11, 12, 4),
+(25, 'arfarfaef', 'valid', '2019-05-04', 12, 12, 3);
+
+--
+-- Triggers `review`
+--
+DELIMITER $$
+CREATE TRIGGER `after_insert_rating` AFTER INSERT ON `review` FOR EACH ROW BEGIN
+call avgRating( NEW.product_id , @avgRating );
+update products set rating = @avgRating where product_id = NEW.product_id;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `after_rating` AFTER UPDATE ON `review` FOR EACH ROW BEGIN
+call avgRating( NEW.product_id , @avgRating );
+update products set rating = @avgRating where product_id = NEW.product_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1403,7 +1425,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(4614, 0);
+(4663, 0);
 
 -- --------------------------------------------------------
 
@@ -1714,7 +1736,7 @@ ALTER TABLE `return_t`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `seller`
