@@ -143,9 +143,9 @@
       </td>
 
       <td>
-        <a href="{{ route('accountController.all_sales') }}">
+        <a href="{{ route('accountController.sales_report') }}">
         <button  class="btn btn-info px-5">
-          All Sales 
+          Daily Sales 
         </button>
         </a> 
       </td>

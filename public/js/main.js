@@ -378,3 +378,47 @@ if(reply == 'updated'){
 
 					 }
 */
+
+
+
+// rating starts
+
+/*$('#rating_id').click(function(){
+	alert('rating clicked');
+})*/
+
+/*$('.rating').eq(0).click(function(){
+	//alert('rating 0 clicked');
+
+	$('.rating').eq(0).click(function(){
+	//alert('rating 0 clicked');
+
+})
+
+})*/
+
+// rating ends
+
+
+function rateCheck(obj, num){
+	/*alert(num + 'clicked');*/
+
+	for(var i=0; i<num; i++){
+			//alert('rating clicked');
+			$( ".rating" ).eq(i).removeClass( "text-warning" ).addClass( "text-warning" );
+
+	}
+
+	if( num<5 ){
+		for( var i = 5; i>num; i-- ){
+			//alert('inside loop'+ i);
+			$( ".rating" ).eq(i-1).removeClass( "text-warning" );
+			//alert('inside loop'+ i);
+		} 
+		//alert('i less than 5')
+
+	}
+
+
+
+}

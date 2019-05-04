@@ -76,6 +76,17 @@ $postReview = "product.postReview";
 			<form method="POST" action="{{ route($postReview) }}">
 				@csrf
 				<div class="form-group">
+					
+					<div id="rating_id" class="w-100 mt-0 p-3 bg-light">
+										<h4>Rate It</h4>
+										<span onclick="rateCheck(this, 1)" class="fa fa-star text-warning rating"></span>
+										<span onclick="rateCheck(this, 2)" class="fa fa-star text-warning rating"></span>
+										<span onclick="rateCheck(this, 3)" class="fa fa-star text-warning rating"></span>
+										<span onclick="rateCheck(this, 4)" class="fa fa-star text-warning rating"></span>
+										<span onclick="rateCheck(this, 5)" class="fa fa-star rating"></span>
+
+					</div>
+					<input type="number" value="null" hidden name="rating" id="rating">
 					<input type="text" hidden="true" value=" {{ $pid }} " name="productid"> 
 					<input type="text" hidden="true" value="{{ $uid }}" name="uid"> 
 					<label for="exampleFormControlTextarea1" class=""> Add a Review </label>
