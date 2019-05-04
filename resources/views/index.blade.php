@@ -194,11 +194,31 @@ $productImg = 'img/cat1.jpg';
 									</p>
 									<div class="w-100 mt-0 pb-3">
 
-										<span class="fa fa-star text-warning"></span>
-										<span class="fa fa-star text-warning"></span>
-										<span class="fa fa-star text-warning"></span>
-										<span class="fa fa-star text-warning"></span>
-										<span class="fa fa-star"></span>
+										<span  class="fa fa-star  @if(  $rec->rating  >= 1 )
+												text-warning
+
+
+										@endif "></span>
+										<span  class="fa fa-star  @if(  $rec->rating  >= 2 )
+												text-warning
+
+
+										@endif "></span>
+										<span  class="fa fa-star  @if(  $rec->rating  >= 3 )
+												text-warning
+
+
+										@endif "></span>
+										<span  class="fa fa-star  @if(  $rec->rating  >= 4 )
+												text-warning
+
+
+										@endif "></span>
+										<span  class="fa fa-star @if(  $rec->rating  >= 5 )
+												text-warning
+
+
+										@endif "></span>
 
 									</div>
 
