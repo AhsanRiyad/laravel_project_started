@@ -31,6 +31,8 @@ class sessionFrontPage
 
     //echo $userinfo2[0]['u_id'];
             $uid =  $userinfo2[0]['u_id'];
+            $email =  $userinfo2[0]['u_email'];
+            $last_name = $userinfo2[0]['last_name'];
             $request->userinfo = $userinfo2;
     //for references
     //https://www.geeksforgeeks.org/what-is-stdclass-in-php/
@@ -44,6 +46,8 @@ class sessionFrontPage
 
 
             $request->s_uid = $uid;
+            $request->s_email = $email;
+            $request->s_name = $last_name;
             $request->s_cart_count = $cart_count;
             $request->s_login_status = $loginStatus;
 

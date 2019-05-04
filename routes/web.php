@@ -13,7 +13,10 @@
 
 
 Route::group(["middleware"=>['sessionFrontPage']], function(){
-//
+
+
+
+///////////////////
 Route::get('/', 'productController@getProducts' )->Name('index');
 
 Route::get('/product/details/{pid}', 'productController@getProductDetails' )->Name('product.details');
@@ -54,6 +57,19 @@ Route::get('/all_products' , 'productController@all_products')->name('productCon
 
 
 
+
+/////////////////////////////
+
+
+Route::get('/support' , 'productController@support')->name('productController.support');
+
+
+Route::post('/support' , 'productController@supportPost')->name('productController.support');
+
+
+
+
+/////////////////////////////
 });
 
 

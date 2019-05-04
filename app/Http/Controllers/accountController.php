@@ -123,7 +123,7 @@ class accountController extends Controller
 
             //$balance = DB::select('select balance_available from account where user_id = 0');
 
-        $reports = DB::table('daily_sales')->paginate(10);
+        $reports = DB::table('all_sales')->paginate(10);
 
 
         return view('accounts.all_sales')->withUserinfo($req->userinfo)->with('reports' , $reports)->with('page_name' , 'reports');

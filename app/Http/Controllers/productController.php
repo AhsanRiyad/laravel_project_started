@@ -533,4 +533,43 @@ public function delete_review (Request $req , $id){
 }
 
 
+///////////////support//////////////////
+
+public function support(Request $req){
+
+
+
+ $r = [  'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'name' => $req->s_name , 'email' => $req->s_email ];
+  return view('email.support'  , $r);
+
+}
+
+public function supportPost(Request $req){
+
+
+  return $req->msg;
+
+
+
+ $r = [  'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'name' => $req->s_name , 'email' => $req->s_email ];
+  return view('email.support'  , $r);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -179,8 +179,8 @@ $signout = "authenticationController.logout";
 
         @elseif($loginStatus==true)
 
-      <a href="{{ route($signout) }}" class="btn btn-danger">
-        SignOut
+      <a href="{{ route('productController.support') }}" class="btn btn-danger">
+        Support
 
       </a>
 
