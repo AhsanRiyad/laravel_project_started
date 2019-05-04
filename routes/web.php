@@ -243,6 +243,9 @@ Route::get('/sales_report' , 'accountController@sales_report')->name('accountCon
 Route::get('/all_sales' , 'accountController@all_sales')->name('accountController.all_sales');
 
 
+Route::post('/dowload_report' , 'accountController@dowload_report')->name('accountController.dowload_report');
+
+
 Route::get('/sales_report_yearly' , 'accountController@sales_report_yearly')->name('accountController.sales_report_yearly');
 
 

@@ -25,7 +25,7 @@
   <div class="col-12">
     
  
-  <h2 class="text-center bg-info text-white py-2 ">Daily Sales Report</h2>
+  <h2 class="text-center bg-info text-white py-2 ">All Sales Report</h2>
   
  </div>
  
@@ -33,6 +33,7 @@
 <div class="col-12">
   
 
+ 
   <table class="table">
     <thead  class="thead-dark">
       
@@ -41,8 +42,9 @@
         <th>Order Date</th>
         <th>Total tk</th>
         <th>tk_paid</th>
-        <th>Details</th>
         <th>Due</th>
+        <th>Details</th>
+        <th>Reports</th>
         
 
       
@@ -78,15 +80,27 @@
         </td>
 
 
+
+        <td>
+          {{ $r->due }}
+          
+        </td>
         <td>
           <button onclick="order_details('{{ $r->order_id }}')"  class="btn btn-info">
             Details
           </button>
           
         </td>
-
         <td>
-          {{ $r->due }}
+          <form action="{{ route('accountController.dowload_report') }}" method="post">
+
+               <input hidden type="text" value="{{ $r->user_id }}" name="user_id">
+               <input hidden type="text" value="{{ $r->total_amount }}" name="total_amount">
+                <input hidden type="text" value="{{ $r->order_date }}" name="order_date">
+              <input hidden type="text" value="daily_sales" name="page_name">
+             <input hidden type="text" value="{{ $r->order_id }}" name="order_id">
+            <input class="btn btn-info" type="submit" value="Download" name="submit">
+          </form>
           
         </td>
           
@@ -129,20 +143,18 @@
       </td>
 
       <td>
-        <a href="{{ route('accountController.sales_report') }}">
+        <a href="{{ route('accountController.all_sales') }}">
         <button  class="btn btn-info px-5">
-          Daily Sales 
+          All Sales 
         </button>
         </a> 
       </td>
 
     </tr>
 
-
-
     <tr>
       <td>
-        {{  $reports->links() }}
+        {{ $reports->links() }}
       </td>
     </tr>
     
@@ -152,6 +164,7 @@
 
 
   </table>
+
 
 </div>
 </div>

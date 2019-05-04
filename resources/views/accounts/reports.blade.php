@@ -41,8 +41,9 @@
         <th>Order Date</th>
         <th>Total tk</th>
         <th>tk_paid</th>
-        <th>Details</th>
         <th>Due</th>
+        <th>Details</th>
+        <th>Reports</th>
         
 
       
@@ -78,15 +79,27 @@
         </td>
 
 
+
+        <td>
+          {{ $r->due }}
+          
+        </td>
         <td>
           <button onclick="order_details('{{ $r->order_id }}')"  class="btn btn-info">
             Details
           </button>
           
         </td>
-
         <td>
-          {{ $r->due }}
+          <form action="{{ route('accountController.dowload_report') }}" method="post">
+
+               <input hidden type="text" value="{{ $r->user_id }}" name="user_id">
+               <input hidden type="text" value="{{ $r->total_amount }}" name="total_amount">
+                <input hidden type="text" value="{{ $r->order_date }}" name="order_date">
+              <input hidden type="text" value="daily_sales" name="page_name">
+             <input hidden type="text" value="{{ $r->order_id }}" name="order_id">
+            <input class="btn btn-info" type="submit" value="Download" name="submit">
+          </form>
           
         </td>
           

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use PDF;
+
 
 class accountController extends Controller
 {
@@ -132,6 +134,38 @@ class accountController extends Controller
         
 
     }
+
+
+    public function dowload_report( Request $req){
+
+    
+    $order_details = DB::select("select o.* , p.product_name , p.product_sell_price from order_includ_product  o, products p where o.product_id = p.product_id and order_id = (?)", [$req->order_id]);
+
+  
+        $data = ['order_details' => $order_details , 'date' => $req->order_date , 'total' => $req->total_amount ];
+
+  //return $res[0]->order_id;
+  //return $order_details;
+  //return $data;
+  //return $data['order_details'][0]->order_id;
+
+
+        $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/Invoice.pdf');
+
+
+
+       return $pdf->download('pdf/Invoice.pdf');
+
+       
+
+    }
+
+
+
+
+
+
+
 
 
     public function sales_report_yearly( Request $req){

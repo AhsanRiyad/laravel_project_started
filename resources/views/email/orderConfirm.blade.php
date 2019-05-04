@@ -6,8 +6,8 @@
 <body>
 
 <h1>Order Invoice</h1>
-<h2>Order_no# {{ $order_details[0]->order_id }} </h2>
-<h2>Date# {{ $date }} </h2>
+<h3>Order_no# {{ $order_details[0]->order_id }} </h3>
+<h3>Date# {{ $date }} </h3>
 <table class="table" border="1">
 	<thead class="thead-dark">
 		<tr>
