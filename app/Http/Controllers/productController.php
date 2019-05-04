@@ -23,9 +23,7 @@ class productController extends Controller
    $recommendProducts = productModel::getRecProducts($clientIP);
 
 
-  //return $req->s_cart_count; 
-
-return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts , 'loginStatus' =>  $req->s_login_status , 'cart_count' => $req->s_cart_count]);
+return view('index' , [ 'products' => $products , 'recommendProducts' =>  $recommendProducts , 'loginStatus' =>  $req->s_login_status , 'cart_count' => $req->s_cart_count  ]);
 
     	//return $clientIP;
 
