@@ -402,7 +402,8 @@ if(reply == 'updated'){
 
 function rateCheck(obj, num){
 	/*alert(num + 'clicked');*/
-
+	$('#rating12').attr('value', num);
+	// $('#rating12').value = num ;
 	for(var i=0; i<num; i++){
 			//alert('rating clicked');
 			$( ".rating" ).eq(i).removeClass( "text-warning" ).addClass( "text-warning" );
@@ -418,6 +419,8 @@ function rateCheck(obj, num){
 		//alert('i less than 5')
 
 	}
+
+
 
 
 

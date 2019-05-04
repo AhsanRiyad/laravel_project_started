@@ -86,9 +86,9 @@ $postReview = "product.postReview";
 										<span onclick="rateCheck(this, 5)" class="fa fa-star rating"></span>
 
 					</div>
-					<input type="number" value="null" hidden name="rating" id="rating">
-					<input type="text" hidden="true" value=" {{ $pid }} " name="productid"> 
-					<input type="text" hidden="true" value="{{ $uid }}" name="uid"> 
+					<input type="text" value="" hidden name="rating12" id="rating12">
+					<input type="text" hidden value=" {{ $pid }} " name="productid"> 
+					<input type="text" hidden value="{{ $uid }}" name="uid"> 
 					<label for="exampleFormControlTextarea1" class=""> Add a Review </label>
 					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="rev_text"></textarea>
 					<input type="submit" value="Post Review" name="submit" class="btn btn-success mt-2">
