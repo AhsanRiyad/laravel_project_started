@@ -66,7 +66,7 @@ public function cart (Request $req){
   //$invoice_result = multipleSelectModel::CallRaw('order_invoice', $params);
   //return $invoice_result;
 
-  $pdf = PDF::loadView('email.orderConfirm', $r)->save('pdf/confirm.pdf');
+  
 
   return view('product.cart'  , $r);
 
@@ -435,6 +435,27 @@ public function confirmOrderPost(Request $req){
   //$email->attachment_email($receiverName , $receiverEmail);
   //unset($email);
 
+  $pdo = DB::connection('mysql')->getPdo();
+  $stmt = $pdo->prepare("CALL order_invoice( :uid , @order_id , @total , @date );");
+  $stmt -> bindValue(':uid', $req->s_uid );
+  $stmt->execute();
+  $res = DB::select("select @order_id as order_id , @total as total , @date as date");
+
+
+  $order_details = DB::select("select o.* , p.product_name , p.product_sell_price from order_includ_product  o, products p where o.product_id = p.product_id and order_id = (?)", [$res[0]->order_id]);
+
+  
+  $data = ['order_details' => $order_details , 'date' => $res[0]->date , 'total' => $res[0]->total ];
+
+  //return $res[0]->order_id;
+  //return $order_details;
+  //return $data;
+  //return $data['order_details'][0]->order_id;
+
+
+  $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/Invoice.pdf');
+
+
   $data = array('name'=>$receiverName);
    Mail::send(['text'=>'email.plain_text'], $data, function($message) {
 
@@ -445,7 +466,7 @@ public function confirmOrderPost(Request $req){
         $receiverName = $userinfo2[0]['last_name'];
          $message->to($receiverEmail, $receiverName)->subject
             ('Umart Shopping Invoice');
-         $message->attach(public_path().'/pdf/confirm.pdf');
+         $message->attach(public_path().'/pdf/Invoice.pdf');
          //$message->attach('C:\laravel-master\laravel\public\uploads\test.txt');
          $message->from('riyad.for.test@gmail.com','Ahsan Riyad');
       });

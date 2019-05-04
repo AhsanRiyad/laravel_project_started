@@ -6,13 +6,15 @@
 <body>
 
 <h1>Order Invoice</h1>
+<h2>Order_no# {{ $order_details[0]->order_id }} </h2>
+<h2>Date# {{ $date }} </h2>
 <table class="table" border="1">
 	<thead class="thead-dark">
 		<tr>
 			<th scope="col">#</th>
 
+			<th scope="col">ID</th>
 			<th scope="col">Name</th>
-			<th scope="col">Short Description</th>
 			<th scope="col">Quantity</th>
 			<th scope="col">Price</th>
 		</tr>
@@ -26,7 +28,7 @@
 
 
 	
-		@for($i = 0 ; $i<count($products[0]); $i++)
+		@for($i = 0 ; $i<count($order_details); $i++)
 		
 
 
@@ -36,10 +38,10 @@
 
 			<th scope="row">{{ $i+1 }}  </th>				
 
-			<td>{{ $products[0][$i]-> product_name }}</td>
-			<td>{{ $products[0][$i]-> descriptions  }}</td>
-			<td>{{$products[0][$i]->product_qntity  }}</td>
-			<td>{{ $products[0][$i]->product_price*$products[0][$i]->product_qntity }}
+			<td>{{ $order_details[$i]-> product_id }}</td>
+			<td>{{ $order_details[$i]-> product_name  }}</td>
+			<td>{{$order_details[$i]->qntity  }}</td>
+			<td>{{ $order_details[$i]->product_sell_price*$order_details[$i]->qntity }}
 
 			
 			</td>
@@ -54,7 +56,7 @@
 		<td></td>
 		<td></td>
 		<td>Total Amount:</td>
-		<td>{{ $products[1][0] -> total }}  </td>
+		<td>{{ $total }}  </td>
 
 
 	</tr>

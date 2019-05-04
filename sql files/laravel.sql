@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2019 at 09:50 AM
+-- Generation Time: May 04, 2019 at 02:36 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -82,7 +82,7 @@ CLOSE cur_1;
 SET status = 'done' ;
 DELETE FROM `cart` WHERE user_id = uid;
 SELECT status;
-END$$
+end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cart` (IN `pid` INT, IN `uid` INT, IN `qnt` INT)  BEGIN
 DECLARE p_id , c_id , cart_count int; 
@@ -124,6 +124,12 @@ insert into money_transfer (transfer_date , transfered_by , amount , status) VAL
 UPDATE account set balance_available = balance_available - amount_tk where user_id = 0;
 
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `order_invoice` (IN `uid` INT, OUT `order_id_max` INT, OUT `total` INT, OUT `date` DATE)  begin
+select max(order_id) into order_id_max from order_t; 
+select total_amount into total from order_t where order_id = order_id_max;
+select order_date into date from order_t where order_id = order_id_max;
+end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `order_t` (IN `uid` INT, IN `p_method` VARCHAR(20))  BEGIN
 DECLARE o_no, p_id , qntity, total INT;
@@ -272,6 +278,10 @@ CLOSE cur_1;
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `test` (IN `abc` VARCHAR(50), OUT `order_id_max` VARCHAR(50))  begin
+set order_id_max = abc;
+end$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `test1` ()  BEGIN
 SELECT * FROM USER;
 SELECT * FROM products;
@@ -301,8 +311,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `user_id`, `total_tk`, `paid_tk`, `balance_available`) VALUES
-(1, 0, 12432, 1484, 1384),
-(6, 14, 3146, 148, 0),
+(1, 0, 15652, 1508, 1408),
+(6, 14, 6366, 172, 0),
 (7, 18, 2157, 500, 0),
 (8, 15, 6123, 824, 0),
 (9, 16, 470, 12, 0),
@@ -374,6 +384,15 @@ CREATE TABLE `cart` (
   `product_id` int(5) NOT NULL,
   `quantity` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
+(101, 'cart', 15, 'user', 0, 3, 3),
+(102, 'cart', 14, 'user', 0, 1, 1),
+(103, 'cart', 14, 'user', 0, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -618,7 +637,82 @@ INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter
 (3, 9, 2, 148),
 (4, 2, 2, 149),
 (4, 2, 2, 150),
-(5, 1, 1, 151);
+(5, 1, 1, 151),
+(6, 11, 1, 152),
+(6, 8, 3, 153),
+(6, 10, 3, 154),
+(6, 7, 1, 155),
+(7, 2, 2, 156),
+(7, 4, 7, 157),
+(7, 14, 4, 158),
+(8, 3, 5, 159),
+(9, 11, 1, 160),
+(9, 12, 2, 161),
+(9, 4, 1, 162),
+(9, 3, 4, 163),
+(10, 3, 1, 164),
+(11, 2, 1, 165),
+(12, 3, 1, 166),
+(13, 1, 1, 167),
+(15, 8, 3, 168),
+(15, 10, 2, 169),
+(16, 8, 1, 170),
+(17, 3, 1, 171),
+(18, 1, 1, 172),
+(19, 11, 1, 173),
+(20, 2, 5, 174),
+(21, 8, 1, 175),
+(22, 9, 1, 176),
+(23, 9, 1, 177),
+(23, 3, 1, 178),
+(24, 11, 1, 179),
+(25, 7, 1, 180),
+(26, 11, 1, 181),
+(27, 4, 1, 182),
+(28, 3, 1, 183),
+(29, 9, 3, 184),
+(29, 1, 1, 185),
+(30, 10, 1, 186),
+(31, 5, 1, 187),
+(32, 9, 1, 188),
+(33, 3, 1, 189),
+(34, 2, 1, 190),
+(35, 3, 1, 191),
+(36, 8, 1, 192),
+(37, 8, 1, 193),
+(38, 1, 1, 194),
+(39, 8, 1, 195),
+(40, 8, 1, 196),
+(41, 11, 2, 197),
+(42, 3, 1, 198),
+(43, 3, 1, 199),
+(44, 4, 1, 200),
+(45, 9, 1, 201),
+(46, 9, 3, 202),
+(46, 1, 1, 203),
+(46, 11, 1, 204),
+(46, 2, 1, 205),
+(47, 1, 1, 206),
+(50, 3, 1, 207),
+(51, 8, 1, 208),
+(52, 3, 1, 209),
+(53, 9, 3, 210),
+(53, 10, 3, 211),
+(54, 2, 1, 212),
+(55, 3, 1, 213),
+(55, 20, 1, 214),
+(56, 9, 1, 215),
+(57, 9, 1, 216),
+(58, 3, 1, 217),
+(59, 3, 1, 218),
+(60, 2, 1, 219),
+(61, 2, 1, 220),
+(62, 3, 1, 221),
+(63, 3, 1, 222),
+(64, 2, 1, 223),
+(65, 2, 1, 224),
+(66, 11, 1, 225),
+(66, 2, 1, 226);
 
 -- --------------------------------------------------------
 
@@ -649,7 +743,68 @@ INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_stat
 (2, '2019-05-01', 'default', '', 0, 14, 63, 66, 12, 'Rangpur', 12),
 (3, '2019-05-01', 'default', '', 0, 15, 64, 470, 12, 'Kurigram', 12),
 (4, '2019-05-01', 'default', '', 0, 14, 65, 470, 12, 'Dhaka', 12),
-(5, '2019-05-01', 'default', '', 0, 14, 66, 33, 12, 'Rangpur', 12);
+(5, '2019-05-01', 'default', '', 0, 14, 66, 33, 12, 'Rangpur', 12),
+(6, '2019-05-01', 'bkash', '', 0, 12, 67, 574, 0, 'default', 0),
+(7, '2019-05-01', 'default', '', 0, 14, 68, 3055, 12, 'Kurigram', 12),
+(8, '2019-05-01', 'default', '', 0, 14, 69, 165, 12, 'Choose...', 12),
+(9, '2019-05-01', 'bkash', '', 0, 12, 70, 1194, 0, 'default', 0),
+(10, '2019-05-01', 'cash', '', 0, 12, 71, 33, 0, 'default', 0),
+(11, '2019-05-01', 'bkash', '', 0, 12, 72, 343, 0, 'default', 0),
+(12, '2019-05-01', 'bkash', '', 0, 12, 73, 33, 0, 'default', 0),
+(13, '2019-05-01', 'cash', '', 0, 12, 74, 33, 0, 'default', 0),
+(14, '2019-05-01', 'cash', '', 0, 12, 75, NULL, 0, 'default', 0),
+(15, '2019-05-01', 'bkash', '', 0, 12, 76, 165, 0, 'default', 0),
+(16, '2019-05-01', 'bkash', '', 0, 12, 77, 33, 0, 'default', 0),
+(17, '2019-05-01', 'card', '', 0, 12, 78, 33, 0, 'default', 0),
+(18, '2019-05-01', 'card', '', 0, 12, 79, 33, 0, 'default', 0),
+(19, '2019-05-01', 'cash', '', 0, 12, 80, 33, 0, 'default', 0),
+(20, '2019-05-02', 'card', '', 0, 12, 81, 1715, 0, 'default', 0),
+(21, '2019-05-02', 'cash', '', 0, 12, 82, 33, 0, 'default', 0),
+(22, '2019-05-02', 'bkash', '', 0, 12, 83, 343, 0, 'default', 0),
+(23, '2019-05-02', 'bkash', '', 0, 12, 84, 376, 0, 'default', 0),
+(24, '2019-05-02', 'bkash', '', 0, 12, 85, 33, 0, 'default', 0),
+(25, '2019-05-02', 'nexus', '', 0, 12, 86, 343, 0, 'default', 0),
+(26, '2019-05-02', 'cash', '', 0, 12, 87, 33, 0, 'default', 0),
+(27, '2019-05-02', 'cash', '', 0, 12, 88, 343, 0, 'default', 0),
+(28, '2019-05-02', 'cash', '', 0, 12, 89, 33, 0, 'default', 0),
+(29, '2019-05-02', 'cash', '', 0, 12, 90, 1062, 0, 'default', 0),
+(30, '2019-05-02', 'bkash', '', 0, 12, 91, 33, 0, 'default', 0),
+(31, '2019-05-02', 'cash', '', 0, 12, 92, 33, 0, 'default', 0),
+(32, '2019-05-03', 'cash', '', 0, 12, 93, 343, 0, 'default', 0),
+(33, '2019-05-03', 'card', '', 0, 12, 94, 66, 0, 'default', 0),
+(34, '2019-05-03', 'cash', '', 0, 12, 95, 1372, 0, 'default', 0),
+(35, '2019-05-03', 'cash', '', 0, 12, 96, 66, 0, 'default', 0),
+(36, '2019-05-03', 'bkash', '', 0, 12, 97, 66, 0, 'default', 0),
+(37, '2019-05-03', 'bkash', '', 0, 12, 98, 66, 0, 'default', 0),
+(38, '2019-05-03', 'jkljkl', '', 0, 12, 99, 376, 0, 'default', 0),
+(39, '2019-05-03', 'cash', '', 0, 12, 100, 33, 0, 'default', 0),
+(40, '2019-05-03', 'nexus', '', 0, 12, 101, 33, 0, 'default', 0),
+(41, '2019-05-03', 'bkash', '', 0, 12, 102, 66, 0, 'default', 0),
+(42, '2019-05-03', 'cash', '', 0, 12, 103, 33, 0, 'default', 0),
+(43, '2019-05-03', 'cash', '', 0, 12, 104, 33, 0, 'default', 0),
+(44, '2019-05-03', 'cash', '', 0, 12, 105, 343, 0, 'default', 0),
+(45, '2019-05-03', 'bkash', '', 0, 12, 106, 343, 0, 'default', 0),
+(46, '2019-05-03', 'bkash', '', 0, 12, 107, 1438, 0, 'default', 0),
+(47, '2019-05-03', 'cash', '', 0, 12, 108, 66, 0, 'default', 0),
+(48, '2019-05-03', 'cash', '', 0, 12, 109, NULL, 0, 'default', 0),
+(49, '2019-05-03', 'cash', '', 0, 12, 110, NULL, 0, 'default', 0),
+(50, '2019-05-03', 'cash', '', 0, 12, 111, 376, 0, 'default', 0),
+(51, '2019-05-03', 'bkash', '', 0, 12, 112, 33, 0, 'default', 0),
+(52, '2019-05-03', 'bkash', '', 0, 12, 113, 33, 0, 'default', 0),
+(53, '2019-05-03', 'cash', '', 0, 12, 114, 1128, 0, 'default', 0),
+(54, '2019-05-04', 'bkash', '', 0, 12, 115, 343, 0, 'default', 0),
+(55, '2019-05-04', 'cash', '', 0, 12, 116, 66, 0, 'default', 0),
+(56, '2019-05-04', 'cash', '', 0, 12, 117, 343, 0, 'default', 0),
+(57, '2019-05-04', 'cash', '', 0, 12, 118, 343, 0, 'default', 0),
+(58, '2019-05-04', 'cash', '', 0, 12, 119, 33, 0, 'default', 0),
+(59, '2019-05-04', 'bkash', '', 0, 12, 120, 33, 0, 'default', 0),
+(60, '2019-05-04', 'cash', '', 0, 12, 121, 343, 0, 'default', 0),
+(61, '2019-05-04', 'card', '', 0, 12, 122, 409, 0, 'default', 0),
+(62, '2019-05-04', 'cash', '', 0, 12, 123, 409, 0, 'default', 0),
+(63, '2019-05-04', 'cash', '', 0, 12, 124, 66, 0, 'default', 0),
+(64, '2019-05-04', 'cash', '', 0, 12, 125, 376, 0, 'default', 0),
+(65, '2019-05-04', 'cash', '', 0, 12, 126, 1372, 0, 'default', 0),
+(66, '2019-05-04', 'cash', '', 0, 12, 127, 818, 0, 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -715,7 +870,8 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_
 (37, 'Afsana Moon', 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/girl36.png'),
 (38, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy37.png'),
 (39, 'faerf', 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/boy38.png'),
-(40, 'iphone', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/iphone39.jpg');
+(40, 'iphone', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/iphone39.jpg'),
+(41, 'afaef', 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/Screenshot (2)40.png');
 
 -- --------------------------------------------------------
 
@@ -787,7 +943,101 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (37, 3, 2, 190),
 (38, 9, 2, 191),
 (39, 2, 2, 192),
-(40, 1, 1, 193);
+(40, 1, 1, 193),
+(41, 2, 2, 194),
+(42, 4, 7, 195),
+(43, 11, 1, 196),
+(44, 8, 3, 197),
+(45, 10, 3, 198),
+(46, 2, 2, 199),
+(47, 7, 1, 200),
+(48, 14, 4, 201),
+(49, 11, 1, 202),
+(50, 12, 2, 203),
+(51, 4, 1, 204),
+(52, 6, 3, 205),
+(53, 17, 3, 206),
+(54, 3, 4, 207),
+(55, 3, 5, 208),
+(56, 3, 1, 209),
+(57, 3, 2, 210),
+(58, 5, 4, 211),
+(59, 2, 2, 212),
+(60, 6, 4, 213),
+(61, 12, 4, 214),
+(62, 15, 4, 215),
+(63, 18, 8, 216),
+(64, 39, 4, 217),
+(65, 24, 4, 218),
+(66, 2, 1, 219),
+(67, 3, 1, 220),
+(68, 1, 1, 221),
+(69, 8, 3, 222),
+(70, 10, 2, 223),
+(71, 8, 1, 224),
+(72, 3, 1, 225),
+(73, 1, 1, 226),
+(74, 11, 1, 227),
+(75, 2, 5, 228),
+(76, 8, 1, 229),
+(77, 9, 1, 230),
+(78, 9, 1, 231),
+(79, 3, 1, 232),
+(80, 11, 1, 233),
+(81, 7, 1, 234),
+(82, 11, 1, 235),
+(83, 4, 1, 236),
+(84, 7, 5, 237),
+(85, 14, 5, 238),
+(86, 17, 5, 239),
+(87, 30, 5, 240),
+(88, 3, 1, 241),
+(89, 9, 3, 242),
+(90, 1, 1, 243),
+(91, 10, 1, 244),
+(92, 5, 1, 245),
+(93, 9, 1, 246),
+(88, 3, 1, 247),
+(89, 2, 1, 248),
+(90, 3, 1, 249),
+(91, 8, 1, 250),
+(92, 8, 1, 251),
+(93, 1, 1, 252),
+(94, 8, 1, 253),
+(95, 8, 1, 254),
+(96, 11, 2, 255),
+(97, 3, 1, 256),
+(98, 3, 1, 257),
+(99, 4, 1, 258),
+(100, 9, 1, 259),
+(101, 3, 3, 260),
+(102, 9, 3, 261),
+(103, 1, 1, 262),
+(104, 11, 1, 263),
+(105, 2, 1, 264),
+(102, 1, 1, 265),
+(103, 6, 1, 266),
+(104, 1, 1, 267),
+(105, 3, 1, 268),
+(106, 8, 1, 269),
+(107, 3, 1, 270),
+(108, 9, 3, 271),
+(109, 10, 3, 272),
+(110, 2, 1, 273),
+(111, 3, 1, 274),
+(112, 20, 1, 275),
+(113, 9, 1, 276),
+(114, 9, 1, 277),
+(115, 3, 1, 278),
+(116, 3, 1, 279),
+(117, 2, 1, 280),
+(104, 2, 1, 281),
+(105, 3, 1, 282),
+(106, 3, 1, 283),
+(107, 2, 1, 284),
+(108, 2, 1, 285),
+(109, 11, 1, 286),
+(110, 2, 1, 287);
 
 -- --------------------------------------------------------
 
@@ -856,8 +1106,7 @@ INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`
 (14, 'it is a good product', '', '2019-02-19', 8, 2),
 (15, 'it is a good product', '', '2019-02-19', 7, 2),
 (17, 'really nice product', '', '2019-03-29', 9, 2),
-(18, 'good products', '', '2019-04-02', 2, 2),
-(19, 'hellow', '', '2019-04-27', 11, 12);
+(18, 'good products', '', '2019-04-02', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -914,7 +1163,8 @@ INSERT INTO `shipment` (`id`, `req_date`, `acc_date`, `status`, `admin_id_req`, 
 (4, '2019-04-22', '2019-04-28', 1, 4, 12),
 (5, '2019-04-22', '2019-04-28', 1, 4, 12),
 (6, '2019-04-28', '2019-04-28', 1, 12, 12),
-(7, '2019-04-28', '2019-04-28', 1, 12, 12);
+(7, '2019-04-28', '2019-04-28', 1, 12, 12),
+(8, '2019-05-01', NULL, 0, 12, NULL);
 
 -- --------------------------------------------------------
 
@@ -959,7 +1209,10 @@ INSERT INTO `shipment_product` (`id`, `shipment_id`, `product_id`, `product_quan
 (248, 6, 28, 3),
 (249, 7, 10, 3),
 (250, 7, 17, 3),
-(251, 7, 19, 3);
+(251, 7, 19, 3),
+(252, 8, 4, 4),
+(253, 8, 11, 4),
+(254, 8, 16, 4);
 
 -- --------------------------------------------------------
 
@@ -1029,10 +1282,8 @@ INSERT INTO `user` (`u_id`, `u_password`, `u_address`, `u_email`, `u_mobile`, `d
 (12, '123456', '', 'riyad298@hotmail.com', 1919448787, '2007-03-15', 'valid', 'admin', 'Muhammad Ahsan', 'Riyad', 'both'),
 (14, 'arefa', '', 'riyadhellow298@gmail.com', 1919448787, '0000-00-00', 'valid', 'user', 'Muhammad Ahsan', 'Riyad', NULL),
 (15, '448787', '', 'riyad298@outlook.com', 1919448787, '0000-00-00', 'valid', 'user', 'Ahsan', 'Riyad', NULL),
-(19, '111', '', 'riyad28877722@gmail.com', 1919448787, '0000-00-00', 'valid', 'admin', 'sde', 'edf', NULL),
 (20, 'ffaf', NULL, 'riyad298faerfaer', 1919448787, '2007-02-14', 'valid', 'admin', 'Muhammad Ahsan', 'Riyad', NULL),
 (29, '11', NULL, 'riyadmail@gmail.com', 1919448787, '2008-01-09', 'valid', 'admin', 'Muhammad Ahsan', 'Riyad', NULL),
-(39, 'fff', NULL, 'frafeaf', 0, '0000-00-00', 'valid', 'aferfea', NULL, 'fff', 'ffaf'),
 (44, 'rrrrrrr', NULL, 'riyadajofaeorfeaofj@gmail.com', 1919448787, '2006-02-13', 'valid', 'bangladesh', NULL, 'Riyad', 'admin'),
 (45, 'aerreafreafer', NULL, 'riyaarferferdffrea298@gmail.com', 1919448787, '2006-03-16', 'valid', 'admin', NULL, 'Riyad', 'bangladesh'),
 (46, 'aaaaaa', NULL, 'riz@gmail.com', 1919448787, '2007-01-16', 'valid', 'admin', NULL, 'Riyad', 'bangladesh'),
@@ -1107,7 +1358,10 @@ INSERT INTO `visit` (`product_id`, `user_id`, `user_ip`, `hit_count`, `counter`)
 (9, 0, '127.0.0.1', 0, 36),
 (37, 0, '127.0.0.1', 0, 37),
 (32, 0, '127.0.0.1', 0, 38),
-(40, 0, '127.0.0.1', 0, 39);
+(40, 0, '127.0.0.1', 0, 39),
+(21, 0, '127.0.0.1', 0, 40),
+(5, 0, '127.0.0.1', 0, 41),
+(20, 0, '127.0.0.1', 0, 42);
 
 -- --------------------------------------------------------
 
@@ -1125,7 +1379,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(2063, 0);
+(4090, 0);
 
 -- --------------------------------------------------------
 
@@ -1346,7 +1600,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1394,19 +1648,19 @@ ALTER TABLE `msg`
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
 
 --
 -- AUTO_INCREMENT for table `order_t`
 --
 ALTER TABLE `order_t`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `promo`
@@ -1418,7 +1672,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=288;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1436,7 +1690,7 @@ ALTER TABLE `return_t`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `seller`
@@ -1448,13 +1702,13 @@ ALTER TABLE `seller`
 -- AUTO_INCREMENT for table `shipment`
 --
 ALTER TABLE `shipment`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `shipment_product`
 --
 ALTER TABLE `shipment_product`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- AUTO_INCREMENT for table `shipment_temp`
@@ -1484,7 +1738,7 @@ ALTER TABLE `user_name`
 -- AUTO_INCREMENT for table `visit`
 --
 ALTER TABLE `visit`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
