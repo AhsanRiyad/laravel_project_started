@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2019 at 08:14 PM
+-- Generation Time: May 05, 2019 at 12:35 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -594,7 +594,9 @@ CREATE TABLE `msg` (
   `msg_text` varchar(50) NOT NULL,
   `msg_status` varchar(50) NOT NULL,
   `msg_reply` varchar(50) NOT NULL,
-  `msg_date` date NOT NULL
+  `msg_date` date NOT NULL,
+  `user_id` int(10) NOT NULL DEFAULT '0',
+  `user_email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -608,7 +610,8 @@ CREATE TABLE `msg-g_user-admin` (
   `a_type` varchar(50) NOT NULL,
   `g_u_id` int(5) NOT NULL,
   `g_type` varchar(50) NOT NULL,
-  `msg_id` int(5) NOT NULL
+  `msg_id` int(5) NOT NULL,
+  `id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -850,14 +853,14 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_avlble`, `product_sell_price`, `product_original_price`, `category_id`, `descriptions`, `category_name`, `sub_category`, `image`, `rating`) VALUES
 (1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg', 4),
 (2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg', 0),
-(3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg', 2),
+(3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg', 4),
 (4, 'hard disk 1TB', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg', 0),
 (5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital', 'img/cat1.jpg', 0),
 (6, 'hard disk 4TB', 33, 37, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg', 0),
 (7, 'Printer Canon', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg', 0),
-(8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 0),
+(8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 2),
 (9, 'Ram Transcend', 343, 34, 235, 2356, 346, 'useful for home', 'ram', 'transcend', 'img/cat1.jpg', 0),
-(10, 'Ram Adata', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 0),
+(10, 'Ram Adata', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 4),
 (11, 'Ram Razor', 33, 39, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg', 0),
 (12, 'Motherboard GigaByte', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'gigabyte', 'img/cat1.jpg', 3),
 (13, 'Motherboard Asus', 33, 33, 33, 34, 34, 'useful for home', 'motherboard', 'asus', 'img/cat1.jpg', 0),
@@ -1129,12 +1132,14 @@ INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`
 (17, 'really nice product', '', '2019-03-29', 9, 2, 0),
 (18, 'good products', '', '2019-04-02', 2, 2, 0),
 (19, 'frfarf', 'valid', '2019-05-14', 1, 1, 3),
-(20, 'feraa', 'valid', '2019-05-04', 3, 12, 2),
+(20, 'faerfaef', 'valid', '2019-05-04', 3, 12, 4),
 (21, 'arfraef', 'valid', '2019-05-04', 7, 12, 2),
 (22, 'arfraef', 'valid', '2019-05-04', 2, 12, 3),
 (23, 'faer', 'valid', '2019-05-04', 1, 12, 4),
 (24, 'arefeaarfaef', 'valid', '2019-05-04', 11, 12, 4),
-(25, 'arfarfaef', 'valid', '2019-05-04', 12, 12, 3);
+(25, 'arfarfaef', 'valid', '2019-05-04', 12, 12, 3),
+(26, 'farfarfraef', 'valid', '2019-05-04', 10, 12, 4),
+(27, 'rferf', 'valid', '2019-05-04', 8, 12, 3);
 
 --
 -- Triggers `review`
@@ -1425,7 +1430,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(4663, 0);
+(4797, 0);
 
 -- --------------------------------------------------------
 
@@ -1521,6 +1526,12 @@ ALTER TABLE `money_transfer`
 --
 ALTER TABLE `msg`
   ADD PRIMARY KEY (`msg_id`);
+
+--
+-- Indexes for table `msg-g_user-admin`
+--
+ALTER TABLE `msg-g_user-admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `order_includ_product`
@@ -1691,6 +1702,12 @@ ALTER TABLE `msg`
   MODIFY `msg_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `msg-g_user-admin`
+--
+ALTER TABLE `msg-g_user-admin`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
@@ -1736,7 +1753,7 @@ ALTER TABLE `return_t`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `seller`
