@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2019 at 04:49 PM
+-- Generation Time: May 04, 2019 at 07:18 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -26,6 +26,15 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `avgRating` (IN `p_id` INT, OUT `rat` INT)  BEGIN
+select avg(rating) into rat from review where product_id = p_id;
+
+if(rat IS NULL)
+then
+set rat = 0;
+end if;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `a_order_t` (IN `uid` INT, IN `total` INT, IN `paid` INT, IN `sales_point` VARCHAR(50), IN `admin_id` INT)  BEGIN
 DECLARE o_no, p_id , acc_count , qntity INT;
 DECLARE status VARCHAR(20);
@@ -285,6 +294,15 @@ end$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `test1` ()  BEGIN
 SELECT * FROM USER;
 SELECT * FROM products;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `userRating` (IN `p_id` INT, IN `uid` INT, OUT `rat` INT)  BEGIN
+select rating into rat  from review where user_id = uid and product_id = p_id;
+
+if(rat IS NULL)
+then
+set rat = 0;
+end if;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `userTest` ()  NO SQL
@@ -1110,7 +1128,9 @@ INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`
 (17, 'really nice product', '', '2019-03-29', 9, 2, 0),
 (18, 'good products', '', '2019-04-02', 2, 2, 0),
 (19, 'frfarf', 'valid', '2019-05-14', 1, 1, 3),
-(20, 'afraefaefae', 'valid', '2019-05-04', 3, 12, 0);
+(20, 'afraefaefae', 'valid', '2019-05-04', 3, 12, 0),
+(21, 'arfraef', 'valid', '2019-05-04', 7, 12, 2),
+(22, 'arfraef', 'valid', '2019-05-04', 2, 12, 3);
 
 -- --------------------------------------------------------
 
@@ -1383,7 +1403,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(4559, 0);
+(4614, 0);
 
 -- --------------------------------------------------------
 
@@ -1694,7 +1714,7 @@ ALTER TABLE `return_t`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `seller`

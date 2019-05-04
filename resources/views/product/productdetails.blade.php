@@ -16,6 +16,45 @@ $postReview = "product.postReview";
 			<hr>
 			<h3>Name: {{ $products[0]->product_name }} </h3>
 			<h4>Price: {{ $products[0]->product_price }} </h4>	
+
+
+			<div id="" class="w-100 mt-0 p-3 bg-light">
+										<h4>Avg Rating</h4>
+										<span  class="fa fa-star  @if(  $avgRating[0]->rating  >= 1 )
+												text-warning
+
+
+										@endif "></span>
+										<span  class="fa fa-star  @if(  $avgRating[0]->rating  >= 2 )
+												text-warning
+
+
+										@endif "></span>
+										<span  class="fa fa-star  @if(  $avgRating[0]->rating  >= 3 )
+												text-warning
+
+
+										@endif "></span>
+										<span  class="fa fa-star  @if(  $avgRating[0]->rating  >= 4 )
+												text-warning
+
+
+										@endif "></span>
+										<span  class="fa fa-star @if(  $avgRating[0]->rating  >= 5 )
+												text-warning
+
+
+										@endif "></span>
+
+					</div>
+
+
+
+
+
+
+
+
 			<h4>Description: {{ $products[0]->descriptions }} </h4>	
 
 			<b>Quantity:  </b>
@@ -78,12 +117,32 @@ $postReview = "product.postReview";
 				<div class="form-group">
 					
 					<div id="rating_id" class="w-100 mt-0 p-3 bg-light">
-										<h4>Rate It</h4>
-										<span onclick="rateCheck(this, 1)" class="fa fa-star text-warning rating"></span>
-										<span onclick="rateCheck(this, 2)" class="fa fa-star text-warning rating"></span>
-										<span onclick="rateCheck(this, 3)" class="fa fa-star text-warning rating"></span>
-										<span onclick="rateCheck(this, 4)" class="fa fa-star text-warning rating"></span>
-										<span onclick="rateCheck(this, 5)" class="fa fa-star rating"></span>
+										<h4>Your rating</h4>
+										<span onclick="rateCheck(this, 1)" class="fa fa-star  @if(  $userRating[0]->rating  >= 1 )
+												text-warning
+
+
+										@endif rating"></span>
+										<span onclick="rateCheck(this, 2)" class="fa fa-star  @if(  $userRating[0]->rating  >= 2 )
+												text-warning
+
+
+										@endif rating"></span>
+										<span onclick="rateCheck(this, 3)" class="fa fa-star  @if(  $userRating[0]->rating  >= 3 )
+												text-warning
+
+
+										@endif rating"></span>
+										<span onclick="rateCheck(this, 4)" class="fa fa-star  @if(  $userRating[0]->rating  >= 4 )
+												text-warning
+
+
+										@endif rating"></span>
+										<span onclick="rateCheck(this, 5)" class="fa fa-star @if(  $userRating[0]->rating  >= 5 )
+												text-warning
+
+
+										@endif rating"></span>
 
 					</div>
 					<input type="text" value="0" hidden name="rating" id="rating12">

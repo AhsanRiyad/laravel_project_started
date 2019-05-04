@@ -242,9 +242,21 @@ public function getProductDetails(Request $req, $pid){
     	//$pAndr = [ 'products' => $products , 'reviews' =>  $reviews  ];
 
     	//return $products[0]->product_name;
+DB::statement('call avgRating(? , @rat)' , [ $pid ]);
+$avgRating = DB::select('select @rat as rating');
+//return $avgRating;
 
 
-return view('product/productdetails' , [ 'products' => $products , 'reviews' =>  $reviews , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'uid' => $req->s_uid , 'pid' => $pid]);
+
+DB::statement('call userRating(? , ? , @rat);' , [$pid , $req->s_uid ]);
+$userRating = DB::select('select @rat as rating');
+//return $userRating;
+
+
+//return $userRating; 
+//return $avgRating;
+
+return view('product/productdetails' , [ 'products' => $products , 'reviews' =>  $reviews , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'uid' => $req->s_uid , 'pid' => $pid , 'userRating' => $userRating  , 'avgRating' => $avgRating ] );
 
 
 
