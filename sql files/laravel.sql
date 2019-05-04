@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2019 at 02:36 AM
+-- Generation Time: May 04, 2019 at 04:49 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -165,7 +165,7 @@ DELETE FROM `cart` WHERE user_id = uid;
 SELECT status;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `review` (IN `uid` INT, IN `pid` INT, IN `rev_text` VARCHAR(50), IN `rev_date` DATE)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `review` (IN `uid` INT, IN `pid` INT, IN `rev_text` VARCHAR(50), IN `rev_date` DATE, IN `rat` INT)  BEGIN
 
 DECLARE rev_id INT;
 DECLARE status VARCHAR(20);
@@ -176,14 +176,14 @@ SELECT review_id INTO rev_id FROM `review` WHERE product_id = pid and user_id = 
 IF rev_id IS NOT NULL
 THEN
 
-UPDATE `review` SET `review_text`= rev_text ,`review_date`= rev_date WHERE product_id= pid AND user_id= uid;
+UPDATE `review` SET `review_text`= rev_text ,`review_date`= rev_date , rating = rat WHERE product_id= pid AND user_id= uid;
 
 SELECT status;
 
 
 ELSE
 
-INSERT INTO `review`( `review_text`, `review_date`, `product_id`, `user_id`) VALUES (rev_text , rev_date , pid , uid ) ; 
+INSERT INTO `review`( `review_text`, `review_date`, `product_id`, `user_id` , rating) VALUES (rev_text , rev_date , pid , uid , rat ) ; 
 
 SELECT status;
 
@@ -390,9 +390,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
-(101, 'cart', 15, 'user', 0, 3, 3),
-(102, 'cart', 14, 'user', 0, 1, 1),
-(103, 'cart', 14, 'user', 0, 6, 1);
+(111, 'cart', 12, 'user', 0, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1008,7 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (98, 3, 1, 257),
 (99, 4, 1, 258),
 (100, 9, 1, 259),
-(101, 3, 3, 260),
+(101, 3, 5, 260),
 (102, 9, 3, 261),
 (103, 1, 1, 262),
 (104, 11, 1, 263),
@@ -1037,7 +1035,10 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (107, 2, 1, 284),
 (108, 2, 1, 285),
 (109, 11, 1, 286),
-(110, 2, 1, 287);
+(110, 2, 1, 287),
+(111, 3, 1, 288),
+(112, 9, 2, 289),
+(113, 14, 2, 290);
 
 -- --------------------------------------------------------
 
@@ -1092,21 +1093,24 @@ CREATE TABLE `return_t` (
 CREATE TABLE `review` (
   `review_id` int(5) NOT NULL,
   `review_text` varchar(50) NOT NULL,
-  `review_status` varchar(50) NOT NULL,
+  `review_status` varchar(50) NOT NULL DEFAULT 'valid',
   `review_date` date NOT NULL,
   `product_id` int(5) NOT NULL,
-  `user_id` int(8) NOT NULL
+  `user_id` int(8) NOT NULL,
+  `rating` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `review`
 --
 
-INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`, `product_id`, `user_id`) VALUES
-(14, 'it is a good product', '', '2019-02-19', 8, 2),
-(15, 'it is a good product', '', '2019-02-19', 7, 2),
-(17, 'really nice product', '', '2019-03-29', 9, 2),
-(18, 'good products', '', '2019-04-02', 2, 2);
+INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`, `product_id`, `user_id`, `rating`) VALUES
+(14, 'it is a good product', '', '2019-02-19', 8, 2, 0),
+(15, 'it is a good product', '', '2019-02-19', 7, 2, 0),
+(17, 'really nice product', '', '2019-03-29', 9, 2, 0),
+(18, 'good products', '', '2019-04-02', 2, 2, 0),
+(19, 'frfarf', 'valid', '2019-05-14', 1, 1, 3),
+(20, 'afraefaefae', 'valid', '2019-05-04', 3, 12, 0);
 
 -- --------------------------------------------------------
 
@@ -1379,7 +1383,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(4090, 0);
+(4559, 0);
 
 -- --------------------------------------------------------
 
@@ -1600,7 +1604,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1672,7 +1676,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=288;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1690,7 +1694,7 @@ ALTER TABLE `return_t`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `seller`

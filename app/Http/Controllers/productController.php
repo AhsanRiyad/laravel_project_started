@@ -289,6 +289,7 @@ public static function postReview(Request $req){
   $revInfo['rev_date'] = $rev_date;
   $revInfo['productId'] = $req->productid;
   $revInfo['user_id'] = $req->uid;
+  $revInfo['rating'] = $req->rating;
 
 
   $status = productModel::postReview($revInfo);

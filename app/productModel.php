@@ -35,7 +35,7 @@ class productModel extends Model
         
 
         try{
-        $status = DB::select("call review(? , ? , ? , ?)" , [$revInfo['user_id'] , $revInfo['productId'] , $revInfo['rev_text'] , $revInfo['rev_date']] );
+        $status = DB::select("call review(? , ? , ? , ? , ?)" , [$revInfo['user_id'] , $revInfo['productId'] , $revInfo['rev_text'] , $revInfo['rev_date'] , $revInfo['rating']] );
 
             return 'success';
         }catch(QueryException $ex){ 
