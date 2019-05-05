@@ -54,35 +54,8 @@ class sendEmailJob implements ShouldQueue
 
 
 
-    DB::statement('call order_t(? , ?)' , [ $this->uid , $this->payment_method ]);
 
-
-
-
-    DB::statement("CALL order_invoice( ? , @order_id , @total , @date )" , [ $this->uid ]);
-
-    $res = DB::select("select @order_id as order_id , @total as total , @date as date");
-
-
-
-
-    $order_details = DB::select("select o.* , p.product_name , p.product_price , (o.qntity*p.product_price) as total from order_includ_product  o, products p where
-        o.product_id = p.product_id and order_id = (?)", [$res[0]->order_id]);
-
-
-
-
-
-    $data = ['order_details' => $order_details , 'date' => $res[0]->date , 'total' => $res[0]->total ];
-  
-
-
-    $data = array('name'=>'name');
-
-
-
-
-
+    $data = array('name'=>$this->receiverEmail);
    Mail::send(['text'=>'email.plain_text'], $data, function($message) {
         
          $message->to($this->receiverEmail , $this->receiverName )->subject

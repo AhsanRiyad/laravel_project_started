@@ -453,8 +453,67 @@ public function confirmOrder(Request $req){
 public function confirmOrderPost(Request $req){
 
    //sendEmailJob::dispatch($req)->delay(now()->addSeconds(20));
-  $data = [ 'uid' => $req->s_uid , 'payment_method' => $req->optradio ];    
+  /*$data = [ 'uid' => $req->s_uid , 'payment_method' => $req->optradio ];    
   
+  $userinfo = session('userinfo');
+  $userinfo2 = json_decode(json_encode($userinfo), true);
+
+  $uid =  $req->s_uid ;
+  $payment_method = $req->optradio ;
+  $receiverEmail = $userinfo2[0]['u_email'];
+  $receiverName = $userinfo2[0]['last_name'];
+*/
+
+  ///return $receiverName;
+
+
+
+
+
+
+
+
+
+
+
+
+   DB::statement('call order_t(? , ?)' , [ $req->s_uid , $req->optradio ]);
+  // $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/confirm.pdf');
+  //return $pdf->download('invoice.pdf');
+  
+  //return  $userinfo2[0]['u_email'];
+    //return $req->userinfo[0]['u_email'];
+  $receiverEmail = $req->userinfo[0]['u_email'];
+  $receiverName =$req->userinfo[0]['last_name'];
+  //$params = [$uid];
+  //$email = new MailController();
+  //$email->basic_email();
+  //$email->attachment_email($receiverName , $receiverEmail);
+  //unset($email);
+  //$pdo = DB::connection('mysql')->getPdo();
+  //$stmt = $pdo->prepare("CALL order_invoice( :uid , @order_id , @total , @date );");
+  //$stmt -> bindValue(':uid', $req->s_uid );
+  //$stmt->execute();
+  DB::statement("CALL order_invoice( ? , @order_id , @total , @date )" , [ $req->s_uid ]);
+  $res = DB::select("select @order_id as order_id , @total as total , @date as date");
+  $order_details = DB::select("select o.* , p.product_name , p.product_price , (o.qntity*p.product_price) as total from order_includ_product  o, products p where
+  o.product_id = p.product_id and order_id = (?)", [$res[0]->order_id]);
+  
+  $data = ['order_details' => $order_details , 'date' => $res[0]->date , 'total' => $res[0]->total ];
+  //return $res[0]->order_id;
+  //return $order_details;
+  //return $data;
+  //return $data['order_details'][0]->order_id;
+  $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/Invoice.pdf');
+
+
+
+
+
+
+
+
+
   $userinfo = session('userinfo');
   $userinfo2 = json_decode(json_encode($userinfo), true);
 
@@ -464,7 +523,10 @@ public function confirmOrderPost(Request $req){
   $receiverName = $userinfo2[0]['last_name'];
 
 
-  ///return $receiverName;
+
+
+
+
 
 
    dispatch(new sendEmailJob( $uid ,  $payment_method ,  $receiverEmail , $receiverName ))->delay(Carbon::now()->addSeconds(1));

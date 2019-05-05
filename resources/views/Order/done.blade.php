@@ -18,8 +18,8 @@ $productImg = 'img/cat1.jpg';
 <div class="row">
 	<div class="col-6 offset-3">
 		<div class="jumbotron bg-success text-white">
-			<h1 class="display-4">Order Confirmed !!!!</h1>
-			<p class="lead">You will get it at your door step within 3-5 days.</p>
+			<h1 class="display-4">Order Is in Process !!!!</h1>
+			<p class="lead">You will receive an invoice within a very short time</p>
 			<hr class="my-4">
 			<p>Thank You for shopping with Umart</p>
 			<p class="lead">
