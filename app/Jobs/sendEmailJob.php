@@ -50,7 +50,21 @@ class sendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $data = ['hello'];
+
+
+
+
+    DB::statement('call order_t(? , ?)' , [ $this->uid , $this->payment_method ]);
+
+
+
+
+
+
+    
+
+
+    $data = ['hello'];
   
    Mail::send(['text'=>'email.plain_text'], $data, function($message) {
         
@@ -60,9 +74,6 @@ class sendEmailJob implements ShouldQueue
          //$message->attach('C:\laravel-master\laravel\public\uploads\test.txt');
          $message->from('riyad.for.test@gmail.com','Ahsan Riyad');
       });
-
-
-
 
 
 
