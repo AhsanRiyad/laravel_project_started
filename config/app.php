@@ -180,9 +180,9 @@ return [
 /*        pdf generatior
 */      
         // for direct include
-        /*Barryvdh\DomPDF\ServiceProvider::class,*/
+        Barryvdh\DomPDF\ServiceProvider::class,
         // for shortcode 
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        //'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

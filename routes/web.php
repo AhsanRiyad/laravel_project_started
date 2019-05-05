@@ -11,6 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmailMailable;
+
+use App\Jobs\sendemailjob;
+
 
 Route::group(["middleware"=>['sessionFrontPage']], function(){
 
@@ -286,10 +291,23 @@ Route::get('/ff' , 'TestingController@test');
 
 Route::get('/f1' , 'TestingController@test2');
 
-
-
-
+ 
 
 //Route::get('/db', 'testController@dbTest');
 Route::get('/db', 'productController@autosearch');
+
+
+use Carbon\Carbon;
+
+Route::get('/sendemail', function(){
+	
+	//sendemailjob::dispatch();
+	
+	// dispatch(new sendemailjob());
+	//sendemailjob::dispatch()->delay(now()->addSeconds(30));
+	$time =  dispatch(new sendemailjob())->delay(Carbon::now()->addSeconds(20));
+	return 'email sent';
+});
+
+
 
