@@ -467,7 +467,7 @@ public function confirmOrderPost(Request $req){
   ///return $receiverName;
 
 
-   dispatch(new sendEmailJob( $receiverName ))->delay(Carbon::now()->addSeconds(5));
+   dispatch(new sendEmailJob( $receiverEmail ))->delay(Carbon::now()->addSeconds(5));
 
 
   $r = [  'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status ];
