@@ -404,17 +404,37 @@ $products = DB::select('select * from products where category_name = (?) and sub
 
 public function confirmOrder(Request $req){
 
-
+/*
   
   $params = [$req->s_uid];
-  $results = multipleSelectModel::CallRaw('cartPage', $params);
+  $results = multipleSelectModel::CallRaw('cartPage', $params);*/
+
+
+  $uid = $req->s_uid ;
+ 
+  
+  $params = [$uid];
+  //return $params;
+  //$results = multipleSelectModel::CallRaw('cartPage', $params);
+
+  //$results = DB::select('call CartPage(?)' , [$uid]);
+
+
+  DB::statement('call cartPage(? , @total)' , [ $uid ]);
+  $total = DB::select('select @total as total');
+  //return $total[0]->total;
+
+  $products = DB::select('select c.* , p.product_price , p.product_name ,  p.descriptions  from cart c , products p  where c.product_id = p.product_id and user_id = (?)' , [ $uid ]);
+
+
+
 
   // return $results;
  // return $results[0][0]->product_id;
 
 
+  $r = [ 'products'=> $products , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'total' => $total[0]->total ];
 
-  $r = [ 'products'=> $results , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status ];
   return view('Order.confirm_order'  , $r);
 
 
@@ -429,10 +449,12 @@ public function confirmOrder(Request $req){
 
 public function confirmOrderPost(Request $req){
 
-    $params = [ $req->s_uid , $req->optradio ];
+    /*$params = [ $req->s_uid , $req->optradio ];
 
-    $results = multipleSelectModel::CallRaw('order_t', $params);
+    $results = multipleSelectModel::CallRaw('order_t', $params);*/
 
+
+    DB::statement('call order_t(? , ?)' , [ $req->s_uid , $req->optradio ]);
 
   // $pdf = PDF::loadView('email.orderConfirm', $data)->save('pdf/confirm.pdf');
   //return $pdf->download('invoice.pdf');
@@ -444,7 +466,7 @@ public function confirmOrderPost(Request $req){
 
 
   $receiverEmail = $req->userinfo[0]['u_email'];
- $receiverName =$req->userinfo[0]['last_name'];
+  $receiverName =$req->userinfo[0]['last_name'];
 
 
 
@@ -456,14 +478,19 @@ public function confirmOrderPost(Request $req){
   //$email->attachment_email($receiverName , $receiverEmail);
   //unset($email);
 
-  $pdo = DB::connection('mysql')->getPdo();
-  $stmt = $pdo->prepare("CALL order_invoice( :uid , @order_id , @total , @date );");
-  $stmt -> bindValue(':uid', $req->s_uid );
-  $stmt->execute();
+  //$pdo = DB::connection('mysql')->getPdo();
+  //$stmt = $pdo->prepare("CALL order_invoice( :uid , @order_id , @total , @date );");
+  //$stmt -> bindValue(':uid', $req->s_uid );
+  //$stmt->execute();
+
+  DB::statement("CALL order_invoice( ? , @order_id , @total , @date )" , [ $req->s_uid ]);
+
+
   $res = DB::select("select @order_id as order_id , @total as total , @date as date");
 
 
-  $order_details = DB::select("select o.* , p.product_name , p.product_sell_price from order_includ_product  o, products p where o.product_id = p.product_id and order_id = (?)", [$res[0]->order_id]);
+  $order_details = DB::select("select o.* , p.product_name , p.product_price , (o.qntity*p.product_price) as total from order_includ_product  o, products p where
+  o.product_id = p.product_id and order_id = (?)", [$res[0]->order_id]);
 
   
   $data = ['order_details' => $order_details , 'date' => $res[0]->date , 'total' => $res[0]->total ];

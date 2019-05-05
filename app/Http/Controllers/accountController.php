@@ -139,7 +139,7 @@ class accountController extends Controller
     public function dowload_report( Request $req){
 
     
-    $order_details = DB::select("select o.* , p.product_name , p.product_sell_price from order_includ_product  o, products p where o.product_id = p.product_id and order_id = (?)", [$req->order_id]);
+    $order_details = DB::select("select o.* , p.product_name , p.product_sell_price , p.product_price from order_includ_product  o, products p where o.product_id = p.product_id and order_id = (?)", [$req->order_id]);
 
   
         $data = ['order_details' => $order_details , 'date' => $req->order_date , 'total' => $req->total_amount ];

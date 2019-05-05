@@ -1083,7 +1083,7 @@ function ship_details(id)
 				<td>'+reply[i].product_id+'</td>\
 				<td>'+reply[i].product_name+'</td>\
 				<td>'+reply[i].qntity+'</td>\
-				<td>'+reply[i].product_sell_price+'</td>\
+				<td>'+reply[i].product_price*reply[i].qntity+'</td>\
 				</tr>'
 				var h = h + ht ;
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2019 at 02:42 AM
+-- Generation Time: May 05, 2019 at 05:25 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -171,13 +171,18 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `order_t` (IN `uid` INT, IN `p_metho
 DECLARE o_no, p_id , qntity, total INT;
 DECLARE status VARCHAR(20);
 DECLARE b INT DEFAULT 0;
+
+
 DECLARE cur_1 CURSOR FOR 
 SELECT product_id , quantity FROM CART WHERE user_id = uid;
+
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET b = 1;
 
 SELECT MAX(order_id) INTO o_no FROM ORDER_T;
 
-select SUM(pr.product_price*p.product_qntity) into total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = uid;
+
+select SUM(pr.product_price*c.quantity) into total from cart c  , products pr where
+ c.product_id = pr.product_id and c.user_id = uid;
 
 INSERT INTO `order_t`(`order_id`, `order_date`, `payment_method`,  `user_id` , `total_amount`) VALUES (o_no+1 , sysdate() , p_method , uid , total );
 
@@ -190,7 +195,7 @@ IF b  = 1 THEN
 LEAVE read_loop;
 ELSE
 INSERT INTO `order_includ_product`(`order_id`, `product_id`, `qntity`) VALUES (o_no+1 , p_id ,qntity);
-SELECT p_id , qntity;
+
 
 END IF;
 END LOOP;
@@ -198,7 +203,7 @@ END LOOP;
 CLOSE cur_1;
 SET status = 'done' ;
 DELETE FROM `cart` WHERE user_id = uid;
-SELECT status;
+
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `review` (IN `uid` INT, IN `pid` INT, IN `rev_text` VARCHAR(50), IN `rev_date` DATE, IN `rat` INT, OUT `status` VARCHAR(20))  BEGIN
@@ -445,9 +450,6 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
-(111, 'cart', 12, 'user', 0, 3, 1),
-(114, 'cart', 12, 'user', 0, 2, 2),
-(115, 'cart', 12, 'user', 0, 9, 1),
 (116, 'cart', 15, 'user', 0, 1, 3),
 (117, 'cart', 15, 'user', 0, 7, 3),
 (118, 'cart', 15, 'user', 0, 14, 3);
@@ -773,7 +775,26 @@ INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter
 (64, 2, 1, 223),
 (65, 2, 1, 224),
 (66, 11, 1, 225),
-(66, 2, 1, 226);
+(66, 2, 1, 226),
+(67, 3, 1, 227),
+(67, 2, 2, 228),
+(67, 9, 1, 229),
+(67, 24, 1, 230),
+(69, 4, 1, 231),
+(70, 3, 1, 232),
+(70, 10, 1, 233),
+(71, 9, 4, 234),
+(71, 8, 3, 235),
+(72, 3, 4, 236),
+(72, 1, 3, 237),
+(73, 9, 2, 238),
+(73, 5, 4, 239),
+(74, 2, 4, 240),
+(74, 6, 4, 241),
+(75, 2, 4, 242),
+(75, 5, 4, 243),
+(76, 2, 4, 244),
+(76, 4, 4, 245);
 
 -- --------------------------------------------------------
 
@@ -783,11 +804,11 @@ INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter
 
 CREATE TABLE `order_t` (
   `order_id` int(5) NOT NULL DEFAULT '0',
-  `order_date` date NOT NULL,
+  `order_date` date DEFAULT NULL,
   `payment_method` varchar(50) NOT NULL DEFAULT 'default',
-  `payment_status` varchar(50) NOT NULL,
-  `return_id` int(5) NOT NULL,
-  `user_id` int(8) NOT NULL,
+  `payment_status` varchar(50) DEFAULT NULL,
+  `return_id` int(5) DEFAULT NULL,
+  `user_id` int(8) DEFAULT NULL,
   `counter` int(8) NOT NULL,
   `total_amount` int(11) DEFAULT '0',
   `paid` int(10) NOT NULL DEFAULT '0',
@@ -865,7 +886,17 @@ INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_stat
 (63, '2019-05-04', 'cash', '', 0, 12, 124, 66, 0, 'default', 0),
 (64, '2019-05-04', 'cash', '', 0, 12, 125, 376, 0, 'default', 0),
 (65, '2019-05-04', 'cash', '', 0, 12, 126, 1372, 0, 'default', 0),
-(66, '2019-05-04', 'cash', '', 0, 12, 127, 818, 0, 'default', 0);
+(66, '2019-05-04', 'cash', '', 0, 12, 127, 818, 0, 'default', 0),
+(67, '2019-05-05', 'card', NULL, NULL, 12, 128, 1095, 0, 'default', 0),
+(68, '2019-05-05', 'card', NULL, NULL, 12, 129, NULL, 0, 'default', 0),
+(69, '2019-05-05', 'cash', NULL, NULL, 12, 130, 343, 0, 'default', 0),
+(70, '2019-05-05', 'cash', NULL, NULL, 12, 131, 66, 0, 'default', 0),
+(71, '2019-05-05', 'cash', NULL, NULL, 12, 132, 1471, 0, 'default', 0),
+(72, '2019-05-05', 'cash', NULL, NULL, 12, 133, 231, 0, 'default', 0),
+(73, '2019-05-05', 'cash', NULL, NULL, 12, 134, 818, 0, 'default', 0),
+(74, '2019-05-05', 'cash', NULL, NULL, 12, 135, 1504, 0, 'default', 0),
+(75, '2019-05-05', 'cash', NULL, NULL, 12, 136, 1504, 0, 'default', 0),
+(76, '2019-05-05', 'cash', NULL, NULL, 12, 137, 2744, 0, 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -916,7 +947,7 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_
 (21, 'hard disk 1TB 5400rpm', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg', 0),
 (22, 'hard disk 4TB 7200rpm', 33, 33, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg', 0),
 (23, 'Printer Canon For Photos', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg', 0),
-(24, 'Ram Adata 8GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 0),
+(24, 'Ram Adata 8GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 2),
 (25, 'Ram Razor 16GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg', 0),
 (26, 'Printer HP 1080P', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 0),
 (27, 'Motherboard Intel Gaming', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg', 0),
@@ -1107,7 +1138,23 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (115, 9, 1, 292),
 (116, 1, 3, 293),
 (117, 7, 3, 294),
-(118, 14, 3, 295);
+(118, 14, 3, 295),
+(119, 24, 1, 296),
+(119, 4, 1, 297),
+(120, 3, 1, 298),
+(121, 10, 1, 299),
+(122, 9, 4, 300),
+(123, 8, 3, 301),
+(124, 3, 4, 302),
+(125, 1, 3, 303),
+(126, 9, 2, 304),
+(127, 5, 4, 305),
+(128, 2, 4, 306),
+(129, 6, 4, 307),
+(130, 2, 4, 308),
+(131, 5, 4, 309),
+(132, 2, 4, 310),
+(133, 4, 4, 311);
 
 -- --------------------------------------------------------
 
@@ -1187,7 +1234,8 @@ INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`
 (25, 'arfarfaef', 'valid', '2019-05-04', 12, 12, 3),
 (26, 'farfarfraef', 'valid', '2019-05-04', 10, 12, 4),
 (27, 'rferf', 'valid', '2019-05-04', 8, 12, 3),
-(28, 'afreafaerf', 'valid', '2019-05-04', 5, 12, 4);
+(28, 'afreafaerf', 'valid', '2019-05-04', 5, 12, 4),
+(29, 'farfae', 'valid', '2019-05-05', 24, 12, 2);
 
 --
 -- Triggers `review`
@@ -1460,7 +1508,9 @@ INSERT INTO `visit` (`product_id`, `user_id`, `user_ip`, `hit_count`, `counter`)
 (40, 0, '127.0.0.1', 0, 39),
 (21, 0, '127.0.0.1', 0, 40),
 (5, 0, '127.0.0.1', 0, 41),
-(20, 0, '127.0.0.1', 0, 42);
+(20, 0, '127.0.0.1', 0, 42),
+(24, 0, '127.0.0.1', 0, 43),
+(6, 0, '127.0.0.1', 0, 44);
 
 -- --------------------------------------------------------
 
@@ -1478,7 +1528,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(4877, 0);
+(5104, 0);
 
 -- --------------------------------------------------------
 
@@ -1705,7 +1755,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1759,13 +1809,13 @@ ALTER TABLE `msg-g_user-admin`
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
 
 --
 -- AUTO_INCREMENT for table `order_t`
 --
 ALTER TABLE `order_t`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1783,7 +1833,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=312;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1801,7 +1851,7 @@ ALTER TABLE `return_t`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `seller`
@@ -1849,7 +1899,7 @@ ALTER TABLE `user_name`
 -- AUTO_INCREMENT for table `visit`
 --
 ALTER TABLE `visit`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `wishlist`

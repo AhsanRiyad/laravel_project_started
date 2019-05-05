@@ -16,7 +16,8 @@
 			<th scope="col">ID</th>
 			<th scope="col">Name</th>
 			<th scope="col">Quantity</th>
-			<th scope="col">Price</th>
+			<th scope="col">Unit Price</th>
+			<th scope="col">Total Price</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -40,8 +41,8 @@
 
 			<td>{{ $order_details[$i]-> product_id }}</td>
 			<td>{{ $order_details[$i]-> product_name  }}</td>
-			<td>{{$order_details[$i]->qntity  }}</td>
-			<td>{{ $order_details[$i]->product_sell_price*$order_details[$i]->qntity }}
+			<td>{{$order_details[$i]->qntity  }}</td><td>{{$order_details[$i]->product_price  }}</td>
+			<td>{{ $order_details[$i]->product_price*$order_details[$i]->qntity }}
 
 			
 			</td>
@@ -53,6 +54,7 @@
 
 	<tr>
 		<th scope="row"></th>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td>Total Amount:</td>
