@@ -23,7 +23,10 @@ class sendEmailJob implements ShouldQueue
 
    
 
-    protected $receiverEmail;
+    protected $uid ;  
+    protected $payment_method ;  
+    protected $receiverEmail ; 
+    protected $receiverName;
 
 
     /**
@@ -31,9 +34,12 @@ class sendEmailJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($receiverEmail)
+    public function __construct($uid ,  $payment_method ,  $receiverEmail , $receiverName)
     {
         $this->receiverEmail = $receiverEmail;
+        $this->payment_method = $payment_method;
+        $this->uid = $uid;
+        $this->receiverName = $receiverName;
         
     }
 
@@ -44,22 +50,20 @@ class sendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        //
-
-        //session('receiverName') = $receiverName;
-
+        $data = ['hello'];
+  
+   Mail::send(['text'=>'email.plain_text'], $data, function($message) {
         
-        /*Mail::to('riyad298@gmail.com')->send(new SendEmailMailable());*/
-        $data = array('name'=>"Virat Gandhi");
-   
-      Mail::send(['text'=>'email.plain_text'], $data, function($message) {
-         $message->to( $this->receiverEmail , 'Tutorials Point')->subject
-            ('Laravel Basic Testing Mail');
-         $message->from('riyad.for.test@gmail.com','aferfa');
+         $message->to($this->receiverEmail , $this->receiverName )->subject
+            ('Umart Shopping Invoice');
+         $message->attach(public_path().'/pdf/Invoice.pdf');
+         //$message->attach('C:\laravel-master\laravel\public\uploads\test.txt');
+         $message->from('riyad.for.test@gmail.com','Ahsan Riyad');
       });
- 
-  // return $results;
- // return $results[0][0]->product_id;
+
+
+
+
 
 
     }
