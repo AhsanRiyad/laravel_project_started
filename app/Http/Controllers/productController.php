@@ -548,7 +548,12 @@ public function supportPost(Request $req){
 
 
   return $req->msg;
+  
+  
 
+
+
+  
 
 
  $r = [  'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'name' => $req->s_name , 'email' => $req->s_email ];

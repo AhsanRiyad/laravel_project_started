@@ -35,7 +35,7 @@ class productModel extends Model
         
 
         try{
-        $status = DB::select("call review(? , ? , ? , ? , ?)" , [$revInfo['user_id'] , $revInfo['productId'] , $revInfo['rev_text'] , $revInfo['rev_date'] , $revInfo['rating']] );
+         DB::statement("call review(? , ? , ? , ? , ? , @status)" , [$revInfo['user_id'] , $revInfo['productId'] , $revInfo['rev_text'] , $revInfo['rev_date'] , $revInfo['rating']] );
 
             return 'success';
         }catch(QueryException $ex){ 
@@ -85,9 +85,12 @@ class productModel extends Model
 
 
         try{
-            $params = [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ];
-        $status = multipleSelectModel::CallRaw('cart', $params);
+            /*$params = [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ];
+        $status = multipleSelectModel::CallRaw('cart', $params);*/
         //$status = DB::statement("call cart( ?, ?  , ?  )" , [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ] );
+
+            DB::statement('call cart(? , ? , ? , @status)' , [ $cartInfo['pid'] , $cartInfo['uid'] ,  $cartInfo['qntity'] ]);
+
 
             return 'success';
         }catch(QueryException $ex){ 

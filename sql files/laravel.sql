@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2019 at 12:35 AM
+-- Generation Time: May 05, 2019 at 02:08 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -93,29 +93,47 @@ DELETE FROM `cart` WHERE user_id = uid;
 SELECT status;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cart` (IN `pid` INT, IN `uid` INT, IN `qnt` INT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cart` (IN `pid` INT, IN `uid` INT, IN `qnt` INT, OUT `status` VARCHAR(50))  BEGIN
 DECLARE p_id , c_id , cart_count int; 
-DECLARE status VARCHAR(20);
+
+
+
+DECLARE null_value CONDITION FOR SQLSTATE '22012';
+DECLARE EXIT HANDLER FOR null_value 
+ BEGIN
+    INSERT INTO `cart`( `cart_status`, `user_id`,  `product_id` , `quantity` ) VALUES ('cart' , uid , pid , qnt); 
+    select max(cart_id) into c_id from cart;
+    INSERT INTO `p_include_cart`(`cart_id`, `product_id`, `product_qntity`) VALUES (c_id , pid , qnt);
+    SELECT COUNT(*) into cart_count FROM `cart` WHERE user_id = uid;
+    SET status = 'added' ; 
+ END;
+
+
+
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+BEGIN
+ROLLBACK;
+SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
+END;
+
+
+
 
 SELECT cart_id  into c_id  FROM `CART` WHERE product_id = pid AND user_id = uid ;
-select c_id;
+
+
 if c_id IS NOT NULL
 then
 UPDATE `p_include_cart` SET `product_qntity`= product_qntity + qnt WHERE cart_id = c_id;
 UPDATE `CART` SET `quantity`= quantity + qnt WHERE cart_id = c_id;
 SET status = 'updated' ; 
-select status;
 SELECT COUNT(*) into cart_count FROM `cart` WHERE user_id = uid;
-select cart_count;
 else
-INSERT INTO `cart`( `cart_status`, `user_id`,  `product_id` , `quantity` ) VALUES ('cart' , uid , pid , qnt); 
-select max(cart_id) into c_id from cart;
-INSERT INTO `p_include_cart`(`cart_id`, `product_id`, `product_qntity`) VALUES (c_id , pid , qnt);
-SET status = 'added' ; 
-select status;
-SELECT COUNT(*) into cart_count FROM `cart` WHERE user_id = uid;
-select cart_count;
+
+SIGNAL null_value;
+
 end if;
+
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cartPage` (IN `uid` INT)  BEGIN
@@ -174,29 +192,31 @@ DELETE FROM `cart` WHERE user_id = uid;
 SELECT status;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `review` (IN `uid` INT, IN `pid` INT, IN `rev_text` VARCHAR(50), IN `rev_date` DATE, IN `rat` INT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `review` (IN `uid` INT, IN `pid` INT, IN `rev_text` VARCHAR(50), IN `rev_date` DATE, IN `rat` INT, OUT `status` VARCHAR(20))  BEGIN
 
 DECLARE rev_id INT;
 DECLARE status VARCHAR(20);
-SET status = 'DONE';
+
+DECLARE null_value CONDITION FOR SQLSTATE '22012';
+DECLARE EXIT HANDLER FOR null_value 
+ BEGIN
+ INSERT INTO `review`( `review_text`, `review_date`, `product_id`, `user_id` , rating) VALUES (rev_text , rev_date , pid , uid , rat ) ; 
+ set status = 'INSERTED';
+ END;
+
+
+set status = 'done';
 
 SELECT review_id INTO rev_id FROM `review` WHERE product_id = pid and user_id = uid;
 
-IF rev_id IS NOT NULL
+IF rev_id IS NULL
 THEN
-
-UPDATE `review` SET `review_text`= rev_text ,`review_date`= rev_date , rating = rat WHERE product_id= pid AND user_id= uid;
-
-SELECT status;
-
-
+SIGNAL null_value;
 ELSE
-
-INSERT INTO `review`( `review_text`, `review_date`, `product_id`, `user_id` , rating) VALUES (rev_text , rev_date , pid , uid , rat ) ; 
-
-SELECT status;
-
+UPDATE `review` SET `review_text`= rev_text ,`review_date`= rev_date , rating = rat WHERE product_id= pid AND user_id= uid;
+SET status = 'UPDATED';
 END IF;
+
 
 END$$
 
@@ -398,7 +418,7 @@ CREATE TABLE `cart` (
   `cart_status` varchar(50) NOT NULL,
   `user_id` int(5) NOT NULL,
   `g_u_type` varchar(20) NOT NULL DEFAULT 'user',
-  `order_id` int(5) NOT NULL,
+  `order_id` int(5) NOT NULL DEFAULT '0',
   `product_id` int(5) NOT NULL,
   `quantity` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -408,7 +428,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
-(111, 'cart', 12, 'user', 0, 3, 1);
+(111, 'cart', 12, 'user', 0, 3, 1),
+(114, 'cart', 12, 'user', 0, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -852,10 +873,10 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_avlble`, `product_sell_price`, `product_original_price`, `category_id`, `descriptions`, `category_name`, `sub_category`, `image`, `rating`) VALUES
 (1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg', 4),
-(2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg', 0),
+(2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg', 2),
 (3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg', 4),
 (4, 'hard disk 1TB', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg', 0),
-(5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital', 'img/cat1.jpg', 0),
+(5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital', 'img/cat1.jpg', 4),
 (6, 'hard disk 4TB', 33, 37, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg', 0),
 (7, 'Printer Canon', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg', 0),
 (8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 2),
@@ -1047,7 +1068,7 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (111, 3, 1, 274),
 (112, 20, 1, 275),
 (113, 9, 1, 276),
-(114, 9, 1, 277),
+(114, 9, 2, 277),
 (115, 3, 1, 278),
 (116, 3, 1, 279),
 (117, 2, 1, 280),
@@ -1060,7 +1081,8 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (110, 2, 1, 287),
 (111, 3, 1, 288),
 (112, 9, 2, 289),
-(113, 14, 2, 290);
+(113, 14, 2, 290),
+(114, 2, 2, 291);
 
 -- --------------------------------------------------------
 
@@ -1134,12 +1156,13 @@ INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`
 (19, 'frfarf', 'valid', '2019-05-14', 1, 1, 3),
 (20, 'faerfaef', 'valid', '2019-05-04', 3, 12, 4),
 (21, 'arfraef', 'valid', '2019-05-04', 7, 12, 2),
-(22, 'arfraef', 'valid', '2019-05-04', 2, 12, 3),
+(22, 'a', 'valid', '2019-05-04', 2, 12, 3),
 (23, 'faer', 'valid', '2019-05-04', 1, 12, 4),
 (24, 'arefeaarfaef', 'valid', '2019-05-04', 11, 12, 4),
 (25, 'arfarfaef', 'valid', '2019-05-04', 12, 12, 3),
 (26, 'farfarfraef', 'valid', '2019-05-04', 10, 12, 4),
-(27, 'rferf', 'valid', '2019-05-04', 8, 12, 3);
+(27, 'rferf', 'valid', '2019-05-04', 8, 12, 3),
+(28, 'afreafaerf', 'valid', '2019-05-04', 5, 12, 4);
 
 --
 -- Triggers `review`
@@ -1430,7 +1453,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(4797, 0);
+(4842, 0);
 
 -- --------------------------------------------------------
 
@@ -1657,7 +1680,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1735,7 +1758,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=292;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1753,7 +1776,7 @@ ALTER TABLE `return_t`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `seller`
