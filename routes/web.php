@@ -305,7 +305,7 @@ Route::get('/sendemail', function(){
 	
 	// dispatch(new sendemailjob());
 	//sendemailjob::dispatch()->delay(now()->addSeconds(30));
-	$time =  dispatch(new sendemailjob())->delay(Carbon::now()->addSeconds(20));
+	$time =  dispatch(new sendemailjob('riyad298@gmail.com'))->delay(Carbon::now()->addSeconds(20));
 	return 'email sent';
 });
 
