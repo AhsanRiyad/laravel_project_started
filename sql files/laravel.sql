@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2019 at 05:25 AM
+-- Generation Time: May 05, 2019 at 04:47 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -371,8 +371,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `user_id`, `total_tk`, `paid_tk`, `balance_available`) VALUES
-(1, 0, 15652, 1508, 1408),
-(6, 14, 6366, 172, 0),
+(1, 0, 17298, 1543, 1443),
+(6, 14, 8012, 207, 0),
 (7, 18, 2157, 500, 0),
 (8, 15, 6123, 824, 0),
 (9, 16, 470, 12, 0),
@@ -452,7 +452,8 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
 (116, 'cart', 15, 'user', 0, 1, 3),
 (117, 'cart', 15, 'user', 0, 7, 3),
-(118, 'cart', 15, 'user', 0, 14, 3);
+(118, 'cart', 15, 'user', 0, 14, 3),
+(142, 'cart', 14, 'user', 0, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -603,6 +604,34 @@ INSERT INTO `g_user_name` (`g_u_id`, `u_type`, `first_name`, `last_name`, `count
 (153, 'F', 'ff', 'ff', 17),
 (154, 'F', 'ff', 'ff', 18),
 (1, 'user', 'ahsan', 'riyad', 19);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -794,7 +823,15 @@ INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter
 (75, 2, 4, 242),
 (75, 5, 4, 243),
 (76, 2, 4, 244),
-(76, 4, 4, 245);
+(76, 4, 4, 245),
+(77, 1, 2, 246),
+(77, 4, 4, 247),
+(78, 3, 3, 248),
+(78, 1, 1, 249),
+(78, 5, 1, 250),
+(79, 2, 1, 251),
+(79, 10, 4, 252),
+(80, 3, 2, 253);
 
 -- --------------------------------------------------------
 
@@ -896,7 +933,11 @@ INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_stat
 (73, '2019-05-05', 'cash', NULL, NULL, 12, 134, 818, 0, 'default', 0),
 (74, '2019-05-05', 'cash', NULL, NULL, 12, 135, 1504, 0, 'default', 0),
 (75, '2019-05-05', 'cash', NULL, NULL, 12, 136, 1504, 0, 'default', 0),
-(76, '2019-05-05', 'cash', NULL, NULL, 12, 137, 2744, 0, 'default', 0);
+(76, '2019-05-05', 'cash', NULL, NULL, 12, 137, 2744, 0, 'default', 0),
+(77, '2019-05-05', 'default', NULL, NULL, 14, 138, 1006, 12, 'Kurigram', 12),
+(78, '2019-05-05', 'default', NULL, NULL, 14, 139, 165, 11, 'Dhaka', 12),
+(79, '2019-05-05', 'default', NULL, NULL, 14, 140, 475, 12, 'Kurigram', 12),
+(80, '2019-05-05', 'bkash', NULL, NULL, 12, 141, 66, 0, 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -1154,7 +1195,16 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (130, 2, 4, 308),
 (131, 5, 4, 309),
 (132, 2, 4, 310),
-(133, 4, 4, 311);
+(133, 4, 4, 311),
+(134, 1, 2, 312),
+(135, 4, 4, 313),
+(136, 3, 3, 314),
+(137, 1, 1, 315),
+(138, 5, 1, 316),
+(139, 2, 1, 317),
+(140, 10, 4, 318),
+(141, 3, 2, 319),
+(142, 3, 4, 320);
 
 -- --------------------------------------------------------
 
@@ -1311,7 +1361,8 @@ INSERT INTO `shipment` (`id`, `req_date`, `acc_date`, `status`, `admin_id_req`, 
 (5, '2019-04-22', '2019-04-28', 1, 4, 12),
 (6, '2019-04-28', '2019-04-28', 1, 12, 12),
 (7, '2019-04-28', '2019-04-28', 1, 12, 12),
-(8, '2019-05-01', NULL, 0, 12, NULL);
+(8, '2019-05-01', NULL, 0, 12, NULL),
+(9, '2019-05-05', NULL, 0, 12, NULL);
 
 -- --------------------------------------------------------
 
@@ -1359,7 +1410,8 @@ INSERT INTO `shipment_product` (`id`, `shipment_id`, `product_id`, `product_quan
 (251, 7, 19, 3),
 (252, 8, 4, 4),
 (253, 8, 11, 4),
-(254, 8, 16, 4);
+(254, 8, 16, 4),
+(255, 9, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -1510,7 +1562,8 @@ INSERT INTO `visit` (`product_id`, `user_id`, `user_ip`, `hit_count`, `counter`)
 (5, 0, '127.0.0.1', 0, 41),
 (20, 0, '127.0.0.1', 0, 42),
 (24, 0, '127.0.0.1', 0, 43),
-(6, 0, '127.0.0.1', 0, 44);
+(6, 0, '127.0.0.1', 0, 44),
+(26, 0, '127.0.0.1', 0, 45);
 
 -- --------------------------------------------------------
 
@@ -1528,7 +1581,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(5104, 0);
+(5339, 0);
 
 -- --------------------------------------------------------
 
@@ -1612,6 +1665,18 @@ ALTER TABLE `g_user`
 --
 ALTER TABLE `g_user_name`
   ADD PRIMARY KEY (`counter`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `money_transfer`
@@ -1755,7 +1820,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1788,6 +1853,18 @@ ALTER TABLE `g_user_name`
   MODIFY `counter` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `money_transfer`
 --
 ALTER TABLE `money_transfer`
@@ -1809,13 +1886,13 @@ ALTER TABLE `msg-g_user-admin`
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
 
 --
 -- AUTO_INCREMENT for table `order_t`
 --
 ALTER TABLE `order_t`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1833,7 +1910,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=312;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1863,19 +1940,19 @@ ALTER TABLE `seller`
 -- AUTO_INCREMENT for table `shipment`
 --
 ALTER TABLE `shipment`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `shipment_product`
 --
 ALTER TABLE `shipment_product`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
 
 --
 -- AUTO_INCREMENT for table `shipment_temp`
 --
 ALTER TABLE `shipment_temp`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `supply_order`
@@ -1899,7 +1976,7 @@ ALTER TABLE `user_name`
 -- AUTO_INCREMENT for table `visit`
 --
 ALTER TABLE `visit`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
