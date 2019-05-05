@@ -32,16 +32,16 @@ var name = $('#name_').html();
 var country = '['+$('#country').html()+']';
 //alert(name);
 if (hourMin >=5  && hourMin < 12)  {
-	$('#greetings').html('Good Morning, '+name+' '+country); 
+	$('#greetings').html('Good Morning, '+name/*+' '+country*/); 
 
 }
 	     
 else if (hourMin >= 12 && hourMin < 17){
-	$('#greetings').html('Good Afternoon, '+name+' '+country); 
+	$('#greetings').html('Good Afternoon, '+name/*+' '+country*/); 
 }
 
 else if (hourMin >= 17 && hourMin < 21){
-	$('#greetings').html('Good Evening, '+name+' '+country);
+	$('#greetings').html('Good Evening, '+name/*+' '+country*/);
 }
 
 else if (hourMin >= 21 && hourMin < 24){
@@ -53,7 +53,7 @@ else if (hourMin >= 0 && hourMin < 5){
 }
 else{
 	//alert(hourMin);
-	$('#greetings').html('Hellow, '+name+' '+country); 
+	$('#greetings').html('Hellow, '+name/*+' '+country*/); 
 
 }
 
