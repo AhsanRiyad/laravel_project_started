@@ -198,7 +198,7 @@ $('#button_add_product').click(function(){
 					total = 0;
 					for(var i=0; i<res.cart_products.length; i++){
 
-						total = total + res.cart_products[i].product_sell_price*res.cart_products[i].quantity;
+						total = total + res.cart_products[i].product_price*res.cart_products[i].quantity;
 						
 
 						$('#totalAmount').val(total);
@@ -325,7 +325,7 @@ function delete_it(cart_id , user_id){
 							break;
 						}
 
-						total = total + res.cart_products[i].product_sell_price*res.cart_products[i].quantity;
+						total = total + res.cart_products[i].product_price*res.cart_products[i].quantity;
 						
 
 						$('#totalAmount').val(total);
@@ -411,7 +411,7 @@ function update_it(cart_id , user_id){
 					for(var i=0; i<res.cart_products.length; i++){
 
 
-						total = total + res.cart_products[i].product_sell_price*res.cart_products[i].quantity;
+						total = total + res.cart_products[i].product_price*res.cart_products[i].quantity;
 
 						//alert(total);
 
@@ -594,7 +594,7 @@ $.ajax({
 					for(var i=0; i<res.cart_products.length; i++){
 
 
-						total = total + res.cart_products[i].product_sell_price*res.cart_products[i].quantity;
+						total = total + res.cart_products[i].product_price*res.cart_products[i].quantity;
 						
 
 						$('#totalAmount').val(total);
