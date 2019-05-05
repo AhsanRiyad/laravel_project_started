@@ -45,11 +45,11 @@ else if (hourMin >= 17 && hourMin < 21){
 }
 
 else if (hourMin >= 21 && hourMin < 24){
-	$('#greetings').html(name+ " " +country+" ,it's time to sleep");
+	$('#greetings').html(name+ " " +/*country+*/" ,it's time to sleep");
 }
 
 else if (hourMin >= 0 && hourMin < 5){
-	$('#greetings').html(name+ " " +country+" ,it's mid night now,  you should sleep");
+	$('#greetings').html(name+ " " +/*country*/" ,it's mid night now,  you should sleep");
 }
 else{
 	//alert(hourMin);

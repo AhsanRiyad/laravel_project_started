@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2019 at 04:47 PM
+-- Generation Time: May 05, 2019 at 11:25 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -831,7 +831,22 @@ INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter
 (78, 5, 1, 250),
 (79, 2, 1, 251),
 (79, 10, 4, 252),
-(80, 3, 2, 253);
+(80, 3, 2, 253),
+(81, 1, 1, 254),
+(82, 3, 1, 255),
+(83, 3, 1, 256),
+(86, 9, 1, 257),
+(87, 2, 1, 258),
+(88, 3, 1, 259),
+(89, 4, 3, 260),
+(92, 1, 3, 261),
+(95, 2, 1, 262),
+(96, 2, 1, 263),
+(97, 2, 3, 264),
+(98, 3, 1, 265),
+(98, 5, 4, 266),
+(99, 4, 2, 267),
+(99, 3, 1, 268);
 
 -- --------------------------------------------------------
 
@@ -937,7 +952,26 @@ INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_stat
 (77, '2019-05-05', 'default', NULL, NULL, 14, 138, 1006, 12, 'Kurigram', 12),
 (78, '2019-05-05', 'default', NULL, NULL, 14, 139, 165, 11, 'Dhaka', 12),
 (79, '2019-05-05', 'default', NULL, NULL, 14, 140, 475, 12, 'Kurigram', 12),
-(80, '2019-05-05', 'bkash', NULL, NULL, 12, 141, 66, 0, 'default', 0);
+(80, '2019-05-05', 'bkash', NULL, NULL, 12, 141, 66, 0, 'default', 0),
+(81, '2019-05-05', 'card', NULL, NULL, 12, 142, 33, 0, 'default', 0),
+(82, '2019-05-05', 'cash', NULL, NULL, 12, 143, 33, 0, 'default', 0),
+(83, '2019-05-06', 'cash', NULL, NULL, 12, 144, 33, 0, 'default', 0),
+(84, '2019-05-06', 'cash', NULL, NULL, 12, 145, NULL, 0, 'default', 0),
+(85, '2019-05-06', 'cash', NULL, NULL, 12, 146, NULL, 0, 'default', 0),
+(86, '2019-05-06', 'cash', NULL, NULL, 12, 147, 343, 0, 'default', 0),
+(87, '2019-05-06', 'cash', NULL, NULL, 12, 148, 343, 0, 'default', 0),
+(88, '2019-05-06', 'cash', NULL, NULL, 12, 149, 33, 0, 'default', 0),
+(89, '2019-05-06', 'cash', NULL, NULL, 12, 150, 1029, 0, 'default', 0),
+(90, '2019-05-06', 'cash', NULL, NULL, 12, 151, NULL, 0, 'default', 0),
+(91, '2019-05-06', 'cash', NULL, NULL, 12, 152, NULL, 0, 'default', 0),
+(92, '2019-05-06', 'cash', NULL, NULL, 12, 153, 99, 0, 'default', 0),
+(93, '2019-05-06', 'cash', NULL, NULL, 12, 154, NULL, 0, 'default', 0),
+(94, '2019-05-06', 'cash', NULL, NULL, 12, 155, NULL, 0, 'default', 0),
+(95, '2019-05-06', 'cash', NULL, NULL, 12, 156, 343, 0, 'default', 0),
+(96, '2019-05-06', 'cash', NULL, NULL, 12, 157, 343, 0, 'default', 0),
+(97, '2019-05-06', 'card', NULL, NULL, 12, 158, 1029, 0, 'default', 0),
+(98, '2019-05-06', 'bkash', NULL, NULL, 12, 159, 165, 0, 'default', 0),
+(99, '2019-05-06', 'cash', NULL, NULL, 12, 160, 719, 0, 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -1204,7 +1238,22 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (139, 2, 1, 317),
 (140, 10, 4, 318),
 (141, 3, 2, 319),
-(142, 3, 4, 320);
+(142, 3, 4, 320),
+(143, 1, 1, 321),
+(143, 3, 1, 322),
+(144, 3, 1, 323),
+(145, 9, 1, 324),
+(146, 2, 1, 325),
+(147, 3, 1, 326),
+(148, 4, 3, 327),
+(149, 1, 3, 328),
+(150, 2, 1, 329),
+(151, 2, 1, 330),
+(152, 2, 3, 331),
+(153, 3, 1, 332),
+(154, 5, 4, 333),
+(155, 4, 2, 334),
+(156, 3, 1, 335);
 
 -- --------------------------------------------------------
 
@@ -1581,7 +1630,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(5339, 0);
+(5663, 0);
 
 -- --------------------------------------------------------
 
@@ -1820,7 +1869,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1856,7 +1905,7 @@ ALTER TABLE `g_user_name`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1886,13 +1935,13 @@ ALTER TABLE `msg-g_user-admin`
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=269;
 
 --
 -- AUTO_INCREMENT for table `order_t`
 --
 ALTER TABLE `order_t`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1910,7 +1959,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1952,7 +2001,7 @@ ALTER TABLE `shipment_product`
 -- AUTO_INCREMENT for table `shipment_temp`
 --
 ALTER TABLE `shipment_temp`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `supply_order`
