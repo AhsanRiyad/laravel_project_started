@@ -26,7 +26,7 @@ $productImg = 'img/cat1.jpg';
 <div class="container">
 	
 
-	@if(count($products[0]) < 1)
+	@if(count($products) < 1)
 
 	<div class="jumbotron jumbotron-fluid mt-4 bg-info text-white">
 		<div class="container">
@@ -58,7 +58,7 @@ $productImg = 'img/cat1.jpg';
 
 
 	
-		@for($i = 0 ; $i<count($products[0]); $i++)
+		@for($i = 0 ; $i<count($products); $i++)
 		
 
 
@@ -68,10 +68,10 @@ $productImg = 'img/cat1.jpg';
 
 			<th scope="row">{{ $i+1 }}  </th>				
 
-			<td>{{ $products[0][$i]-> product_name }}</td>
-			<td>{{ $products[0][$i]-> descriptions  }}</td>
-			<td>{{$products[0][$i]->product_qntity  }}</td>
-			<td>{{ $products[0][$i]->product_price*$products[0][$i]->product_qntity }}
+			<td>{{ $products[$i]-> product_name }}</td>
+			<td>{{ $products[$i]-> descriptions  }}</td>
+			<td>{{$products[$i]->quantity  }}</td>
+			<td>{{ $products[$i]->product_price*$products[$i]->quantity }}
 
 			
 			</td>
@@ -86,7 +86,7 @@ $productImg = 'img/cat1.jpg';
 		<td></td>
 		<td></td>
 		<td>Total Amount:</td>
-		<td>{{ $products[1][0] -> total }}  </td>
+		<td>{{ $total }}  </td>
 
 
 	</tr>

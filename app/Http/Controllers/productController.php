@@ -48,15 +48,25 @@ public function cart (Request $req){
   
   $params = [$uid];
   //return $params;
-  $results = multipleSelectModel::CallRaw('cartPage', $params);
+  //$results = multipleSelectModel::CallRaw('cartPage', $params);
 
   //$results = DB::select('call CartPage(?)' , [$uid]);
 
-  //return $results;
+
+  DB::statement('call cartPage(? , @total)' , [ $uid ]);
+  $total = DB::select('select @total as total');
+  //return $total[0]->total;
+
+  $products = DB::select('select c.* , p.product_price , p.product_name ,  p.descriptions  from cart c , products p  where c.product_id = p.product_id and user_id = (?)' , [ $uid ]);
+
+
+
+
+  //return $products;
 
   // return $results;
  // return $results[0][0]->product_id;
-  $r = [ 'products'=> $results , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status ];
+  $r = [ 'products'=> $products , 'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'total' => $total[0]->total ];
 
   
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2019 at 02:08 AM
+-- Generation Time: May 05, 2019 at 02:42 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -136,10 +136,19 @@ end if;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cartPage` (IN `uid` INT)  BEGIN
-select p.product_id , pr.product_name , pr.product_price , pr.descriptions , p.product_qntity from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = uid;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cartPage` (IN `uid` INT, OUT `total` INT)  BEGIN
 
-select SUM(pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = uid;
+
+
+select SUM(pr.product_price*c.quantity) into total from cart c  , products pr where
+ c.product_id = pr.product_id and c.user_id = uid;
+
+
+IF total IS NULL 
+then
+set total = 0;
+end if;
+
 
 END$$
 
@@ -203,6 +212,14 @@ DECLARE EXIT HANDLER FOR null_value
  INSERT INTO `review`( `review_text`, `review_date`, `product_id`, `user_id` , rating) VALUES (rev_text , rev_date , pid , uid , rat ) ; 
  set status = 'INSERTED';
  END;
+
+
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+BEGIN
+ROLLBACK;
+SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
+END;
+
 
 
 set status = 'done';
@@ -429,7 +446,11 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`cart_id`, `cart_status`, `user_id`, `g_u_type`, `order_id`, `product_id`, `quantity`) VALUES
 (111, 'cart', 12, 'user', 0, 3, 1),
-(114, 'cart', 12, 'user', 0, 2, 2);
+(114, 'cart', 12, 'user', 0, 2, 2),
+(115, 'cart', 12, 'user', 0, 9, 1),
+(116, 'cart', 15, 'user', 0, 1, 3),
+(117, 'cart', 15, 'user', 0, 7, 3),
+(118, 'cart', 15, 'user', 0, 14, 3);
 
 -- --------------------------------------------------------
 
@@ -1082,7 +1103,11 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (111, 3, 1, 288),
 (112, 9, 2, 289),
 (113, 14, 2, 290),
-(114, 2, 2, 291);
+(114, 2, 2, 291),
+(115, 9, 1, 292),
+(116, 1, 3, 293),
+(117, 7, 3, 294),
+(118, 14, 3, 295);
 
 -- --------------------------------------------------------
 
@@ -1453,7 +1478,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(4842, 0);
+(4877, 0);
 
 -- --------------------------------------------------------
 
@@ -1680,7 +1705,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1758,7 +1783,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=292;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
