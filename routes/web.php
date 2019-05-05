@@ -293,3 +293,14 @@ Route::get('/f1' , 'TestingController@test2');
 //Route::get('/db', 'testController@dbTest');
 Route::get('/db', 'productController@autosearch');
 
+
+use App\Mail\OrderInvoice;
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/sm', function(){
+
+	Mail::to('riyad298@gmail.com' , 'riyad')->send(new OrderInvoice());
+	return 'mail sent';
+
+});
+
