@@ -24,13 +24,18 @@ $postReview = "product.postReview";
 				
 				<div class="form-group">
 					<label for="exampleInputEmail1">Your Name:</label>
-					<input name="name" disabled type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Name" value="{{ $name }}">
+					<input name="name" hidden type="text" class="form-control"  value="{{ $name }}">
+
+					<input name="" disabled type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Name" value="{{ $name }}">
 
 				</div>				
 
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
-					<input name="email" disabled type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" value="{{ $email }}">
+
+					<input name="email"  hidden class="form-control"   value="{{ $email }}">
+
+					<input name="" disabled  class="form-control"   value="{{ $email }}">
 					<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 				</div>				
 						
@@ -38,10 +43,10 @@ $postReview = "product.postReview";
 				<div class="form-group">
 					<label for="inputState" >Subject</label>
 					<small class="text-white bg-danger">
-
-					</small>
-					<select name="type" id="inputState" class="form-control">
-						<option name="subject" selected value="">Choose...</option>
+                      {{ $errors->first('subject') }} 
+                    </small>
+					<select name="subject" id="inputState" class="form-control">
+						<option  selected value="">Choose...</option>
 						<option value="general issue">General Issue</option>
 						<option value="order issue">Order Issue</option>
 						<option value="order issue">Others</option>
@@ -51,7 +56,10 @@ $postReview = "product.postReview";
 
 				<div class="form-group">
 					<label for="exampleFormControlTextarea1">Write Your msg:</label>
-					<textarea  name="msg" class="form-control"  rows="3"></textarea>
+					<small class="text-white bg-danger">
+                      {{ $errors->first('msg') }} 
+                    </small>
+					<textarea  name="msg" class="form-control"  rows="3"> {{ old('msg') }} </textarea>
 				</div>
 
 				<input type="submit" class="btn btn-success" value="Send" >

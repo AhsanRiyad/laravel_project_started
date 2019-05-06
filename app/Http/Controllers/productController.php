@@ -14,6 +14,7 @@ use Mail;
 use Carbon\Carbon;
 
 use App\Jobs\sendEmailJob;
+use App\Jobs\supportEmailJob;
 
 /////////////////////////////////////////////
 class productController extends Controller
@@ -592,9 +593,33 @@ public function support(Request $req){
 public function supportPost(Request $req){
 
 
-  return $req->msg;
+
+  $Validation = Validator::make($req->all() , [
+            'msg'=>'required|between:10,100',
+            'subject'=>'required',
+            
+        ]);
+
+
+ $Validation->Validate();
+
+
+
+
+
+
+  $msg = $req->msg;
+  $senderName = $req->name;
+  $senderEmail = $req->email;
+  $subject = $req->subject;
   
-  
+  //return $senderEmail;
+
+  //return $msg.$senderName.$senderEmail.$subject;
+
+
+  //
+  dispatch(new supportEmailJob( $msg ,  $subject ,  $senderEmail , $senderName ))->delay(Carbon::now()->addSeconds(1));
 
 
 
@@ -602,7 +627,7 @@ public function supportPost(Request $req){
 
 
  $r = [  'cart_count' => $req->s_cart_count , 'loginStatus' => $req->s_login_status , 'name' => $req->s_name , 'email' => $req->s_email ];
-  return view('email.support'  , $r);
+  return view('email.support_email_confirm'  , $r);
 
 }
 
