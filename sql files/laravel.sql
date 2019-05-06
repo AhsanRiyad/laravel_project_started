@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2019 at 11:25 PM
+-- Generation Time: May 06, 2019 at 06:57 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -846,7 +846,10 @@ INSERT INTO `order_includ_product` (`order_id`, `product_id`, `qntity`, `counter
 (98, 3, 1, 265),
 (98, 5, 4, 266),
 (99, 4, 2, 267),
-(99, 3, 1, 268);
+(99, 3, 1, 268),
+(100, 3, 3, 269),
+(101, 2, 3, 270),
+(102, 8, 3, 271);
 
 -- --------------------------------------------------------
 
@@ -971,7 +974,10 @@ INSERT INTO `order_t` (`order_id`, `order_date`, `payment_method`, `payment_stat
 (96, '2019-05-06', 'cash', NULL, NULL, 12, 157, 343, 0, 'default', 0),
 (97, '2019-05-06', 'card', NULL, NULL, 12, 158, 1029, 0, 'default', 0),
 (98, '2019-05-06', 'bkash', NULL, NULL, 12, 159, 165, 0, 'default', 0),
-(99, '2019-05-06', 'cash', NULL, NULL, 12, 160, 719, 0, 'default', 0);
+(99, '2019-05-06', 'cash', NULL, NULL, 12, 160, 719, 0, 'default', 0),
+(100, '2019-05-06', 'cash', NULL, NULL, 12, 161, 99, 0, 'default', 0),
+(101, '2019-05-06', 'cash', NULL, NULL, 12, 162, 1029, 0, 'default', 0),
+(102, '2019-05-06', 'cash', NULL, NULL, 12, 163, 99, 0, 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -999,18 +1005,18 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_avlble`, `product_sell_price`, `product_original_price`, `category_id`, `descriptions`, `category_name`, `sub_category`, `image`, `rating`) VALUES
-(1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg', 4),
-(2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg', 2),
-(3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg', 4),
+(1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg', 'img/cat1.jpg', 0),
+(2, 'Monitor Samsung ', 343, 51, 235, 2356, 346, 'useful for home', 'monitor', 'samsung', 'img/cat1.jpg', 0),
+(3, 'Monitor Walton', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'walton', 'img/cat1.jpg', 0),
 (4, 'hard disk 1TB', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg', 0),
-(5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital', 'img/cat1.jpg', 4),
+(5, 'hard disk 2TB', 33, 75, 33, 34, 34, 'useful for home', 'hdd', 'western_digital', 'img/cat1.jpg', 0),
 (6, 'hard disk 4TB', 33, 37, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg', 0),
 (7, 'Printer Canon', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg', 0),
-(8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 2),
+(8, 'Printer HP', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 0),
 (9, 'Ram Transcend', 343, 34, 235, 2356, 346, 'useful for home', 'ram', 'transcend', 'img/cat1.jpg', 0),
-(10, 'Ram Adata', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 4),
+(10, 'Ram Adata', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 0),
 (11, 'Ram Razor', 33, 39, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg', 0),
-(12, 'Motherboard GigaByte', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'gigabyte', 'img/cat1.jpg', 3),
+(12, 'Motherboard GigaByte', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'gigabyte', 'img/cat1.jpg', 0),
 (13, 'Motherboard Asus', 33, 33, 33, 34, 34, 'useful for home', 'motherboard', 'asus', 'img/cat1.jpg', 0),
 (14, 'Motherboard Intel', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg', 0),
 (15, 'Processor Intel', 33, 33, 33, 34, 34, 'useful for home', 'processor', 'intel', 'img/cat1.jpg', 0),
@@ -1022,7 +1028,7 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_
 (21, 'hard disk 1TB 5400rpm', 343, 34, 235, 2356, 346, 'useful for home', 'hdd', 'toshiba', 'img/cat1.jpg', 0),
 (22, 'hard disk 4TB 7200rpm', 33, 33, 33, 34, 34, 'useful for home', 'hdd', 'adata', 'img/cat1.jpg', 0),
 (23, 'Printer Canon For Photos', 343, 34, 235, 2356, 346, 'useful for home', 'printer', 'canon', 'img/cat1.jpg', 0),
-(24, 'Ram Adata 8GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 2),
+(24, 'Ram Adata 8GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'adata', 'img/cat1.jpg', 0),
 (25, 'Ram Razor 16GB', 33, 33, 33, 34, 34, 'useful for home', 'ram', 'razor', 'img/cat1.jpg', 0),
 (26, 'Printer HP 1080P', 33, 33, 33, 34, 34, 'useful for home', 'printer', 'hp', 'img/cat1.jpg', 0),
 (27, 'Motherboard Intel Gaming', 343, 34, 235, 2356, 346, 'useful for home', 'motherboard', 'intel', 'img/cat1.jpg', 0),
@@ -1253,7 +1259,10 @@ INSERT INTO `p_include_cart` (`cart_id`, `product_id`, `product_qntity`, `counte
 (153, 3, 1, 332),
 (154, 5, 4, 333),
 (155, 4, 2, 334),
-(156, 3, 1, 335);
+(156, 3, 1, 335),
+(157, 3, 3, 336),
+(158, 2, 3, 337),
+(159, 8, 3, 338);
 
 -- --------------------------------------------------------
 
@@ -1324,17 +1333,18 @@ INSERT INTO `review` (`review_id`, `review_text`, `review_status`, `review_date`
 (15, 'it is a good product', '', '2019-02-19', 7, 2, 0),
 (17, 'really nice product', '', '2019-03-29', 9, 2, 0),
 (18, 'good products', '', '2019-04-02', 2, 2, 0),
-(19, 'frfarf', 'valid', '2019-05-14', 1, 1, 3),
-(20, 'faerfaef', 'valid', '2019-05-04', 3, 12, 4),
-(21, 'arfraef', 'valid', '2019-05-04', 7, 12, 2),
-(22, 'a', 'valid', '2019-05-04', 2, 12, 3),
-(23, 'faer', 'valid', '2019-05-04', 1, 12, 4),
-(24, 'arefeaarfaef', 'valid', '2019-05-04', 11, 12, 4),
-(25, 'arfarfaef', 'valid', '2019-05-04', 12, 12, 3),
-(26, 'farfarfraef', 'valid', '2019-05-04', 10, 12, 4),
-(27, 'rferf', 'valid', '2019-05-04', 8, 12, 3),
-(28, 'afreafaerf', 'valid', '2019-05-04', 5, 12, 4),
-(29, 'farfae', 'valid', '2019-05-05', 24, 12, 2);
+(19, 'frfarf', 'valid', '2019-05-14', 1, 1, 0),
+(20, 'faerfaef', 'valid', '2019-05-04', 3, 12, 0),
+(21, 'arfraef', 'valid', '2019-05-04', 7, 12, 0),
+(22, 'a', 'valid', '2019-05-04', 2, 12, 0),
+(23, 'faer', 'valid', '2019-05-04', 1, 12, 0),
+(24, 'arefeaarfaef', 'valid', '2019-05-04', 11, 12, 0),
+(25, 'arfarfaef', 'valid', '2019-05-04', 12, 12, 0),
+(26, 'farfarfraef', 'valid', '2019-05-04', 10, 12, 0),
+(27, 'rferf', 'valid', '2019-05-04', 8, 12, 0),
+(28, 'afreafaerf', 'valid', '2019-05-04', 5, 12, 0),
+(29, 'farfae', 'valid', '2019-05-05', 24, 12, 0),
+(30, 'faerfea', 'valid', '2019-05-06', 6, 12, 0);
 
 --
 -- Triggers `review`
@@ -1630,7 +1640,7 @@ CREATE TABLE `visitcounter` (
 --
 
 INSERT INTO `visitcounter` (`total`, `id`) VALUES
-(5663, 0);
+(5768, 0);
 
 -- --------------------------------------------------------
 
@@ -1869,7 +1879,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `cart_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1905,7 +1915,7 @@ ALTER TABLE `g_user_name`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1935,13 +1945,13 @@ ALTER TABLE `msg-g_user-admin`
 -- AUTO_INCREMENT for table `order_includ_product`
 --
 ALTER TABLE `order_includ_product`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=269;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
 
 --
 -- AUTO_INCREMENT for table `order_t`
 --
 ALTER TABLE `order_t`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1959,7 +1969,7 @@ ALTER TABLE `promo`
 -- AUTO_INCREMENT for table `p_include_cart`
 --
 ALTER TABLE `p_include_cart`
-  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
+  MODIFY `counter` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=339;
 
 --
 -- AUTO_INCREMENT for table `raw_materials`
@@ -1977,7 +1987,7 @@ ALTER TABLE `return_t`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `seller`
