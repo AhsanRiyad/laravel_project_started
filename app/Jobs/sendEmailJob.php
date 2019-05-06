@@ -56,7 +56,22 @@ class sendEmailJob implements ShouldQueue
 
 
     $data = array('name'=>$this->receiverEmail);
-   Mail::send(['text'=>'email.plain_text'], $data, function($message) {
+
+
+
+   Mail::send('email.new_order', $data, function($message) {
+        
+         $message->to('riyad298@gmail.com' , 'Riyad' )->subject
+            ('Umart Shopping Invoice');
+         $message->attach(public_path().'/pdf/Invoice.pdf');
+         //$message->attach('C:\laravel-master\laravel\public\uploads\test.txt');
+         $message->from('riyad.for.test@gmail.com','Ahsan Riyad');
+      });
+
+
+
+
+   Mail::send('email.done', $data, function($message) {
         
          $message->to($this->receiverEmail , $this->receiverName )->subject
             ('Umart Shopping Invoice');
