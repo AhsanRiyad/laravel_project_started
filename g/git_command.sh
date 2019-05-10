@@ -10,9 +10,6 @@ git status
 git log
 
 
-#for one line log
-git log --oneline
-
 # to add all files and commit
 git add -A 
 
