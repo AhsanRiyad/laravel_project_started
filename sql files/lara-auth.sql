@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2019 at 09:54 PM
+-- Generation Time: May 10, 2019 at 10:10 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -43,7 +43,7 @@ CREATE TABLE `migrations` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `u_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `u_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `u_password`, `remember_token`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id`, `name`, `u_email`, `email_verified_at`, `u_password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'ahsan riyad', 'riyad298@gmail.com', NULL, '$2y$10$4IYPkaa5JhCHQ3Zk/XbAd.DWwbkd9P98FbhISH5kWGHBQbKVX.o9a', NULL, '2019-05-10 13:30:19', '2019-05-10 13:30:19'),
 (2, 'Muhammad Ahsan Ferdous Riyad', 'riyffad298@gmail.com', NULL, '$2y$10$TGMoSi030UpnWr953CFQj.6qdUAYa0gsvx3IZO0.5xyZ7VDteAuCy', NULL, '2019-05-10 13:53:47', '2019-05-10 13:53:47');
 

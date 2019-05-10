@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'u_password',
+        'name', 'u_email', 'u_password',
     ];
 
     /**
@@ -42,5 +42,6 @@ class User extends Authenticatable
     return $this->u_password;
     }
 
+    
 
 }
