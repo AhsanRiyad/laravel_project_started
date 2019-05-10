@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+
+use App\User;
+
 class LoginController extends Controller
 {
     /*
@@ -34,13 +40,39 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        //$this->middleware('guest')->except('logout');
+
+
+
+        
+
+
+
+
     }
+
+
+    public function logValidate(Request $request)
+    {
+        $user = User::where('u_email', $request->u_email)
+        ->where('u_password', $request->password)
+        ->first();
+
+        if($user) {
+            Auth::loginUsingId($user->id);
+    // -- OR -- //
+            Auth::login($user);
+            //return redirect()->route('account');
+            return 'user exists';
+        } else {
+            return redirect()->back()->withInput();
+        }
+    } 
 
 
 
     public function username()
     {
-    return 'u_email';
+        return 'u_email';
     }
 }
