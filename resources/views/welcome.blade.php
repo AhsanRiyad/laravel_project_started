@@ -1,27 +1,26 @@
-<?php 
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
- $pic = "img/cat1.jpg";
-// $pic = 'img/cat1.jpg';
+        <title>Vue js</title>
 
- ?>
-
-@extends('layout.hf')
-
-@section('content')
-            
+        
+    </head>
+    <body>
+        
         <div id="app">
+            <h1>
+                hellow @{{ name }}
+            </h1>
             
-            <example-component></example-component>
-
-            
-
         </div>
 
-		
 
-		<img src="{{ asset($pic) }}" alt="">
+        <script src="{{ asset('js/app.js') }}"></script>
 
-        <h1>hellow wordl</h1>
-    
 
-@endsection
+        
+    </body>
+</html>
