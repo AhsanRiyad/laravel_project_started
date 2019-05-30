@@ -31,6 +31,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/navbar.vue').default);
+Vue.component('add_meal', require('./components/add_meal.vue').default);
 
 
 
@@ -44,7 +45,14 @@ Vue.component('greetings' , {
 const app = new Vue({
     el: '#app',
     data: {
-    	name: 'riyad'
+    	name: 'riyad',
+    	status: false
+    },
+    methods: {
+    	add_meal:function(){
+    		this.status = true;
+    		//alert(this.status);
+    	}
     }
 });
 

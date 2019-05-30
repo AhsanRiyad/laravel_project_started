@@ -49585,13 +49585,20 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('navbar', __webpack_require__(/*! ./components/navbar.vue */ "./resources/js/components/navbar.vue")["default"]);
+Vue.component('add_meal', __webpack_require__(/*! ./components/add_meal.vue */ "./resources/js/components/add_meal.vue")["default"]);
 Vue.component('greetings', {
   template: '<p>this is a template</p>'
 });
 var app = new Vue({
   el: '#app',
   data: {
-    name: 'riyad'
+    name: 'riyad',
+    status: false
+  },
+  methods: {
+    add_meal: function add_meal() {
+      this.status = true; //alert(this.status);
+    }
   }
 });
 
