@@ -12,7 +12,7 @@
         <a class="nav-link" v-on:click.prevent="add_meal()" href="#">Add Meal <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <router-link to="/add_meal/hellow" class="nav-link" href="#">Link</router-link>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
