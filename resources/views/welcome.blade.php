@@ -15,14 +15,29 @@
         <div id="app">
 
             
-            <div class="container">
+            <!-- <div class="container">
                 
                 <navbar v-on:add_meal="add_meal($event)"></navbar>
+                
+                <HelloWorld></HelloWorld>
             
                 <add_meal v-if="status"></add_meal>
             </div>
                 
-            <router-view></router-view>
+            <router-view></router-view> -->
+
+
+            <v-app>
+      <v-content>
+        <v-container>Hello world</v-container>
+
+        <v-btn color="info">Info</v-btn>
+      </v-content>
+    
+    <hellow></hellow>
+
+
+    </v-app>
 
         </div>
 

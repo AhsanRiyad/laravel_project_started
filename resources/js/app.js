@@ -9,6 +9,8 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vuetify from 'vuetify'
+
+
 Vue.use(Vuetify)
 
 /**
@@ -48,8 +50,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('navbar', require('./components/navbar.vue').default);
 Vue.component('add_meal', require('./components/add_meal.vue').default);
 
+//Vue.component('HelloWorld', require('./components/HelloWorld.vue').default);
 
 
+import hellow from './components/HelloWorld.vue'
 
 
 Vue.component('greetings' , {
@@ -72,6 +76,7 @@ const app = new Vue({
     	}
     },
     router: router,
+    components : { 'hellow': hellow }
 });
 
 
