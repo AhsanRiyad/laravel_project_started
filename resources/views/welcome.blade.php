@@ -13,11 +13,21 @@
     <body>
         
         <div id="app">
-            <h1>
-                hellow @{{ name }}
-            </h1>
+
             
+            
+            <div class="container">
+                
+                <navbar></navbar>
+
+            </div>
+
+            
+
         </div>
+
+
+
 
 
         <script src="{{ asset('js/app.js') }}"></script>

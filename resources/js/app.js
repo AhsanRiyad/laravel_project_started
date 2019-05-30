@@ -21,11 +21,25 @@ window.Vue = require('vue');
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('navbar', require('./components/navbar.vue').default);
+
+
+
+Vue.component('greetings' , {
+
+	template: '<p>this is a template</p>'
+
+
+})
 
 const app = new Vue({
     el: '#app',
@@ -33,3 +47,5 @@ const app = new Vue({
     	name: 'riyad'
     }
 });
+
+
