@@ -15,15 +15,14 @@
         <div id="app">
 
             
-            
             <div class="container">
                 
                 <navbar v-on:add_meal="add_meal($event)"></navbar>
-
+            
                 <add_meal v-if="status"></add_meal>
             </div>
-
-            
+                
+            <router-view></router-view>
 
         </div>
 
@@ -31,7 +30,7 @@
 
 
 
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
 
 
         
