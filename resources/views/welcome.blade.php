@@ -21,9 +21,6 @@
                 <navbar v-on:add_meal="add_meal($event)"></navbar>
 
                 <add_meal v-if="status"></add_meal>
-                
-
-
             </div>
 
             

@@ -28,10 +28,23 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter);
+
+import Routes from './routes'
+
+
+const router = new VueRouter({
+	routes : Routes
+});
+
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/navbar.vue').default);
 Vue.component('add_meal', require('./components/add_meal.vue').default);
+
+
 
 
 
@@ -53,7 +66,8 @@ const app = new Vue({
     		this.status = true;
     		//alert(this.status);
     	}
-    }
+    },
+    router: router,
 });
 
 
