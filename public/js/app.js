@@ -1805,9 +1805,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      id: this.$route.params.id
+    };
   }
 });
 
@@ -37227,7 +37234,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("\r\n\taddmeal\r\n")])
+  return _c("h1", [_vm._v("\r\n\taddmeal\r\n\r\n\t" + _vm._s(_vm.id) + "\r\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52577,7 +52584,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_add_meal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/add_meal.vue */ "./resources/js/components/add_meal.vue");
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
-  path: '/add_meal',
+  path: '/add_meal/:id',
   component: _components_add_meal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }]);
 
