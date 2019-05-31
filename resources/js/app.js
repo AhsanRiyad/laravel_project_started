@@ -11,6 +11,7 @@ window.Vue = require('vue');
 import Vuetify from 'vuetify'
 
 
+
 Vue.use(Vuetify)
 
 /**
@@ -49,6 +50,7 @@ const router = new VueRouter({
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/navbar.vue').default);
 Vue.component('add_meal', require('./components/add_meal.vue').default);
+Vue.component('toolbar', require('./components/toolbar.vue').default);
 
 //Vue.component('HelloWorld', require('./components/HelloWorld.vue').default);
 
@@ -76,7 +78,10 @@ const app = new Vue({
     	}
     },
     router: router,
-    components : { 'hellow': hellow }
+    components : { 
+        'hellow': hellow
+
+     }
 });
 
 
