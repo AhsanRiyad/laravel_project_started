@@ -4,7 +4,7 @@
     
 	
 <h1>
-	this is a add meal component addmeal
+	this is a calculation components
 </h1>
 
 </div>
