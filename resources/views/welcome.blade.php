@@ -14,27 +14,9 @@
 
     <div id="app">
 
-            <v-app>
-                
-                <v-container fluid>
-                
-                <v-layout row>
-                
-                <v-flex>
-                
+          <v-app>
                 <toolbar/>
-                
-                </v-flex>
-
-                </v-layout>
-                
-                </v-container>
-
-                
-
-
-
-            </v-app>
+          </v-app>
             
 
 

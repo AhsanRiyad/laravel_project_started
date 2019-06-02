@@ -69,7 +69,8 @@ const app = new Vue({
     el: '#app',
     data: {
     	name: 'riyad',
-    	status: false
+    	status: false,
+        
     },
     methods: {
     	add_meal:function(){
