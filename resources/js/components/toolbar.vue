@@ -36,7 +36,7 @@
     </v-navigation-drawer>
 
 
-    
+
 
 </nav>
 </template>
@@ -53,9 +53,10 @@
             drawer: false,
             links: 
             [
-              { text: 'Add Meal'  , icon: 'dashboard' , route: '/add_meal' } ,
-              { text: 'Add_bazar'  , icon: 'dashboard' , route: '/add_bazar' } ,
-              { text: 'Calculation'  , icon: 'dashboard' , route: '/calculation' } ,
+              { text: 'Add Meal'  , icon: 'note_add' , route: '/add_meal' } ,
+              { text: 'Add_bazar'  , icon: 'add_shopping_cart' , route: '/add_bazar' } ,
+              { text: 'Calculation'  , icon: 'control_camera' , route: '/calculation' } ,
+              { text: 'dena_paona'  , icon: 'warning' , route: '/dena_paona' } ,
             ]
             
           }

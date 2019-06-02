@@ -33,7 +33,7 @@
 
                     <v-flex xs5>
 
-                    <v-text-field label="Riyad"></v-text-field>
+                    <v-text-field  label="Riyad"></v-text-field>
                     
                     </v-flex>
                     
@@ -49,7 +49,7 @@
 
                     <v-flex xs5 >
                         <v-menu>
-                            <v-text-field :value="formatedDate" slot="activator" label="date" prepend-icon="date_range">
+                            <v-text-field  :value="formatedDate" slot="activator" label="date" prepend-icon="date_range">
 
                             </v-text-field>
 
@@ -108,7 +108,7 @@ import format from 'date-fns/format'
         },
         computed: {
             formatedDate () {
-                return this.due_date ? format(this.due_date , 'Do-MMM-YYYY (dddd)') : '' ;
+                return this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : '' ;
             }
         }
     }

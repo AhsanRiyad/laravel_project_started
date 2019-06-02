@@ -2112,7 +2112,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     formatedDate: function formatedDate() {
-      return this.due_date ? date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YYYY (dddd)') : '';
+      return this.due_date ? date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YY (dddd)') : '';
     }
   }
 });
@@ -2280,16 +2280,20 @@ __webpack_require__.r(__webpack_exports__);
       drawer: false,
       links: [{
         text: 'Add Meal',
-        icon: 'dashboard',
+        icon: 'note_add',
         route: '/add_meal'
       }, {
         text: 'Add_bazar',
-        icon: 'dashboard',
+        icon: 'add_shopping_cart',
         route: '/add_bazar'
       }, {
         text: 'Calculation',
-        icon: 'dashboard',
+        icon: 'control_camera',
         route: '/calculation'
+      }, {
+        text: 'dena_paona',
+        icon: 'warning',
+        route: '/dena_paona'
       }]
     };
   },
