@@ -2051,7 +2051,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37773,7 +37772,7 @@ var render = function() {
     [
       _c("v-toolbar-side-icon"),
       _vm._v(" "),
-      _c("v-toolbar-title", [_vm._v("Title")]),
+      _c("v-toolbar-title", [_vm._v("Meal Manager")]),
       _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),
@@ -37781,11 +37780,29 @@ var render = function() {
         "v-toolbar-items",
         { staticClass: "hidden-sm-and-down" },
         [
-          _c("v-btn", { attrs: { flat: "" } }, [_vm._v("Link One")]),
+          _c(
+            "v-btn",
+            { attrs: { color: "green", flat: "" } },
+            [
+              _c("v-icon", { attrs: { color: "green" } }, [
+                _vm._v(" perm_identity ")
+              ]),
+              _vm._v(" Profile")
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("v-btn", { attrs: { flat: "" } }, [_vm._v("Link Two")]),
-          _vm._v(" "),
-          _c("v-btn", { attrs: { flat: "" } }, [_vm._v("Link Three")])
+          _c(
+            "v-btn",
+            { attrs: { flat: "", color: "red" } },
+            [
+              _c("v-icon", { attrs: { color: "red" } }, [
+                _vm._v(" arrow_back ")
+              ]),
+              _vm._v(" Sign Out")
+            ],
+            1
+          )
         ],
         1
       )

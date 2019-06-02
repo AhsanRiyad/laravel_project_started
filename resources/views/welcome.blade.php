@@ -16,7 +16,7 @@
 
             <v-app>
                 
-                <v-container>
+                <v-container fluid>
                 
                 <v-layout row>
                 

@@ -1,12 +1,11 @@
 <template>
   <v-toolbar >
     <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title>Title</v-toolbar-title>
+    <v-toolbar-title>Meal Manager</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>Link One</v-btn>
-      <v-btn flat>Link Two</v-btn>
-      <v-btn flat>Link Three</v-btn>
+      <v-btn color="green" flat> <v-icon color="green"> perm_identity </v-icon> Profile</v-btn>
+      <v-btn flat color="red"> <v-icon color="red"> arrow_back </v-icon> Sign Out</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
