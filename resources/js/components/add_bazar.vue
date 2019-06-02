@@ -4,7 +4,7 @@
     
 	
 <h1>
-	this is a add meal component addmeal
+	this is a add bazar component
 </h1>
 
 </div>
@@ -14,7 +14,7 @@
 <script>
     export default {
         mounted() {
-            console.log('add meal Component mounted.')
+            console.log('Component mounted.')
         }
     }
 </script>

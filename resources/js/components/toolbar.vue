@@ -21,10 +21,8 @@
 
 
           <v-list class="mt-3">
-          <v-list-tile  v-for="link in links" :key ="link.text" router :to ="link.route">
-            <v-list-title-action>
-              <v-icon  class="white--text pr-4"> {{ link.icon }} </v-icon>
-            </v-list-title-action>
+          <v-list-tile  v-for="link in links" :key ="link.text" router :to ="link.route"> 
+            <v-icon  class="white--text pr-4"> {{ link.icon }} </v-icon>
             <v-list-tile-content>
               <v-list-tile-title class="white--text">{{ link.text }}</v-list-tile-title>
             </v-list-tile-content>
@@ -35,14 +33,10 @@
         </v-flex>
       </v-layout>
     </v-container>
-
-      
-
-  
-
-
-
     </v-navigation-drawer>
+
+
+    
 
 </nav>
 </template>

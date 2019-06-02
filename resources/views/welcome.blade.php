@@ -13,12 +13,11 @@
 <body>
 
     <div id="app">
-
-          <v-app>
-                <toolbar/>
-          </v-app>
+        
+        <App></App>
+          
             
-
+    </div> 
 
 
 
@@ -48,7 +47,7 @@
            <router-view></router-view>
                    </v-app> -->
 
-    </div> 
+   
 
 
 
@@ -56,7 +55,13 @@
 
     <script src="{{ mix('js/app.js') }}"></script>
 
+    <style>
+      
+    .addM{
+      margin-top: 400px;
+    }
 
+    </style>    
 
 </body>
 </html>

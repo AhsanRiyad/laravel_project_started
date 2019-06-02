@@ -49,8 +49,10 @@ const router = new VueRouter({
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/navbar.vue').default);
-Vue.component('add_meal', require('./components/add_meal.vue').default);
+//Vue.component('add_meal', require('./components/add_meal.vue').default);
+//Vue.component('add_bazar', require('./components/add_bazar.vue').default);
 Vue.component('toolbar', require('./components/toolbar.vue').default);
+Vue.component('App', require('./App.vue').default);
 
 //Vue.component('HelloWorld', require('./components/HelloWorld.vue').default);
 
@@ -64,6 +66,8 @@ Vue.component('greetings' , {
 
 
 })
+
+
 
 const app = new Vue({
     el: '#app',
