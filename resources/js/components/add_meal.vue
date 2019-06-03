@@ -59,14 +59,14 @@
                     </v-flex>
 
                     <v-flex xs2 >
-                        <v-btn>
+                        <v-btn @click="next_date">
                             next day
                         </v-btn>
 
                     </v-flex>
 
                     <v-flex xs2 >
-                        <v-btn>
+                        <v-btn @click="prev_date">
                             prev day
                         </v-btn>
 
@@ -109,7 +109,18 @@ import format from 'date-fns/format'
         computed: {
             formatedDate () {
                 return this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : '' ;
-            }
+            },
+            
+        },
+        methods: {
+            next_date () {
+                var d = new Date(this.due_date);
+                this.due_date = d.setDate(d.getDate()+1);
+            },
+            prev_date () {
+                var d = new Date(this.due_date);
+                this.due_date = d.setDate(d.getDate()-1);
+            },
         }
     }
 </script>
