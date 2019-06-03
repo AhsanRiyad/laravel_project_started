@@ -2107,11 +2107,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      due_date: null
+      due_date: null,
+      disability: true,
+      ff: 'disabled'
     };
   },
   computed: {
     formatedDate: function formatedDate() {
+      if (this.due_date != null) {
+        this.disability = false;
+      }
+
       return this.due_date ? date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YY (dddd)') : '';
     }
   },
@@ -40124,7 +40130,10 @@ var render = function() {
                                 [
                                   _c(
                                     "v-btn",
-                                    { on: { click: _vm.next_date } },
+                                    {
+                                      attrs: { disabled: _vm.disability },
+                                      on: { click: _vm.next_date }
+                                    },
                                     [
                                       _vm._v(
                                         "\n                        next day\n                    "
@@ -40141,7 +40150,10 @@ var render = function() {
                                 [
                                   _c(
                                     "v-btn",
-                                    { on: { click: _vm.prev_date } },
+                                    {
+                                      attrs: { disabled: _vm.disability },
+                                      on: { click: _vm.prev_date }
+                                    },
                                     [
                                       _vm._v(
                                         "\n                        prev day\n                    "

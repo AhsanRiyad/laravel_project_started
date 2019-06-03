@@ -59,14 +59,14 @@
                     </v-flex>
 
                     <v-flex xs2 >
-                        <v-btn @click="next_date">
+                        <v-btn :disabled="disability" @click="next_date">
                             next day
                         </v-btn>
 
                     </v-flex>
 
                     <v-flex xs2 >
-                        <v-btn @click="prev_date">
+                        <v-btn :disabled="disability"  @click="prev_date">
                             prev day
                         </v-btn>
 
@@ -103,11 +103,17 @@ import format from 'date-fns/format'
         },
         data(){
             return {
-                due_date: null
+                due_date: null,
+                disability : true,
+                ff : 'disabled'
+
             }
         },
         computed: {
             formatedDate () {
+                if(this.due_date!=null){
+                    this.disability = false;
+                }
                 return this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : '' ;
             },
             
