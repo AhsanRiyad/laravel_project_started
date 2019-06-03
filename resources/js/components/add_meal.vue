@@ -11,19 +11,19 @@
             <v-card-text>
 
         
-                <v-form>
+                <v-form ref="form">
                     
                     <v-layout row wrap justify-space-around>
 
                     <v-flex xs5>
 
-                    <v-text-field label="Ataur"></v-text-field>
+                    <v-text-field value='0' label="Ataur" :rules="mealRule"></v-text-field>
                     
                     </v-flex>
                     
                     <v-flex xs5>
 
-                    <v-text-field label="Comment"></v-text-field>
+                    <v-text-field value="regular" label="Comment" :rules="otherRules"></v-text-field>
                 
                     </v-flex>
                     </v-layout>
@@ -33,13 +33,13 @@
 
                     <v-flex xs5>
 
-                    <v-text-field  label="Riyad"></v-text-field>
+                    <v-text-field value="0" label="Riyad" :rules="mealRule"></v-text-field>
                     
                     </v-flex>
                     
                     <v-flex xs5>
 
-                    <v-text-field label="Comment"></v-text-field>
+                    <v-text-field value="regular" label="Comment" :rules="otherRules"></v-text-field>
                 
                     </v-flex>
                     </v-layout>
@@ -49,7 +49,7 @@
 
                     <v-flex xs5 >
                         <v-menu>
-                            <v-text-field  :value="formatedDate" slot="activator" label="date" prepend-icon="date_range">
+                            <v-text-field  :value="formatedDate" slot="activator" label="date" prepend-icon="date_range" :rules="otherRules">
 
                             </v-text-field>
 
@@ -70,6 +70,17 @@
                             prev day
                         </v-btn>
 
+                    </v-flex>
+
+
+
+
+                    </v-layout>
+
+                    <v-layout justify-center>
+                        
+                    <v-flex xs2>
+                        <v-btn @click="submit" color="green" class="white--text">Add Meal</v-btn>>
                     </v-flex>
 
 
@@ -104,17 +115,30 @@ import format from 'date-fns/format'
         data(){
             return {
                 due_date: null,
-                disability : true,
-                ff : 'disabled'
+                disability : false,
+                ff : 'disabled',
+                riyadMeal: 0 , 
+                ataurMeal : 0 , 
+                riyadComment: 'regular',
+                ataurComment: 'regular',
+                mealRule: [
+                 v => v.length > 0 || 'minimum length not full filled',
+                 v => /^[\d.\d]*$/.test(v) || 'must be integer or decimal point value' , 
+
+                ],
+                otherRules: [
+                 v => v.length > 3 || 'minimum length not full filled' ,
+                ]
 
             }
         },
         computed: {
             formatedDate () {
                 if(this.due_date!=null){
-                    this.disability = false;
+                    //this.disability = true;
                 }
-                return this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : '' ;
+                var d = new Date();
+                return this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : format(d , 'Do-MMM-YY (dddd)')  ;
             },
             
         },
@@ -126,6 +150,12 @@ import format from 'date-fns/format'
             prev_date () {
                 var d = new Date(this.due_date);
                 this.due_date = d.setDate(d.getDate()-1);
+            },
+            submit() {
+                if(this.$refs.form.validate()){
+                    console.log('form validated');
+                    
+                }
             },
         }
     }

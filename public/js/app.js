@@ -2100,6 +2100,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2108,17 +2119,29 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       due_date: null,
-      disability: true,
-      ff: 'disabled'
+      disability: false,
+      ff: 'disabled',
+      riyadMeal: 0,
+      ataurMeal: 0,
+      riyadComment: 'regular',
+      ataurComment: 'regular',
+      mealRule: [function (v) {
+        return v.length > 0 || 'minimum length not full filled';
+      }, function (v) {
+        return /^[\d.\d]*$/.test(v) || 'must be integer or decimal point value';
+      }],
+      otherRules: [function (v) {
+        return v.length > 3 || 'minimum length not full filled';
+      }]
     };
   },
   computed: {
     formatedDate: function formatedDate() {
-      if (this.due_date != null) {
-        this.disability = false;
+      if (this.due_date != null) {//this.disability = true;
       }
 
-      return this.due_date ? date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YY (dddd)') : '';
+      var d = new Date();
+      return this.due_date ? date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YY (dddd)') : date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(d, 'Do-MMM-YY (dddd)');
     }
   },
   methods: {
@@ -2129,6 +2152,11 @@ __webpack_require__.r(__webpack_exports__);
     prev_date: function prev_date() {
       var d = new Date(this.due_date);
       this.due_date = d.setDate(d.getDate() - 1);
+    },
+    submit: function submit() {
+      if (this.$refs.form.validate()) {
+        console.log('form validated');
+      }
     }
   }
 });
@@ -40010,6 +40038,7 @@ var render = function() {
                     [
                       _c(
                         "v-form",
+                        { ref: "form" },
                         [
                           _c(
                             "v-layout",
@@ -40026,7 +40055,11 @@ var render = function() {
                                 { attrs: { xs5: "" } },
                                 [
                                   _c("v-text-field", {
-                                    attrs: { label: "Ataur" }
+                                    attrs: {
+                                      value: "0",
+                                      label: "Ataur",
+                                      rules: _vm.mealRule
+                                    }
                                   })
                                 ],
                                 1
@@ -40037,7 +40070,11 @@ var render = function() {
                                 { attrs: { xs5: "" } },
                                 [
                                   _c("v-text-field", {
-                                    attrs: { label: "Comment" }
+                                    attrs: {
+                                      value: "regular",
+                                      label: "Comment",
+                                      rules: _vm.otherRules
+                                    }
                                   })
                                 ],
                                 1
@@ -40061,7 +40098,11 @@ var render = function() {
                                 { attrs: { xs5: "" } },
                                 [
                                   _c("v-text-field", {
-                                    attrs: { label: "Riyad" }
+                                    attrs: {
+                                      value: "0",
+                                      label: "Riyad",
+                                      rules: _vm.mealRule
+                                    }
                                   })
                                 ],
                                 1
@@ -40072,7 +40113,11 @@ var render = function() {
                                 { attrs: { xs5: "" } },
                                 [
                                   _c("v-text-field", {
-                                    attrs: { label: "Comment" }
+                                    attrs: {
+                                      value: "regular",
+                                      label: "Comment",
+                                      rules: _vm.otherRules
+                                    }
                                   })
                                 ],
                                 1
@@ -40103,7 +40148,8 @@ var render = function() {
                                           slot: "activator",
                                           value: _vm.formatedDate,
                                           label: "date",
-                                          "prepend-icon": "date_range"
+                                          "prepend-icon": "date_range",
+                                          rules: _vm.otherRules
                                         },
                                         slot: "activator"
                                       }),
@@ -40160,6 +40206,31 @@ var render = function() {
                                       )
                                     ]
                                   )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-layout",
+                            { attrs: { "justify-center": "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs2: "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "white--text",
+                                      attrs: { color: "green" },
+                                      on: { click: _vm.submit }
+                                    },
+                                    [_vm._v("Add Meal")]
+                                  ),
+                                  _vm._v(">\n                ")
                                 ],
                                 1
                               )
