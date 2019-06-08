@@ -40229,8 +40229,7 @@ var render = function() {
                                       on: { click: _vm.submit }
                                     },
                                     [_vm._v("Add Meal")]
-                                  ),
-                                  _vm._v(">\n                ")
+                                  )
                                 ],
                                 1
                               )
@@ -82183,8 +82182,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Mumti\Desktop\New folder\laravel_project_started\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Mumti\Desktop\New folder\laravel_project_started\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Riyad\Desktop\New folder\laravel_project_started\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Riyad\Desktop\New folder\laravel_project_started\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -80,7 +80,7 @@
                     <v-layout justify-center>
                         
                     <v-flex xs2>
-                        <v-btn @click="submit" color="green" class="white--text">Add Meal</v-btn>>
+                        <v-btn @click="submit" color="green" class="white--text">Add Meal</v-btn>
                     </v-flex>
 
 
