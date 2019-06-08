@@ -1778,6 +1778,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import add_bazar from './components/add_bazar.vue'
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -2093,6 +2095,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2100,6 +2120,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      bazar_name_value: 'null',
       id: 0,
       due_date: new Date(),
       disability: false,
@@ -2121,7 +2142,8 @@ __webpack_require__.r(__webpack_exports__);
         id: 0,
         bazar_name: null,
         bazar_price: null
-      }]
+      }],
+      bazar_name_list: ['oil', 'chal']
     };
   },
   computed: {
@@ -39931,7 +39953,11 @@ var render = function() {
     [
       _c(
         "v-app",
-        [_c("toolbar"), _vm._v(" "), _c("v-content", [_c("router-view")], 1)],
+        [
+          _c("toolbar"),
+          _vm._v(" "),
+          _c("v-content", [_c("keep-alive", [_c("router-view")], 1)], 1)
+        ],
         1
       )
     ],
@@ -40235,7 +40261,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                            next day\n                        "
+                                        "\n\t\t\t\t\t\t\t\t\tnext day\n\t\t\t\t\t\t\t\t"
                                       )
                                     ]
                                   )
@@ -40255,7 +40281,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                            prev day\n                        "
+                                        "\n\t\t\t\t\t\t\t\t\tprev day\n\t\t\t\t\t\t\t\t"
                                       )
                                     ]
                                   )
@@ -40275,11 +40301,26 @@ var render = function() {
                                   "v-flex",
                                   { attrs: { xs3: "", "offset-xs1": "" } },
                                   [
-                                    _c("v-text-field", {
+                                    _c("p", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\tName\n\t\t\t\t\t\t\t"
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("v-overflow-btn", {
                                       attrs: {
-                                        value: "0",
-                                        label: "Name",
-                                        rules: _vm.mealRule
+                                        items: _vm.bazar_name_list,
+                                        label: "Bazar name",
+                                        editable: "",
+                                        "item-value": _vm.bazar_name_value,
+                                        input_value: _vm.bazar_name_value
+                                      },
+                                      model: {
+                                        value: _vm.bazar_name_value,
+                                        callback: function($$v) {
+                                          _vm.bazar_name_value = $$v
+                                        },
+                                        expression: "bazar_name_value"
                                       }
                                     })
                                   ],
@@ -40290,11 +40331,18 @@ var render = function() {
                                   "v-flex",
                                   { attrs: { xs3: "", "offset-xs1": "" } },
                                   [
-                                    _c("v-text-field", {
+                                    _c("p", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\tTaka\n\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("v-overflow-btn", {
                                       attrs: {
-                                        value: "0",
-                                        label: "Taka",
-                                        rules: _vm.mealRule
+                                        items: _vm.bazar_taka_list,
+                                        label: "Bazar price",
+                                        editable: "",
+                                        "item-value": _vm.bazar_taka_value
                                       }
                                     })
                                   ],
@@ -40308,6 +40356,7 @@ var render = function() {
                                     _c(
                                       "v-btn",
                                       {
+                                        staticClass: "mt-5",
                                         attrs: { disabled: _vm.disability },
                                         on: {
                                           click: function($event) {
@@ -40317,7 +40366,7 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                            Delete\n                        "
+                                          "\n\t\t\t\t\t\t\t\t\tDelete\n\t\t\t\t\t\t\t\t"
                                         )
                                       ]
                                     )
@@ -40332,12 +40381,13 @@ var render = function() {
                                     _c(
                                       "v-btn",
                                       {
+                                        staticClass: "mt-5",
                                         attrs: { disabled: _vm.disability },
                                         on: { click: _vm.add_item }
                                       },
                                       [
                                         _vm._v(
-                                          "\n                            Add\n                        "
+                                          "\n\t\t\t\t\t\t\t\t\tAdd\n\t\t\t\t\t\t\t\t"
                                         )
                                       ]
                                     )

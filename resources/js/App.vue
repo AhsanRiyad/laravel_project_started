@@ -4,7 +4,9 @@
     <v-app>
       <toolbar/>  
         <v-content>
+          <keep-alive>
           <router-view></router-view>
+          </keep-alive>
         </v-content>
 
     </v-app>
