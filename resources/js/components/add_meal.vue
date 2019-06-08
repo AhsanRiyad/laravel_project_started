@@ -49,7 +49,7 @@
 
                     <v-flex xs5 >
                         <v-menu>
-                            <v-text-field  :value="formatedDate" slot="activator" label="date" prepend-icon="date_range" :rules="otherRules">
+                            <v-text-field  :value="formatedDate" slot="activator" label="Date" prepend-icon="date_range" :rules="otherRules">
 
                             </v-text-field>
 
@@ -80,7 +80,7 @@
                     <v-layout justify-center>
                         
                     <v-flex xs2>
-                        <v-btn @click="submit" color="green" class="white--text">Add Meal</v-btn>
+                        <v-btn @click="submit" color="green" class="white--text" :loading="loading_status">Add Meal</v-btn>
                     </v-flex>
 
 
@@ -123,12 +123,13 @@ import format from 'date-fns/format'
                 ataurComment: 'regular',
                 mealRule: [
                  v => v.length > 0 || 'minimum length not full filled',
-                 v => /^[\d.\d]*$/.test(v) || 'must be integer or decimal point value' , 
+                 v => /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value' , 
 
                 ],
                 otherRules: [
                  v => v.length > 3 || 'minimum length not full filled' ,
-                ]
+                ],
+                loading_status : false,
 
             }
         },
@@ -154,6 +155,8 @@ import format from 'date-fns/format'
             submit() {
                 if(this.$refs.form.validate()){
                     console.log('form validated');
+                    this.loading_status = true;
+
                     
                 }
             },

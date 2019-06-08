@@ -2128,11 +2128,12 @@ __webpack_require__.r(__webpack_exports__);
       mealRule: [function (v) {
         return v.length > 0 || 'minimum length not full filled';
       }, function (v) {
-        return /^[\d.\d]*$/.test(v) || 'must be integer or decimal point value';
+        return /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value';
       }],
       otherRules: [function (v) {
         return v.length > 3 || 'minimum length not full filled';
-      }]
+      }],
+      loading_status: false
     };
   },
   computed: {
@@ -2156,6 +2157,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       if (this.$refs.form.validate()) {
         console.log('form validated');
+        this.loading_status = true;
       }
     }
   }
@@ -40147,7 +40149,7 @@ var render = function() {
                                         attrs: {
                                           slot: "activator",
                                           value: _vm.formatedDate,
-                                          label: "date",
+                                          label: "Date",
                                           "prepend-icon": "date_range",
                                           rules: _vm.otherRules
                                         },
@@ -40225,7 +40227,10 @@ var render = function() {
                                     "v-btn",
                                     {
                                       staticClass: "white--text",
-                                      attrs: { color: "green" },
+                                      attrs: {
+                                        color: "green",
+                                        loading: _vm.loading_status
+                                      },
                                       on: { click: _vm.submit }
                                     },
                                     [_vm._v("Add Meal")]
