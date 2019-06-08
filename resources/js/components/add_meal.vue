@@ -114,7 +114,7 @@ import format from 'date-fns/format'
         },
         data(){
             return {
-                due_date: null,
+                due_date: new Date(),
                 disability : false,
                 ff : 'disabled',
                 riyadMeal: 0 , 

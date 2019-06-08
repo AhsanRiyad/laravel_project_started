@@ -1973,6 +1973,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var date_fns_format__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! date-fns/format */ "./node_modules/date-fns/format/index.js");
+/* harmony import */ var date_fns_format__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(date_fns_format__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1986,9 +1988,183 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log('add meal Component mounted.');
+  },
+  data: function data() {
+    return {
+      id: 0,
+      due_date: new Date(),
+      disability: false,
+      ff: 'disabled',
+      riyadMeal: 0,
+      ataurMeal: 0,
+      riyadComment: 'regular',
+      ataurComment: 'regular',
+      mealRule: [function (v) {
+        return v.length > 0 || 'minimum length not full filled';
+      }, function (v) {
+        return /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value';
+      }],
+      otherRules: [function (v) {
+        return v.length > 3 || 'minimum length not full filled';
+      }],
+      loading_status: false,
+      bazar_details: [{
+        id: 0,
+        bazar_name: null,
+        bazar_price: null
+      }]
+    };
+  },
+  computed: {
+    formatedDate: function formatedDate() {
+      if (this.due_date != null) {//this.disability = true;
+      }
+
+      var d = new Date();
+      return this.due_date ? date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YY (dddd)') : date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(d, 'Do-MMM-YY (dddd)');
+    }
+  },
+  methods: {
+    next_date: function next_date() {
+      var d = new Date(this.due_date);
+      this.due_date = d.setDate(d.getDate() + 1);
+    },
+    prev_date: function prev_date() {
+      var d = new Date(this.due_date);
+      this.due_date = d.setDate(d.getDate() - 1);
+    },
+    delete_item: function delete_item(id) {
+      //alert(this.bazar_details.length+ ' ' + id);
+      var index = this.bazar_details.map(function (e) {
+        return e.id;
+      }).indexOf(id);
+
+      if (this.bazar_details.length > 1) {
+        this.bazar_details.splice(index, 1);
+      }
+    },
+    add_item: function add_item() {
+      this.bazar_details.push({
+        id: ++this.id,
+        bazar_name: null,
+        bazar_price: null
+      });
+    },
+    submit: function submit() {
+      if (this.$refs.form.validate()) {
+        console.log('form validated');
+        this.loading_status = true;
+      }
+    }
   }
 });
 
@@ -2118,7 +2294,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      due_date: null,
+      due_date: new Date(),
       disability: false,
       ff: 'disabled',
       riyadMeal: 0,
@@ -39986,18 +40162,239 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "v-container",
+    [
+      _c(
+        "v-layout",
+        { attrs: { row: "", wrap: "" } },
+        [
+          _c(
+            "v-flex",
+            { attrs: { xs12: "" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c("v-card-title", [_c("h2", [_vm._v("Add Bazar")])]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-form",
+                        { ref: "form" },
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "", wrap: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs5: "", "offset-xs1": "" } },
+                                [
+                                  _c(
+                                    "v-menu",
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          slot: "activator",
+                                          value: _vm.formatedDate,
+                                          label: "Date",
+                                          "prepend-icon": "date_range",
+                                          rules: _vm.otherRules
+                                        },
+                                        slot: "activator"
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-date-picker", {
+                                        model: {
+                                          value: _vm.due_date,
+                                          callback: function($$v) {
+                                            _vm.due_date = $$v
+                                          },
+                                          expression: "due_date"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs2: "", "offset-xs2": "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { disabled: _vm.disability },
+                                      on: { click: _vm.next_date }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            next day\n                        "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs2: "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { disabled: _vm.disability },
+                                      on: { click: _vm.prev_date }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            prev day\n                        "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.bazar_details, function(b) {
+                            return _c(
+                              "v-layout",
+                              { key: b.id, attrs: { row: "", wrap: "" } },
+                              [
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs3: "", "offset-xs1": "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        value: "0",
+                                        label: "Name",
+                                        rules: _vm.mealRule
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs3: "", "offset-xs1": "" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        value: "0",
+                                        label: "Taka",
+                                        rules: _vm.mealRule
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs2: "" } },
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { disabled: _vm.disability },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.delete_item(b.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            Delete\n                        "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-flex",
+                                  { attrs: { xs2: "" } },
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { disabled: _vm.disability },
+                                        on: { click: _vm.add_item }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            Add\n                        "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-layout",
+                            { attrs: { "justify-center": "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs2: "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "white--text",
+                                      attrs: {
+                                        color: "green",
+                                        loading: _vm.loading_status
+                                      },
+                                      on: { click: _vm.submit }
+                                    },
+                                    [_vm._v("Add Meal")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h1", [_vm._v("\r\n\tthis is a add bazar component\r\n")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
