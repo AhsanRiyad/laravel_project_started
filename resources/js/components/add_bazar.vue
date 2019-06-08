@@ -53,42 +53,37 @@
 							<v-layout row wrap v-for="b in bazar_details" :key="b.id" >
 
 								<v-flex xs3 offset-xs1>
-								<p>
-									Name
-								</p>
-									<v-overflow-btn
+									<v-combobox
 									:items="bazar_name_list"
 									label="Bazar name"
 									editable
 									v-model="bazar_name_value"
 									:item-value="bazar_name_value"
 									:input_value="bazar_name_value"
-									></v-overflow-btn>
+									></v-combobox>
 
 								</v-flex>
 
 								<v-flex xs3  offset-xs1>
-									<p>
-										Taka
-									</p>
-									<v-overflow-btn
+					
+									<v-combobox
 									:items="bazar_taka_list"
 									label="Bazar price"
 									editable
 									:item-value="bazar_taka_value"
-									></v-overflow-btn>
+									></v-combobox>
 
 								</v-flex>
 
 								<v-flex xs2 >
-									<v-btn class="mt-5" :disabled="disability" @click="delete_item(b.id)">
+									<v-btn  :disabled="disability" @click="delete_item(b.id)">
 										Delete
 									</v-btn>
 
 								</v-flex>
 
 								<v-flex xs2 >
-									<v-btn class="mt-5" :disabled="disability" @click="add_item">
+									<v-btn  :disabled="disability" @click="add_item">
 										Add
 									</v-btn>
 
@@ -146,7 +141,7 @@
 			return {
 				bazar_name_value : 'null',
 				id : 0 ,
-				due_date: new Date(),
+				due_date: null,
 				disability : false,
 				ff : 'disabled',
 				riyadMeal: 0 , 
@@ -185,12 +180,24 @@
         },
         methods: {
         	next_date () {
+
+        		if(this.due_date != null){
+
         		var d = new Date(this.due_date);
         		this.due_date = d.setDate(d.getDate()+1);
+        	}else{
+        		var d = new Date();
+        		this.due_date = d.setDate(d.getDate()+1);
+        	}
         	},
         	prev_date () {
+        		if(this.due_date != null){
         		var d = new Date(this.due_date);
         		this.due_date = d.setDate(d.getDate()-1);
+        	}else{
+        		var d = new Date();
+        		this.due_date = d.setDate(d.getDate()+1);
+        	}
         	},
         	delete_item (id){
             	//alert(this.bazar_details.length+ ' ' + id);

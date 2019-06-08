@@ -2108,11 +2108,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2122,7 +2117,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       bazar_name_value: 'null',
       id: 0,
-      due_date: new Date(),
+      due_date: null,
       disability: false,
       ff: 'disabled',
       riyadMeal: 0,
@@ -2157,12 +2152,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     next_date: function next_date() {
-      var d = new Date(this.due_date);
-      this.due_date = d.setDate(d.getDate() + 1);
+      if (this.due_date != null) {
+        var d = new Date(this.due_date);
+        this.due_date = d.setDate(d.getDate() + 1);
+      } else {
+        var d = new Date();
+        this.due_date = d.setDate(d.getDate() + 1);
+      }
     },
     prev_date: function prev_date() {
-      var d = new Date(this.due_date);
-      this.due_date = d.setDate(d.getDate() - 1);
+      if (this.due_date != null) {
+        var d = new Date(this.due_date);
+        this.due_date = d.setDate(d.getDate() - 1);
+      } else {
+        var d = new Date();
+        this.due_date = d.setDate(d.getDate() + 1);
+      }
     },
     delete_item: function delete_item(id) {
       //alert(this.bazar_details.length+ ' ' + id);
@@ -2316,7 +2321,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      due_date: new Date(),
+      due_date: null,
       disability: false,
       ff: 'disabled',
       riyadMeal: 0,
@@ -2345,12 +2350,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     next_date: function next_date() {
-      var d = new Date(this.due_date);
-      this.due_date = d.setDate(d.getDate() + 1);
+      if (this.due_date != null) {
+        var d = new Date(this.due_date);
+        this.due_date = d.setDate(d.getDate() + 1);
+      } else {
+        var d = new Date();
+        this.due_date = d.setDate(d.getDate() + 1);
+      }
     },
     prev_date: function prev_date() {
-      var d = new Date(this.due_date);
-      this.due_date = d.setDate(d.getDate() - 1);
+      if (this.due_date != null) {
+        var d = new Date(this.due_date);
+        this.due_date = d.setDate(d.getDate() - 1);
+      } else {
+        var d = new Date();
+        this.due_date = d.setDate(d.getDate() + 1);
+      }
     },
     submit: function submit() {
       if (this.$refs.form.validate()) {
@@ -40301,13 +40316,7 @@ var render = function() {
                                   "v-flex",
                                   { attrs: { xs3: "", "offset-xs1": "" } },
                                   [
-                                    _c("p", [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\tName\n\t\t\t\t\t\t\t"
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("v-overflow-btn", {
+                                    _c("v-combobox", {
                                       attrs: {
                                         items: _vm.bazar_name_list,
                                         label: "Bazar name",
@@ -40331,13 +40340,7 @@ var render = function() {
                                   "v-flex",
                                   { attrs: { xs3: "", "offset-xs1": "" } },
                                   [
-                                    _c("p", [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\tTaka\n\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("v-overflow-btn", {
+                                    _c("v-combobox", {
                                       attrs: {
                                         items: _vm.bazar_taka_list,
                                         label: "Bazar price",
@@ -40356,7 +40359,6 @@ var render = function() {
                                     _c(
                                       "v-btn",
                                       {
-                                        staticClass: "mt-5",
                                         attrs: { disabled: _vm.disability },
                                         on: {
                                           click: function($event) {
@@ -40381,7 +40383,6 @@ var render = function() {
                                     _c(
                                       "v-btn",
                                       {
-                                        staticClass: "mt-5",
                                         attrs: { disabled: _vm.disability },
                                         on: { click: _vm.add_item }
                                       },

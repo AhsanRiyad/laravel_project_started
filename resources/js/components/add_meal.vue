@@ -114,7 +114,7 @@ import format from 'date-fns/format'
         },
         data(){
             return {
-                due_date: new Date(),
+                due_date: null,
                 disability : false,
                 ff : 'disabled',
                 riyadMeal: 0 , 
@@ -139,18 +139,31 @@ import format from 'date-fns/format'
                     //this.disability = true;
                 }
                 var d = new Date();
+
                 return this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : format(d , 'Do-MMM-YY (dddd)')  ;
             },
             
         },
         methods: {
             next_date () {
+
+                if(this.due_date != null){
+
                 var d = new Date(this.due_date);
                 this.due_date = d.setDate(d.getDate()+1);
+            }else{
+                var d = new Date();
+                this.due_date = d.setDate(d.getDate()+1);
+            }
             },
             prev_date () {
+                if(this.due_date != null){
                 var d = new Date(this.due_date);
                 this.due_date = d.setDate(d.getDate()-1);
+            }else{
+                var d = new Date();
+                this.due_date = d.setDate(d.getDate()+1);
+            }
             },
             submit() {
                 if(this.$refs.form.validate()){
