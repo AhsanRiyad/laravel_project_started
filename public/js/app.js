@@ -2108,6 +2108,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2115,6 +2147,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      column: null,
+      row: 'Bazar',
       bazar_name_value: 'null',
       id: 0,
       due_date: null,
@@ -2130,13 +2164,14 @@ __webpack_require__.r(__webpack_exports__);
         return /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value';
       }],
       otherRules: [function (v) {
-        return v.length > 3 || 'minimum length not full filled';
+        return v.length >= 3 || 'minimum length not full filled';
       }],
       loading_status: false,
       bazar_details: [{
         id: 0,
-        bazar_name: null,
-        bazar_price: null
+        bazar_name: 'chal',
+        bazar_price: 0,
+        row: 'Bazar'
       }],
       bazar_name_list: ['oil', 'chal']
     };
@@ -2183,7 +2218,8 @@ __webpack_require__.r(__webpack_exports__);
       this.bazar_details.push({
         id: ++this.id,
         bazar_name: null,
-        bazar_price: null
+        bazar_price: null,
+        row: 'Bazar'
       });
     },
     submit: function submit() {
@@ -40204,59 +40240,105 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-container",
+    "div",
     [
       _c(
-        "v-layout",
-        { attrs: { row: "", wrap: "" } },
+        "v-container",
         [
           _c(
-            "v-flex",
-            { attrs: { xs12: "" } },
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
             [
               _c(
-                "v-card",
+                "v-flex",
+                { attrs: { xs12: "" } },
                 [
-                  _c("v-card-title", [_c("h2", [_vm._v("Add Bazar")])]),
-                  _vm._v(" "),
                   _c(
-                    "v-card-text",
+                    "v-card",
                     [
+                      _c("v-card-title", [_c("h2", [_vm._v("Add Bazar")])]),
+                      _vm._v(" "),
                       _c(
-                        "v-form",
-                        { ref: "form" },
+                        "v-card-text",
                         [
                           _c(
-                            "v-layout",
-                            { attrs: { row: "", wrap: "" } },
+                            "v-form",
+                            { ref: "form" },
                             [
                               _c(
-                                "v-flex",
-                                { attrs: { xs5: "", "offset-xs1": "" } },
+                                "v-layout",
+                                { attrs: { row: "", wrap: "" } },
                                 [
                                   _c(
-                                    "v-menu",
+                                    "v-flex",
+                                    { staticClass: "ml-5", attrs: { xs4: "" } },
                                     [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          slot: "activator",
-                                          value: _vm.formatedDate,
-                                          label: "Date",
-                                          "prepend-icon": "date_range",
-                                          rules: _vm.otherRules
+                                      _c(
+                                        "v-menu",
+                                        [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              slot: "activator",
+                                              value: _vm.formatedDate,
+                                              label: "Date",
+                                              "prepend-icon": "date_range",
+                                              rules: _vm.otherRules
+                                            },
+                                            slot: "activator"
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-date-picker", {
+                                            model: {
+                                              value: _vm.due_date,
+                                              callback: function($$v) {
+                                                _vm.due_date = $$v
+                                              },
+                                              expression: "due_date"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { xs2: "", "offset-xs2": "" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { disabled: _vm.disability },
+                                          on: { click: _vm.next_date }
                                         },
-                                        slot: "activator"
-                                      }),
-                                      _vm._v(" "),
-                                      _c("v-date-picker", {
-                                        model: {
-                                          value: _vm.due_date,
-                                          callback: function($$v) {
-                                            _vm.due_date = $$v
-                                          },
-                                          expression: "due_date"
-                                        }
-                                      })
+                                        [
+                                          _vm._v(
+                                            "\r\n\t\t\t\t\t\t\t\t\t\tnext day\r\n\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { xs2: "" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { disabled: _vm.disability },
+                                          on: { click: _vm.prev_date }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\r\n\t\t\t\t\t\t\t\t\t\tprev day\r\n\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
+                                      )
                                     ],
                                     1
                                   )
@@ -40264,170 +40346,195 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs2: "", "offset-xs2": "" } },
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { disabled: _vm.disability },
-                                      on: { click: _vm.next_date }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\tnext day\n\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs2: "" } },
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { disabled: _vm.disability },
-                                      on: { click: _vm.prev_date }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\tprev day\n\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _vm._l(_vm.bazar_details, function(b) {
-                            return _c(
-                              "v-layout",
-                              { key: b.id, attrs: { row: "", wrap: "" } },
-                              [
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs3: "", "offset-xs1": "" } },
-                                  [
-                                    _c("v-combobox", {
-                                      attrs: {
-                                        items: _vm.bazar_name_list,
-                                        label: "Bazar name",
-                                        editable: "",
-                                        "item-value": _vm.bazar_name_value,
-                                        input_value: _vm.bazar_name_value
-                                      },
-                                      model: {
-                                        value: _vm.bazar_name_value,
-                                        callback: function($$v) {
-                                          _vm.bazar_name_value = $$v
-                                        },
-                                        expression: "bazar_name_value"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs3: "", "offset-xs1": "" } },
-                                  [
-                                    _c("v-combobox", {
-                                      attrs: {
-                                        items: _vm.bazar_taka_list,
-                                        label: "Bazar price",
-                                        editable: "",
-                                        "item-value": _vm.bazar_taka_value
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs2: "" } },
+                              _vm._l(_vm.bazar_details, function(b) {
+                                return _c(
+                                  "v-layout",
+                                  { key: b.id, attrs: { row: "", wrap: "" } },
                                   [
                                     _c(
-                                      "v-btn",
+                                      "v-flex",
                                       {
-                                        attrs: { disabled: _vm.disability },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.delete_item(b.id)
+                                        staticClass: "ml-5 mt-4",
+                                        attrs: { xs3: "" }
+                                      },
+                                      [
+                                        _c("v-combobox", {
+                                          attrs: {
+                                            items: _vm.bazar_name_list,
+                                            label: "Bazar name",
+                                            editable: "",
+                                            "item-value": b.bazar_name_value,
+                                            input_value: b.bazar_name_value,
+                                            rules: _vm.otherRules
+                                          },
+                                          model: {
+                                            value: b.bazar_name_value,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                b,
+                                                "bazar_name_value",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "b.bazar_name_value"
                                           }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\tDelete\n\t\t\t\t\t\t\t\t"
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs2: "" } },
-                                  [
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
                                     _c(
-                                      "v-btn",
+                                      "v-flex",
                                       {
-                                        attrs: { disabled: _vm.disability },
-                                        on: { click: _vm.add_item }
+                                        staticClass: "ml-4 mt-4",
+                                        attrs: { xs2: "" }
                                       },
                                       [
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\tAdd\n\t\t\t\t\t\t\t\t"
+                                        _c("v-combobox", {
+                                          attrs: {
+                                            items: _vm.bazar_taka_list,
+                                            label: "Bazar price",
+                                            editable: "",
+                                            "item-value": b.bazar_price,
+                                            rules: _vm.mealRule
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-flex",
+                                      {
+                                        staticClass: "ml-4",
+                                        attrs: { xs2: "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-radio-group",
+                                          {
+                                            attrs: { row: "" },
+                                            model: {
+                                              value: b.row,
+                                              callback: function($$v) {
+                                                _vm.$set(b, "row", $$v)
+                                              },
+                                              expression: "b.row"
+                                            }
+                                          },
+                                          [
+                                            _c("v-radio", {
+                                              attrs: {
+                                                label: "Bazar",
+                                                value: "Bazar"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("v-radio", {
+                                              attrs: {
+                                                label: "Constant",
+                                                value: "Constant"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("v-radio", {
+                                              attrs: {
+                                                label: "Loan",
+                                                value: "Loan"
+                                              }
+                                            })
+                                          ],
+                                          1
                                         )
-                                      ]
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-flex",
+                                      {
+                                        staticClass: "mt-4",
+                                        attrs: { xs2: "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: { disabled: _vm.disability },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.delete_item(b.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\r\n\t\t\t\t\t\t\t\t\t\tDelete\r\n\t\t\t\t\t\t\t\t\t"
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-flex",
+                                      {
+                                        staticClass: "mt-4",
+                                        attrs: { xs2: "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: { disabled: _vm.disability },
+                                            on: { click: _vm.add_item }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\r\n\t\t\t\t\t\t\t\t\t\tAdd\r\n\t\t\t\t\t\t\t\t\t"
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
                                     )
                                   ],
                                   1
                                 )
-                              ],
-                              1
-                            )
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-layout",
-                            { attrs: { "justify-center": "" } },
-                            [
+                              }),
+                              _vm._v(" "),
                               _c(
-                                "v-flex",
-                                { attrs: { xs2: "" } },
+                                "v-layout",
+                                { attrs: { "justify-center": "" } },
                                 [
                                   _c(
-                                    "v-btn",
-                                    {
-                                      staticClass: "white--text",
-                                      attrs: {
-                                        color: "green",
-                                        loading: _vm.loading_status
-                                      },
-                                      on: { click: _vm.submit }
-                                    },
-                                    [_vm._v("Add Meal")]
+                                    "v-flex",
+                                    { attrs: { xs2: "" } },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "white--text",
+                                          attrs: {
+                                            color: "green",
+                                            loading: _vm.loading_status
+                                          },
+                                          on: { click: _vm.submit }
+                                        },
+                                        [_vm._v("Add Meal")]
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
                               )
                             ],
-                            1
+                            2
                           )
                         ],
-                        2
+                        1
                       )
                     ],
                     1

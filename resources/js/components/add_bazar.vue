@@ -1,5 +1,7 @@
 <template>
 
+
+<div>
 	<v-container>
 		<v-layout row wrap>
 
@@ -18,7 +20,7 @@
 
 							<v-layout row wrap  >
 
-								<v-flex xs5 offset-xs1 >
+								<v-flex xs4 class="ml-5" >
 									<v-menu>
 										<v-text-field  :value="formatedDate" slot="activator" label="Date" prepend-icon="date_range" :rules="otherRules">
 
@@ -52,37 +54,54 @@
 
 							<v-layout row wrap v-for="b in bazar_details" :key="b.id" >
 
-								<v-flex xs3 offset-xs1>
+								<v-flex xs3 class="ml-5 mt-4" >
 									<v-combobox
 									:items="bazar_name_list"
 									label="Bazar name"
 									editable
-									v-model="bazar_name_value"
-									:item-value="bazar_name_value"
-									:input_value="bazar_name_value"
-									></v-combobox>
+									v-model="b.bazar_name_value"
+									:item-value="b.bazar_name_value"
+									:input_value="b.bazar_name_value"
+									:rules="otherRules" ></v-combobox>
 
 								</v-flex>
 
-								<v-flex xs3  offset-xs1>
-					
+								<v-flex xs2 class="ml-4 mt-4">
+
 									<v-combobox
 									:items="bazar_taka_list"
 									label="Bazar price"
 									editable
-									:item-value="bazar_taka_value"
+									:item-value="b.bazar_price"
+									
+									:rules="mealRule"
+
 									></v-combobox>
 
 								</v-flex>
 
-								<v-flex xs2 >
+								<v-flex xs2 class="ml-4">
+					
+    				<v-radio-group v-model="b.row" row >
+     				<v-radio label="Bazar"  value="Bazar"></v-radio>
+     				<v-radio label="Constant" value="Constant"></v-radio>
+     				<v-radio label="Loan" value="Loan"></v-radio>
+   				 	</v-radio-group>
+   				 
+  
+
+								</v-flex>
+
+
+
+								<v-flex xs2 class="mt-4" >
 									<v-btn  :disabled="disability" @click="delete_item(b.id)">
 										Delete
 									</v-btn>
 
 								</v-flex>
 
-								<v-flex xs2 >
+								<v-flex xs2 class="mt-4">
 									<v-btn  :disabled="disability" @click="add_item">
 										Add
 									</v-btn>
@@ -105,7 +124,7 @@
 							<v-layout justify-center>
 
 								<v-flex xs2>
-									<v-btn @click="submit" color="green" class="white--text" :loading="loading_status">Add Meal</v-btn>
+									<v-btn  @click="submit" color="green" class="white--text" :loading="loading_status">Add Meal</v-btn>
 								</v-flex>
 
 
@@ -126,6 +145,19 @@
 
 
 
+
+
+
+		
+
+
+
+
+
+
+	</div>
+
+
 </template>
 
 
@@ -139,6 +171,8 @@
 		},
 		data(){
 			return {
+				column: null,
+        		row: 'Bazar',
 				bazar_name_value : 'null',
 				id : 0 ,
 				due_date: null,
@@ -154,12 +188,12 @@
 
 				],
 				otherRules: [
-				v => v.length > 3 || 'minimum length not full filled' ,
+				v => v.length >= 3 || 'minimum length not full filled' ,
 				],
 				loading_status : false,
 
 				bazar_details : [ 
-				{ id: 0 , bazar_name: null  , bazar_price : null } ,
+				{ id: 0 , bazar_name: 'chal'  , bazar_price : 0 , row : 'Bazar' , } ,
 
 				], 
 				bazar_name_list : [
@@ -183,21 +217,21 @@
 
         		if(this.due_date != null){
 
-        		var d = new Date(this.due_date);
-        		this.due_date = d.setDate(d.getDate()+1);
-        	}else{
-        		var d = new Date();
-        		this.due_date = d.setDate(d.getDate()+1);
-        	}
+        			var d = new Date(this.due_date);
+        			this.due_date = d.setDate(d.getDate()+1);
+        		}else{
+        			var d = new Date();
+        			this.due_date = d.setDate(d.getDate()+1);
+        		}
         	},
         	prev_date () {
         		if(this.due_date != null){
-        		var d = new Date(this.due_date);
-        		this.due_date = d.setDate(d.getDate()-1);
-        	}else{
-        		var d = new Date();
-        		this.due_date = d.setDate(d.getDate()+1);
-        	}
+        			var d = new Date(this.due_date);
+        			this.due_date = d.setDate(d.getDate()-1);
+        		}else{
+        			var d = new Date();
+        			this.due_date = d.setDate(d.getDate()+1);
+        		}
         	},
         	delete_item (id){
             	//alert(this.bazar_details.length+ ' ' + id);
@@ -209,7 +243,7 @@
             	
             },
             add_item (){
-            	this.bazar_details.push({id: ++this.id , bazar_name: null  , bazar_price : null});
+            	this.bazar_details.push({id: ++this.id , bazar_name: null  , bazar_price : null , row : 'Bazar'});
             },
             submit() {
             	if(this.$refs.form.validate()){
