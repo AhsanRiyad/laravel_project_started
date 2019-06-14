@@ -1,118 +1,116 @@
 <template>
 
 
-<div>
-	<v-container>
-		<v-layout row wrap>
+	<div>
+		<v-container>
+			<v-layout row wrap>
 
-			<v-flex xs12>
-				<v-card>
-					<v-card-title>
-						<h2>Add Bazar</h2>    
-					</v-card-title>
-					<v-card-text>
-
-
-						<v-form ref="form">
+				<v-flex xs12>
+					<v-card>
+						<v-card-title>
+							<h2>Add Bazar</h2>    
+						</v-card-title>
+						<v-card-text>
 
 
-
-
-							<v-layout row wrap  >
-
-								<v-flex xs4 class="ml-5" >
-									<v-menu>
-										<v-text-field  :value="formatedDate" slot="activator" label="Date" prepend-icon="date_range" :rules="otherRules">
-
-										</v-text-field>
-
-										<v-date-picker v-model="due_date"></v-date-picker>
-									</v-menu>
-
-								</v-flex>
-
-								<v-flex xs2 offset-xs2>
-									<v-btn :disabled="disability" @click="next_date">
-										next day
-									</v-btn>
-
-								</v-flex>
-
-								<v-flex xs2 >
-									<v-btn :disabled="disability"  @click="prev_date">
-										prev day
-									</v-btn>
-
-								</v-flex>
+							<v-form ref="form">
 
 
 
 
-							</v-layout>
+								<v-layout row wrap  >
+
+									<v-flex xs4 class="ml-5" >
+										<v-menu>
+											<v-text-field  :value="formatedDate" slot="activator" label="Date" prepend-icon="date_range" :rules="otherRules">
+
+											</v-text-field>
+
+											<v-date-picker v-model="due_date"></v-date-picker>
+										</v-menu>
+
+									</v-flex>
+
+									<v-flex xs2 offset-xs2>
+										<v-btn :disabled="disability" @click="next_date">
+											next day
+										</v-btn>
+
+									</v-flex>
+
+									<v-flex xs2 >
+										<v-btn :disabled="disability"  @click="prev_date">
+											prev day
+										</v-btn>
+
+									</v-flex>
 
 
 
-							<v-layout row wrap v-for="b in bazar_details" :key="b.id" >
 
-								<v-flex xs3 class="ml-5 mt-4" >
-									<v-combobox
-									:items="bazar_name_list"
-									label="Bazar name"
-									editable
-									v-model="b.bazar_name_value"
-									:item-value="b.bazar_name_value"
-									:input_value="b.bazar_name_value"
-									:rules="otherRules" ></v-combobox>
-
-								</v-flex>
-
-								<v-flex xs2 class="ml-4 mt-4">
-
-									<v-combobox
-									:items="bazar_taka_list"
-									label="Bazar price"
-									editable
-									:item-value="b.bazar_price"
-									
-									:rules="mealRule"
-
-									></v-combobox>
-
-								</v-flex>
-
-								<v-flex xs2 class="ml-4">
-					
-    				<v-radio-group v-model="b.row" row >
-     				<v-radio label="Bazar"  value="Bazar"></v-radio>
-     				<v-radio label="Constant" value="Constant"></v-radio>
-     				<v-radio label="Loan" value="Loan"></v-radio>
-   				 	</v-radio-group>
-   				 
-  
-
-								</v-flex>
+								</v-layout>
 
 
 
-								<v-flex xs2 class="mt-4" >
-									<v-btn  :disabled="disability" @click="delete_item(b.id)">
-										Delete
-									</v-btn>
+								<v-layout row wrap v-for="b in bazar_details" :key="b.id" >
 
-								</v-flex>
+									<v-flex xs3 class="ml-5 mt-4" >
+										<v-combobox
+										:items="bazar_name_list"
+										label="Bazar name"
+										editable
+										v-model="b.bazar_name_value"
+										
+										:input_value="b.bazar_name_value"
+										:rules="otherRules" ></v-combobox>
 
-								<v-flex xs2 class="mt-4">
-									<v-btn  :disabled="disability" @click="add_item">
-										Add
-									</v-btn>
+									</v-flex>
 
-								</v-flex>
+									<v-flex xs2 class="ml-4 mt-4">
+
+										<v-combobox
+										:items="bazar_taka_list"
+										label="Bazar price"
+										editable
+										:item-value="b.bazar_price"
+
+										:rules="mealRule"
+
+										></v-combobox>
+
+									</v-flex>
+
+									<v-flex xs2 class="ml-4">
+
+										<v-radio-group v-model="b.row" row >
+											<v-radio label="Bazar"  value="Bazar"></v-radio>
+											<v-radio label="Constant" value="Constant"></v-radio>
+											<v-radio label="Loan" value="Loan"></v-radio>
+										</v-radio-group>
 
 
 
-							</v-layout>
+									</v-flex>
 
 
+
+									<v-flex xs2 class="mt-4" >
+										<v-btn  :disabled="disability" @click="delete_item(b.id)">
+											Delete
+										</v-btn>
+
+									</v-flex>
+
+									<v-flex xs2 class="mt-4">
+										<v-btn  :disabled="disability" @click="add_item">
+											Add
+										</v-btn>
+
+									</v-flex>
+
+
+
+								</v-layout>
 
 
 
@@ -121,27 +119,29 @@
 
 
 
-							<v-layout justify-center>
-
-								<v-flex xs2>
-									<v-btn  @click="submit" color="green" class="white--text" :loading="loading_status">Add Meal</v-btn>
-								</v-flex>
 
 
-							</v-layout>
+								<v-layout justify-center>
 
-						</v-form>
-
-
-
-					</v-card-text>
+									<v-flex xs2>
+										<v-btn  @click.prevent="submit" color="green" class="white--text" :loading="loading_status">Add Meal</v-btn>
+									</v-flex>
 
 
-				</v-card>
+								</v-layout>
 
-			</v-flex>
-		</v-layout>
-	</v-container>
+							</v-form>
+
+
+
+						</v-card-text>
+
+
+					</v-card>
+
+				</v-flex>
+			</v-layout>
+		</v-container>
 
 
 
@@ -164,6 +164,7 @@
 <script>
 
 	import format from 'date-fns/format'
+	import VueResource from 'vue-resource'
 
 	export default {
 		mounted() {
@@ -172,7 +173,7 @@
 		data(){
 			return {
 				column: null,
-        		row: 'Bazar',
+				row: 'Bazar',
 				bazar_name_value : 'null',
 				id : 0 ,
 				due_date: null,
@@ -183,22 +184,25 @@
 				riyadComment: 'regular',
 				ataurComment: 'regular',
 				mealRule: [
-				v => v.length > 0 || 'minimum length not full filled',
+				v => v && v.length > 0 || 'minimum length not full filled',
 				v => /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value' , 
 
 				],
 				otherRules: [
-				v => v.length >= 3 || 'minimum length not full filled' ,
+				v => v && v.length >= 3 || 'minimum length not full filled' ,
 				],
 				loading_status : false,
 
 				bazar_details : [ 
-				{ id: 0 , bazar_name: 'chal'  , bazar_price : 0 , row : 'Bazar' , } ,
+				{ id: 0 , bazar_name: 'chal'  , bazar_price : null , row : 'Bazar' , } ,
 
 				], 
 				bazar_name_list : [
 				'oil' , 'chal' 
-				]
+				],
+				bazar_taka_list : [
+				10 , 20 
+				],
 
 			}
 		},
@@ -246,13 +250,25 @@
             	this.bazar_details.push({id: ++this.id , bazar_name: null  , bazar_price : null , row : 'Bazar'});
             },
             submit() {
+
             	if(this.$refs.form.validate()){
             		console.log('form validated');
             		this.loading_status = true;
 
 
-            	}
-            },
+            		this.$http.post('http://localhost:3000/ff' , 
+            		{
+            			name: 'riyad'
+            		}
+
+            			).then(function(data){
+            				console.log(data);
+
+            			});;
+
+
+            		}
+            	},
+            }
         }
-    }
-</script>
+    </script>

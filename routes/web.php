@@ -28,3 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ff', function(){
 	return 'hellow world';
 });
+
+Route::post('/ff', function(){
+	return 'hellow world';
+});

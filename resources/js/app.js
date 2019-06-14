@@ -58,7 +58,7 @@ Vue.component('App', require('./App.vue').default);
 
 
 import hellow from './components/HelloWorld.vue'
-
+import VueResource from 'vue-resource'
 
 Vue.component('greetings' , {
 
