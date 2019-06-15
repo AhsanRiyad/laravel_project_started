@@ -173,6 +173,7 @@
 		},
 		data(){
 			return {
+				correctDate : new Date() ,
 				column: null,
 				row: 'Bazar',
 				bazar_name_value : 'null',
@@ -231,10 +232,9 @@
                 	//this.due_date = new Date(dd);
 
                 	//alert(moment(d).format('YYYY'));
-;                	return moment(d).format('MMMM Do YYYY');
+;                	return date;
                 }else{
-                	//var date = format(this.due_date , 'Do-MMM-YY (dddd)');
-                	var date = moment(this.due_date).format('MMMM Do YYYY');;
+                	var date = format(this.due_date , 'Do-MMM-YY (dddd)');
 
                 	//this.due_date = new Date( format(this.due_date , 'Do-MMM-YY') ); 
 
@@ -258,20 +258,24 @@
         		if(this.due_date != null){
 
         			var d = new Date(this.due_date);
-        			//this.due_date = d.setDate(d.getDate()+1);
-        			this.due_date = moment(d).add(1, 'days');
+        			this.due_date = d.setDate(d.getDate()+1);
+        			//alert(this.due_date);
         		}else{
         			var d = new Date();
-        			this.due_date = moment(d).add(1, 'days');
+        			this.due_date = d.setDate(d.getDate()+1);
         		}
         	},
         	prev_date () {
         		if(this.due_date != null){
         			var d = new Date(this.due_date);
-        			this.due_date = moment(d).subtract(1 , 'days');
+        			this.due_date = d.setDate(d.getDate()-1);
+        			this.correctDate = this.formatedDate;
+        			this.due_date = this.formatedDate;
+        			alert(this.correctDate);
         		}else{
         			var d = new Date();
-        			this.due_date = moment(d).subtract(1 , 'days');
+        			this.due_date = d.setDate(d.getDate()+1);
+
         		}
         	},
         	delete_item (id){
@@ -293,19 +297,19 @@
             		this.loading_status = true;
 
 
-            		alert('clicked');
+            		//alert('clicked');
 
 
 
             		this.$http.post('http://localhost:3000/ff' , 
             		{
-            			date : this.due_date,
+            			date : this.correctDate,
             			ff: 'ghhjgghgj',
             			bazar_details : this.bazar_details
             			
             		}
             			).then(function(data){
-            				alert('inside');
+            				//alert('inside');
             				console.log(data);
             			});
 

@@ -20,7 +20,13 @@ class mealController extends Controller
 
 	//return $req->test_input;
 
-    return $req->due_date;
+    //$obj = json_decode($req->bazar_details);
+
+    //print_r($req->bazar_details);
+
+
+
+    return $req->bazar_details[0]['bazar_name'];
 
 	
 	}

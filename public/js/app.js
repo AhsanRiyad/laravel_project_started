@@ -2152,6 +2152,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      correctDate: new Date(),
       column: null,
       row: 'Bazar',
       bazar_name_value: 'null',
@@ -2200,11 +2201,9 @@ __webpack_require__.r(__webpack_exports__);
         //alert(moment(d).format('YYYY'));
 
         ;
-        return moment__WEBPACK_IMPORTED_MODULE_2___default()(d).format('MMMM Do YYYY');
+        return date;
       } else {
-        //var date = format(this.due_date , 'Do-MMM-YY (dddd)');
-        var date = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.due_date).format('MMMM Do YYYY');
-        ; //this.due_date = new Date( format(this.due_date , 'Do-MMM-YY') ); 
+        var date = date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YY (dddd)'); //this.due_date = new Date( format(this.due_date , 'Do-MMM-YY') ); 
         //var dd = this.months[date.getMonth()] + ' ' + + date.getDate()+ ' , ' + date.getFullYear()    ;
         //this.due_date = new Date(dd);
         //alert(dd);
@@ -2220,21 +2219,23 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     next_date: function next_date() {
       if (this.due_date != null) {
-        var d = new Date(this.due_date); //this.due_date = d.setDate(d.getDate()+1);
-
-        this.due_date = moment__WEBPACK_IMPORTED_MODULE_2___default()(d).add(1, 'days');
+        var d = new Date(this.due_date);
+        this.due_date = d.setDate(d.getDate() + 1); //alert(this.due_date);
       } else {
         var d = new Date();
-        this.due_date = moment__WEBPACK_IMPORTED_MODULE_2___default()(d).add(1, 'days');
+        this.due_date = d.setDate(d.getDate() + 1);
       }
     },
     prev_date: function prev_date() {
       if (this.due_date != null) {
         var d = new Date(this.due_date);
-        this.due_date = moment__WEBPACK_IMPORTED_MODULE_2___default()(d).subtract(1, 'days');
+        this.due_date = d.setDate(d.getDate() - 1);
+        this.correctDate = this.formatedDate;
+        this.due_date = this.formatedDate;
+        alert(this.correctDate);
       } else {
         var d = new Date();
-        this.due_date = moment__WEBPACK_IMPORTED_MODULE_2___default()(d).subtract(1, 'days');
+        this.due_date = d.setDate(d.getDate() + 1);
       }
     },
     delete_item: function delete_item(id) {
@@ -2258,14 +2259,14 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       if (this.$refs.form.validate()) {
         console.log('form validated');
-        this.loading_status = true;
-        alert('clicked');
+        this.loading_status = true; //alert('clicked');
+
         this.$http.post('http://localhost:3000/ff', {
-          date: this.due_date,
+          date: this.correctDate,
           ff: 'ghhjgghgj',
           bazar_details: this.bazar_details
         }).then(function (data) {
-          alert('inside');
+          //alert('inside');
           console.log(data);
         });
       }
