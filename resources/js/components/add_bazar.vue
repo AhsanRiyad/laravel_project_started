@@ -165,6 +165,7 @@
 
 	import format from 'date-fns/format'
 	import VueResource from 'vue-resource'
+	import moment from 'moment'
 
 	export default {
 		mounted() {
@@ -203,6 +204,7 @@
 				bazar_taka_list : [
 				'10' , '20' 
 				],
+				months : ["January","February","March","April","May","June","July","August","September","October","November","December"],
 
 			}
 		},
@@ -211,9 +213,41 @@
 				if(this.due_date!=null){
                     //this.disability = true;
                 }
-                var d = new Date();
-                var date =  this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : format(d , 'Do-MMM-YY (dddd)')  ;
+                //var d = new Date();
+                //var date =  this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : format(d , 'Do-MMM-YY (dddd)')  ;
                 //alert(date);
+
+
+                if(this.due_date == null)
+                {
+                	var d = new Date();
+                	var date = format(d , 'Do-MMM-YY (dddd)');
+                	//var date = moment().format(d , 'MMMM Do YYYY');
+
+                	//var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+                	var dd = this.months[d.getMonth()] + ' ' + + d.getDate()+ ' , ' + d.getFullYear() ;
+
+                	//this.due_date = new Date(dd);
+
+                	//alert(moment(d).format('YYYY'));
+;                	return moment(d).format('MMMM Do YYYY');
+                }else{
+                	//var date = format(this.due_date , 'Do-MMM-YY (dddd)');
+                	var date = moment(this.due_date).format('MMMM Do YYYY');;
+
+                	//this.due_date = new Date( format(this.due_date , 'Do-MMM-YY') ); 
+
+                	//var dd = this.months[date.getMonth()] + ' ' + + date.getDate()+ ' , ' + date.getFullYear()    ;
+
+                	//this.due_date = new Date(dd);
+                	//alert(dd);
+                	return date;
+                }
+
+                //this.due_date = new Date();
+                alert(date);
+
                 return date.toString();
             },
             
@@ -224,19 +258,20 @@
         		if(this.due_date != null){
 
         			var d = new Date(this.due_date);
-        			this.due_date = d.setDate(d.getDate()+1);
+        			//this.due_date = d.setDate(d.getDate()+1);
+        			this.due_date = moment(d).add(1, 'days');
         		}else{
         			var d = new Date();
-        			this.due_date = d.setDate(d.getDate()+1);
+        			this.due_date = moment(d).add(1, 'days');
         		}
         	},
         	prev_date () {
         		if(this.due_date != null){
         			var d = new Date(this.due_date);
-        			this.due_date = d.setDate(d.getDate()-1);
+        			this.due_date = moment(d).subtract(1 , 'days');
         		}else{
         			var d = new Date();
-        			this.due_date = d.setDate(d.getDate()+1);
+        			this.due_date = moment(d).subtract(1 , 'days');
         		}
         	},
         	delete_item (id){
@@ -264,8 +299,10 @@
 
             		this.$http.post('http://localhost:3000/ff' , 
             		{
-
-            			name: 'riyad'
+            			date : this.due_date,
+            			ff: 'ghhjgghgj',
+            			bazar_details : this.bazar_details
+            			
             		}
             			).then(function(data){
             				alert('inside');

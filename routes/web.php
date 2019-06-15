@@ -36,6 +36,7 @@ Route::get('/ff', function(){
 	return 'hellow world';
 });
 
-Route::post('/ff', function(){
-	return 'hellow world';
-});
+Route::post('/ff', 'mealController@test');
+
+
+Route::get('/test', 'mealController@addBazar');
