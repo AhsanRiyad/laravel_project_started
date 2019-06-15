@@ -2161,12 +2161,12 @@ __webpack_require__.r(__webpack_exports__);
       riyadComment: 'regular',
       ataurComment: 'regular',
       mealRule: [function (v) {
-        return v && v.length > 0 || 'minimum length not full filled';
+        return v && v.length > 0 || 'minimum 199 length not full filled';
       }, function (v) {
         return /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value';
       }],
       otherRules: [function (v) {
-        return v && v.length >= 3 || 'minimum length not full filled';
+        return v && v.length >= 0 || 'minimum length not full filled';
       }],
       loading_status: false,
       bazar_details: [{
@@ -2176,7 +2176,7 @@ __webpack_require__.r(__webpack_exports__);
         row: 'Bazar'
       }],
       bazar_name_list: ['oil', 'chal'],
-      bazar_taka_list: [10, 20]
+      bazar_taka_list: ['10', '20']
     };
   },
   computed: {
@@ -2185,7 +2185,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var d = new Date();
-      return this.due_date ? date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YY (dddd)') : date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(d, 'Do-MMM-YY (dddd)');
+      var date = this.due_date ? date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(this.due_date, 'Do-MMM-YY (dddd)') : date_fns_format__WEBPACK_IMPORTED_MODULE_0___default()(d, 'Do-MMM-YY (dddd)'); //alert(date);
+
+      return date.toString();
     }
   },
   methods: {
@@ -2229,12 +2231,13 @@ __webpack_require__.r(__webpack_exports__);
       if (this.$refs.form.validate()) {
         console.log('form validated');
         this.loading_status = true;
+        alert('clicked');
         this.$http.post('http://localhost:3000/ff', {
           name: 'riyad'
         }).then(function (data) {
+          alert('inside');
           console.log(data);
         });
-        ;
       }
     }
   }
@@ -2374,12 +2377,12 @@ __webpack_require__.r(__webpack_exports__);
       riyadComment: 'regular',
       ataurComment: 'regular',
       mealRule: [function (v) {
-        return v.length > 0 || 'minimum length not full filled';
+        return v && v.length > 0 || 'minimum length not full filled';
       }, function (v) {
         return /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value';
       }],
       otherRules: [function (v) {
-        return v.length > 3 || 'minimum length not full filled';
+        return v && v.length > 3 || 'minimum length not full filled';
       }],
       loading_status: false
     };
@@ -83699,6 +83702,7 @@ Vue.component('App', __webpack_require__(/*! ./App.vue */ "./resources/js/App.vu
 
 
 
+Vue.use(vue_resource__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.component('greetings', {
   template: '<p>this is a template</p>'
 });

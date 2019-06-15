@@ -112,6 +112,7 @@ import format from 'date-fns/format'
         mounted() {
             console.log('add meal Component mounted.')
         },
+        
         data(){
             return {
                 due_date: null,
@@ -122,12 +123,12 @@ import format from 'date-fns/format'
                 riyadComment: 'regular',
                 ataurComment: 'regular',
                 mealRule: [
-                 v => v.length > 0 || 'minimum length not full filled',
+                 v => v && v.length > 0 || 'minimum length not full filled',
                  v => /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value' , 
 
                 ],
                 otherRules: [
-                 v => v.length > 3 || 'minimum length not full filled' ,
+                 v => v && v.length > 3 || 'minimum length not full filled' ,
                 ],
                 loading_status : false,
 

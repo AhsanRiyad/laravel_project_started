@@ -60,6 +60,8 @@ Vue.component('App', require('./App.vue').default);
 import hellow from './components/HelloWorld.vue'
 import VueResource from 'vue-resource'
 
+Vue.use(VueResource);
+
 Vue.component('greetings' , {
 
 	template: '<p>this is a template</p>'

@@ -184,12 +184,12 @@
 				riyadComment: 'regular',
 				ataurComment: 'regular',
 				mealRule: [
-				v => v && v.length > 0 || 'minimum length not full filled',
+				v => v && v.length > 0 || 'minimum 199 length not full filled',
 				v => /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value' , 
 
 				],
 				otherRules: [
-				v => v && v.length >= 3 || 'minimum length not full filled' ,
+				v => v && v.length >= 0 || 'minimum length not full filled' ,
 				],
 				loading_status : false,
 
@@ -201,7 +201,7 @@
 				'oil' , 'chal' 
 				],
 				bazar_taka_list : [
-				10 , 20 
+				'10' , '20' 
 				],
 
 			}
@@ -212,7 +212,9 @@
                     //this.disability = true;
                 }
                 var d = new Date();
-                return this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : format(d , 'Do-MMM-YY (dddd)')  ;
+                var date =  this.due_date ? format(this.due_date , 'Do-MMM-YY (dddd)') : format(d , 'Do-MMM-YY (dddd)')  ;
+                //alert(date);
+                return date.toString();
             },
             
         },
@@ -256,16 +258,19 @@
             		this.loading_status = true;
 
 
+            		alert('clicked');
+
+
+
             		this.$http.post('http://localhost:3000/ff' , 
             		{
+
             			name: 'riyad'
             		}
-
             			).then(function(data){
+            				alert('inside');
             				console.log(data);
-
-            			});;
-
+            			});
 
             		}
             	},
