@@ -186,7 +186,7 @@
 				riyadComment: 'regular',
 				ataurComment: 'regular',
 				mealRule: [
-				v => v && v.length > 0 || 'minimum 199 length not full filled',
+				v => v && v.length > 0 || 'minimum  length not full filled',
 				v => /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value' , 
 
 				],
@@ -270,8 +270,8 @@
         			var d = new Date(this.due_date);
         			this.due_date = d.setDate(d.getDate()-1);
         			this.correctDate = this.formatedDate;
-        			this.due_date = this.formatedDate;
-        			alert(this.correctDate);
+        			//this.due_date = this.formatedDate;
+        			//alert(this.correctDate);
         		}else{
         			var d = new Date();
         			this.due_date = d.setDate(d.getDate()+1);

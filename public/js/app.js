@@ -2165,7 +2165,7 @@ __webpack_require__.r(__webpack_exports__);
       riyadComment: 'regular',
       ataurComment: 'regular',
       mealRule: [function (v) {
-        return v && v.length > 0 || 'minimum 199 length not full filled';
+        return v && v.length > 0 || 'minimum  length not full filled';
       }, function (v) {
         return /^[\d]*(\.){0,1}(\d)*$/.test(v) || 'must be integer or decimal point value';
       }],
@@ -2230,9 +2230,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.due_date != null) {
         var d = new Date(this.due_date);
         this.due_date = d.setDate(d.getDate() - 1);
-        this.correctDate = this.formatedDate;
-        this.due_date = this.formatedDate;
-        alert(this.correctDate);
+        this.correctDate = this.formatedDate; //this.due_date = this.formatedDate;
+        //alert(this.correctDate);
       } else {
         var d = new Date();
         this.due_date = d.setDate(d.getDate() + 1);
