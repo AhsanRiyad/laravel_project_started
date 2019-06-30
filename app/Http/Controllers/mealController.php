@@ -25,7 +25,7 @@ class mealController extends Controller
     //$obj = json_decode($req->bazar_details);
 
     //print_r($req->bazar_details);
-
+    $i = 0;
     for($i=0 ; $i<count($req->bazar_details); $i++)
     {
         $bazar_name = $req->bazar_details[$i]['bazar_name'] ; 
@@ -33,24 +33,29 @@ class mealController extends Controller
          $bazar_price = $req->bazar_details[$i]['bazar_price'] ;  
 
          $bazar_type = $req->bazar_details[$i]['row'] ; 
-         $adding_date = date("d-m-Y");
+         $adding_date = date("Y-m-d");
 
          $bazar_date = $req->date;
 
         //DB::insert('INSERT INTO `bazar`(`name`, `taka`, `bazar_date`, `adding_date`, `type` , `user`) VALUES (? , ? , ? , ? , ? , `riyad`) ,' , [ $bazar_name , $bazar_price , $bazar_date , $adding_date ,  $bazar_type ]);
+        //return $req->bazar_details[1]['bazar_price'];
+         DB::insert('INSERT INTO bazar (name, taka, bazar_date, adding_date, type , user) VALUES (? , ? ,  ? , ? , ?  , "1")  ' , [ $bazar_name , $bazar_price , $bazar_date, $adding_date , $bazar_type ] );
 
-        DB::insert(' INSERT INTO bazar (name, taka, bazar_date, adding_date, type , user) VALUES ("regr" , "10.0" ,  "12-12-19" , "12-12-19" , "bazar"  , "1")  ');
+         //return count($req->bazar_details);
         
     }
 
 
-    
+    //return $req->date;
 
     //var_dump($req);
+    //return $i;
 
 
-    //return $req->bazar_details[0]['bazar_name'];
-    return count($req->bazar_details);
+     
+
+    return $req->bazar_details[1]['bazar_name'];
+    //return count($req->bazar_details);
 
 	
 	}

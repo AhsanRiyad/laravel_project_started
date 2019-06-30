@@ -2175,7 +2175,7 @@ __webpack_require__.r(__webpack_exports__);
       loading_status: false,
       bazar_details: [{
         id: 0,
-        bazar_name: 'chal',
+        bazar_name: null,
         bazar_price: null,
         row: 'Bazar'
       }],
@@ -2260,8 +2260,15 @@ __webpack_require__.r(__webpack_exports__);
         console.log('form validated');
         this.loading_status = true; //alert('clicked');
 
+        if (this.due_date == null) {
+          var d = new Date();
+          var m = d.getMonth();
+          ++m;
+          this.n_date = d.getFullYear() + '-' + m + '-' + d.getDate();
+        }
+
         this.$http.post('http://localhost:3000/ff', {
-          date: this.correctDate,
+          date: this.n_date,
           ff: 'ghhjgghgj',
           bazar_details: this.bazar_details
         }).then(function (data) {
@@ -58010,19 +58017,15 @@ var render = function() {
                                             items: _vm.bazar_name_list,
                                             label: "Bazar name",
                                             editable: "",
-                                            input_value: b.bazar_name_value,
+                                            input_value: b.bazar_name,
                                             rules: _vm.otherRules
                                           },
                                           model: {
-                                            value: b.bazar_name_value,
+                                            value: b.bazar_name,
                                             callback: function($$v) {
-                                              _vm.$set(
-                                                b,
-                                                "bazar_name_value",
-                                                $$v
-                                              )
+                                              _vm.$set(b, "bazar_name", $$v)
                                             },
-                                            expression: "b.bazar_name_value"
+                                            expression: "b.bazar_name"
                                           }
                                         })
                                       ],
@@ -58041,8 +58044,15 @@ var render = function() {
                                             items: _vm.bazar_taka_list,
                                             label: "Bazar price",
                                             editable: "",
-                                            "item-value": b.bazar_price,
+                                            input_value: b.bazar_price,
                                             rules: _vm.mealRule
+                                          },
+                                          model: {
+                                            value: b.bazar_price,
+                                            callback: function($$v) {
+                                              _vm.$set(b, "bazar_price", $$v)
+                                            },
+                                            expression: "b.bazar_price"
                                           }
                                         })
                                       ],

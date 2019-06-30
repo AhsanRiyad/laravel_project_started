@@ -59,9 +59,9 @@
 										:items="bazar_name_list"
 										label="Bazar name"
 										editable
-										v-model="b.bazar_name_value"
+										v-model="b.bazar_name"
 										
-										:input_value="b.bazar_name_value"
+										:input_value="b.bazar_name"
 										:rules="otherRules" ></v-combobox>
 
 									</v-flex>
@@ -72,8 +72,8 @@
 										:items="bazar_taka_list"
 										label="Bazar price"
 										editable
-										:item-value="b.bazar_price"
-
+										v-model="b.bazar_price"
+										:input_value="b.bazar_price"
 										:rules="mealRule"
 
 										></v-combobox>
@@ -196,7 +196,7 @@
 				loading_status : false,
 
 				bazar_details : [ 
-				{ id: 0 , bazar_name: 'chal'  , bazar_price : null , row : 'Bazar' , } ,
+				{ id: 0 , bazar_name: null  , bazar_price : null , row : 'Bazar' , } ,
 
 				], 
 				bazar_name_list : [
@@ -299,11 +299,16 @@
 
             		//alert('clicked');
 
-
+            		if(this.due_date == null ){
+            			var d = new Date();
+            			var  m = d.getMonth() ;
+            			++m ;
+            			this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
+            		}
 
             		this.$http.post('http://localhost:3000/ff' , 
             		{
-            			date : this.correctDate,
+            			date : this.n_date,
             			ff: 'ghhjgghgj',
             			bazar_details : this.bazar_details
             			
