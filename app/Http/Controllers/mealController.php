@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\bazar;
+use App\meal;
 
 class mealController extends Controller
 {
     //
 
+    // function addBazar(Request $req){
+    // 	return view('test');
+    // }
+
+
     function addBazar(Request $req){
-    	return view('test');
-    }
-
-
-    function test(Request $req){
 
 
 	//print_r($req->all());
@@ -40,7 +41,7 @@ class mealController extends Controller
 
         //DB::insert('INSERT INTO `bazar`(`name`, `taka`, `bazar_date`, `adding_date`, `type` , `user`) VALUES (? , ? , ? , ? , ? , `riyad`) ,' , [ $bazar_name , $bazar_price , $bazar_date , $adding_date ,  $bazar_type ]);
         //return $req->bazar_details[1]['bazar_price'];
-         //DB::insert('INSERT INTO bazar (name, taka, bazar_date, adding_date, type , user) VALUES (? , ? ,  ? , ? , ?  , "1")  ' , [ $bazar_name , $bazar_price , $bazar_date, $adding_date , $bazar_type ] );
+        //DB::insert('INSERT INTO bazar (name, taka, bazar_date, adding_date, type , user) VALUES (? , ? ,  ? , ? , ?  , "1")  ' , [ $bazar_name , $bazar_price , $bazar_date, $adding_date , $bazar_type ] );
 
 
         $bazar = new bazar;
@@ -72,5 +73,30 @@ class mealController extends Controller
 
 	
 	}
+
+
+
+    function addMeal(Request $req){
+
+
+        $meal = new meal;
+
+        $meal->added_by = 1;
+        $meal->ataur_count = $req->riyadMeal;
+        $meal->riyad_count = $req->ataurMeal;
+        $meal->ataur_comment = $req->ataurComment;
+        $meal->riyad_comment = $req->riyadComment;
+        $meal->date = $req->date ; 
+
+        $meal->save();
+
+
+
+        return $req->ataurComment;
+
+
+    }
+
+
 
 }

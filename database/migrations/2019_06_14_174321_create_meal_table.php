@@ -16,9 +16,12 @@ class CreateMealTable extends Migration
         Schema::create('meal', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->bigInteger('user_id');
+            //$table->bigInteger('user_id');
             $table->bigInteger('added_by');
-            $table->double('amount', 8, 2);
+            $table->double('ataur_count', 8, 2);
+            $table->double('riyad_count', 8, 2);
+            $table->string('ataur_comment');
+            $table->string('riyad_comment');
             $table->date('date');
 
         });

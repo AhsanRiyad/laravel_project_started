@@ -321,9 +321,11 @@
             			var  m = d.getMonth() ;
             			++m ;
             			this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
+            		}else{
+            			this.n_date = this.due_date ; 
             		}
 
-            		this.$http.post('http://localhost:3000/ff' , 
+            		this.$http.post('http://localhost:3000/addBazar' , 
             		{
             			date : this.n_date,
             			ff: 'ghhjgghgj',

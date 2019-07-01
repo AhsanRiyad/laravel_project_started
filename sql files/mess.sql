@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2019 at 11:45 PM
+-- Generation Time: Jul 01, 2019 at 11:07 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -45,15 +45,12 @@ CREATE TABLE `bazar` (
 --
 
 INSERT INTO `bazar` (`id`, `name`, `taka`, `bazar_date`, `adding_date`, `type`, `user`, `created_at`, `updated_at`) VALUES
-(30, 'chal', 10.00, '2019-07-01', '2019-06-30', 'Bazar', 1, NULL, NULL),
-(31, 'oil', 20.00, '2019-07-01', '2019-06-30', 'Bazar', 1, NULL, NULL),
-(32, 'chal', 10.00, '2019-07-01', '2019-06-30', 'Bazar', 1, NULL, NULL),
-(33, 'chal', 10.00, '2019-07-01', '2019-06-30', 'Constant', 1, NULL, NULL),
-(34, 'oil', 10.00, '2019-07-01', '2019-06-30', 'Loan', 1, NULL, NULL),
-(35, 'chal', 10.00, '2019-07-01', '2019-06-30', 'Bazar', 1, NULL, NULL),
-(36, 'oil', 20.00, '2019-07-01', '2019-06-30', 'Bazar', 1, NULL, NULL),
-(37, 'oil', 20.00, '2019-07-01', '2019-06-30', 'Constant', 1, NULL, NULL),
-(38, 'chal', 10.00, '2019-07-01', '2019-06-30', 'Bazar', 1, NULL, NULL);
+(64, 'oil', 20.00, '2019-07-01', '2019-07-01', 'Loan', 1, '2019-07-01 01:32:01', '2019-07-01 01:32:01'),
+(65, 'oil', 20.00, '2019-07-01', '2019-07-01', 'Loan', 1, '2019-07-01 01:32:09', '2019-07-01 01:32:09'),
+(66, 'chal', 10.00, '2019-07-01', '2019-07-01', 'Bazar', 1, '2019-07-01 01:32:09', '2019-07-01 01:32:09'),
+(67, 'oil', 20.00, '2019-07-01', '2019-07-01', 'Bazar', 1, '2019-07-01 01:37:21', '2019-07-01 01:37:21'),
+(68, 'oil', 20.00, '2019-07-01', '2019-07-01', 'Bazar', 1, '2019-07-01 02:23:42', '2019-07-01 02:23:42'),
+(69, 'oil', 20.00, '2019-07-01', '2019-07-01', 'Bazar', 1, '2019-07-01 02:23:46', '2019-07-01 02:23:46');
 
 -- --------------------------------------------------------
 
@@ -65,11 +62,23 @@ CREATE TABLE `meal` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   `added_by` bigint(20) NOT NULL,
-  `amount` double(8,2) NOT NULL,
+  `ataur_count` double(8,2) NOT NULL,
+  `riyad_count` double(8,2) NOT NULL DEFAULT '0.00',
+  `ataur_comment` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `riyad_comment` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `meal`
+--
+
+INSERT INTO `meal` (`id`, `created_at`, `updated_at`, `user_id`, `added_by`, `ataur_count`, `riyad_count`, `ataur_comment`, `riyad_comment`, `date`) VALUES
+(1, '2019-07-01 03:05:22', '2019-07-01 03:05:22', NULL, 1, 0.00, 0.00, 'regular', 'regular', '2019-07-01'),
+(2, '2019-07-01 03:05:47', '2019-07-01 03:05:47', NULL, 1, 0.00, 12.00, 'regular', 'regular', '2019-07-01'),
+(3, '2019-07-01 03:06:47', '2019-07-01 03:06:47', NULL, 1, 0.00, 0.00, 'regular', 'regular', '2019-07-25');
 
 -- --------------------------------------------------------
 
@@ -282,13 +291,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bazar`
 --
 ALTER TABLE `bazar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `meal`
 --
 ALTER TABLE `meal`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
