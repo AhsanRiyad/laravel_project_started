@@ -2157,9 +2157,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
+var el = ["2019-07-03", "2019-07-05"];
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('add meal Component mounted.');
@@ -2198,7 +2202,10 @@ __webpack_require__.r(__webpack_exports__);
       }],
       bazar_name_list: ['oil', 'chal'],
       bazar_taka_list: ['10', '20'],
-      months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+      months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      months_digit: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+      day_digit: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
+      date_array: ["2019-07-03", "2019-07-05"]
     };
   },
   computed: {
@@ -2231,9 +2238,24 @@ __webpack_require__.r(__webpack_exports__);
 
       alert(date);
       return date.toString();
+    },
+    todayDate: function todayDate() {
+      var d = new Date();
+      var m = d.getMonth();
+      var dd = d.getDate();
+      --dd; //++m ;
+
+      this.n_date = d.getFullYear() + '-' + this.months_digit[m] + '-' + this.day_digit[dd]; //var t = new Date(this.n_date);
+      //alert(this.n_date);
+      //return this.n_date ; 
+
+      return '2019-07-30';
     }
   },
   methods: {
+    allowedDates: function allowedDates(val) {
+      return this.date_array.indexOf(val) !== -1;
+    },
     next_date: function next_date() {
       if (this.due_date != null) {
         var d = new Date(this.due_date);
@@ -2449,6 +2471,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2477,7 +2503,9 @@ __webpack_require__.r(__webpack_exports__);
       bazar_adding_status: null,
       status_color: true,
       status_color_red: false,
-      months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+      months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      months_digit: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+      day_digit: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
     };
   },
   computed: {
@@ -2510,6 +2538,17 @@ __webpack_require__.r(__webpack_exports__);
 
       alert(date);
       return date.toString();
+    },
+    todayDate: function todayDate() {
+      var d = new Date();
+      var m = d.getMonth();
+      var dd = d.getDate();
+      --dd; //++m ;
+
+      this.n_date = d.getFullYear() + '-' + this.months_digit[m] + '-' + this.day_digit[dd]; //var t = new Date(this.n_date);
+      //alert(this.n_date);
+
+      return this.n_date;
     }
   },
   methods: {
@@ -58161,6 +58200,11 @@ var render = function() {
                                           }),
                                           _vm._v(" "),
                                           _c("v-date-picker", {
+                                            attrs: {
+                                              "allowed-dates": _vm.allowedDates,
+                                              min: "2016-06-15",
+                                              max: _vm.todayDate
+                                            },
                                             model: {
                                               value: _vm.due_date,
                                               callback: function($$v) {
@@ -58639,6 +58683,11 @@ var render = function() {
                                       }),
                                       _vm._v(" "),
                                       _c("v-date-picker", {
+                                        attrs: {
+                                          "allowed-dates": _vm.allowedDates,
+                                          min: "2016-06-15",
+                                          max: _vm.todayDate
+                                        },
                                         model: {
                                           value: _vm.due_date,
                                           callback: function($$v) {

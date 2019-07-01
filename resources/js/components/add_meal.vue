@@ -53,7 +53,11 @@
 
                             </v-text-field>
 
-                            <v-date-picker v-model="due_date"></v-date-picker>
+                            <v-date-picker v-model="due_date" 
+
+                            :allowed-dates="allowedDates"
+                            min="2016-06-15"
+                                            :max="todayDate"></v-date-picker>
                         </v-menu>
 
                     </v-flex>
@@ -154,6 +158,9 @@ import VueResource from 'vue-resource'
                 status_color_red : false , 
                 months : ["January","February","March","April","May","June","July","August","September","October","November","December"],
 
+                months_digit : ["01" , "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",],
+                day_digit : ["01" , "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",  "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" ],
+
             }
         },
         computed: {
@@ -197,6 +204,21 @@ import VueResource from 'vue-resource'
 
                 return date.toString();
             },
+
+
+            todayDate() {
+                var d = new Date();
+                var  m = d.getMonth() ;
+                var dd = d.getDate() ; 
+                --dd ;
+                //++m ;
+                this.n_date = d.getFullYear()  + '-' +  this.months_digit[m]  + '-' +  this.day_digit[ dd ];
+                //var t = new Date(this.n_date);
+                //alert(this.n_date);
+                return this.n_date ; 
+
+
+                }  
             
         },
         methods: {

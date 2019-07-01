@@ -26,7 +26,10 @@
 
 											</v-text-field>
 
-											<v-date-picker v-model="due_date"></v-date-picker>
+											<v-date-picker v-model="due_date"
+											:allowed-dates="allowedDates"
+											min="2016-06-15"
+											:max="todayDate"></v-date-picker> 
 										</v-menu>
 
 									</v-flex>
@@ -126,8 +129,8 @@
 									<v-flex xs2>
 										<v-btn  @click.prevent="submit" color="green" class="white--text" :loading="loading_status">Add Bazar</v-btn>
 
-										 <br>
-										 <h1 v-bind:class="{ text_color: status_color , text_color_red : status_color_red  }"  >  {{ bazar_adding_status }} </h1>
+										<br>
+										<h1 v-bind:class="{ text_color: status_color , text_color_red : status_color_red  }"  >  {{ bazar_adding_status }} </h1>
 									</v-flex>
 
 
@@ -180,7 +183,7 @@
 	import format from 'date-fns/format'
 	import VueResource from 'vue-resource'
 	import moment from 'moment'
-
+	var el = ["2019-07-03", "2019-07-05"];
 	export default {
 		mounted() {
 			console.log('add meal Component mounted.')
@@ -223,6 +226,11 @@
 				'10' , '20' 
 				],
 				months : ["January","February","March","April","May","June","July","August","September","October","November","December"],
+				months_digit : ["01" , "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",],
+				day_digit : ["01" , "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",  "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" ],
+
+				date_array : [ "2019-07-03", "2019-07-05" ],
+				
 
 			}
 		},
@@ -249,7 +257,7 @@
                 	//this.due_date = new Date(dd);
 
                 	//alert(moment(d).format('YYYY'));
-;                	return date;
+                	;                	return date;
                 }else{
                 	var date = format(this.due_date , 'Do-MMM-YY (dddd)');
 
@@ -267,15 +275,35 @@
 
                 return date.toString();
             },
-            
-        },
-        methods: {
-        	next_date () {
+            todayDate() {
+            	var d = new Date();
+            	var  m = d.getMonth() ;
+            	var dd = d.getDate() ; 
+            	--dd ;
+            	//++m ;
+            	this.n_date = d.getFullYear()  + '-' +  this.months_digit[m]  + '-' +  this.day_digit[ dd ];
+            	//var t = new Date(this.n_date);
+            	//alert(this.n_date);
+            	//return this.n_date ; 
+            	return '2019-07-30' ; 
 
-        		if(this.due_date != null){
 
-        			var d = new Date(this.due_date);
-        			this.due_date = d.setDate(d.getDate()+1);
+            	}  
+
+            	
+            },
+            methods: {
+            	
+            	allowedDates (val) {
+            		return this.date_array.indexOf(val) !== -1 ;
+            	},
+
+            	next_date () {
+
+            		if(this.due_date != null){
+
+            			var d = new Date(this.due_date);
+            			this.due_date = d.setDate(d.getDate()+1);
         			//alert(this.due_date);
         		}else{
         			var d = new Date();
@@ -324,9 +352,9 @@
             			this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
             		}else{
             			var d = new Date(this.due_date);
-                        var  m = d.getMonth() ;
-                        ++m ;
-                        this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
+            			var  m = d.getMonth() ;
+            			++m ;
+            			this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
             		}
 
             		this.$http.post('http://localhost:3000/addBazar' , 
@@ -336,7 +364,7 @@
             			bazar_details : this.bazar_details
             			
             		}
-            			).then(function(data){
+            		).then(function(data){
             				//alert('inside');
             				console.log(data);
             				this.loading_status = false ;
