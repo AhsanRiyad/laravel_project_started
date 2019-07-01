@@ -287,12 +287,13 @@
         			var d = new Date(this.due_date);
         			this.due_date = d.setDate(d.getDate()-1);
         			this.correctDate = this.formatedDate;
+        			this.due_date = new Date(this.due_date);
         			//this.due_date = this.formatedDate;
         			//alert(this.correctDate);
         		}else{
         			var d = new Date();
         			this.due_date = d.setDate(d.getDate()+1);
-
+        			this.due_date = new Date(this.due_date);
         		}
         	},
         	delete_item (id){
@@ -322,7 +323,10 @@
             			++m ;
             			this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
             		}else{
-            			this.n_date = this.due_date ; 
+            			var d = new Date(this.due_date);
+                        var  m = d.getMonth() ;
+                        ++m ;
+                        this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
             		}
 
             		this.$http.post('http://localhost:3000/addBazar' , 

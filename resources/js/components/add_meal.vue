@@ -206,10 +206,15 @@ import VueResource from 'vue-resource'
 
                     var d = new Date(this.due_date);
                     this.due_date = d.setDate(d.getDate()+1);
+                    this.due_date = new Date(this.due_date);
                     //alert(this.due_date);
                 }else{
                     var d = new Date();
                     this.due_date = d.setDate(d.getDate()+1);
+                    this.due_date = new Date(this.due_date);
+
+
+
                 }
             },
             prev_date () {
@@ -217,11 +222,13 @@ import VueResource from 'vue-resource'
                     var d = new Date(this.due_date);
                     this.due_date = d.setDate(d.getDate()-1);
                     this.correctDate = this.formatedDate;
+                    this.due_date = new Date(this.due_date);
                     //this.due_date = this.formatedDate;
                     //alert(this.correctDate);
                 }else{
                     var d = new Date();
                     this.due_date = d.setDate(d.getDate()+1);
+                    this.due_date = new Date(this.due_date);
 
                 }
             },
@@ -237,7 +244,12 @@ import VueResource from 'vue-resource'
                         ++m ;
                         this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
                     }else{
-                        this.n_date = this.due_date ; 
+                        //this.n_date = this.due_date ; 
+
+                        var d = new Date(this.due_date);
+                        var  m = d.getMonth() ;
+                        ++m ;
+                        this.n_date = d.getFullYear()  + '-' +  m + '-' +   d.getDate();
                     }
 
 

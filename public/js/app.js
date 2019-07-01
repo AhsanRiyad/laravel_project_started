@@ -2247,11 +2247,13 @@ __webpack_require__.r(__webpack_exports__);
       if (this.due_date != null) {
         var d = new Date(this.due_date);
         this.due_date = d.setDate(d.getDate() - 1);
-        this.correctDate = this.formatedDate; //this.due_date = this.formatedDate;
+        this.correctDate = this.formatedDate;
+        this.due_date = new Date(this.due_date); //this.due_date = this.formatedDate;
         //alert(this.correctDate);
       } else {
         var d = new Date();
         this.due_date = d.setDate(d.getDate() + 1);
+        this.due_date = new Date(this.due_date);
       }
     },
     delete_item: function delete_item(id) {
@@ -2283,7 +2285,10 @@ __webpack_require__.r(__webpack_exports__);
           ++m;
           this.n_date = d.getFullYear() + '-' + m + '-' + d.getDate();
         } else {
-          this.n_date = this.due_date;
+          var d = new Date(this.due_date);
+          var m = d.getMonth();
+          ++m;
+          this.n_date = d.getFullYear() + '-' + m + '-' + d.getDate();
         }
 
         this.$http.post('http://localhost:3000/addBazar', {
@@ -2511,21 +2516,25 @@ __webpack_require__.r(__webpack_exports__);
     next_date: function next_date() {
       if (this.due_date != null) {
         var d = new Date(this.due_date);
-        this.due_date = d.setDate(d.getDate() + 1); //alert(this.due_date);
+        this.due_date = d.setDate(d.getDate() + 1);
+        this.due_date = new Date(this.due_date); //alert(this.due_date);
       } else {
         var d = new Date();
         this.due_date = d.setDate(d.getDate() + 1);
+        this.due_date = new Date(this.due_date);
       }
     },
     prev_date: function prev_date() {
       if (this.due_date != null) {
         var d = new Date(this.due_date);
         this.due_date = d.setDate(d.getDate() - 1);
-        this.correctDate = this.formatedDate; //this.due_date = this.formatedDate;
+        this.correctDate = this.formatedDate;
+        this.due_date = new Date(this.due_date); //this.due_date = this.formatedDate;
         //alert(this.correctDate);
       } else {
         var d = new Date();
         this.due_date = d.setDate(d.getDate() + 1);
+        this.due_date = new Date(this.due_date);
       }
     },
     submit: function submit() {
@@ -2539,7 +2548,11 @@ __webpack_require__.r(__webpack_exports__);
           ++m;
           this.n_date = d.getFullYear() + '-' + m + '-' + d.getDate();
         } else {
-          this.n_date = this.due_date;
+          //this.n_date = this.due_date ; 
+          var d = new Date(this.due_date);
+          var m = d.getMonth();
+          ++m;
+          this.n_date = d.getFullYear() + '-' + m + '-' + d.getDate();
         }
 
         this.$http.post('http://localhost:3000/addMeal', {

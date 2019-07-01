@@ -90,9 +90,9 @@ class mealController extends Controller
 
         $meal->save();
 
+        
 
-
-        return $req->ataurComment;
+        return $req->date;
 
 
     }
