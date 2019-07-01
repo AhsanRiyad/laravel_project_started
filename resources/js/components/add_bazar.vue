@@ -8,7 +8,7 @@
 				<v-flex xs12>
 					<v-card>
 						<v-card-title>
-							<h2>Add Bazar</h2>    
+							<h2>   Add Bazar   </h2>  
 						</v-card-title>
 						<v-card-text>
 
@@ -124,7 +124,10 @@
 								<v-layout justify-center>
 
 									<v-flex xs2>
-										<v-btn  @click.prevent="submit" color="green" class="white--text" :loading="loading_status">Add Meal</v-btn>
+										<v-btn  @click.prevent="submit" color="green" class="white--text" :loading="loading_status">Add Bazar</v-btn>
+
+										 <br>
+										 <h1 v-bind:class="{ text_color: status_color , text_color_red : status_color_red  }"  >  {{ bazar_adding_status }} </h1>
 									</v-flex>
 
 
@@ -160,6 +163,17 @@
 
 </template>
 
+<style scoped>
+	.text_color{
+		color: green ;
+	}
+
+	.text_color_red{
+		color: red ;
+	}
+</style>
+
+
 
 <script>
 
@@ -194,6 +208,9 @@
 				v => v && v.length >= 0 || 'minimum length not full filled' ,
 				],
 				loading_status : false,
+				bazar_adding_status : null ,
+				status_color : true , 
+				status_color_red : false , 
 
 				bazar_details : [ 
 				{ id: 0 , bazar_name: null  , bazar_price : null , row : 'Bazar' , } ,
@@ -316,6 +333,16 @@
             			).then(function(data){
             				//alert('inside');
             				console.log(data);
+            				this.loading_status = false ;
+            				this.bazar_adding_status = 'bazar added' ; 
+            				this.status_color = true;
+            				this.status_color_red = false ; 
+            			}).catch(function(error){
+            				this.loading_status = false ; 
+            				//alert('an error occured');
+            				this.bazar_adding_status = 'bazar not added' ;
+            				this.status_color = false;
+            				this.status_color_red = true ; 
             			});
 
             		}
@@ -323,3 +350,5 @@
             }
         }
     </script>
+
+

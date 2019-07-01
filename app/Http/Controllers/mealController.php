@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\bazar;
 
 class mealController extends Controller
 {
@@ -39,7 +40,19 @@ class mealController extends Controller
 
         //DB::insert('INSERT INTO `bazar`(`name`, `taka`, `bazar_date`, `adding_date`, `type` , `user`) VALUES (? , ? , ? , ? , ? , `riyad`) ,' , [ $bazar_name , $bazar_price , $bazar_date , $adding_date ,  $bazar_type ]);
         //return $req->bazar_details[1]['bazar_price'];
-         DB::insert('INSERT INTO bazar (name, taka, bazar_date, adding_date, type , user) VALUES (? , ? ,  ? , ? , ?  , "1")  ' , [ $bazar_name , $bazar_price , $bazar_date, $adding_date , $bazar_type ] );
+         //DB::insert('INSERT INTO bazar (name, taka, bazar_date, adding_date, type , user) VALUES (? , ? ,  ? , ? , ?  , "1")  ' , [ $bazar_name , $bazar_price , $bazar_date, $adding_date , $bazar_type ] );
+
+
+        $bazar = new bazar;
+
+        $bazar->name = $bazar_name;
+        $bazar->taka = $bazar_price;
+        $bazar->bazar_date = $bazar_date;
+        $bazar->adding_date = $adding_date;
+        $bazar->type = $bazar_type;
+        $bazar->user = '1';
+
+        $bazar->save();
 
          //return count($req->bazar_details);
         
@@ -54,7 +67,7 @@ class mealController extends Controller
 
      
 
-    return $req->bazar_details[1]['bazar_name'];
+    //return $req->bazar_details[1]['bazar_name'];
     //return count($req->bazar_details);
 
 	
