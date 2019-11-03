@@ -3,7 +3,8 @@
 
 <p>
 	#This is a university project, made for educational purpose.
-
+	
+	#this project tag comes from 'assignment-to-project' branch of 'laravel_project_started' repository
 
 	#SQL file will be inside "sql file" folder in the root directory.
 
@@ -12,6 +13,11 @@
 
 
 	#please run the command "composer install" to install the required dependency.
+
+	#to run the project using php
+	$php artisan serve
+	or using a port number
+	$php artisan serve --port 3000
 
 
 	#to run the queue, run the following commands consequetively
