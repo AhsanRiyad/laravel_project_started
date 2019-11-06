@@ -34,3 +34,10 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 ********for vuejs development**********
 $npm run watch
+
+
+
+##########
+this project is a sub branch named 'vue_js' of the repository "Laravel_project_started" 
+
+
