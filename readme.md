@@ -18,7 +18,6 @@ and
 $npm i
 
 
-
 =>rule 5
 $php artisan serve --port 3000
 or 
@@ -28,3 +27,10 @@ for run the project
 
 
 
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+********for vuejs development**********
+$npm run watch
